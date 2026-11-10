@@ -107,7 +107,7 @@
                 const data = await res.json();
                 if (data.authenticated && data.user) {
                     if (data.user.user_type !== 'ADMIN') {
-                        window.location.href = 'portal-dashboard.html';
+                        window.location.href = 'cust_dashboard.html';
                         return;
                     }
                     document.getElementById('userNameText').textContent = data.user.name || data.user.username;

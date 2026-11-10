@@ -81,7 +81,7 @@ try {
     $_SESSION['logged_in_at'] = time();
 
     // Determine target redirect URL based on user_type
-    $redirectUrl = ($user['user_type'] === 'ADMIN') ? 'admin-dashboard.html' : 'portal-dashboard.html';
+    $redirectUrl = ($user['user_type'] === 'ADMIN') ? 'admin-dashboard.html' : 'cust_dashboard.html';
 
     echo json_encode([
         'success' => true,
@@ -102,3 +102,4 @@ try {
     echo json_encode(['success' => false, 'message' => '데이터베이스 오류: ' . $e->getMessage()]);
 }
 ?>
+
