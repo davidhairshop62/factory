@@ -201,6 +201,13 @@
 </button>
 </div>
 <div class="flex items-center gap-2 pl-space-xs">
+<button
+  onclick="fetch('api_logout.php').then(() => location.href='index.html')"
+  class="px-2.5 py-1 bg-red-950/40 hover:bg-red-900/60 border border-red-500/40 text-red-300 rounded font-label-mono-xs text-label-mono-xs transition-colors flex items-center space-x-1"
+  title="로그아웃">
+  <span class="material-symbols-outlined text-sm">logout</span>
+  <span>로그아웃</span>
+</button>
 <div class="w-8 h-8 rounded border border-primary/40 bg-surface-container-high flex items-center justify-center text-primary font-label-mono-md font-bold shadow-inner">
           MP
         </div>

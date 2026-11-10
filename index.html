@@ -1,783 +1,239 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en">
-
+<html lang="ko" class="dark">
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>ATELIER MES // ENTERPRISE GATEWAY - Custom Hairpiece Manufacturing &amp; Order Management</title>
-  <!-- Material Symbols Outlined -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-    rel="stylesheet" />
-  <!-- Fonts: Outfit (Headlines), Inter (Body), JetBrains Mono (Technical/Telemetry) -->
-  <link href="https://fonts.googleapis.com" rel="preconnect" />
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-    rel="stylesheet" />
-  <!-- Tailwind CSS v3 -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "primary-container": "#f59e0b",
-            "background": "#051424",
-            "on-secondary-fixed-variant": "#3c475a",
-            "on-background": "#d4e4fa",
-            "error": "#ffb4ab",
-            "inverse-on-surface": "#233143",
-            "on-error": "#690005",
-            "on-surface-variant": "#d8c3ad",
-            "on-tertiary-container": "#004e34",
-            "surface-tint": "#ffb95f",
-            "on-secondary-container": "#aeb9d0",
-            "inverse-primary": "#855300",
-            "secondary-container": "#3e495d",
-            "surface": "#051424",
-            "secondary-fixed": "#d8e3fb",
-            "surface-container-low": "#0d1c2d",
-            "tertiary": "#56e5a9",
-            "surface-dim": "#051424",
-            "tertiary-container": "#30c88f",
-            "surface-variant": "#273647",
-            "on-tertiary-fixed": "#002113",
-            "on-primary-fixed-variant": "#653e00",
-            "surface-container-high": "#1c2b3c",
-            "on-primary-container": "#613b00",
-            "primary-fixed": "#ffddb8",
-            "secondary-fixed-dim": "#bcc7de",
-            "outline": "#a08e7a",
-            "on-tertiary-fixed-variant": "#005236",
-            "on-primary-fixed": "#2a1700",
-            "surface-container-lowest": "#010f1f",
-            "on-primary": "#472a00",
-            "on-error-container": "#ffdad6",
-            "surface-container-highest": "#273647",
-            "on-secondary-fixed": "#111c2d",
-            "on-tertiary": "#003824",
-            "surface-bright": "#2c3a4c",
-            "primary": "#ffc174",
-            "tertiary-fixed": "#6ffbbe",
-            "primary-fixed-dim": "#ffb95f",
-            "outline-variant": "#534434",
-            "inverse-surface": "#d4e4fa",
-            "secondary": "#bcc7de",
-            "surface-container": "#122131",
-            "tertiary-fixed-dim": "#4edea3",
-            "on-secondary": "#263143",
-            "error-container": "#93000a",
-            "on-surface": "#d4e4fa"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "gutter": "1rem",
-            "space-md": "0.75rem",
-            "space-sm": "0.5rem",
-            "margin-mobile": "1rem",
-            "space-lg": "1.25rem",
-            "margin": "1.5rem",
-            "space-xl": "2rem",
-            "space-xs": "0.25rem",
-            "gutter-dense": "0.5rem"
-          },
-          "fontFamily": {
-            "headline-md": ["Outfit"],
-            "headline-xl-mobile": ["Outfit"],
-            "body-sm": ["Inter"],
-            "body-md": ["Inter"],
-            "body-lg": ["Inter"],
-            "headline-xl": ["Outfit"],
-            "headline-lg": ["Outfit"],
-            "label-mono-md": ["JetBrains Mono"],
-            "label-mono-lg": ["JetBrains Mono"],
-            "label-mono-xs": ["JetBrains Mono"]
-          },
-          "fontSize": {
-            "headline-md": ["18px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "600" }],
-            "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
-            "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
-            "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
-            "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
-            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
-            "label-mono-md": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
-            "label-mono-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "500" }],
-            "label-mono-xs": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }]
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory ERP - 맞춤형 헤어제품 통합 관리 시스템</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                dark: '#090E17',
+                card: '#131B2B',
+                cardHover: '#1A2438',
+                border: '#28354D',
+                gold: '#F59E0B',
+                goldHover: '#D97706',
+                emerald: '#10B981',
+                slateText: '#94A3B8'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Outfit', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace']
+            }
           }
         }
       }
-    }
-  </script>
-  <style>
-    .hairline-grid {
-      background-size: 32px 32px;
-      background-image:
-        linear-gradient(to right, rgba(83, 68, 52, 0.12) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(83, 68, 52, 0.12) 1px, transparent 1px);
-    }
-
-    .amber-glow {
-      box-shadow: 0 0 16px -2px rgba(245, 158, 11, 0.25);
-    }
-
-    .amber-focus-inset {
-      box-shadow: inset 0 0 0 1px #f59e0b, 0 0 16px -2px rgba(245, 158, 11, 0.15);
-    }
-  </style>
-</head>
-
-<body
-  class="bg-background text-on-surface min-h-screen flex flex-col font-body-md text-body-md hairline-grid antialiased selection:bg-primary selection:text-background overflow-x-hidden">
-  <!-- TOP SHARED COMPONENT: TopNavBar -->
-  <header
-    class="w-full px-margin flex items-center justify-between h-14 bg-surface-container-lowest border-b border-outline-variant fixed top-0 left-0 right-0 z-50">
-    <div class="flex items-center space-x-4">
-      <div class="flex items-center space-x-2">
-        <div
-          class="w-7 h-7 bg-surface-container border border-outline-variant flex items-center justify-center text-primary rounded">
-          <span class="material-symbols-outlined text-base">precision_manufacturing</span>
-        </div>
-        <span class="font-headline-md text-headline-md tracking-wider text-primary uppercase font-bold">ATELIER MES //
-          ENTERPRISE GATEWAY</span>
-      </div>
-      <div class="hidden lg:flex items-center space-x-1 pl-4 border-l border-outline-variant">
-        <span
-          class="font-label-mono-xs text-label-mono-xs text-outline px-1.5 py-0.5 bg-surface-container-high rounded border border-outline-variant">ENC:
-          AES-256-GCM</span>
-        <span
-          class="font-label-mono-xs text-label-mono-xs text-primary px-1.5 py-0.5 bg-surface-container rounded border border-outline-variant">RBAC:
-          L4</span>
-      </div>
-    </div>
-    <!-- Navigation links from JSON -->
-    <nav class="hidden md:flex items-center space-x-6">
-      <a class="text-secondary hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors"
-        href="#telemetry">Telemetry</a>
-      <a class="text-secondary hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors"
-        href="#nodes">Nodes</a>
-      <a class="text-primary border-b-2 border-primary pb-1 font-label-mono-md text-label-mono-md uppercase tracking-wider"
-        href="#clearance">Clearance</a>
-      <a class="text-secondary hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors"
-        href="#audits">Audits</a>
-    </nav>
-    <!-- Trailing actions and status -->
-    <div class="flex items-center space-x-3">
-      <div class="hidden sm:flex flex-col items-end text-right font-label-mono-xs text-label-mono-xs">
-        <span class="text-primary flex items-center gap-1.5 font-semibold">
-          <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
-          SYS_STATUS: NOMINAL
-        </span>
-        <span class="text-secondary font-medium">SEL: 18ms | MEL: 42ms</span>
-      </div>
-      <div class="flex items-center space-x-1 text-on-surface-variant">
-        <button
-          class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-surface-container hover:bg-surface-container-high hover:text-primary transition-all duration-150 active:scale-95"
-          title="Hardware Token Encrypted">
-          <span class="material-symbols-outlined text-sm">lock</span>
-        </button>
-        <button
-          class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-surface-container hover:bg-surface-container-high hover:text-primary transition-all duration-150 active:scale-95"
-          title="Operator Terminal">
-          <span class="material-symbols-outlined text-sm">terminal</span>
-        </button>
-        <div
-          class="w-8 h-8 rounded border border-outline-variant overflow-hidden bg-surface-container flex items-center justify-center ml-1">
-          <img class="w-full h-full object-cover"
-            data-alt="A macro studio photograph of an encrypted metallic authentication hardware key fob displaying laser engraved alphanumeric identification markers and gold plated connection prongs. Subtle ambient cool blue lighting highlights precision industrial chamfered aluminum edges on a dark workbench."
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXwnzjZ87OGkdwnUXs7uAdWbRMYAAZFdn_Dvll40heDKg2xqlROVyZTlLuYPcHUJwsAKoyPSEtv2q5sx8pbqjqkiv0kOfrxHis4mLj-_W8iAF39HOpFBd4W2Q3TSU74NtdzAg0alM0Wv-P3xRJwWFp9cHJJlC0gTZnjq1yz1ZjcclaR0u0oaKqAk881j5eY_snDfIGLdBgG5-jYp11_WqAhu7Fxbj9v_8EHlhA-5tVl47gk-k5Y7uwEAIV-FcPrEVxvD-FiQzz-8GD" />
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- MAIN VIEW CONTAINER -->
-  <main class="flex-1 w-full max-w-[1536px] mx-auto px-margin pt-20 pb-16 flex flex-col justify-start">
-    <!-- SUB-HEADER / PRECISION TELEMETRY STRIP -->
-    <div
-      class="w-full py-space-sm mb-6 flex flex-wrap items-center justify-between border-b border-outline-variant text-label-mono-xs font-label-mono-xs bg-surface-container-lowest/80 px-4 rounded">
-      <div class="flex items-center space-x-4">
-        <div class="flex items-center space-x-1.5 text-primary">
-          <span class="material-symbols-outlined text-sm">token</span>
-          <span class="font-bold tracking-wide">MES NODE // WORKORDER ENGINE v2.4.0</span>
-        </div>
-        <span class="text-outline-variant">|</span>
-        <span class="text-on-surface-variant flex items-center gap-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-          SERVER STATUS: OPERATIONAL (MELBOURNE/SEOUL HUB)
-        </span>
-        <span class="text-outline-variant hidden sm:inline">|</span>
-        <span class="text-secondary hidden sm:inline">LATENCY: 18ms (P99: 22ms)</span>
-      </div>
-      <div class="flex items-center space-x-3 text-secondary mt-2 sm:mt-0">
-        <span class="font-mono text-outline">TIME: <span id="telemetry-clock">2025-05-18 04:32:19 UTC</span></span>
-        <span class="px-2 py-0.5 bg-surface-container-high border border-outline-variant text-tertiary rounded">SSL TLS
-          1.3 // HIGH-CIPHER</span>
-      </div>
-    </div>
-    <!-- PRIMARY DUAL-COLUMN LAYOUT -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
-      <!-- LEFT COLUMN: UNIFIED LOGIN CARD & HARDWARE MFA (lg:col-span-5) -->
-      <div class="lg:col-span-5 flex flex-col space-y-4">
-        <!-- CARD CONTAINER -->
-        <div class="bg-surface-container border border-outline-variant rounded-lg p-space-lg relative shadow-2xl">
-          <!-- Card Decorative Corner Markers -->
-          <div class="absolute top-2 left-2 text-outline-variant text-label-mono-xs font-label-mono-xs select-none">┌
-            ID:MES-AUTH-01</div>
-          <div class="absolute top-2 right-2 text-outline-variant text-label-mono-xs font-label-mono-xs select-none">
-            ENC-SEC ┐</div>
-          <!-- Card Header -->
-          <div class="pt-4 pb-3 border-b border-outline-variant mb-space-lg">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <span
-                  class="w-8 h-8 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary">
-                  <span class="material-symbols-outlined text-lg">verified_user</span>
-                </span>
-                <div>
-                  <h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">ENTERPRISE
-                    GATEWAY AUTHENTICATION</h2>
-                  <p class="font-label-mono-xs text-label-mono-xs text-outline uppercase tracking-wider">Custom
-                    Hairpiece Manufacturing Execution Gateway</p>
-                </div>
-              </div>
-              <span
-                class="px-2 py-0.5 bg-primary/10 border border-primary/30 text-primary font-label-mono-xs text-label-mono-xs rounded uppercase">
-                SEC-L3
-              </span>
-            </div>
-          </div>
-          <!-- Authentication Form -->
-          <form id="login-form" class="space-y-4" onsubmit="handleLoginSubmit(event);">
-            <!-- Enterprise Email / Operator ID -->
-            <div>
-              <div class="flex justify-between items-center mb-1">
-                <label class="font-label-mono-xs text-label-mono-xs text-secondary uppercase font-semibold">
-                  Business ID / Enterprise Email
-                </label>
-                <div class="space-x-1">
-                  <button type="button" onclick="fillTestAccount('admin', 'admin1234!')" class="font-label-mono-xs text-label-mono-xs text-primary hover:underline px-1 py-0.5 bg-primary/10 rounded">관리자 자동입력</button>
-                  <button type="button" onclick="fillTestAccount('client_test', 'client1234!')" class="font-label-mono-xs text-label-mono-xs text-tertiary hover:underline px-1 py-0.5 bg-tertiary/10 rounded">거래처 자동입력</button>
-                </div>
-              </div>
-              <div class="relative flex items-center">
-                <span
-                  class="absolute left-3 text-outline flex items-center justify-center select-none font-label-mono-xs text-label-mono-xs">
-                  <span class="material-symbols-outlined text-base">badge</span>
-                </span>
-                <input
-                  id="login-username"
-                  class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface pl-10 pr-3 py-2 rounded font-body-md text-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all"
-                  placeholder="admin 또는 client_test" required="" type="text"
-                  value="admin" />
-              </div>
-            </div>
-            <!-- Password -->
-            <div>
-              <div class="flex justify-between items-center mb-1">
-                <label class="font-label-mono-xs text-label-mono-xs text-secondary uppercase font-semibold">
-                  Password // Passkey Token
-                </label>
-                <a class="font-label-mono-xs text-label-mono-xs text-primary hover:underline" href="#recovery">Forgot Credentials?</a>
-              </div>
-              <div class="relative flex items-center">
-                <span class="absolute left-3 text-outline flex items-center justify-center select-none">
-                  <span class="material-symbols-outlined text-base">key</span>
-                </span>
-                <input
-                  class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface pl-10 pr-10 py-2 rounded font-body-md text-body-md focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all"
-                  id="password-input" required="" type="password" value="admin1234!" />
-                <button class="absolute right-3 text-outline hover:text-on-surface focus:outline-none" id="toggle-pwd"
-                  onclick="const input = document.getElementById('password-input'); const icon = document.getElementById('pwd-icon'); if (input.type === 'password') { input.type = 'text'; icon.textContent = 'visibility_off'; } else { input.type = 'password'; icon.textContent = 'visibility'; }"
-                  type="button">
-                  <span class="material-symbols-outlined text-base" id="pwd-icon">visibility</span>
-                </button>
-              </div>
-            </div>
-            <!-- Alert Box -->
-            <div id="login-alert" class="hidden p-3 rounded font-label-mono-xs text-label-mono-xs"></div>
-            <!-- 2FA / Hardware Token Security Code -->
-            <div class="p-3 bg-surface-container-lowest border border-outline-variant rounded">
-              <div class="flex items-center justify-between mb-2">
-                <div class="flex items-center space-x-1.5 text-primary">
-                  <span class="material-symbols-outlined text-sm">security</span>
-                  <span class="font-label-mono-xs text-label-mono-xs font-bold uppercase">2FA / Hardware Token
-                    Code</span>
-                </div>
-                <span class="font-label-mono-xs text-label-mono-xs text-tertiary flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
-                  YUBIKEY CAC / TOTP SYNC
-                </span>
-              </div>
-              <!-- 6-digit segmented input -->
-              <div class="grid grid-cols-6 gap-2">
-                <input
-                  class="w-full text-center py-2 bg-surface-container border border-outline-variant text-primary font-label-mono-lg text-label-mono-lg font-bold rounded focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none"
-                  maxlength="1" type="text" value="7" />
-                <input
-                  class="w-full text-center py-2 bg-surface-container border border-outline-variant text-primary font-label-mono-lg text-label-mono-lg font-bold rounded focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none"
-                  maxlength="1" type="text" value="4" />
-                <input
-                  class="w-full text-center py-2 bg-surface-container border border-outline-variant text-primary font-label-mono-lg text-label-mono-lg font-bold rounded focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none"
-                  maxlength="1" type="text" value="9" />
-                <input
-                  class="w-full text-center py-2 bg-surface-container border border-outline-variant text-primary font-label-mono-lg text-label-mono-lg font-bold rounded focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none"
-                  maxlength="1" type="text" value="2" />
-                <input
-                  class="w-full text-center py-2 bg-surface-container border border-outline-variant text-primary font-label-mono-lg text-label-mono-lg font-bold rounded focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none"
-                  maxlength="1" type="text" value="8" />
-                <input
-                  class="w-full text-center py-2 bg-surface-container border border-primary text-primary font-label-mono-lg text-label-mono-lg font-bold rounded focus:border-primary-container focus:ring-1 focus:ring-primary-container focus:outline-none bg-primary/5"
-                  maxlength="1" type="text" value="1" />
-              </div>
-              <div class="flex items-center justify-between mt-2 text-outline font-label-mono-xs text-label-mono-xs">
-                <span>TIMEOUT: 44s</span>
-                <span class="text-on-surface-variant cursor-pointer hover:text-primary">Insert Hardware Key or Resend
-                  OTP</span>
-              </div>
-            </div>
-            <!-- Custom Checkbox & Options -->
-            <div class="flex items-center justify-between pt-1">
-              <label class="flex items-center space-x-2 cursor-pointer select-none">
-                <input checked=""
-                  class="w-4 h-4 rounded bg-surface-container-lowest border-outline-variant text-primary-container focus:ring-primary-container"
-                  type="checkbox" />
-                <span class="font-label-mono-xs text-label-mono-xs text-secondary uppercase">Remember Business
-                  Terminal</span>
-              </label>
-              <a class="font-label-mono-xs text-label-mono-xs text-secondary hover:text-primary transition-colors"
-                href="#request-b2b">Request B2B Access</a>
-            </div>
-            <!-- Primary CTA Action Button -->
-            <button
-              class="w-full py-3 px-4 bg-primary-container text-on-primary-container font-headline-md text-headline-md font-bold uppercase tracking-wider rounded border border-primary-container hover:bg-surface-tint focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background active:scale-[0.98] transition-all flex items-center justify-center space-x-2 shadow-lg"
-              type="submit">
-              <span>Authenticate &amp; Access Portal</span>
-              <span class="material-symbols-outlined text-lg font-bold">arrow_forward</span>
-            </button>
-            <!-- Bottom Gateway Support Note -->
-            <div
-              class="pt-2 text-center border-t border-outline-variant/60 flex items-center justify-center space-x-3 text-outline font-label-mono-xs text-label-mono-xs">
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs text-tertiary">lock</span>
-                SSO &amp; Smartcard CAC/PIV Enabled
-              </span>
-              <span>•</span>
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-xs">fingerprint</span>
-                FIDO2 / WebAuthn Certified
-              </span>
-            </div>
-          </form>
-        </div>
-        <!-- HARDWARE TOKEN TELEMETRY STATUS DOCK -->
-        <div
-          class="bg-surface-container-low border border-outline-variant p-space-md rounded flex items-center justify-between text-label-mono-xs font-label-mono-xs">
-          <div class="flex items-center space-x-3">
-            <div class="w-3 h-3 rounded-full bg-tertiary/20 flex items-center justify-center border border-tertiary/50">
-              <div class="w-1.5 h-1.5 rounded-full bg-tertiary animate-ping"></div>
-            </div>
-            <div>
-              <div class="text-on-surface font-semibold">SECURITY DOCK: HARDWARE PERIPHERAL ACTIVE</div>
-              <div class="text-outline">SERIAL: YK-5C-NFC-984210 • PENDING CHALLENGE 0x7FA9</div>
-            </div>
-          </div>
-          <button
-            class="px-2.5 py-1 bg-surface-container border border-outline-variant text-primary hover:bg-surface-container-high rounded text-label-mono-xs">
-            DIAGNOSTICS
-          </button>
-        </div>
-      </div>
-      <!-- RIGHT COLUMN: PARTITIONED ROLE WORKSPACES (lg:col-span-7) -->
-      <div class="lg:col-span-7 flex flex-col space-y-4">
-        <!-- Section Header with Industrial Tag -->
-        <div
-          class="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-outline-variant gap-2">
-          <div>
-            <div class="flex items-center space-x-2">
-              <span class="w-2 h-2 bg-primary rounded-sm"></span>
-              <h3 class="font-headline-md text-headline-md font-bold text-on-surface uppercase tracking-wide">
-                PARTITIONED ROLE WORKSPACES // DIRECT ROUTING
-              </h3>
-            </div>
-            <p class="font-body-sm text-body-sm text-outline mt-0.5">
-              Select verified operational partition. Strict RBAC token validation enforced upon entry.
-            </p>
-          </div>
-          <div class="flex items-center space-x-2">
-            <span class="font-label-mono-xs text-label-mono-xs text-outline">AUTO-ROUTING:</span>
-            <span
-              class="font-label-mono-xs text-label-mono-xs px-2 py-0.5 bg-surface-container border border-outline-variant text-primary rounded font-mono">ENABLED</span>
-          </div>
-        </div>
-        <!-- 4 INTERACTIVE ROLE CARDS (Bento Grid 2x2) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-          <!-- 1. Client Portal -->
-          <div
-            onclick="location.href='portal-dashboard.html'"
-            class="group relative bg-surface-container border border-outline-variant rounded-lg p-space-md flex flex-col justify-between hover:border-primary transition-all duration-200 hover:bg-surface-container-high cursor-pointer">
-            <div class="flex items-start justify-between mb-3">
-              <div
-                class="w-10 h-10 rounded bg-primary-container/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-                <span class="material-symbols-outlined text-xl">storefront</span>
-              </div>
-              <div class="flex flex-col items-end">
-                <span
-                  class="font-label-mono-xs text-label-mono-xs px-2 py-0.5 rounded bg-tertiary/10 text-tertiary border border-tertiary/30 font-semibold flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-                  PORTAL ACTIVE
-                </span>
-                <span class="font-label-mono-xs text-label-mono-xs text-outline mt-1 font-mono">ZONE: B2B-EXT</span>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center space-x-2">
-                <h4
-                  class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors font-semibold">
-                  Client Portal
-                </h4>
-                <span class="text-xs text-outline font-label-mono-xs">#01</span>
-              </div>
-              <p class="font-body-sm text-body-sm text-secondary font-medium mb-3">
-                B2B Salons &amp; Trichology Clinics
-              </p>
-              <!-- Specs Matrix -->
-              <div
-                class="space-y-1.5 pt-2 border-t border-outline-variant/60 font-label-mono-xs text-label-mono-xs text-on-surface-variant">
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>Bespoke custom order placement &amp; CAD headforms</span>
-                </div>
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>Live Swiss lace &amp; monofilament weaving telemetry</span>
-                </div>
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>3D Digital perimeter molds &amp; escrow invoices</span>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-outline-variant flex items-center justify-between">
-              <span
-                class="font-label-mono-xs text-label-mono-xs text-outline group-hover:text-primary transition-colors">SEC:
-                EXTERNAL TLS</span>
-              <a href="portal-dashboard.html" class="font-label-mono-xs text-label-mono-xs text-primary flex items-center font-bold">
-                ENTER WORKSPACE <span
-                  class="material-symbols-outlined text-sm ml-1 group-hover:translate-x-1 transition-transform">chevron_right</span>
-              </a>
-            </div>
-          </div>
-          <!-- 2. Admin Console -->
-          <div onclick="location.href='admin-dashboard.html'"
-            class="group relative bg-surface-container border border-outline-variant rounded-lg p-space-md flex flex-col justify-between hover:border-primary transition-all duration-200 hover:bg-surface-container-high cursor-pointer">
-            <div class="flex items-start justify-between mb-3">
-              <div
-                class="w-10 h-10 rounded bg-primary-container/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-                <span class="material-symbols-outlined text-xl">admin_panel_settings</span>
-              </div>
-              <div class="flex flex-col items-end">
-                <span
-                  class="font-label-mono-xs text-label-mono-xs px-2 py-0.5 rounded bg-surface-container-highest text-primary border border-primary/30 font-semibold flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                  SECURE CLEARANCE REQ
-                </span>
-                <span class="font-label-mono-xs text-label-mono-xs text-outline mt-1 font-mono">ZONE: EXEC-HQ</span>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center space-x-2">
-                <h4
-                  class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors font-semibold">
-                  Admin Console
-                </h4>
-                <span class="text-xs text-outline font-label-mono-xs">#02</span>
-              </div>
-              <p class="font-body-sm text-body-sm text-secondary font-medium mb-3">
-                Operations &amp; Executive Hub
-              </p>
-              <!-- Specs Matrix -->
-              <div
-                class="space-y-1.5 pt-2 border-t border-outline-variant/60 font-label-mono-xs text-label-mono-xs text-on-surface-variant">
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>Full work-order acceptance &amp; queue routing</span>
-                </div>
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>Raw European/Remy virgin hair batch allocation</span>
-                </div>
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>Multi-tier wholesale margin &amp; contract audits</span>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-outline-variant flex items-center justify-between">
-              <span
-                class="font-label-mono-xs text-label-mono-xs text-outline group-hover:text-primary transition-colors">SEC:
-                ROOT RBAC-L1</span>
-              <a href="admin-dashboard.html"
-                class="font-label-mono-xs text-label-mono-xs text-primary flex items-center font-bold">
-                ENTER WORKSPACE <span
-                  class="material-symbols-outlined text-sm ml-1 group-hover:translate-x-1 transition-transform">chevron_right</span>
-              </a>
-            </div>
-          </div>
-          <!-- 3. MES Line Operator -->
-          <div
-            class="group relative bg-surface-container border border-outline-variant rounded-lg p-space-md flex flex-col justify-between hover:border-primary transition-all duration-200 hover:bg-surface-container-high cursor-pointer">
-            <div class="flex items-start justify-between mb-3">
-              <div
-                class="w-10 h-10 rounded bg-primary-container/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-                <span class="material-symbols-outlined text-xl">barcode_scanner</span>
-              </div>
-              <div class="flex flex-col items-end">
-                <span
-                  class="font-label-mono-xs text-label-mono-xs px-2 py-0.5 rounded bg-tertiary/10 text-tertiary border border-tertiary/30 font-semibold flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-                  TERMINAL READY
-                </span>
-                <span class="font-label-mono-xs text-label-mono-xs text-outline mt-1 font-mono">ZONE: PLANT-04</span>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center space-x-2">
-                <h4
-                  class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors font-semibold">
-                  MES Line Operator
-                </h4>
-                <span class="text-xs text-outline font-label-mono-xs">#03</span>
-              </div>
-              <p class="font-body-sm text-body-sm text-secondary font-medium mb-3">
-                Factory Floor &amp; Barcode Station
-              </p>
-              <!-- Specs Matrix -->
-              <div
-                class="space-y-1.5 pt-2 border-t border-outline-variant/60 font-label-mono-xs text-label-mono-xs text-on-surface-variant">
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>Workstation job tickets &amp; industrial 2D DataMatrix</span>
-                </div>
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>Single-knot micro-ventilation QC inspection logs</span>
-                </div>
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>Autoclave silicone curing &amp; sterilization cycles</span>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-outline-variant flex items-center justify-between">
-              <span
-                class="font-label-mono-xs text-label-mono-xs text-outline group-hover:text-primary transition-colors">SEC:
-                STATION PIV</span>
-              <span class="font-label-mono-xs text-label-mono-xs text-primary flex items-center font-bold">
-                ENTER WORKSPACE <span
-                  class="material-symbols-outlined text-sm ml-1 group-hover:translate-x-1 transition-transform">chevron_right</span>
-              </span>
-            </div>
-          </div>
-          <!-- 4. Accounting & Settlement -->
-          <div
-            class="group relative bg-surface-container border border-outline-variant rounded-lg p-space-md flex flex-col justify-between hover:border-primary transition-all duration-200 hover:bg-surface-container-high cursor-pointer">
-            <div class="flex items-start justify-between mb-3">
-              <div
-                class="w-10 h-10 rounded bg-primary-container/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-                <span class="material-symbols-outlined text-xl">account_balance</span>
-              </div>
-              <div class="flex flex-col items-end">
-                <span
-                  class="font-label-mono-xs text-label-mono-xs px-2 py-0.5 rounded bg-surface-container-highest text-secondary border border-outline font-semibold flex items-center gap-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
-                  AUDIT RESTRICTED
-                </span>
-                <span class="font-label-mono-xs text-label-mono-xs text-outline mt-1 font-mono">ZONE: FIN-AUDIT</span>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center space-x-2">
-                <h4
-                  class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors font-semibold">
-                  Accounting &amp; Settlement
-                </h4>
-                <span class="text-xs text-outline font-label-mono-xs">#04</span>
-              </div>
-              <p class="font-body-sm text-body-sm text-secondary font-medium mb-3">
-                Finance &amp; Supply Ledger
-              </p>
-              <!-- Specs Matrix -->
-              <div
-                class="space-y-1.5 pt-2 border-t border-outline-variant/60 font-label-mono-xs text-label-mono-xs text-on-surface-variant">
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>B2B A/R accounts receivable &amp; merchant escrow</span>
-                </div>
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>Automated multi-currency conversions (AUD / KRW / USD)</span>
-                </div>
-                <div class="flex items-center space-x-1.5">
-                  <span class="material-symbols-outlined text-xs text-primary">check_circle</span>
-                  <span>Raw hair wholesale batch tax &amp; import tariff reconciliation</span>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-outline-variant flex items-center justify-between">
-              <span
-                class="font-label-mono-xs text-label-mono-xs text-outline group-hover:text-primary transition-colors">SEC:
-                LEDGER PRIV</span>
-              <span class="font-label-mono-xs text-label-mono-xs text-primary flex items-center font-bold">
-                ENTER WORKSPACE <span
-                  class="material-symbols-outlined text-sm ml-1 group-hover:translate-x-1 transition-transform">chevron_right</span>
-              </span>
-            </div>
-          </div>
-        </div>
-        <!-- LIVE FACTORY ROUTING QUEUE MINI MATRIX -->
-        <div class="bg-surface-container-low border border-outline-variant rounded-lg p-space-md">
-          <div class="flex items-center justify-between mb-2">
-            <span
-              class="font-label-mono-xs text-label-mono-xs text-outline uppercase font-semibold flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-sm text-primary">hub</span>
-              CURRENT LOT ROUTING &amp; VENTILATION QUEUE SNAPSHOT
-            </span>
-            <span class="font-label-mono-xs text-label-mono-xs text-tertiary">POLL: 5s SYNC</span>
-          </div>
-          <div class="overflow-x-auto">
-            <table class="w-full text-left font-label-mono-xs text-label-mono-xs">
-              <thead>
-                <tr class="border-b border-outline-variant text-outline bg-surface-container">
-                  <th class="py-1.5 px-3">LOT / BATCH ID</th>
-                  <th class="py-1.5 px-3">PRODUCT SPECIFICATION</th>
-                  <th class="py-1.5 px-3">STATION STATUS</th>
-                  <th class="py-1.5 px-3">MICRON DENSITY</th>
-                  <th class="py-1.5 px-3 text-right">GATEWAY DISPATCH</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-outline-variant/40 text-on-surface">
-                <tr class="hover:bg-surface-container/50">
-                  <td class="py-2 px-3 font-mono text-primary">LOT-2025-0891A</td>
-                  <td class="py-2 px-3 font-sans">Full French Lace • Remy Blond 60# (14")</td>
-                  <td class="py-2 px-3 text-tertiary">
-                    <span class="inline-flex items-center gap-1">
-                      <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-                      Single Micro-Knotting (88%)
-                    </span>
-                  </td>
-                  <td class="py-2 px-3 font-mono">0.03mm PU Perimeter</td>
-                  <td class="py-2 px-3 text-right font-mono text-secondary">MEL-LINE-3</td>
-                </tr>
-                <tr class="hover:bg-surface-container/50">
-                  <td class="py-2 px-3 font-mono text-primary">LOT-2025-0894C</td>
-                  <td class="py-2 px-3 font-sans">Mono Base + Poly Coated Edge • Virgin Black 1B#</td>
-                  <td class="py-2 px-3 text-primary">
-                    <span class="inline-flex items-center gap-1">
-                      <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                      Autoclave Silicone Bake
-                    </span>
-                  </td>
-                  <td class="py-2 px-3 font-mono">130% Heavy Density</td>
-                  <td class="py-2 px-3 text-right font-mono text-secondary">SEO-LINE-1</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-  <!-- BOTTOM SHARED COMPONENT: Footer -->
-  <footer
-    class="w-full py-space-sm px-margin flex flex-col md:flex-row items-center justify-between border-t border-outline-variant text-label-mono-xs font-label-mono-xs text-on-surface-variant bg-surface-container-lowest mt-auto">
-    <div class="flex items-center space-x-2 text-center md:text-left mb-2 md:mb-0">
-      <span class="material-symbols-outlined text-sm text-primary">verified</span>
-      <span class="tracking-wider">ATELIER INDUSTRIAL MES // ARCHITECTURE AES-256 GCM ENCRYPTED // STRICT RBAC
-        PARTITIONING ACTIVE</span>
-    </div>
-    <!-- Mandatory Footer Navigation Links -->
-    <div class="flex items-center space-x-4 mb-2 md:mb-0">
-      <a class="text-on-surface-variant hover:text-primary uppercase tracking-wider transition-colors duration-150"
-        href="#iso-9001">ISO-9001 Specs</a>
-      <span class="text-outline-variant">|</span>
-      <a class="text-on-surface-variant hover:text-primary uppercase tracking-wider transition-colors duration-150"
-        href="#hardware-token">Hardware Token Auth</a>
-      <span class="text-outline-variant">|</span>
-      <a class="text-on-surface-variant hover:text-primary uppercase tracking-wider transition-colors duration-150"
-        href="#security-v4">Security Protocol v4.8</a>
-      <span class="text-outline-variant">|</span>
-      <a class="text-on-surface-variant hover:text-primary uppercase tracking-wider transition-colors duration-150"
-        href="#node-logs">Node Sync Logs</a>
-    </div>
-    <div class="flex items-center space-x-3 text-outline">
-      <span class="font-mono">v2.4.0-MES // Node: APAC-01</span>
-      <span class="text-outline-variant">/</span>
-      <span class="text-primary hover:underline cursor-pointer">OPS Emergency: +61 3 9900 8421</span>
-    </div>
-  </footer>
-  <!-- Realtime Clock & Login Authentication Scripts -->
-  <script>
-    function updateClock() {
-      const now = new Date();
-      const utcString = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
-      const el = document.getElementById('telemetry-clock');
-      if (el) el.textContent = utcString;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    function fillTestAccount(username, password) {
-      document.getElementById('login-username').value = username;
-      document.getElementById('password-input').value = password;
-      const alert = document.getElementById('login-alert');
-      alert.className = 'p-3 rounded font-label-mono-xs text-label-mono-xs bg-primary/10 border border-primary/30 text-primary block';
-      alert.textContent = `계정 정보 입력됨: ${username} (${username === 'admin' ? '관리자 권한' : '거래처 권한'})`;
-    }
-
-    async function handleLoginSubmit(e) {
-      e.preventDefault();
-      const username = document.getElementById('login-username').value.trim();
-      const password = document.getElementById('password-input').value.trim();
-      const alert = document.getElementById('login-alert');
-      
-      alert.className = 'p-3 rounded font-label-mono-xs text-label-mono-xs bg-surface-container-high border border-outline text-secondary block';
-      alert.textContent = '인증 요청 중... 잠시만 기다려 주세요.';
-
-      try {
-        const res = await fetch('api_login.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password })
-        });
-        const result = await res.json();
-
-        if (result.success) {
-          alert.className = 'p-3 rounded font-label-mono-xs text-label-mono-xs bg-tertiary/15 border border-tertiary/40 text-tertiary block';
-          alert.textContent = `✓ 인증 성공: [${result.user.user_type}] ${result.user.name} (${result.user.company_name}) - 작업 공간으로 이동합니다...`;
-          setTimeout(() => {
-            window.location.href = result.redirect_url;
-          }, 800);
-        } else {
-          alert.className = 'p-3 rounded font-label-mono-xs text-label-mono-xs bg-red-950/40 border border-red-500/50 text-red-300 block';
-          alert.textContent = '✗ ' + (result.message || '인증에 실패하였습니다.');
-        }
-      } catch (err) {
-        alert.className = 'p-3 rounded font-label-mono-xs text-label-mono-xs bg-red-950/40 border border-red-500/50 text-red-300 block';
-        alert.textContent = '✗ 네트워크 통신 오류가 발생했습니다.';
+    </script>
+    <style>
+      .bg-grid {
+        background-size: 32px 32px;
+        background-image: 
+          linear-gradient(to right, rgba(40, 53, 77, 0.2) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(40, 53, 77, 0.2) 1px, transparent 1px);
       }
-    }
-  </script>
-</body>
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 min-h-screen flex flex-col justify-between font-sans antialiased bg-grid p-4 sm:p-6">
 
+    <!-- 상단 간이 상태바 -->
+    <header class="w-full max-w-md mx-auto flex items-center justify-between text-xs font-mono text-brand-slateText pt-2 pb-4">
+        <div class="flex items-center space-x-1.5">
+            <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
+            <span class="text-slate-300">SYSTEM: NORMAL</span>
+        </div>
+        <div id="live-time" class="text-slate-400">UTC --:--:--</div>
+    </header>
+
+    <!-- 메인 로그인 카드 컨테이너 -->
+    <main class="w-full max-w-md mx-auto my-auto">
+        <div class="bg-brand-card border border-brand-border rounded-2xl shadow-2xl p-6 sm:p-8 backdrop-blur-sm">
+            
+            <!-- 로고 및 서비스 타이틀 -->
+            <div class="text-center mb-7">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/30 text-brand-gold mb-3 shadow-inner">
+                    <span class="material-symbols-outlined text-2xl">precision_manufacturing</span>
+                </div>
+                <h1 class="font-display font-bold text-2xl text-white tracking-tight">FACTORY ERP</h1>
+                <p class="text-xs text-brand-slateText mt-1">맞춤형 헤어제품 주문·생산·회계 통합 시스템</p>
+            </div>
+
+            <!-- 테스트 계정 원클릭 입력 버튼 -->
+            <div class="mb-5 bg-brand-dark/70 border border-brand-border/60 rounded-xl p-3">
+                <div class="text-[11px] font-mono text-brand-slateText mb-2 text-center">빠른 테스트 계정 선택</div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button type="button" onclick="setAccount('admin', 'admin1234!')" 
+                            class="px-2.5 py-1.5 rounded-lg bg-brand-gold/15 hover:bg-brand-gold/25 border border-brand-gold/40 text-brand-gold text-xs font-medium transition-all flex items-center justify-center space-x-1">
+                        <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+                        <span>관리자 로그인</span>
+                    </button>
+                    <button type="button" onclick="setAccount('client_test', 'client1234!')" 
+                            class="px-2.5 py-1.5 rounded-lg bg-brand-emerald/15 hover:bg-brand-emerald/25 border border-brand-emerald/40 text-brand-emerald text-xs font-medium transition-all flex items-center justify-center space-x-1">
+                        <span class="material-symbols-outlined text-sm">storefront</span>
+                        <span>거래처 로그인</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 로그인 폼 -->
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+                <!-- 아이디/이메일 입력 -->
+                <div>
+                    <label for="username" class="block text-xs font-medium text-slate-300 mb-1.5">
+                        아이디 또는 이메일
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                            <span class="material-symbols-outlined text-lg">person</span>
+                        </span>
+                        <input type="text" id="username" required
+                               class="w-full pl-9 pr-3 py-2.5 bg-brand-dark border border-brand-border rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-colors font-mono"
+                               placeholder="아이디를 입력하세요" value="admin">
+                    </div>
+                </div>
+
+                <!-- 비밀번호 입력 -->
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label for="password" class="block text-xs font-medium text-slate-300">
+                            비밀번호
+                        </label>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                            <span class="material-symbols-outlined text-lg">lock</span>
+                        </span>
+                        <input type="password" id="password" required
+                               class="w-full pl-9 pr-10 py-2.5 bg-brand-dark border border-brand-border rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-colors font-mono"
+                               placeholder="비밀번호를 입력하세요" value="admin1234!">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-300 focus:outline-none">
+                            <span id="pwdEyeIcon" class="material-symbols-outlined text-lg">visibility</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 결과 메시지 알림 박스 -->
+                <div id="alertBox" class="hidden text-xs rounded-lg p-3 font-mono transition-all"></div>
+
+                <!-- 로그인 버튼 -->
+                <button type="submit" id="submitBtn"
+                        class="w-full py-2.5 px-4 rounded-lg bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-display font-bold text-sm tracking-wide transition-all shadow-lg shadow-brand-gold/20 flex items-center justify-center space-x-1.5 active:scale-[0.99]">
+                    <span id="btnText">로그인</span>
+                    <span class="material-symbols-outlined text-base font-bold">arrow_forward</span>
+                </button>
+            </form>
+
+            <!-- 권한별 분기 안내 가이드 -->
+            <div class="mt-6 pt-5 border-t border-brand-border/60 text-[11px] text-brand-slateText space-y-1 text-center font-mono">
+                <div>• 관리자 로그인 시 <span class="text-brand-gold font-medium">관리자 콘솔</span>로 자동 이동</div>
+                <div>• 거래처 로그인 시 <span class="text-brand-emerald font-medium">거래처 포털</span>로 자동 이동</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 하단 카피라이트 -->
+    <footer class="w-full max-w-md mx-auto text-center text-[11px] font-mono text-slate-500 py-3">
+        Factory ERP &copy; 2026 David Hair Shop. All rights reserved.
+    </footer>
+
+    <!-- 자바스크립트 로직 -->
+    <script>
+        // 실시간 UTC 시계
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+            document.getElementById('live-time').textContent = timeStr;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // 계정 자동 입력
+        function setAccount(u, p) {
+            document.getElementById('username').value = u;
+            document.getElementById('password').value = p;
+            const alert = document.getElementById('alertBox');
+            alert.className = 'text-xs rounded-lg p-3 font-mono bg-brand-dark/80 border border-brand-gold/40 text-brand-gold block';
+            alert.textContent = `계정 정보가 입력되었습니다 (${u === 'admin' ? '관리자 권한' : '거래처 권한'}). 로그인 버튼을 눌러주세요.`;
+        }
+
+        // 비밀번호 보이기/숨기기
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('password');
+            const icon = document.getElementById('pwdEyeIcon');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                icon.textContent = 'visibility_off';
+            } else {
+                pwdInput.type = 'password';
+                icon.textContent = 'visibility';
+            }
+        }
+
+        // 로그인 처리
+        async function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const alertBox = document.getElementById('alertBox');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+
+            if (!username || !password) {
+                alertBox.className = 'text-xs rounded-lg p-3 font-mono bg-red-950/60 border border-red-500/50 text-red-300 block';
+                alertBox.textContent = '아이디와 비밀번호를 모두 입력해 주세요.';
+                return;
+            }
+
+            // 로딩 상태 표시
+            submitBtn.disabled = true;
+            btnText.textContent = '인증 확인 중...';
+            alertBox.className = 'text-xs rounded-lg p-3 font-mono bg-slate-800 border border-slate-700 text-slate-300 block';
+            alertBox.textContent = '서버에 계정 인증을 요청하고 있습니다...';
+
+            try {
+                const response = await fetch('api_login.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const roleLabel = data.user.user_type === 'ADMIN' ? '관리자' : '거래처';
+                    alertBox.className = 'text-xs rounded-lg p-3 font-mono bg-emerald-950/60 border border-brand-emerald/50 text-brand-emerald block';
+                    alertBox.innerHTML = `<strong>✓ 인증 성공 (${roleLabel})</strong><br>${data.user.name}님 환영합니다. 화면으로 이동 중...`;
+                    
+                    // 지정된 화면으로 전환
+                    setTimeout(() => {
+                        window.location.href = data.redirect_url;
+                    }, 600);
+                } else {
+                    submitBtn.disabled = false;
+                    btnText.textContent = '로그인';
+                    alertBox.className = 'text-xs rounded-lg p-3 font-mono bg-red-950/60 border border-red-500/50 text-red-300 block';
+                    alertBox.textContent = '✗ ' + (data.message || '로그인에 실패했습니다.');
+                }
+            } catch (err) {
+                submitBtn.disabled = false;
+                btnText.textContent = '로그인';
+                alertBox.className = 'text-xs rounded-lg p-3 font-mono bg-red-950/60 border border-red-500/50 text-red-300 block';
+                alertBox.textContent = '✗ 서버와의 통신 중 오류가 발생했습니다.';
+            }
+        }
+    </script>
+</body>
 </html>

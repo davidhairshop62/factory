@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ATELIER MES // FACTORY ERP: OPERATIONS CONSOLE</title>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>ATELIER MES // FACTORY ERP: OPERATIONS CONSOLE</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Outfit:wght@100..900&display=swap"
+    rel="stylesheet" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
       theme: {
@@ -111,825 +118,965 @@
       }
     }
   </script>
-<style>
+  <style>
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
       display: inline-block;
       vertical-align: middle;
       line-height: 1;
     }
+
     /* Technical Grid Schematics */
     .bg-grid-mesh {
       background-size: 32px 32px;
-      background-image: 
+      background-image:
         linear-gradient(to right, rgba(40, 53, 77, 0.25) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(40, 53, 77, 0.25) 1px, transparent 1px);
     }
+
     .custom-scrollbar::-webkit-scrollbar {
       width: 4px;
       height: 4px;
     }
+
     .custom-scrollbar::-webkit-scrollbar-track {
       background: #0d1c2d;
     }
+
     .custom-scrollbar::-webkit-scrollbar-thumb {
       background: #273647;
       border-radius: 2px;
     }
+
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
       background: #534434;
     }
   </style>
 </head>
-<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container bg-grid-mesh">
-<!-- TOP SHARED COMPONENT: TopNavBar -->
-<header class="w-full px-margin flex items-center justify-between h-14 bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline-variant sticky top-0 z-50">
-<div class="flex items-center space-x-6">
-<a href="index.html" class="flex items-center space-x-3 hover:opacity-90 transition-opacity">
-<div class="w-6 h-6 border border-primary-container bg-surface-container-high flex items-center justify-center text-primary-container font-label-mono-md text-label-mono-md font-bold">
+
+<body
+  class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container bg-grid-mesh">
+  <!-- TOP SHARED COMPONENT: TopNavBar -->
+  <header
+    class="w-full px-margin flex items-center justify-between h-14 bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline-variant sticky top-0 z-50">
+    <div class="flex items-center space-x-6">
+      <a href="index.html" class="flex items-center space-x-3 hover:opacity-90 transition-opacity">
+        <div
+          class="w-6 h-6 border border-primary-container bg-surface-container-high flex items-center justify-center text-primary-container font-label-mono-md text-label-mono-md font-bold">
           A
         </div>
-<span class="font-headline-md text-headline-md tracking-wider text-primary dark:text-primary uppercase select-none">
+        <span
+          class="font-headline-md text-headline-md tracking-wider text-primary dark:text-primary uppercase select-none">
           ATELIER MES // ENTERPRISE GATEWAY
         </span>
-</a>
-<!-- Navigation Links -->
-<nav class="hidden lg:flex items-center space-x-6 pl-4 border-l border-outline-variant">
-<a class="text-primary dark:text-primary border-b-2 border-primary dark:border-primary pb-1 font-label-mono-md text-label-mono-md uppercase tracking-wider" href="#telemetry">
+      </a>
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center space-x-6 pl-4 border-l border-outline-variant">
+        <a class="text-primary dark:text-primary border-b-2 border-primary dark:border-primary pb-1 font-label-mono-md text-label-mono-md uppercase tracking-wider"
+          href="#telemetry">
           Telemetry
         </a>
-<a class="text-secondary dark:text-secondary hover:text-on-surface dark:hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors" href="#nodes">
+        <a class="text-secondary dark:text-secondary hover:text-on-surface dark:hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors"
+          href="#nodes">
           Nodes
         </a>
-<a class="text-secondary dark:text-secondary hover:text-on-surface dark:hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors" href="#clearance">
+        <a class="text-secondary dark:text-secondary hover:text-on-surface dark:hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors"
+          href="#clearance">
           Clearance
         </a>
-<a class="text-secondary dark:text-secondary hover:text-on-surface dark:hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors" href="#audits">
+        <a class="text-secondary dark:text-secondary hover:text-on-surface dark:hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors"
+          href="#audits">
           Audits
         </a>
-</nav>
-</div>
-<!-- Trailing Actions & Diagnostic Specs -->
-<div class="flex items-center space-x-4">
-<div class="hidden sm:flex items-center space-x-2 px-2.5 py-1 bg-surface-container border border-outline-variant rounded">
-<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
-<span class="font-label-mono-xs text-label-mono-xs text-secondary">SEL: 18ms | MEL: 42ms</span>
-</div>
-<div class="hidden md:flex items-center px-2 py-0.5 bg-surface-container-low border border-tertiary text-tertiary font-label-mono-xs text-label-mono-xs rounded">
+      </nav>
+    </div>
+    <!-- Trailing Actions & Diagnostic Specs -->
+    <div class="flex items-center space-x-4">
+      <div
+        class="hidden sm:flex items-center space-x-2 px-2.5 py-1 bg-surface-container border border-outline-variant rounded">
+        <span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+        <span class="font-label-mono-xs text-label-mono-xs text-secondary">SEL: 18ms | MEL: 42ms</span>
+      </div>
+      <div
+        class="hidden md:flex items-center px-2 py-0.5 bg-surface-container-low border border-tertiary text-tertiary font-label-mono-xs text-label-mono-xs rounded">
         SYS_STATUS: NOMINAL
       </div>
-<div class="flex items-center space-x-2 text-on-surface-variant">
-<button class="p-1.5 hover:bg-surface-container-high rounded transition-colors text-secondary hover:text-primary" title="Access Control Encryption">
-<span class="material-symbols-outlined text-lg" data-icon="lock">lock</span>
-</button>
-<button class="p-1.5 hover:bg-surface-container-high rounded transition-colors text-secondary hover:text-primary" title="Diagnostic Console">
-<span class="material-symbols-outlined text-lg" data-icon="terminal">terminal</span>
-</button>
-<div class="w-8 h-8 rounded border border-outline-variant bg-surface-container flex items-center justify-center text-primary-container" title="Encrypted Terminal Operator Token Key">
-<span class="material-symbols-outlined text-sm" data-icon="key">key</span>
-</div>
-</div>
-</div>
-</header>
-<!-- SUB-HEADER: Industrial Telemetry Banner & Console Filters -->
-<section class="border-b border-outline-variant bg-surface-container-low px-margin py-2">
-<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
-<!-- Live Station Specs -->
-<div class="flex flex-wrap items-center gap-x-5 gap-y-1.5 font-label-mono-xs text-label-mono-xs">
-<div class="flex items-center space-x-1.5 text-on-surface">
-<span class="text-on-surface-variant font-medium">MES CLUSTERS:</span>
-<span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant rounded text-tertiary">MEL: 04 [100%]</span>
-<span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant rounded text-tertiary">SEL: 02 [100%]</span>
-</div>
-<div class="flex items-center space-x-1.5">
-<span class="text-on-surface-variant font-medium">SLA BOTTLENECK:</span>
-<span class="px-1.5 py-0.5 bg-error-container text-error border border-error/40 font-bold rounded flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+      <div class="flex items-center space-x-2 text-on-surface-variant">
+        <button
+          onclick="fetch('api_logout.php').then(() => location.href='index.html')"
+          class="px-2.5 py-1 bg-red-950/40 hover:bg-red-900/60 border border-red-500/40 text-red-300 rounded font-label-mono-xs text-label-mono-xs transition-colors flex items-center space-x-1"
+          title="로그아웃">
+          <span class="material-symbols-outlined text-sm">logout</span>
+          <span>로그아웃</span>
+        </button>
+        <div
+          class="w-8 h-8 rounded border border-outline-variant bg-surface-container flex items-center justify-center text-primary-container"
+          title="Encrypted Terminal Operator Token Key">
+          <span class="material-symbols-outlined text-sm" data-icon="key">key</span>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- SUB-HEADER: Industrial Telemetry Banner & Console Filters -->
+  <section class="border-b border-outline-variant bg-surface-container-low px-margin py-2">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+      <!-- Live Station Specs -->
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-1.5 font-label-mono-xs text-label-mono-xs">
+        <div class="flex items-center space-x-1.5 text-on-surface">
+          <span class="text-on-surface-variant font-medium">MES CLUSTERS:</span>
+          <span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant rounded text-tertiary">MEL:
+            04 [100%]</span>
+          <span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant rounded text-tertiary">SEL:
+            02 [100%]</span>
+        </div>
+        <div class="flex items-center space-x-1.5">
+          <span class="text-on-surface-variant font-medium">SLA BOTTLENECK:</span>
+          <span
+            class="px-1.5 py-0.5 bg-error-container text-error border border-error/40 font-bold rounded flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
             07 CRITICAL D-DAY
           </span>
-</div>
-<div class="flex items-center space-x-1.5 text-secondary">
-<span class="text-on-surface-variant font-medium">SHIFT LEAD:</span>
-<span class="text-primary font-semibold">K. Vance</span>
-<span class="text-on-surface-variant text-[9px]">(Master Knotting Artisan #884)</span>
-</div>
-<div class="flex items-center space-x-1 text-on-surface-variant">
-<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
-<span class="text-secondary font-medium tracking-normal" id="live-utc">2026-11-10 14:02:18 UTC</span>
-</div>
-</div>
-<!-- Quick Action Utilities -->
-<div class="flex items-center flex-wrap gap-2">
-<button class="px-2.5 py-1 bg-surface-container-high hover:bg-surface-bright text-error border border-error/30 hover:border-error rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
-<span class="material-symbols-outlined text-xs" data-icon="bolt">bolt</span>
+        </div>
+        <div class="flex items-center space-x-1.5 text-secondary">
+          <span class="text-on-surface-variant font-medium">SHIFT LEAD:</span>
+          <span class="text-primary font-semibold">K. Vance</span>
+          <span class="text-on-surface-variant text-[9px]">(Master Knotting Artisan #884)</span>
+        </div>
+        <div class="flex items-center space-x-1 text-on-surface-variant">
+          <span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+          <span class="text-secondary font-medium tracking-normal" id="live-utc">2026-11-10 14:02:18 UTC</span>
+        </div>
+      </div>
+      <!-- Quick Action Utilities -->
+      <div class="flex items-center flex-wrap gap-2">
+        <button
+          class="px-2.5 py-1 bg-surface-container-high hover:bg-surface-bright text-error border border-error/30 hover:border-error rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-xs" data-icon="bolt">bolt</span>
           New Urgent Override
         </button>
-<button class="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface border border-outline-variant rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
-<span class="material-symbols-outlined text-xs" data-icon="qr_code_2">qr_code_2</span>
+        <button
+          class="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface border border-outline-variant rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-xs" data-icon="qr_code_2">qr_code_2</span>
           Batch Print Job QR
         </button>
-<button class="px-2.5 py-1 bg-primary-container hover:bg-amber-600 text-on-primary font-bold rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
-<span class="material-symbols-outlined text-xs" data-icon="download">download</span>
+        <button
+          class="px-2.5 py-1 bg-primary-container hover:bg-amber-600 text-on-primary font-bold rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-xs" data-icon="download">download</span>
           Audit PDF Export
         </button>
-</div>
-</div>
-<!-- Filter & Search Toolbar Strip -->
-<div class="mt-2 pt-2 border-t border-outline-variant/60 flex flex-col md:flex-row md:items-center justify-between gap-3">
-<div class="flex items-center gap-2 flex-1 max-w-2xl">
-<div class="relative flex-1">
-<span class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-on-surface-variant">
-<span class="material-symbols-outlined text-base" data-icon="search">search</span>
-</span>
-<input class="w-full pl-8 pr-3 py-1.5 bg-surface-container-lowest border border-outline-variant text-on-surface placeholder:text-secondary/50 font-label-mono-xs text-label-mono-xs rounded focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="FILTER ERP QUEUE [Order #, Client Salon, Lot ID, Hair Shade, Base Spec]..." type="text"/>
-</div>
-<div class="flex items-center gap-1.5 overflow-x-auto pb-0.5">
-<button class="px-2 py-1 bg-surface-container border border-primary-container/60 text-primary font-label-mono-xs text-label-mono-xs rounded whitespace-nowrap">
+      </div>
+    </div>
+    <!-- Filter & Search Toolbar Strip -->
+    <div
+      class="mt-2 pt-2 border-t border-outline-variant/60 flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <div class="flex items-center gap-2 flex-1 max-w-2xl">
+        <div class="relative flex-1">
+          <span class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-on-surface-variant">
+            <span class="material-symbols-outlined text-base" data-icon="search">search</span>
+          </span>
+          <input
+            class="w-full pl-8 pr-3 py-1.5 bg-surface-container-lowest border border-outline-variant text-on-surface placeholder:text-secondary/50 font-label-mono-xs text-label-mono-xs rounded focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all"
+            placeholder="FILTER ERP QUEUE [Order #, Client Salon, Lot ID, Hair Shade, Base Spec]..." type="text" />
+        </div>
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5">
+          <button
+            class="px-2 py-1 bg-surface-container border border-primary-container/60 text-primary font-label-mono-xs text-label-mono-xs rounded whitespace-nowrap">
             60# Platinum
           </button>
-<button class="px-2 py-1 bg-surface-container border border-outline-variant text-secondary hover:text-on-surface font-label-mono-xs text-label-mono-xs rounded whitespace-nowrap">
+          <button
+            class="px-2 py-1 bg-surface-container border border-outline-variant text-secondary hover:text-on-surface font-label-mono-xs text-label-mono-xs rounded whitespace-nowrap">
             1B# Jet Black
           </button>
-<button class="px-2 py-1 bg-surface-container border border-outline-variant text-secondary hover:text-on-surface font-label-mono-xs text-label-mono-xs rounded whitespace-nowrap">
+          <button
+            class="px-2 py-1 bg-surface-container border border-outline-variant text-secondary hover:text-on-surface font-label-mono-xs text-label-mono-xs rounded whitespace-nowrap">
             Swiss HD Lace
           </button>
-<button class="px-2 py-1 bg-surface-container border border-outline-variant text-secondary hover:text-on-surface font-label-mono-xs text-label-mono-xs rounded whitespace-nowrap">
+          <button
+            class="px-2 py-1 bg-surface-container border border-outline-variant text-secondary hover:text-on-surface font-label-mono-xs text-label-mono-xs rounded whitespace-nowrap">
             Micro-Skin 0.03mm
           </button>
-</div>
-</div>
-<div class="flex items-center space-x-2 text-on-surface-variant font-label-mono-xs text-label-mono-xs self-end md:self-center">
-<span>GATEWAY ID: <span class="text-primary font-mono">ATELIER-SYD-CORE-09</span></span>
-<span class="text-outline-variant">|</span>
-<span class="text-tertiary">ENCRYPTED WSS CONNECTED</span>
-</div>
-</div>
-</section>
-<!-- MAIN VIEWPORT CONTAINER -->
-<main class="flex-1 px-margin py- space-y-4">
-<!-- SECTION 2: Executive KPI Metric Tiles (4-Column Grid HUD) -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-<!-- Tile 1 -->
-<div class="p-3.5 bg-surface-container-low border border-outline-variant rounded flex flex-col justify-between hover:border-primary/40 transition-colors">
-<div class="flex items-center justify-between">
-<span class="font-label-mono-xs text-label-mono-xs text-secondary uppercase tracking-wider">Today's New Orders</span>
-<span class="p-1 bg-surface-container rounded text-primary">
-<span class="material-symbols-outlined text-sm" data-icon="inventory_2">inventory_2</span>
-</span>
-</div>
-<div class="my-2 flex items-baseline justify-between">
-<div class="font-headline-lg text-headline-lg font-bold text-on-surface">14 <span class="text-body-sm font-normal text-secondary">Units</span></div>
-<div class="font-label-mono-xs text-label-mono-xs text-tertiary bg-tertiary/10 px-1.5 py-0.5 rounded border border-tertiary/20 font-bold">
+        </div>
+      </div>
+      <div
+        class="flex items-center space-x-2 text-on-surface-variant font-label-mono-xs text-label-mono-xs self-end md:self-center">
+        <span>GATEWAY ID: <span class="text-primary font-mono">ATELIER-SYD-CORE-09</span></span>
+        <span class="text-outline-variant">|</span>
+        <span class="text-tertiary">ENCRYPTED WSS CONNECTED</span>
+      </div>
+    </div>
+  </section>
+  <!-- MAIN VIEWPORT CONTAINER -->
+  <main class="flex-1 px-margin py- space-y-4">
+    <!-- SECTION 2: Executive KPI Metric Tiles (4-Column Grid HUD) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <!-- Tile 1 -->
+      <div
+        class="p-3.5 bg-surface-container-low border border-outline-variant rounded flex flex-col justify-between hover:border-primary/40 transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="font-label-mono-xs text-label-mono-xs text-secondary uppercase tracking-wider">Today's New
+            Orders</span>
+          <span class="p-1 bg-surface-container rounded text-primary">
+            <span class="material-symbols-outlined text-sm" data-icon="inventory_2">inventory_2</span>
+          </span>
+        </div>
+        <div class="my-2 flex items-baseline justify-between">
+          <div class="font-headline-lg text-headline-lg font-bold text-on-surface">14 <span
+              class="text-body-sm font-normal text-secondary">Units</span></div>
+          <div
+            class="font-label-mono-xs text-label-mono-xs text-tertiary bg-tertiary/10 px-1.5 py-0.5 rounded border border-tertiary/20 font-bold">
             +21.4%
           </div>
-</div>
-<div class="pt-2 border-t border-outline-variant/50 flex items-center justify-between text-on-surface-variant font-label-mono-xs text-label-mono-xs">
-<span>Acceptance Pending: <span class="text-primary font-bold">4 orders</span></span>
-<span class="text-secondary">+3 vs yesterday</span>
-</div>
-</div>
-<!-- Tile 2 -->
-<div class="p-3.5 bg-surface-container-low border border-error/50 rounded flex flex-col justify-between relative overflow-hidden bg-error/5">
-<div class="absolute -right-6 -bottom-6 w-20 h-20 bg-error/10 rounded-full blur-xl pointer-events-none"></div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-1.5">
-<span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
-<span class="font-label-mono-xs text-label-mono-xs text-error font-bold uppercase tracking-wider">D-Day Bottleneck Alert</span>
-</div>
-<span class="p-1 bg-error-container/30 rounded text-error">
-<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span>
-</span>
-</div>
-<div class="my-2 flex items-baseline justify-between">
-<div class="font-headline-lg text-headline-lg font-bold text-error">07 <span class="text-body-sm font-normal text-error/80">≤ 48h SLA</span></div>
-<span class="font-label-mono-xs text-label-mono-xs text-error bg-error/20 px-1.5 py-0.5 rounded border border-error/40 font-bold">
+        </div>
+        <div
+          class="pt-2 border-t border-outline-variant/50 flex items-center justify-between text-on-surface-variant font-label-mono-xs text-label-mono-xs">
+          <span>Acceptance Pending: <span class="text-primary font-bold">4 orders</span></span>
+          <span class="text-secondary">+3 vs yesterday</span>
+        </div>
+      </div>
+      <!-- Tile 2 -->
+      <div
+        class="p-3.5 bg-surface-container-low border border-error/50 rounded flex flex-col justify-between relative overflow-hidden bg-error/5">
+        <div class="absolute -right-6 -bottom-6 w-20 h-20 bg-error/10 rounded-full blur-xl pointer-events-none"></div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-error animate-ping"></span>
+            <span class="font-label-mono-xs text-label-mono-xs text-error font-bold uppercase tracking-wider">D-Day
+              Bottleneck Alert</span>
+          </div>
+          <span class="p-1 bg-error-container/30 rounded text-error">
+            <span class="material-symbols-outlined text-sm" data-icon="warning">warning</span>
+          </span>
+        </div>
+        <div class="my-2 flex items-baseline justify-between">
+          <div class="font-headline-lg text-headline-lg font-bold text-error">07 <span
+              class="text-body-sm font-normal text-error/80">≤ 48h SLA</span></div>
+          <span
+            class="font-label-mono-xs text-label-mono-xs text-error bg-error/20 px-1.5 py-0.5 rounded border border-error/40 font-bold">
             HIGH OVERTIME
           </span>
-</div>
-<div class="pt-2 border-t border-error/30 flex items-center justify-between text-on-surface font-label-mono-xs text-label-mono-xs">
-<span class="text-secondary">Overtime Knotting: <span class="text-error font-bold">3 Units</span></span>
-<span class="text-on-surface-variant">Station 03 backload</span>
-</div>
-</div>
-<!-- Tile 3 -->
-<div class="p-3.5 bg-surface-container-low border border-outline-variant rounded flex flex-col justify-between hover:border-primary/40 transition-colors">
-<div class="flex items-center justify-between">
-<span class="font-label-mono-xs text-label-mono-xs text-secondary uppercase tracking-wider">Active WIP Line Status</span>
-<span class="p-1 bg-surface-container rounded text-tertiary">
-<span class="material-symbols-outlined text-sm" data-icon="precision_manufacturing">precision_manufacturing</span>
-</span>
-</div>
-<div class="my-2 flex items-baseline justify-between">
-<div class="font-headline-lg text-headline-lg font-bold text-on-surface">142 <span class="text-body-sm font-normal text-secondary">Units WIP</span></div>
-<div class="font-label-mono-xs text-label-mono-xs text-tertiary font-mono">
+        </div>
+        <div
+          class="pt-2 border-t border-error/30 flex items-center justify-between text-on-surface font-label-mono-xs text-label-mono-xs">
+          <span class="text-secondary">Overtime Knotting: <span class="text-error font-bold">3 Units</span></span>
+          <span class="text-on-surface-variant">Station 03 backload</span>
+        </div>
+      </div>
+      <!-- Tile 3 -->
+      <div
+        class="p-3.5 bg-surface-container-low border border-outline-variant rounded flex flex-col justify-between hover:border-primary/40 transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="font-label-mono-xs text-label-mono-xs text-secondary uppercase tracking-wider">Active WIP Line
+            Status</span>
+          <span class="p-1 bg-surface-container rounded text-tertiary">
+            <span class="material-symbols-outlined text-sm"
+              data-icon="precision_manufacturing">precision_manufacturing</span>
+          </span>
+        </div>
+        <div class="my-2 flex items-baseline justify-between">
+          <div class="font-headline-lg text-headline-lg font-bold text-on-surface">142 <span
+              class="text-body-sm font-normal text-secondary">Units WIP</span></div>
+          <div class="font-label-mono-xs text-label-mono-xs text-tertiary font-mono">
             88.7% CAP
           </div>
-</div>
-<div class="space-y-1 pt-2 border-t border-outline-variant/50">
-<div class="flex justify-between font-label-mono-xs text-label-mono-xs text-secondary">
-<span>6 MES Stations Loaded</span>
-<span>Target: 160 Units</span>
-</div>
-<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
-<div class="bg-tertiary h-1 rounded-full" style="width: 88.7%"></div>
-</div>
-</div>
-</div>
-<!-- Tile 4 -->
-<div class="p-3.5 bg-surface-container-low border border-outline-variant rounded flex flex-col justify-between hover:border-primary/40 transition-colors">
-<div class="flex items-center justify-between">
-<span class="font-label-mono-xs text-label-mono-xs text-secondary uppercase tracking-wider">Billing & Settlement (MTD)</span>
-<span class="p-1 bg-surface-container rounded text-primary">
-<span class="material-symbols-outlined text-sm" data-icon="payments">payments</span>
-</span>
-</div>
-<div class="my-2 flex items-baseline justify-between">
-<div class="font-headline-lg text-headline-lg font-bold text-primary font-mono">$184,520 <span class="text-body-sm font-normal text-on-surface-variant">AUD</span></div>
-<span class="font-label-mono-xs text-label-mono-xs text-primary bg-primary/10 px-1.5 py-0.5 rounded border border-primary/20">
+        </div>
+        <div class="space-y-1 pt-2 border-t border-outline-variant/50">
+          <div class="flex justify-between font-label-mono-xs text-label-mono-xs text-secondary">
+            <span>6 MES Stations Loaded</span>
+            <span>Target: 160 Units</span>
+          </div>
+          <div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden">
+            <div class="bg-tertiary h-1 rounded-full" style="width: 88.7%"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Tile 4 -->
+      <div
+        class="p-3.5 bg-surface-container-low border border-outline-variant rounded flex flex-col justify-between hover:border-primary/40 transition-colors">
+        <div class="flex items-center justify-between">
+          <span class="font-label-mono-xs text-label-mono-xs text-secondary uppercase tracking-wider">Billing &
+            Settlement (MTD)</span>
+          <span class="p-1 bg-surface-container rounded text-primary">
+            <span class="material-symbols-outlined text-sm" data-icon="payments">payments</span>
+          </span>
+        </div>
+        <div class="my-2 flex items-baseline justify-between">
+          <div class="font-headline-lg text-headline-lg font-bold text-primary font-mono">$184,520 <span
+              class="text-body-sm font-normal text-on-surface-variant">AUD</span></div>
+          <span
+            class="font-label-mono-xs text-label-mono-xs text-primary bg-primary/10 px-1.5 py-0.5 rounded border border-primary/20">
             88.4% SETTLED
           </span>
-</div>
-<div class="pt-2 border-t border-outline-variant/50 flex items-center justify-between text-secondary font-label-mono-xs text-label-mono-xs">
-<span>Uncollected Escrow:</span>
-<span class="text-on-surface font-mono font-medium">$24,190 AUD</span>
-</div>
-</div>
-</div>
-<!-- SECTION 3: Main Production Grid (7:5 Split) -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5">
-<!-- LEFT COLUMN: Pipeline funnel & Urgent Queue (7 Cols on 12-grid) -->
-<div class="lg:col-span-8 space-y-3.5">
-<!-- Interactive MES Bottleneck Pipeline & Station Flow -->
-<div class="p-4 bg-surface-container-low border border-outline-variant rounded">
-<div class="flex items-center justify-between mb-3 border-b border-outline-variant/60 pb-2">
-<div class="flex items-center space-x-2">
-<span class="material-symbols-outlined text-primary text-base" data-icon="schema">schema</span>
-<h2 class="font-headline-md text-headline-md text-on-surface">MES Manufacturing Stage Flow & Pipeline Funnel</h2>
-</div>
-<div class="flex items-center space-x-2 font-label-mono-xs text-label-mono-xs text-on-surface-variant">
-<span class="inline-block w-2 h-2 rounded-full bg-tertiary"></span>
-<span>NOMINAL CAPACITY</span>
-<span class="inline-block w-2 h-2 rounded-full bg-error ml-2"></span>
-<span class="text-error font-bold">STATION BOTTLENECK</span>
-</div>
-</div>
-<!-- Flow Pipeline Steps Grid -->
-<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2">
-<!-- Step 1 -->
-<div class="p-2.5 bg-surface-container rounded border border-outline-variant/70 flex flex-col justify-between">
-<div>
-<div class="flex justify-between items-center text-on-surface-variant font-label-mono-xs text-label-mono-xs mb-1">
-<span>STN-01</span>
-<span class="text-tertiary">ON TIME</span>
-</div>
-<h3 class="font-headline-md text-[13px] text-on-surface leading-tight font-semibold">Specs & CAD Headform</h3>
-</div>
-<div class="mt-3 pt-2 border-t border-outline-variant/40">
-<div class="font-headline-md text-base font-bold text-on-surface">08 <span class="text-body-sm font-normal text-secondary">orders</span></div>
-<div class="font-label-mono-xs text-[9px] text-secondary mt-0.5">3D Sculpt & Density Map</div>
-</div>
-</div>
-<!-- Step 2 -->
-<div class="p-2.5 bg-surface-container rounded border border-outline-variant/70 flex flex-col justify-between">
-<div>
-<div class="flex justify-between items-center text-on-surface-variant font-label-mono-xs text-label-mono-xs mb-1">
-<span>STN-02</span>
-<span class="text-tertiary">FLOWING</span>
-</div>
-<h3 class="font-headline-md text-[13px] text-on-surface leading-tight font-semibold">Base & Swiss HD Lace Prep</h3>
-</div>
-<div class="mt-3 pt-2 border-t border-outline-variant/40">
-<div class="font-headline-md text-base font-bold text-on-surface">14 <span class="text-body-sm font-normal text-secondary">orders</span></div>
-<div class="font-label-mono-xs text-[9px] text-secondary mt-0.5">Poly & Mono Contouring</div>
-</div>
-</div>
-<!-- Step 3: CRITICAL BOTTLENECK -->
-<div class="p-2.5 bg-error-container/15 rounded border-2 border-error flex flex-col justify-between relative shadow-sm">
-<div class="absolute -top-2 right-2 bg-error text-surface-container-lowest font-label-mono-xs text-[8px] font-bold px-1 rounded uppercase tracking-wider">
+        </div>
+        <div
+          class="pt-2 border-t border-outline-variant/50 flex items-center justify-between text-secondary font-label-mono-xs text-label-mono-xs">
+          <span>Uncollected Escrow:</span>
+          <span class="text-on-surface font-mono font-medium">$24,190 AUD</span>
+        </div>
+      </div>
+    </div>
+    <!-- SECTION 3: Main Production Grid (7:5 Split) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5">
+      <!-- LEFT COLUMN: Pipeline funnel & Urgent Queue (7 Cols on 12-grid) -->
+      <div class="lg:col-span-8 space-y-3.5">
+        <!-- Interactive MES Bottleneck Pipeline & Station Flow -->
+        <div class="p-4 bg-surface-container-low border border-outline-variant rounded">
+          <div class="flex items-center justify-between mb-3 border-b border-outline-variant/60 pb-2">
+            <div class="flex items-center space-x-2">
+              <span class="material-symbols-outlined text-primary text-base" data-icon="schema">schema</span>
+              <h2 class="font-headline-md text-headline-md text-on-surface">MES Manufacturing Stage Flow & Pipeline
+                Funnel</h2>
+            </div>
+            <div class="flex items-center space-x-2 font-label-mono-xs text-label-mono-xs text-on-surface-variant">
+              <span class="inline-block w-2 h-2 rounded-full bg-tertiary"></span>
+              <span>NOMINAL CAPACITY</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-error ml-2"></span>
+              <span class="text-error font-bold">STATION BOTTLENECK</span>
+            </div>
+          </div>
+          <!-- Flow Pipeline Steps Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-2">
+            <!-- Step 1 -->
+            <div
+              class="p-2.5 bg-surface-container rounded border border-outline-variant/70 flex flex-col justify-between">
+              <div>
+                <div
+                  class="flex justify-between items-center text-on-surface-variant font-label-mono-xs text-label-mono-xs mb-1">
+                  <span>STN-01</span>
+                  <span class="text-tertiary">ON TIME</span>
+                </div>
+                <h3 class="font-headline-md text-[13px] text-on-surface leading-tight font-semibold">Specs & CAD
+                  Headform</h3>
+              </div>
+              <div class="mt-3 pt-2 border-t border-outline-variant/40">
+                <div class="font-headline-md text-base font-bold text-on-surface">08 <span
+                    class="text-body-sm font-normal text-secondary">orders</span></div>
+                <div class="font-label-mono-xs text-[9px] text-secondary mt-0.5">3D Sculpt & Density Map</div>
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div
+              class="p-2.5 bg-surface-container rounded border border-outline-variant/70 flex flex-col justify-between">
+              <div>
+                <div
+                  class="flex justify-between items-center text-on-surface-variant font-label-mono-xs text-label-mono-xs mb-1">
+                  <span>STN-02</span>
+                  <span class="text-tertiary">FLOWING</span>
+                </div>
+                <h3 class="font-headline-md text-[13px] text-on-surface leading-tight font-semibold">Base & Swiss HD
+                  Lace Prep</h3>
+              </div>
+              <div class="mt-3 pt-2 border-t border-outline-variant/40">
+                <div class="font-headline-md text-base font-bold text-on-surface">14 <span
+                    class="text-body-sm font-normal text-secondary">orders</span></div>
+                <div class="font-label-mono-xs text-[9px] text-secondary mt-0.5">Poly & Mono Contouring</div>
+              </div>
+            </div>
+            <!-- Step 3: CRITICAL BOTTLENECK -->
+            <div
+              class="p-2.5 bg-error-container/15 rounded border-2 border-error flex flex-col justify-between relative shadow-sm">
+              <div
+                class="absolute -top-2 right-2 bg-error text-surface-container-lowest font-label-mono-xs text-[8px] font-bold px-1 rounded uppercase tracking-wider">
                 Bottleneck
               </div>
-<div>
-<div class="flex justify-between items-center text-error font-label-mono-xs text-label-mono-xs mb-1">
-<span>STN-03</span>
-<span class="font-bold">+18H BACKLOG</span>
-</div>
-<h3 class="font-headline-md text-[13px] text-error font-bold leading-tight">Hand-Tied Knotting & Ventilation</h3>
-</div>
-<div class="mt-3 pt-2 border-t border-error/30">
-<div class="font-headline-md text-base font-bold text-error">64 <span class="text-body-sm font-normal text-error/80">orders</span></div>
-<div class="font-label-mono-xs text-[9px] text-on-surface mt-0.5">12 Knotting Artisans Shifted</div>
-</div>
-</div>
-<!-- Step 4 -->
-<div class="p-2.5 bg-surface-container rounded border border-outline-variant/70 flex flex-col justify-between">
-<div>
-<div class="flex justify-between items-center text-on-surface-variant font-label-mono-xs text-label-mono-xs mb-1">
-<span>STN-04</span>
-<span class="text-primary font-mono">135°C BAKE</span>
-</div>
-<h3 class="font-headline-md text-[13px] text-on-surface leading-tight font-semibold">Autoclave Seal & Silicone</h3>
-</div>
-<div class="mt-3 pt-2 border-t border-outline-variant/40">
-<div class="font-headline-md text-base font-bold text-on-surface">18 <span class="text-body-sm font-normal text-secondary">orders</span></div>
-<div class="font-label-mono-xs text-[9px] text-secondary mt-0.5">Chamber #2 Active Cycle</div>
-</div>
-</div>
-<!-- Step 5 -->
-<div class="p-2.5 bg-surface-container rounded border border-outline-variant/70 flex flex-col justify-between">
-<div>
-<div class="flex justify-between items-center text-on-surface-variant font-label-mono-xs text-label-mono-xs mb-1">
-<span>STN-05</span>
-<span class="text-tertiary">98.4% PASS</span>
-</div>
-<h3 class="font-headline-md text-[13px] text-on-surface leading-tight font-semibold">Trichology QC & Styling</h3>
-</div>
-<div class="mt-3 pt-2 border-t border-outline-variant/40">
-<div class="font-headline-md text-base font-bold text-on-surface">12 <span class="text-body-sm font-normal text-secondary">orders</span></div>
-<div class="font-label-mono-xs text-[9px] text-secondary mt-0.5">Micrometer Root Depth Check</div>
-</div>
-</div>
-<!-- Step 6 -->
-<div class="p-2.5 bg-surface-container rounded border border-outline-variant/70 flex flex-col justify-between">
-<div>
-<div class="flex justify-between items-center text-on-surface-variant font-label-mono-xs text-label-mono-xs mb-1">
-<span>STN-06</span>
-<span class="text-tertiary">READY</span>
-</div>
-<h3 class="font-headline-md text-[13px] text-on-surface leading-tight font-semibold">Sterilize & Courier Out</h3>
-</div>
-<div class="mt-3 pt-2 border-t border-outline-variant/40">
-<div class="font-headline-md text-base font-bold text-on-surface">08 <span class="text-body-sm font-normal text-secondary">ready</span></div>
-<div class="font-label-mono-xs text-[9px] text-secondary mt-0.5">DHL Secure Vault Dispatch</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Urgent Priority Orders Queue Table -->
-<div class="bg-surface-container-low border border-outline-variant rounded overflow-hidden">
-<div class="p-3 bg-surface-container border-b border-outline-variant flex flex-wrap items-center justify-between gap-2">
-<div class="flex items-center space-x-2">
-<span class="material-symbols-outlined text-primary text-base" data-icon="table_rows">table_rows</span>
-<h2 class="font-headline-md text-headline-md text-on-surface">Active Production Floor Queue // Fast-Track Directives</h2>
-<span class="px-2 py-0.5 bg-surface-container-highest text-primary font-label-mono-xs text-label-mono-xs rounded">
+              <div>
+                <div class="flex justify-between items-center text-error font-label-mono-xs text-label-mono-xs mb-1">
+                  <span>STN-03</span>
+                  <span class="font-bold">+18H BACKLOG</span>
+                </div>
+                <h3 class="font-headline-md text-[13px] text-error font-bold leading-tight">Hand-Tied Knotting &
+                  Ventilation</h3>
+              </div>
+              <div class="mt-3 pt-2 border-t border-error/30">
+                <div class="font-headline-md text-base font-bold text-error">64 <span
+                    class="text-body-sm font-normal text-error/80">orders</span></div>
+                <div class="font-label-mono-xs text-[9px] text-on-surface mt-0.5">12 Knotting Artisans Shifted</div>
+              </div>
+            </div>
+            <!-- Step 4 -->
+            <div
+              class="p-2.5 bg-surface-container rounded border border-outline-variant/70 flex flex-col justify-between">
+              <div>
+                <div
+                  class="flex justify-between items-center text-on-surface-variant font-label-mono-xs text-label-mono-xs mb-1">
+                  <span>STN-04</span>
+                  <span class="text-primary font-mono">135°C BAKE</span>
+                </div>
+                <h3 class="font-headline-md text-[13px] text-on-surface leading-tight font-semibold">Autoclave Seal &
+                  Silicone</h3>
+              </div>
+              <div class="mt-3 pt-2 border-t border-outline-variant/40">
+                <div class="font-headline-md text-base font-bold text-on-surface">18 <span
+                    class="text-body-sm font-normal text-secondary">orders</span></div>
+                <div class="font-label-mono-xs text-[9px] text-secondary mt-0.5">Chamber #2 Active Cycle</div>
+              </div>
+            </div>
+            <!-- Step 5 -->
+            <div
+              class="p-2.5 bg-surface-container rounded border border-outline-variant/70 flex flex-col justify-between">
+              <div>
+                <div
+                  class="flex justify-between items-center text-on-surface-variant font-label-mono-xs text-label-mono-xs mb-1">
+                  <span>STN-05</span>
+                  <span class="text-tertiary">98.4% PASS</span>
+                </div>
+                <h3 class="font-headline-md text-[13px] text-on-surface leading-tight font-semibold">Trichology QC &
+                  Styling</h3>
+              </div>
+              <div class="mt-3 pt-2 border-t border-outline-variant/40">
+                <div class="font-headline-md text-base font-bold text-on-surface">12 <span
+                    class="text-body-sm font-normal text-secondary">orders</span></div>
+                <div class="font-label-mono-xs text-[9px] text-secondary mt-0.5">Micrometer Root Depth Check</div>
+              </div>
+            </div>
+            <!-- Step 6 -->
+            <div
+              class="p-2.5 bg-surface-container rounded border border-outline-variant/70 flex flex-col justify-between">
+              <div>
+                <div
+                  class="flex justify-between items-center text-on-surface-variant font-label-mono-xs text-label-mono-xs mb-1">
+                  <span>STN-06</span>
+                  <span class="text-tertiary">READY</span>
+                </div>
+                <h3 class="font-headline-md text-[13px] text-on-surface leading-tight font-semibold">Sterilize & Courier
+                  Out</h3>
+              </div>
+              <div class="mt-3 pt-2 border-t border-outline-variant/40">
+                <div class="font-headline-md text-base font-bold text-on-surface">08 <span
+                    class="text-body-sm font-normal text-secondary">ready</span></div>
+                <div class="font-label-mono-xs text-[9px] text-secondary mt-0.5">DHL Secure Vault Dispatch</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Urgent Priority Orders Queue Table -->
+        <div class="bg-surface-container-low border border-outline-variant rounded overflow-hidden">
+          <div
+            class="p-3 bg-surface-container border-b border-outline-variant flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center space-x-2">
+              <span class="material-symbols-outlined text-primary text-base" data-icon="table_rows">table_rows</span>
+              <h2 class="font-headline-md text-headline-md text-on-surface">Active Production Floor Queue // Fast-Track
+                Directives</h2>
+              <span
+                class="px-2 py-0.5 bg-surface-container-highest text-primary font-label-mono-xs text-label-mono-xs rounded">
                 QUEUE COUNT: 142
               </span>
-</div>
-<div class="flex items-center space-x-3 text-secondary font-label-mono-xs text-label-mono-xs">
-<label class="flex items-center space-x-1.5 cursor-pointer">
-<input class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
-<span>Select All Critical</span>
-</label>
-<button class="px-2 py-0.5 bg-surface-container-high border border-outline-variant rounded hover:text-on-surface">
+            </div>
+            <div class="flex items-center space-x-3 text-secondary font-label-mono-xs text-label-mono-xs">
+              <label class="flex items-center space-x-1.5 cursor-pointer">
+                <input class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5"
+                  type="checkbox" />
+                <span>Select All Critical</span>
+              </label>
+              <button
+                class="px-2 py-0.5 bg-surface-container-high border border-outline-variant rounded hover:text-on-surface">
                 Filter by Rush SLA
               </button>
-</div>
-</div>
-<!-- Table Container -->
-<div class="overflow-x-auto custom-scrollbar">
-<table class="w-full text-left font-body-sm text-body-sm border-collapse">
-<thead>
-<tr class="bg-surface-container-lowest border-b border-outline-variant font-label-mono-xs text-label-mono-xs text-on-surface-variant uppercase tracking-wider">
-<th class="py-2.5 px-3 w-8">
-<input class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
-</th>
-<th class="py-2.5 px-3">Order & Lot ID</th>
-<th class="py-2.5 px-3">Client Salon</th>
-<th class="py-2.5 px-3">Base Construction</th>
-<th class="py-2.5 px-3">Hair Spec & Shade</th>
-<th class="py-2.5 px-3">Rush SLA</th>
-<th class="py-2.5 px-3">Station Progress</th>
-<th class="py-2.5 px-3 text-right">MES Action</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-outline-variant/40 font-body-sm">
-<!-- Row 1: Critical -->
-<tr class="hover:bg-surface-container/60 transition-colors bg-error/5">
-<td class="py-2 px-3">
-<input checked="" class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
-</td>
-<td class="py-2 px-3 font-label-mono-xs text-label-mono-xs">
-<div class="text-primary font-bold">#ORD-8942</div>
-<div class="text-on-surface-variant">LOT-2290B-EU</div>
-</td>
-<td class="py-2 px-3">
-<div class="font-medium text-on-surface">The London Hair Clinic</div>
-<div class="text-[10px] text-secondary">Mayfair, UK // VIP Protocol</div>
-</td>
-<td class="py-2 px-3">
-<span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface rounded font-label-mono-xs text-[10px]">
+            </div>
+          </div>
+          <!-- Table Container -->
+          <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left font-body-sm text-body-sm border-collapse">
+              <thead>
+                <tr
+                  class="bg-surface-container-lowest border-b border-outline-variant font-label-mono-xs text-label-mono-xs text-on-surface-variant uppercase tracking-wider">
+                  <th class="py-2.5 px-3 w-8">
+                    <input
+                      class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5"
+                      type="checkbox" />
+                  </th>
+                  <th class="py-2.5 px-3">Order & Lot ID</th>
+                  <th class="py-2.5 px-3">Client Salon</th>
+                  <th class="py-2.5 px-3">Base Construction</th>
+                  <th class="py-2.5 px-3">Hair Spec & Shade</th>
+                  <th class="py-2.5 px-3">Rush SLA</th>
+                  <th class="py-2.5 px-3">Station Progress</th>
+                  <th class="py-2.5 px-3 text-right">MES Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant/40 font-body-sm">
+                <!-- Row 1: Critical -->
+                <tr class="hover:bg-surface-container/60 transition-colors bg-error/5">
+                  <td class="py-2 px-3">
+                    <input checked=""
+                      class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5"
+                      type="checkbox" />
+                  </td>
+                  <td class="py-2 px-3 font-label-mono-xs text-label-mono-xs">
+                    <div class="text-primary font-bold">#ORD-8942</div>
+                    <div class="text-on-surface-variant">LOT-2290B-EU</div>
+                  </td>
+                  <td class="py-2 px-3">
+                    <div class="font-medium text-on-surface">The London Hair Clinic</div>
+                    <div class="text-[10px] text-secondary">Mayfair, UK // VIP Protocol</div>
+                  </td>
+                  <td class="py-2 px-3">
+                    <span
+                      class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface rounded font-label-mono-xs text-[10px]">
                       Full Swiss Lace 0.03mm
                     </span>
-</td>
-<td class="py-2 px-3 font-label-mono-xs text-[11px] text-secondary">
+                  </td>
+                  <td class="py-2 px-3 font-label-mono-xs text-[11px] text-secondary">
                     Euro Virgin <span class="text-primary font-bold">60# Nordic</span> 16"
                   </td>
-<td class="py-2 px-3">
-<span class="px-2 py-0.5 bg-error text-surface-container-lowest font-label-mono-xs text-[10px] font-bold rounded flex items-center gap-1 w-max">
-<span class="w-1.5 h-1.5 rounded-full bg-surface-container-lowest animate-ping"></span>
+                  <td class="py-2 px-3">
+                    <span
+                      class="px-2 py-0.5 bg-error text-surface-container-lowest font-label-mono-xs text-[10px] font-bold rounded flex items-center gap-1 w-max">
+                      <span class="w-1.5 h-1.5 rounded-full bg-surface-container-lowest animate-ping"></span>
                       24H EXPEDITE
                     </span>
-</td>
-<td class="py-2 px-3">
-<div class="text-on-surface text-[11px] font-label-mono-xs">Stn 03: Knotting (72%)</div>
-<div class="w-24 bg-surface-container-highest h-1.5 rounded-full overflow-hidden mt-1">
-<div class="bg-error h-full" style="width: 72%"></div>
-</div>
-</td>
-<td class="py-2 px-3 text-right">
-<button class="px-2.5 py-1 bg-primary-container hover:bg-amber-600 text-on-primary font-bold rounded font-label-mono-xs text-[10px] transition-colors whitespace-nowrap">
+                  </td>
+                  <td class="py-2 px-3">
+                    <div class="text-on-surface text-[11px] font-label-mono-xs">Stn 03: Knotting (72%)</div>
+                    <div class="w-24 bg-surface-container-highest h-1.5 rounded-full overflow-hidden mt-1">
+                      <div class="bg-error h-full" style="width: 72%"></div>
+                    </div>
+                  </td>
+                  <td class="py-2 px-3 text-right">
+                    <button
+                      class="px-2.5 py-1 bg-primary-container hover:bg-amber-600 text-on-primary font-bold rounded font-label-mono-xs text-[10px] transition-colors whitespace-nowrap">
                       Fast-Track
                     </button>
-</td>
-</tr>
-<!-- Row 2: Urgent -->
-<tr class="hover:bg-surface-container/60 transition-colors bg-error/5">
-<td class="py-2 px-3">
-<input checked="" class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
-</td>
-<td class="py-2 px-3 font-label-mono-xs text-label-mono-xs">
-<div class="text-primary font-bold">#ORD-8939</div>
-<div class="text-on-surface-variant">LOT-2287A-AS</div>
-</td>
-<td class="py-2 px-3">
-<div class="font-medium text-on-surface">Seoul Bespoke Trichology</div>
-<div class="text-[10px] text-secondary">Gangnam-gu // Express Clinic</div>
-</td>
-<td class="py-2 px-3">
-<span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface rounded font-label-mono-xs text-[10px]">
+                  </td>
+                </tr>
+                <!-- Row 2: Urgent -->
+                <tr class="hover:bg-surface-container/60 transition-colors bg-error/5">
+                  <td class="py-2 px-3">
+                    <input checked=""
+                      class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5"
+                      type="checkbox" />
+                  </td>
+                  <td class="py-2 px-3 font-label-mono-xs text-label-mono-xs">
+                    <div class="text-primary font-bold">#ORD-8939</div>
+                    <div class="text-on-surface-variant">LOT-2287A-AS</div>
+                  </td>
+                  <td class="py-2 px-3">
+                    <div class="font-medium text-on-surface">Seoul Bespoke Trichology</div>
+                    <div class="text-[10px] text-secondary">Gangnam-gu // Express Clinic</div>
+                  </td>
+                  <td class="py-2 px-3">
+                    <span
+                      class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface rounded font-label-mono-xs text-[10px]">
                       Mono Top Poly Perimeter
                     </span>
-</td>
-<td class="py-2 px-3 font-label-mono-xs text-[11px] text-secondary">
+                  </td>
+                  <td class="py-2 px-3 font-label-mono-xs text-[11px] text-secondary">
                     Asian Virgin <span class="text-on-surface font-semibold">1B# Jet Black</span> 14"
                   </td>
-<td class="py-2 px-3">
-<span class="px-2 py-0.5 bg-error-container text-error border border-error/50 font-label-mono-xs text-[10px] font-bold rounded flex items-center gap-1 w-max">
+                  <td class="py-2 px-3">
+                    <span
+                      class="px-2 py-0.5 bg-error-container text-error border border-error/50 font-label-mono-xs text-[10px] font-bold rounded flex items-center gap-1 w-max">
                       48H EXPEDITE
                     </span>
-</td>
-<td class="py-2 px-3">
-<div class="text-on-surface text-[11px] font-label-mono-xs">Stn 05: QC Density (90%)</div>
-<div class="w-24 bg-surface-container-highest h-1.5 rounded-full overflow-hidden mt-1">
-<div class="bg-primary-container h-full" style="width: 90%"></div>
-</div>
-</td>
-<td class="py-2 px-3 text-right">
-<button class="px-2.5 py-1 bg-surface-container-high hover:bg-surface-bright text-secondary hover:text-on-surface border border-outline-variant rounded font-label-mono-xs text-[10px] transition-colors whitespace-nowrap">
+                  </td>
+                  <td class="py-2 px-3">
+                    <div class="text-on-surface text-[11px] font-label-mono-xs">Stn 05: QC Density (90%)</div>
+                    <div class="w-24 bg-surface-container-highest h-1.5 rounded-full overflow-hidden mt-1">
+                      <div class="bg-primary-container h-full" style="width: 90%"></div>
+                    </div>
+                  </td>
+                  <td class="py-2 px-3 text-right">
+                    <button
+                      class="px-2.5 py-1 bg-surface-container-high hover:bg-surface-bright text-secondary hover:text-on-surface border border-outline-variant rounded font-label-mono-xs text-[10px] transition-colors whitespace-nowrap">
                       Inspect
                     </button>
-</td>
-</tr>
-<!-- Row 3: Standard Priority -->
-<tr class="hover:bg-surface-container/60 transition-colors">
-<td class="py-2 px-3">
-<input class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
-</td>
-<td class="py-2 px-3 font-label-mono-xs text-label-mono-xs">
-<div class="text-secondary font-bold">#ORD-8931</div>
-<div class="text-on-surface-variant">LOT-2281D-SY</div>
-</td>
-<td class="py-2 px-3">
-<div class="font-medium text-on-surface">Sydney Crown Atelier</div>
-<div class="text-[10px] text-secondary">Double Bay // Bespoke Contract</div>
-</td>
-<td class="py-2 px-3">
-<span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface rounded font-label-mono-xs text-[10px]">
+                  </td>
+                </tr>
+                <!-- Row 3: Standard Priority -->
+                <tr class="hover:bg-surface-container/60 transition-colors">
+                  <td class="py-2 px-3">
+                    <input
+                      class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5"
+                      type="checkbox" />
+                  </td>
+                  <td class="py-2 px-3 font-label-mono-xs text-label-mono-xs">
+                    <div class="text-secondary font-bold">#ORD-8931</div>
+                    <div class="text-on-surface-variant">LOT-2281D-SY</div>
+                  </td>
+                  <td class="py-2 px-3">
+                    <div class="font-medium text-on-surface">Sydney Crown Atelier</div>
+                    <div class="text-[10px] text-secondary">Double Bay // Bespoke Contract</div>
+                  </td>
+                  <td class="py-2 px-3">
+                    <span
+                      class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface rounded font-label-mono-xs text-[10px]">
                       Ultra-Thin Skin 0.02mm
                     </span>
-</td>
-<td class="py-2 px-3 font-label-mono-xs text-[11px] text-secondary">
+                  </td>
+                  <td class="py-2 px-3 font-label-mono-xs text-[11px] text-secondary">
                     Slavic Virgin <span class="text-on-surface font-semibold">4# Ash Brown</span> 18"
                   </td>
-<td class="py-2 px-3">
-<span class="px-2 py-0.5 bg-surface-container-high text-secondary border border-outline-variant font-label-mono-xs text-[10px] rounded">
+                  <td class="py-2 px-3">
+                    <span
+                      class="px-2 py-0.5 bg-surface-container-high text-secondary border border-outline-variant font-label-mono-xs text-[10px] rounded">
                       STANDARD 7-DAY
                     </span>
-</td>
-<td class="py-2 px-3">
-<div class="text-on-surface text-[11px] font-label-mono-xs">Stn 02: Base Prep (35%)</div>
-<div class="w-24 bg-surface-container-highest h-1.5 rounded-full overflow-hidden mt-1">
-<div class="bg-tertiary h-full" style="width: 35%"></div>
-</div>
-</td>
-<td class="py-2 px-3 text-right">
-<button class="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface border border-outline-variant rounded font-label-mono-xs text-[10px] transition-colors whitespace-nowrap">
+                  </td>
+                  <td class="py-2 px-3">
+                    <div class="text-on-surface text-[11px] font-label-mono-xs">Stn 02: Base Prep (35%)</div>
+                    <div class="w-24 bg-surface-container-highest h-1.5 rounded-full overflow-hidden mt-1">
+                      <div class="bg-tertiary h-full" style="width: 35%"></div>
+                    </div>
+                  </td>
+                  <td class="py-2 px-3 text-right">
+                    <button
+                      class="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface border border-outline-variant rounded font-label-mono-xs text-[10px] transition-colors whitespace-nowrap">
                       Inspect
                     </button>
-</td>
-</tr>
-<!-- Row 4: Packaging Ready -->
-<tr class="hover:bg-surface-container/60 transition-colors">
-<td class="py-2 px-3">
-<input class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
-</td>
-<td class="py-2 px-3 font-label-mono-xs text-label-mono-xs">
-<div class="text-secondary font-bold">#ORD-8928</div>
-<div class="text-on-surface-variant">LOT-2279F-EU</div>
-</td>
-<td class="py-2 px-3">
-<div class="font-medium text-on-surface">Beverly Hills Hair Couture</div>
-<div class="text-[10px] text-secondary">Los Angeles // Direct Consignment</div>
-</td>
-<td class="py-2 px-3">
-<span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface rounded font-label-mono-xs text-[10px]">
+                  </td>
+                </tr>
+                <!-- Row 4: Packaging Ready -->
+                <tr class="hover:bg-surface-container/60 transition-colors">
+                  <td class="py-2 px-3">
+                    <input
+                      class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5"
+                      type="checkbox" />
+                  </td>
+                  <td class="py-2 px-3 font-label-mono-xs text-label-mono-xs">
+                    <div class="text-secondary font-bold">#ORD-8928</div>
+                    <div class="text-on-surface-variant">LOT-2279F-EU</div>
+                  </td>
+                  <td class="py-2 px-3">
+                    <div class="font-medium text-on-surface">Beverly Hills Hair Couture</div>
+                    <div class="text-[10px] text-secondary">Los Angeles // Direct Consignment</div>
+                  </td>
+                  <td class="py-2 px-3">
+                    <span
+                      class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface rounded font-label-mono-xs text-[10px]">
                       French Lace + Silk Crown
                     </span>
-</td>
-<td class="py-2 px-3 font-label-mono-xs text-[11px] text-secondary">
+                  </td>
+                  <td class="py-2 px-3 font-label-mono-xs text-[11px] text-secondary">
                     Euro Remy <span class="text-on-surface font-semibold">2# Dark Espresso</span> 16"
                   </td>
-<td class="py-2 px-3">
-<span class="px-2 py-0.5 bg-tertiary/10 text-tertiary border border-tertiary/30 font-label-mono-xs text-[10px] font-bold rounded">
+                  <td class="py-2 px-3">
+                    <span
+                      class="px-2 py-0.5 bg-tertiary/10 text-tertiary border border-tertiary/30 font-label-mono-xs text-[10px] font-bold rounded">
                       DISPATCH READY
                     </span>
-</td>
-<td class="py-2 px-3">
-<div class="text-tertiary text-[11px] font-label-mono-xs">Stn 06: Vault Packed (100%)</div>
-<div class="w-24 bg-surface-container-highest h-1.5 rounded-full overflow-hidden mt-1">
-<div class="bg-tertiary h-full" style="width: 100%"></div>
-</div>
-</td>
-<td class="py-2 px-3 text-right">
-<button class="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-tertiary border border-tertiary/40 rounded font-label-mono-xs text-[10px] transition-colors whitespace-nowrap">
+                  </td>
+                  <td class="py-2 px-3">
+                    <div class="text-tertiary text-[11px] font-label-mono-xs">Stn 06: Vault Packed (100%)</div>
+                    <div class="w-24 bg-surface-container-highest h-1.5 rounded-full overflow-hidden mt-1">
+                      <div class="bg-tertiary h-full" style="width: 100%"></div>
+                    </div>
+                  </td>
+                  <td class="py-2 px-3 text-right">
+                    <button
+                      class="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-tertiary border border-tertiary/40 rounded font-label-mono-xs text-[10px] transition-colors whitespace-nowrap">
                       Print Waybill
                     </button>
-</td>
-</tr>
-<!-- Row 5: In Knotting Stage -->
-<tr class="hover:bg-surface-container/60 transition-colors">
-<td class="py-2 px-3">
-<input class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5" type="checkbox"/>
-</td>
-<td class="py-2 px-3 font-label-mono-xs text-label-mono-xs">
-<div class="text-secondary font-bold">#ORD-8924</div>
-<div class="text-on-surface-variant">LOT-2275C-JP</div>
-</td>
-<td class="py-2 px-3">
-<div class="font-medium text-on-surface">Tokyo Ginza Hair Institute</div>
-<div class="text-[10px] text-secondary">Chuo City // High-Density Single Knot</div>
-</td>
-<td class="py-2 px-3">
-<span class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface rounded font-label-mono-xs text-[10px]">
+                  </td>
+                </tr>
+                <!-- Row 5: In Knotting Stage -->
+                <tr class="hover:bg-surface-container/60 transition-colors">
+                  <td class="py-2 px-3">
+                    <input
+                      class="rounded bg-surface border-outline-variant text-primary-container focus:ring-0 w-3.5 h-3.5"
+                      type="checkbox" />
+                  </td>
+                  <td class="py-2 px-3 font-label-mono-xs text-label-mono-xs">
+                    <div class="text-secondary font-bold">#ORD-8924</div>
+                    <div class="text-on-surface-variant">LOT-2275C-JP</div>
+                  </td>
+                  <td class="py-2 px-3">
+                    <div class="font-medium text-on-surface">Tokyo Ginza Hair Institute</div>
+                    <div class="text-[10px] text-secondary">Chuo City // High-Density Single Knot</div>
+                  </td>
+                  <td class="py-2 px-3">
+                    <span
+                      class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface rounded font-label-mono-xs text-[10px]">
                       Swiss HD Micro-Base
                     </span>
-</td>
-<td class="py-2 px-3 font-label-mono-xs text-[11px] text-secondary">
+                  </td>
+                  <td class="py-2 px-3 font-label-mono-xs text-[11px] text-secondary">
                     Japanese Virgin <span class="text-on-surface font-semibold">1# Natural Off-Black</span> 12"
                   </td>
-<td class="py-2 px-3">
-<span class="px-2 py-0.5 bg-surface-container-high text-secondary border border-outline-variant font-label-mono-xs text-[10px] rounded">
+                  <td class="py-2 px-3">
+                    <span
+                      class="px-2 py-0.5 bg-surface-container-high text-secondary border border-outline-variant font-label-mono-xs text-[10px] rounded">
                       STANDARD 7-DAY
                     </span>
-</td>
-<td class="py-2 px-3">
-<div class="text-on-surface text-[11px] font-label-mono-xs">Stn 03: Knotting (48%)</div>
-<div class="w-24 bg-surface-container-highest h-1.5 rounded-full overflow-hidden mt-1">
-<div class="bg-primary-container h-full" style="width: 48%"></div>
-</div>
-</td>
-<td class="py-2 px-3 text-right">
-<button class="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface border border-outline-variant rounded font-label-mono-xs text-[10px] transition-colors whitespace-nowrap">
+                  </td>
+                  <td class="py-2 px-3">
+                    <div class="text-on-surface text-[11px] font-label-mono-xs">Stn 03: Knotting (48%)</div>
+                    <div class="w-24 bg-surface-container-highest h-1.5 rounded-full overflow-hidden mt-1">
+                      <div class="bg-primary-container h-full" style="width: 48%"></div>
+                    </div>
+                  </td>
+                  <td class="py-2 px-3 text-right">
+                    <button
+                      class="px-2.5 py-1 bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface border border-outline-variant rounded font-label-mono-xs text-[10px] transition-colors whitespace-nowrap">
                       Inspect
                     </button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Table Footer Pagination and Telemetry summary -->
-<div class="p-2.5 bg-surface-container-lowest border-t border-outline-variant flex flex-col sm:flex-row items-center justify-between gap-2 text-on-surface-variant font-label-mono-xs text-label-mono-xs">
-<div class="flex items-center space-x-2">
-<span>SHOWING 5 OF 142 ACTIVE LOTS</span>
-<span class="text-outline-variant">|</span>
-<span class="text-primary">AUTONOMOUS DISPATCH ENGINE: ACTIVE</span>
-</div>
-<div class="flex items-center space-x-1">
-<button class="px-2 py-1 bg-surface-container border border-outline-variant rounded hover:text-on-surface">PREV</button>
-<button class="px-2 py-1 bg-primary-container text-on-primary font-bold rounded">1</button>
-<button class="px-2 py-1 bg-surface-container border border-outline-variant rounded hover:text-on-surface">2</button>
-<button class="px-2 py-1 bg-surface-container border border-outline-variant rounded hover:text-on-surface">3</button>
-<button class="px-2 py-1 bg-surface-container border border-outline-variant rounded hover:text-on-surface">NEXT</button>
-</div>
-</div>
-</div>
-</div>
-<!-- RIGHT COLUMN: Raw Materials Stock & Realtime Scan Telemetry (4 Cols on 12-grid) -->
-<div class="lg:col-span-4 space-y-3.5">
-<!-- Raw Hair Material & Inventory Gauges -->
-<div class="p-4 bg-surface-container-low border border-outline-variant rounded">
-<div class="flex items-center justify-between mb-3 border-b border-outline-variant/60 pb-2">
-<div class="flex items-center space-x-2">
-<span class="material-symbols-outlined text-primary text-base" data-icon="inventory">inventory</span>
-<h2 class="font-headline-md text-headline-md text-on-surface">Raw Hair Stock & Clean Room Substrates</h2>
-</div>
-<span class="p-1 bg-surface-container rounded text-on-surface-variant" title="Vault RFID Connected">
-<span class="material-symbols-outlined text-xs" data-icon="sensors">sensors</span>
-</span>
-</div>
-<div class="space-y-3 font-body-sm text-body-sm">
-<!-- Gauge 1: Amber Alert -->
-<div class="p-2.5 bg-surface-container rounded border border-primary-container/40">
-<div class="flex justify-between items-start mb-1.5">
-<div>
-<div class="font-semibold text-on-surface text-[13px]">European Virgin Remy Hair</div>
-<div class="font-label-mono-xs text-label-mono-xs text-secondary">Shade 60# Nordic Blonde, 16"-20"</div>
-</div>
-<span class="px-1.5 py-0.5 bg-amber-500/20 text-primary border border-primary/40 font-label-mono-xs text-[9px] font-bold rounded">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Table Footer Pagination and Telemetry summary -->
+          <div
+            class="p-2.5 bg-surface-container-lowest border-t border-outline-variant flex flex-col sm:flex-row items-center justify-between gap-2 text-on-surface-variant font-label-mono-xs text-label-mono-xs">
+            <div class="flex items-center space-x-2">
+              <span>SHOWING 5 OF 142 ACTIVE LOTS</span>
+              <span class="text-outline-variant">|</span>
+              <span class="text-primary">AUTONOMOUS DISPATCH ENGINE: ACTIVE</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <button
+                class="px-2 py-1 bg-surface-container border border-outline-variant rounded hover:text-on-surface">PREV</button>
+              <button class="px-2 py-1 bg-primary-container text-on-primary font-bold rounded">1</button>
+              <button
+                class="px-2 py-1 bg-surface-container border border-outline-variant rounded hover:text-on-surface">2</button>
+              <button
+                class="px-2 py-1 bg-surface-container border border-outline-variant rounded hover:text-on-surface">3</button>
+              <button
+                class="px-2 py-1 bg-surface-container border border-outline-variant rounded hover:text-on-surface">NEXT</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- RIGHT COLUMN: Raw Materials Stock & Realtime Scan Telemetry (4 Cols on 12-grid) -->
+      <div class="lg:col-span-4 space-y-3.5">
+        <!-- Raw Hair Material & Inventory Gauges -->
+        <div class="p-4 bg-surface-container-low border border-outline-variant rounded">
+          <div class="flex items-center justify-between mb-3 border-b border-outline-variant/60 pb-2">
+            <div class="flex items-center space-x-2">
+              <span class="material-symbols-outlined text-primary text-base" data-icon="inventory">inventory</span>
+              <h2 class="font-headline-md text-headline-md text-on-surface">Raw Hair Stock & Clean Room Substrates</h2>
+            </div>
+            <span class="p-1 bg-surface-container rounded text-on-surface-variant" title="Vault RFID Connected">
+              <span class="material-symbols-outlined text-xs" data-icon="sensors">sensors</span>
+            </span>
+          </div>
+          <div class="space-y-3 font-body-sm text-body-sm">
+            <!-- Gauge 1: Amber Alert -->
+            <div class="p-2.5 bg-surface-container rounded border border-primary-container/40">
+              <div class="flex justify-between items-start mb-1.5">
+                <div>
+                  <div class="font-semibold text-on-surface text-[13px]">European Virgin Remy Hair</div>
+                  <div class="font-label-mono-xs text-label-mono-xs text-secondary">Shade 60# Nordic Blonde, 16"-20"
+                  </div>
+                </div>
+                <span
+                  class="px-1.5 py-0.5 bg-amber-500/20 text-primary border border-primary/40 font-label-mono-xs text-[9px] font-bold rounded">
                   LOW STOCK REORDER
                 </span>
-</div>
-<div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
-<span class="text-primary font-bold">14.2 kg Available</span>
-<span class="text-on-surface-variant">Reorder Threshold: 15.0 kg</span>
-</div>
-<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
-<div class="bg-primary-container h-full" style="width: 47%"></div>
-</div>
-</div>
-<!-- Gauge 2: Optimal -->
-<div class="p-2.5 bg-surface-container rounded border border-outline-variant/60">
-<div class="flex justify-between items-start mb-1.5">
-<div>
-<div class="font-semibold text-on-surface text-[13px]">Asian Virgin Cuticle-Intact</div>
-<div class="font-label-mono-xs text-label-mono-xs text-secondary">Shade 1B# Natural Black, 12"-18"</div>
-</div>
-<span class="px-1.5 py-0.5 bg-tertiary/10 text-tertiary border border-tertiary/30 font-label-mono-xs text-[9px] font-bold rounded">
+              </div>
+              <div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
+                <span class="text-primary font-bold">14.2 kg Available</span>
+                <span class="text-on-surface-variant">Reorder Threshold: 15.0 kg</span>
+              </div>
+              <div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                <div class="bg-primary-container h-full" style="width: 47%"></div>
+              </div>
+            </div>
+            <!-- Gauge 2: Optimal -->
+            <div class="p-2.5 bg-surface-container rounded border border-outline-variant/60">
+              <div class="flex justify-between items-start mb-1.5">
+                <div>
+                  <div class="font-semibold text-on-surface text-[13px]">Asian Virgin Cuticle-Intact</div>
+                  <div class="font-label-mono-xs text-label-mono-xs text-secondary">Shade 1B# Natural Black, 12"-18"
+                  </div>
+                </div>
+                <span
+                  class="px-1.5 py-0.5 bg-tertiary/10 text-tertiary border border-tertiary/30 font-label-mono-xs text-[9px] font-bold rounded">
                   OPTIMAL
                 </span>
-</div>
-<div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
-<span class="text-tertiary font-bold">48.6 kg Available</span>
-<span class="text-on-surface-variant">Target: 30.0 kg</span>
-</div>
-<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
-<div class="bg-tertiary h-full" style="width: 82%"></div>
-</div>
-</div>
-<!-- Gauge 3: Fiber -->
-<div class="p-2.5 bg-surface-container rounded border border-outline-variant/60">
-<div class="flex justify-between items-start mb-1.5">
-<div>
-<div class="font-semibold text-on-surface text-[13px]">Synthetic Heat-Resistant Fiber</div>
-<div class="font-label-mono-xs text-label-mono-xs text-secondary">Japanese Kanekalon Monofilament</div>
-</div>
-<span class="px-1.5 py-0.5 bg-tertiary/10 text-tertiary border border-tertiary/30 font-label-mono-xs text-[9px] font-bold rounded">
+              </div>
+              <div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
+                <span class="text-tertiary font-bold">48.6 kg Available</span>
+                <span class="text-on-surface-variant">Target: 30.0 kg</span>
+              </div>
+              <div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                <div class="bg-tertiary h-full" style="width: 82%"></div>
+              </div>
+            </div>
+            <!-- Gauge 3: Fiber -->
+            <div class="p-2.5 bg-surface-container rounded border border-outline-variant/60">
+              <div class="flex justify-between items-start mb-1.5">
+                <div>
+                  <div class="font-semibold text-on-surface text-[13px]">Synthetic Heat-Resistant Fiber</div>
+                  <div class="font-label-mono-xs text-label-mono-xs text-secondary">Japanese Kanekalon Monofilament
+                  </div>
+                </div>
+                <span
+                  class="px-1.5 py-0.5 bg-tertiary/10 text-tertiary border border-tertiary/30 font-label-mono-xs text-[9px] font-bold rounded">
                   OPTIMAL
                 </span>
-</div>
-<div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
-<span class="text-on-surface font-bold">22.0 kg Available</span>
-<span class="text-on-surface-variant">Min: 10.0 kg</span>
-</div>
-<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
-<div class="bg-tertiary h-full" style="width: 68%"></div>
-</div>
-</div>
-<!-- Gauge 4: Swiss HD Lace Alert -->
-<div class="p-2.5 bg-surface-container rounded border border-error/40 bg-error/5">
-<div class="flex justify-between items-start mb-1.5">
-<div>
-<div class="font-semibold text-error text-[13px]">Swiss HD Lace Micro-Sheets</div>
-<div class="font-label-mono-xs text-label-mono-xs text-secondary">0.03mm Ultra-thin Acoustic Mesh</div>
-</div>
-<span class="px-1.5 py-0.5 bg-error text-surface-container-lowest font-label-mono-xs text-[9px] font-bold rounded">
+              </div>
+              <div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
+                <span class="text-on-surface font-bold">22.0 kg Available</span>
+                <span class="text-on-surface-variant">Min: 10.0 kg</span>
+              </div>
+              <div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                <div class="bg-tertiary h-full" style="width: 68%"></div>
+              </div>
+            </div>
+            <!-- Gauge 4: Swiss HD Lace Alert -->
+            <div class="p-2.5 bg-surface-container rounded border border-error/40 bg-error/5">
+              <div class="flex justify-between items-start mb-1.5">
+                <div>
+                  <div class="font-semibold text-error text-[13px]">Swiss HD Lace Micro-Sheets</div>
+                  <div class="font-label-mono-xs text-label-mono-xs text-secondary">0.03mm Ultra-thin Acoustic Mesh
+                  </div>
+                </div>
+                <span
+                  class="px-1.5 py-0.5 bg-error text-surface-container-lowest font-label-mono-xs text-[9px] font-bold rounded">
                   CRITICAL: 18 SHEETS
                 </span>
-</div>
-<div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
-<span class="text-error font-bold">18 Sheets remaining</span>
-<span class="text-on-surface-variant">Lead Time: 5 Days (Zurich)</span>
-</div>
-<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
-<div class="bg-error h-full" style="width: 22%"></div>
-</div>
-</div>
-</div>
-<div class="mt-3 pt-2 border-t border-outline-variant/60 flex items-center justify-between">
-<span class="text-secondary font-label-mono-xs text-label-mono-xs">LOT REPLENISHMENT PO: #PO-4091</span>
-<button class="px-2 py-1 bg-surface-container border border-outline-variant hover:border-primary-container text-primary font-label-mono-xs text-label-mono-xs rounded transition-colors">
+              </div>
+              <div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
+                <span class="text-error font-bold">18 Sheets remaining</span>
+                <span class="text-on-surface-variant">Lead Time: 5 Days (Zurich)</span>
+              </div>
+              <div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
+                <div class="bg-error h-full" style="width: 22%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 pt-2 border-t border-outline-variant/60 flex items-center justify-between">
+            <span class="text-secondary font-label-mono-xs text-label-mono-xs">LOT REPLENISHMENT PO: #PO-4091</span>
+            <button
+              class="px-2 py-1 bg-surface-container border border-outline-variant hover:border-primary-container text-primary font-label-mono-xs text-label-mono-xs rounded transition-colors">
               Dispatch RFQ
             </button>
-</div>
-</div>
-<!-- Recent MES Station Workstation Scan Feed (Realtime Barcode Stream) -->
-<div class="p-4 bg-surface-container-low border border-outline-variant rounded flex flex-col">
-<div class="flex items-center justify-between mb-3 border-b border-outline-variant/60 pb-2">
-<div class="flex items-center space-x-2">
-<span class="material-symbols-outlined text-primary text-base" data-icon="barcode_scanner">barcode_scanner</span>
-<h2 class="font-headline-md text-headline-md text-on-surface">MES Floor Live Telemetry Feed</h2>
-</div>
-<div class="flex items-center space-x-1 font-label-mono-xs text-label-mono-xs text-tertiary">
-<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
-<span>LIVE LOG</span>
-</div>
-</div>
-<div class="space-y-2.5 font-label-mono-xs text-label-mono-xs">
-<!-- Feed Item 1 -->
-<div class="p-2 bg-surface-container rounded border-l-2 border-l-tertiary border-y border-r border-outline-variant/50">
-<div class="flex items-center justify-between text-secondary mb-1">
-<span class="text-tertiary font-bold">14:01:42</span>
-<span class="text-on-surface-variant">Station 03 (Ventilation)</span>
-</div>
-<div class="text-on-surface font-mono">
+          </div>
+        </div>
+        <!-- Recent MES Station Workstation Scan Feed (Realtime Barcode Stream) -->
+        <div class="p-4 bg-surface-container-low border border-outline-variant rounded flex flex-col">
+          <div class="flex items-center justify-between mb-3 border-b border-outline-variant/60 pb-2">
+            <div class="flex items-center space-x-2">
+              <span class="material-symbols-outlined text-primary text-base"
+                data-icon="barcode_scanner">barcode_scanner</span>
+              <h2 class="font-headline-md text-headline-md text-on-surface">MES Floor Live Telemetry Feed</h2>
+            </div>
+            <div class="flex items-center space-x-1 font-label-mono-xs text-label-mono-xs text-tertiary">
+              <span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+              <span>LIVE LOG</span>
+            </div>
+          </div>
+          <div class="space-y-2.5 font-label-mono-xs text-label-mono-xs">
+            <!-- Feed Item 1 -->
+            <div
+              class="p-2 bg-surface-container rounded border-l-2 border-l-tertiary border-y border-r border-outline-variant/50">
+              <div class="flex items-center justify-between text-secondary mb-1">
+                <span class="text-tertiary font-bold">14:01:42</span>
+                <span class="text-on-surface-variant">Station 03 (Ventilation)</span>
+              </div>
+              <div class="text-on-surface font-mono">
                 Operator Kang scanned <span class="text-primary font-bold">LOT-0891A</span> @ Station 03
               </div>
-<div class="text-secondary text-[9px] mt-0.5">
+              <div class="text-secondary text-[9px] mt-0.5">
                 Knotting 88% complete // Density micrometer QC passed
               </div>
-</div>
-<!-- Feed Item 2 -->
-<div class="p-2 bg-surface-container rounded border-l-2 border-l-primary-container border-y border-r border-outline-variant/50">
-<div class="flex items-center justify-between text-secondary mb-1">
-<span class="text-primary font-bold">13:58:10</span>
-<span class="text-on-surface-variant">Station 04 (Autoclave)</span>
-</div>
-<div class="text-on-surface font-mono">
+            </div>
+            <!-- Feed Item 2 -->
+            <div
+              class="p-2 bg-surface-container rounded border-l-2 border-l-primary-container border-y border-r border-outline-variant/50">
+              <div class="flex items-center justify-between text-secondary mb-1">
+                <span class="text-primary font-bold">13:58:10</span>
+                <span class="text-on-surface-variant">Station 04 (Autoclave)</span>
+              </div>
+              <div class="text-on-surface font-mono">
                 Autoclave Bay 02 completed 135°C thermal curing cycle
               </div>
-<div class="text-secondary text-[9px] mt-0.5">
+              <div class="text-secondary text-[9px] mt-0.5">
                 BATCH-448 Silicone matrix cross-linked // Chamber depressurized
               </div>
-</div>
-<!-- Feed Item 3 -->
-<div class="p-2 bg-surface-container rounded border-l-2 border-l-tertiary border-y border-r border-outline-variant/50">
-<div class="flex items-center justify-between text-secondary mb-1">
-<span class="text-tertiary font-bold">13:42:05</span>
-<span class="text-on-surface-variant">Station 05 (Trichology QC)</span>
-</div>
-<div class="text-on-surface font-mono">
+            </div>
+            <!-- Feed Item 3 -->
+            <div
+              class="p-2 bg-surface-container rounded border-l-2 border-l-tertiary border-y border-r border-outline-variant/50">
+              <div class="flex items-center justify-between text-secondary mb-1">
+                <span class="text-tertiary font-bold">13:42:05</span>
+                <span class="text-on-surface-variant">Station 05 (Trichology QC)</span>
+              </div>
+              <div class="text-on-surface font-mono">
                 Trichologist Miller verified 0.03mm lace edge on <span class="text-primary">#ORD-8939</span>
-</div>
-<div class="text-secondary text-[9px] mt-0.5">
+              </div>
+              <div class="text-secondary text-[9px] mt-0.5">
                 Single-knot perimeter density 85 follicles/cm² // Certified
               </div>
-</div>
-<!-- Feed Item 4 -->
-<div class="p-2 bg-surface-container rounded border-l-2 border-l-secondary border-y border-r border-outline-variant/50">
-<div class="flex items-center justify-between text-secondary mb-1">
-<span class="text-secondary font-bold">13:30:19</span>
-<span class="text-on-surface-variant">Station 06 (Dispatch)</span>
-</div>
-<div class="text-on-surface font-mono">
+            </div>
+            <!-- Feed Item 4 -->
+            <div
+              class="p-2 bg-surface-container rounded border-l-2 border-l-secondary border-y border-r border-outline-variant/50">
+              <div class="flex items-center justify-between text-secondary mb-1">
+                <span class="text-secondary font-bold">13:30:19</span>
+                <span class="text-on-surface-variant">Station 06 (Dispatch)</span>
+              </div>
+              <div class="text-on-surface font-mono">
                 Dispatch generated DHL Express tracking for <span class="text-secondary font-bold">#ORD-8911</span>
-</div>
-<div class="text-secondary text-[9px] mt-0.5">
+              </div>
+              <div class="text-secondary text-[9px] mt-0.5">
                 Destination: Sydney Crown Atelier // AES-256 Waybill encrypted
               </div>
-</div>
-</div>
-<div class="mt-3 pt-2 border-t border-outline-variant/50 flex items-center justify-between text-on-surface-variant font-label-mono-xs text-label-mono-xs">
-<span>TERMINAL AUDIT BUFFER: 2,408 SCANS</span>
-<button class="text-primary hover:underline">View Historical Telemetry</button>
-</div>
-</div>
-</div>
-</div>
-<!-- SECTION 4: Bottom Action Dock & Quick Controls -->
-<div class="p-3 bg-surface-container-low border border-outline-variant rounded flex flex-col md:flex-row items-center justify-between gap-3">
-<div class="flex items-center space-x-3 text-secondary font-label-mono-xs text-label-mono-xs">
-<span class="material-symbols-outlined text-primary text-base" data-icon="terminal">terminal</span>
-<span>PRODUCTION DOCK COMMANDS // BATCH OVERRIDES READY:</span>
-</div>
-<div class="flex items-center flex-wrap gap-2 w-full md:w-auto justify-end">
-<button class="px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
-<span class="material-symbols-outlined text-sm" data-icon="print">print</span>
+            </div>
+          </div>
+          <div
+            class="mt-3 pt-2 border-t border-outline-variant/50 flex items-center justify-between text-on-surface-variant font-label-mono-xs text-label-mono-xs">
+            <span>TERMINAL AUDIT BUFFER: 2,408 SCANS</span>
+            <button class="text-primary hover:underline">View Historical Telemetry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SECTION 4: Bottom Action Dock & Quick Controls -->
+    <div
+      class="p-3 bg-surface-container-low border border-outline-variant rounded flex flex-col md:flex-row items-center justify-between gap-3">
+      <div class="flex items-center space-x-3 text-secondary font-label-mono-xs text-label-mono-xs">
+        <span class="material-symbols-outlined text-primary text-base" data-icon="terminal">terminal</span>
+        <span>PRODUCTION DOCK COMMANDS // BATCH OVERRIDES READY:</span>
+      </div>
+      <div class="flex items-center flex-wrap gap-2 w-full md:w-auto justify-end">
+        <button
+          class="px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-sm" data-icon="print">print</span>
           Batch Print Job Tickets (2D DataMatrix)
         </button>
-<button class="px-3 py-1.5 bg-error-container/20 hover:bg-error-container/40 text-error border border-error/50 rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
-<span class="material-symbols-outlined text-sm" data-icon="group_work">group_work</span>
+        <button
+          class="px-3 py-1.5 bg-error-container/20 hover:bg-error-container/40 text-error border border-error/50 rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-sm" data-icon="group_work">group_work</span>
           Trigger Expedited Shift Reallocation
         </button>
-<button class="px-3 py-1.5 bg-primary-container hover:bg-amber-600 text-on-primary font-bold rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
-<span class="material-symbols-outlined text-sm" data-icon="file_download">file_download</span>
+        <button
+          class="px-3 py-1.5 bg-primary-container hover:bg-amber-600 text-on-primary font-bold rounded font-label-mono-xs text-label-mono-xs flex items-center gap-1.5 transition-colors">
+          <span class="material-symbols-outlined text-sm" data-icon="file_download">file_download</span>
           Export MES Daily Audit Sheet (PDF/CSV)
         </button>
-</div>
-</div>
-</main>
-<!-- FOOTER SHARED COMPONENT: Footer -->
-<footer class="w-full py-space-sm px-margin flex flex-col md:flex-row items-center justify-between border-t border-outline-variant dark:border-outline-variant text-label-mono-xs font-label-mono-xs text-on-surface-variant dark:text-on-surface-variant bg-surface-container-lowest dark:bg-surface-container-lowest mt-4">
-<div class="flex items-center space-x-3 mb-2 md:mb-0">
-<span class="font-label-mono-md text-label-mono-md font-bold text-on-surface-variant dark:text-on-surface-variant">
+      </div>
+    </div>
+  </main>
+  <!-- FOOTER SHARED COMPONENT: Footer -->
+  <footer
+    class="w-full py-space-sm px-margin flex flex-col md:flex-row items-center justify-between border-t border-outline-variant dark:border-outline-variant text-label-mono-xs font-label-mono-xs text-on-surface-variant dark:text-on-surface-variant bg-surface-container-lowest dark:bg-surface-container-lowest mt-4">
+    <div class="flex items-center space-x-3 mb-2 md:mb-0">
+      <span
+        class="font-label-mono-md text-label-mono-md font-bold text-on-surface-variant dark:text-on-surface-variant">
         ATELIER INDUSTRIAL MES // ARCHITECTURE AES-256 GCM ENCRYPTED // STRICT RBAC PARTITIONING ACTIVE
       </span>
-</div>
-<div class="flex items-center space-x-6">
-<a class="text-on-surface-variant dark:text-on-surface-variant font-label-mono-xs text-label-mono-xs uppercase tracking-wider hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#iso">
+    </div>
+    <div class="flex items-center space-x-6">
+      <a class="text-on-surface-variant dark:text-on-surface-variant font-label-mono-xs text-label-mono-xs uppercase tracking-wider hover:text-primary dark:hover:text-primary transition-colors duration-150"
+        href="#iso">
         ISO-9001 Specs
       </a>
-<a class="text-on-surface-variant dark:text-on-surface-variant font-label-mono-xs text-label-mono-xs uppercase tracking-wider hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#token">
+      <a class="text-on-surface-variant dark:text-on-surface-variant font-label-mono-xs text-label-mono-xs uppercase tracking-wider hover:text-primary dark:hover:text-primary transition-colors duration-150"
+        href="#token">
         Hardware Token Auth
       </a>
-<a class="text-on-surface-variant dark:text-on-surface-variant font-label-mono-xs text-label-mono-xs uppercase tracking-wider hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#protocol">
+      <a class="text-on-surface-variant dark:text-on-surface-variant font-label-mono-xs text-label-mono-xs uppercase tracking-wider hover:text-primary dark:hover:text-primary transition-colors duration-150"
+        href="#protocol">
         Security Protocol v4.8
       </a>
-<a class="text-on-surface-variant dark:text-on-surface-variant font-label-mono-xs text-label-mono-xs uppercase tracking-wider hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#logs">
+      <a class="text-on-surface-variant dark:text-on-surface-variant font-label-mono-xs text-label-mono-xs uppercase tracking-wider hover:text-primary dark:hover:text-primary transition-colors duration-150"
+        href="#logs">
         Node Sync Logs
       </a>
-</div>
-</footer>
-<!-- Light micro-interaction: Realtime Clock Tick -->
-<script>
+    </div>
+  </footer>
+  <!-- Light micro-interaction: Realtime Clock Tick -->
+  <script>
     function updateClock() {
       const el = document.getElementById('live-utc');
       if (el) {
@@ -941,4 +1088,6 @@
     setInterval(updateClock, 1000);
     updateClock();
   </script>
-</body></html>
+</body>
+
+</html>
