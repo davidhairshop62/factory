@@ -4,7 +4,7 @@
   "title": "Factory ERP - Custom Hairpiece Manufacturing System",
   "visibility": "PRIVATE",
   "createTime": "2026-11-10T13:17:33.885338Z",
-  "updateTime": "2026-11-10T13:25:40.000000Z",
+  "updateTime": "2026-11-10T13:34:13.000000Z",
   "projectType": "PROJECT_DESIGN",
   "origin": "MCP",
   "designSystem": "assets/61be17def5154e349a01273247fbc9d8",
@@ -18,6 +18,16 @@
       "deviceType": "DESKTOP",
       "htmlFile": ".stitch/designs/index.html",
       "screenshotFile": ".stitch/designs/index.png"
+    },
+    "admin-dashboard": {
+      "id": "2497c5bef5b443849188eeb6e3df3847",
+      "sourceScreen": "projects/12760513028391886822/screens/2497c5bef5b443849188eeb6e3df3847",
+      "title": "Factory ERP - Executive Operations & Manufacturing Control Dashboard",
+      "width": 2560,
+      "height": 3048,
+      "deviceType": "DESKTOP",
+      "htmlFile": ".stitch/designs/admin-dashboard.html",
+      "screenshotFile": ".stitch/designs/admin-dashboard.png"
     }
   }
 }

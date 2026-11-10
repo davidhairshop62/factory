@@ -44,7 +44,7 @@
 * [ ] `portal-invoices.html` - 정산 및 인보이스 내역 (PDF 다운로드, 월별 청구서, 입금 확인증 제출)
 
 ### Admin Console (본사 관리자 및 MES)
-* [ ] `admin-dashboard.html` - 본사 통합 관제 대시보드 (신규 수주, D-Day 지연 위험, 공정 병목, 매출·미수금 현황)
+* [x] `admin-dashboard.html` - 본사 통합 관제 대시보드 (신규 수주, D-Day 지연 위험, 공정 병목, 매출·미수금 현황) (완료)
 * [ ] `admin-orders.html` - 통합 수주 관리 (전 거래처 주문 목록, 스펙 검토 승인/반려, 긴급 오더 할증 적용)
 * [ ] `admin-mes-scanner.html` - 공정 관리 & 바코드/QR 스캐너 (작업지시서 출력, 공정 통과 바코드 스캔, QC 검품 기록)
 * [ ] `admin-clients.html` - 거래처 및 단가 티어 관리 (Tier 1~3 공급가 정책, 여신 한도, 담당자 정보)
@@ -54,7 +54,7 @@
 
 ### Phase 1: High Priority (Core Workflows)
 - [x] **Task 1.1:** `index.html` - 통합 인증 & 2FA 역할 분기 화면 (완료)
-- [ ] **Task 1.2:** `admin-dashboard.html` - 관리자 통합 관제 대시보드 (병목 공정 & 핵심 KPI 헤드업 디스플레이)
+- [x] **Task 1.2:** `admin-dashboard.html` - 관리자 통합 관제 대시보드 (병목 공정 & 핵심 KPI 헤드업 디스플레이) (완료)
 - [ ] **Task 1.3:** `portal-dashboard.html` - 거래처 전용 대시보드 (주문 상태 카드 & 직관적 액션)
 - [ ] **Task 1.4:** `portal-order-new.html` - 품목별 정밀 사양 맞춤 주문 폼 (가발 치수, 베이스, 모발 밀도/컬 선택기)
 - [ ] **Task 1.5:** `admin-mes-scanner.html` - MES 공정 작업지시서 및 현장 바코드/QR 스캐너 인터페이스

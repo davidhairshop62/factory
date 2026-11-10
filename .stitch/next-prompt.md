@@ -1,7 +1,7 @@
 ---
-page: admin-dashboard
+page: portal-dashboard
 ---
-An executive operations and manufacturing control dashboard for "Factory ERP: Custom Hairpiece Manufacturing & Order Management System".
+A premier B2B client portal dashboard for salons, clinics, and trichology partners using "Factory ERP: Custom Hairpiece Manufacturing System".
 
 **DESIGN SYSTEM (REQUIRED):**
 - Platform: Web Application, Desktop-optimized with responsive tablet support
@@ -14,22 +14,25 @@ An executive operations and manufacturing control dashboard for "Factory ERP: Cu
 - Tone: High-density B2B Enterprise ERP & MES, Authoritative, Functional, Artisanal Quality
 
 **Page Structure & Core Requirements:**
-1. **Top Header & Telemetry Navigation:**
-   - Brand: "Factory ERP // OPERATIONS CONSOLE".
-   - Status indicators: Active MES Nodes, D-Day Urgent orders counter, Shift Leader on duty, Live UTC clock.
-   - Quick search bar: Order #, Client Name, Lot ID, Hair Shade lookup.
-2. **Executive KPI Metric Tiles (4-Column HUD):**
-   - Tile 1: "Today's New Orders" (e.g. 14 Orders / +3 from yesterday) with "Acceptance Pending: 4".
-   - Tile 2: "D-Day Bottleneck Alert" (e.g. 7 Orders ≤ 48h) in Amber/Crimson warning styling.
-   - Tile 3: "WIP Line Status" (e.g. 142 Active Units across Knotting, Ventilation, Autoclave, QC).
-   - Tile 4: "Monthly Billing & A/R" (e.g. $184,520 AUD / Uncollected: $24,190 AUD) with collection progress bar.
-3. **Main Content Grid (Split 8:4 or 7:5):**
+1. **Top Header & Client Navigation:**
+   - Brand: "Factory ERP // CLIENT ATELIER PORTAL".
+   - Client Identity Banner: "Partner Salon: Melbourne Prestige Hair Studio (Tier 1 Gold Partner / Credit Limit: $15,000 AUD)".
+   - Top Nav Bar: Dashboard (Active), New Custom Order, Order Tracking, One-Click Reorder, Invoices & Settlement.
+2. **Client Overview Metric Tiles (4-Column HUD):**
+   - Tile 1: "Active Manufacturing" (e.g. 8 Units in Production - 5 Knotting, 3 QC Inspection).
+   - Tile 2: "In Transit / Delivery" (e.g. 3 Units Dispatched with Live DHL Express tracking link).
+   - Tile 3: "Monthly Orders Placed" (e.g. 19 Units / 100% on-time delivery record).
+   - Tile 4: "Outstanding Balance & Terms" (e.g. $4,280 AUD Due Nov 30 / Pay Now button with Bank Wire info).
+3. **Primary Action Launchpad (Quick Buttons):**
+   - High-impact CTA 1: "Submit New Bespoke Hairpiece Order" (Solid Amber Gold `#F59E0B`).
+   - Action 2: "Repeat Last Verified Order (1-Click Reorder)".
+   - Action 3: "Download Statement & Tax Invoices (PDF)".
+4. **Main Content Grid (Split 8:4):**
    - **Left / Wide Area:**
-     * **Interactive MES Bottleneck Radar:** Visual funnel showing hairpiece stages:
-       1. Specs Review (8) → 2. Base Foundation (14) → 3. Single-Hair Hand-Tying / Knotting (64, Bottleneck!) → 4. Silicone Autoclave Bake (18) → 5. Final QC & Trichology Styling (12) → 6. Pack & Dispatch (8).
-     * **Urgent Orders Queue Table:** Order ID, Client Salon, Item Type (Full Wig, Toupee, Top-piece), Base Spec, Rush Level (Standard vs 48h Expedited), Current Station, Action button ("Inspect & Fast-Track").
+     * **Live Order Progression Radar & Timeline Table:**
+       List of client's 5 recent active orders with wearer chart ID (e.g. "Patient #408 - Full Swiss Lace 14\""), current stage progress bar (Order Accepted → Base Fabrication → Micro-Ventilation → QC Sterilization → Dispatched), estimated completion D-Day, and "View Full Spec Sheet" button.
    - **Right / Secondary Area:**
-     * **Raw Hair Inventory Gauges:** European Virgin Remy 60# (Blonde), Asian Virgin 1B#, Synthetic Heat-Resistant Blend stock meters with reorder triggers.
-     * **Recent MES Station Scan Activity Feed:** Live timestamps of barcode scans from factory workstations (e.g. "Operator Kang scanned LOT-0891A @ Station 03 (Knotting complete - QC passed)").
-4. **Action Dock & Quick Commands:**
-   - "Batch Print Job Orders (QR)", "New Urgent Override", "Download Daily MES Audit PDF".
+     * **Realtime Workshop Activity Feed:**
+       Push notification stream of wearer units passing through factory milestones (e.g. "Order #ORD-9824: 100% Single-knot hairline ventilation completed by Artisan Lin").
+     * **Dedicated Account Representative Card:**
+       Assigned Master Trichologist & B2B Concierge contact (direct phone, WhatsApp, emergency change request).
