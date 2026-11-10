@@ -1,0 +1,15 @@
+# Configuration & Secrets
+config.php
+보안중요사항.txt
+*.key
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs & temp
+*.log
+*.tmp
+backups/
+test_db.php
