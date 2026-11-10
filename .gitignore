@@ -13,3 +13,4 @@ Thumbs.db
 *.tmp
 backups/
 test_db.php
+create_user_table.php
