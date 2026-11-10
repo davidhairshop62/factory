@@ -34,7 +34,7 @@
 *Update this when a new page is successfully merged.*
 
 ### Gateway & Auth
-* [ ] `index.html` - 통합 로그인 및 역할(Client / Admin / MES / Accountant) 분기 게이트웨이
+* [x] `index.html` - 통합 로그인 및 역할(Client / Admin / MES / Accountant) 분기 게이트웨이 (완료)
 
 ### Client Portal (거래처 전용)
 * [ ] `portal-dashboard.html` - 거래처 대시보드 (진행 중 주문 현황, 당월 발주/미수금 요약, 실시간 알림 피드)
@@ -53,7 +53,7 @@
 ## 5. The Roadmap (Backlog)
 
 ### Phase 1: High Priority (Core Workflows)
-- [ ] **Task 1.1:** `index.html` - 통합 인증 & 2FA 역할 분기 화면
+- [x] **Task 1.1:** `index.html` - 통합 인증 & 2FA 역할 분기 화면 (완료)
 - [ ] **Task 1.2:** `admin-dashboard.html` - 관리자 통합 관제 대시보드 (병목 공정 & 핵심 KPI 헤드업 디스플레이)
 - [ ] **Task 1.3:** `portal-dashboard.html` - 거래처 전용 대시보드 (주문 상태 카드 & 직관적 액션)
 - [ ] **Task 1.4:** `portal-order-new.html` - 품목별 정밀 사양 맞춤 주문 폼 (가발 치수, 베이스, 모발 밀도/컬 선택기)
@@ -87,3 +87,4 @@
 1. Section 4의 완료된 페이지를 중복 생성하지 않고 업데이트합니다.
 2. 매 작업 완료 시 반드시 `.stitch/next-prompt.md`의 바톤을 다음 작업으로 갱신합니다.
 3. Section 6의 아이디어를 구현한 경우 목록에서 해당 항목을 체크하거나 정리합니다.
+

@@ -4,8 +4,20 @@
   "title": "Factory ERP - Custom Hairpiece Manufacturing System",
   "visibility": "PRIVATE",
   "createTime": "2026-11-10T13:17:33.885338Z",
-  "updateTime": "2026-11-10T13:17:33.885338Z",
+  "updateTime": "2026-11-10T13:25:40.000000Z",
   "projectType": "PROJECT_DESIGN",
   "origin": "MCP",
-  "screens": {}
+  "designSystem": "assets/61be17def5154e349a01273247fbc9d8",
+  "screens": {
+    "index": {
+      "id": "0cfe52decaba4cafb187f1be7e91ec1c",
+      "sourceScreen": "projects/12760513028391886822/screens/0cfe52decaba4cafb187f1be7e91ec1c",
+      "title": "Factory ERP - Unified Login & Role Gateway",
+      "width": 2560,
+      "height": 2222,
+      "deviceType": "DESKTOP",
+      "htmlFile": ".stitch/designs/index.html",
+      "screenshotFile": ".stitch/designs/index.png"
+    }
+  }
 }

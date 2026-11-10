@@ -59,3 +59,4 @@ The Factory ERP interface blends **Industrial High-Density Engineering** with **
 - Typography: Headers in Outfit/Inter, Body in Inter, Technical Codes/Measurements/Prices in JetBrains Mono
 - Shapes: Modern crisp corners (4px to 10px radius), hairline mechanical borders, zero gratuitous heavy drop-shadows
 - Tone: High-density B2B Enterprise ERP & MES, Authoritative, Functional, Artisanal Quality
+
