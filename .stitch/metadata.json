@@ -4,7 +4,7 @@
   "title": "Factory ERP - Custom Hairpiece Manufacturing System",
   "visibility": "PRIVATE",
   "createTime": "2026-11-10T13:17:33.885338Z",
-  "updateTime": "2026-11-10T13:34:13.000000Z",
+  "updateTime": "2026-11-10T13:48:00.000000Z",
   "projectType": "PROJECT_DESIGN",
   "origin": "MCP",
   "designSystem": "assets/61be17def5154e349a01273247fbc9d8",
@@ -28,6 +28,16 @@
       "deviceType": "DESKTOP",
       "htmlFile": ".stitch/designs/admin-dashboard.html",
       "screenshotFile": ".stitch/designs/admin-dashboard.png"
+    },
+    "portal-dashboard": {
+      "id": "c36a23b6dab746ac8927d5b681de0d5c",
+      "sourceScreen": "projects/12760513028391886822/screens/c36a23b6dab746ac8927d5b681de0d5c",
+      "title": "Factory ERP - Client Atelier Portal Dashboard",
+      "width": 2560,
+      "height": 3662,
+      "deviceType": "DESKTOP",
+      "htmlFile": ".stitch/designs/portal-dashboard.html",
+      "screenshotFile": ".stitch/designs/portal-dashboard.png"
     }
   }
 }

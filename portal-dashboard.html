@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ATELIER MES // Enterprise Client Portal</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-high": "#1c2b3c",
+            "inverse-surface": "#d4e4fa",
+            "tertiary": "#56e5a9",
+            "tertiary-container": "#30c88f",
+            "primary-fixed": "#ffddb8",
+            "on-secondary": "#263143",
+            "on-error": "#690005",
+            "primary-container": "#f59e0b",
+            "surface-dim": "#051424",
+            "on-surface": "#d4e4fa",
+            "background": "#051424",
+            "surface-tint": "#ffb95f",
+            "on-tertiary-fixed-variant": "#005236",
+            "on-surface-variant": "#d8c3ad",
+            "surface-container-lowest": "#010f1f",
+            "surface-bright": "#2c3a4c",
+            "inverse-on-surface": "#233143",
+            "on-primary-fixed": "#2a1700",
+            "tertiary-fixed-dim": "#4edea3",
+            "on-secondary-fixed-variant": "#3c475a",
+            "primary-fixed-dim": "#ffb95f",
+            "on-error-container": "#ffdad6",
+            "on-tertiary": "#003824",
+            "on-tertiary-fixed": "#002113",
+            "surface-container-highest": "#273647",
+            "primary": "#ffc174",
+            "surface-variant": "#273647",
+            "on-secondary-container": "#aeb9d0",
+            "tertiary-fixed": "#6ffbbe",
+            "secondary-container": "#3e495d",
+            "secondary-fixed": "#d8e3fb",
+            "on-secondary-fixed": "#111c2d",
+            "error": "#ffb4ab",
+            "surface-container": "#122131",
+            "secondary-fixed-dim": "#bcc7de",
+            "outline-variant": "#534434",
+            "on-tertiary-container": "#004e34",
+            "on-primary": "#472a00",
+            "secondary": "#bcc7de",
+            "surface-container-low": "#0d1c2d",
+            "on-primary-fixed-variant": "#653e00",
+            "surface": "#051424",
+            "outline": "#a08e7a",
+            "on-background": "#d4e4fa",
+            "on-primary-container": "#613b00",
+            "inverse-primary": "#855300",
+            "error-container": "#93000a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "margin": "1.5rem",
+            "space-lg": "1.25rem",
+            "margin-mobile": "1rem",
+            "gutter-dense": "0.5rem",
+            "gutter": "1rem",
+            "space-md": "0.75rem",
+            "space-xl": "2rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Outfit", "sans-serif"],
+            "headline-xl": ["Outfit", "sans-serif"],
+            "headline-md": ["Outfit", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "label-mono-md": ["JetBrains Mono", "monospace"],
+            "label-mono-lg": ["JetBrains Mono", "monospace"],
+            "body-sm": ["Inter", "sans-serif"],
+            "headline-xl-mobile": ["Outfit", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "label-mono-xs": ["JetBrains Mono", "monospace"]
+          },
+          "fontSize": {
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["18px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "body-lg": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-mono-md": ["11px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "label-mono-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-mono-xs": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #051424;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #273647;
+      border-radius: 2px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #ffc174;
+    }
+    /* Subtle mechanical grid pattern overlay */
+    .bg-tech-grid {
+      background-size: 24px 24px;
+      background-image: 
+        linear-gradient(to right, rgba(83, 68, 52, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(83, 68, 52, 0.08) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md selection:bg-primary-container selection:text-surface-dim">
+<!-- TOP APP BAR (Shared Components JSON Anchor) -->
+<header class="w-full px-margin flex items-center justify-between h-14 bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline-variant sticky top-0 z-50">
+<div class="flex items-center gap-space-lg">
+<a href="index.html" class="flex items-center gap-space-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
+<span class="font-headline-md text-headline-md tracking-wider text-primary dark:text-primary uppercase font-headline-md">
+          ATELIER MES // ENTERPRISE GATEWAY
+        </span>
+</a>
+<div class="hidden xl:flex items-center gap-space-xs px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant text-label-mono-xs font-label-mono-xs text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+<span class="text-tertiary font-medium">CLIENT API: SECURE ENCRYPTED</span>
+<span class="text-outline mx-1">//</span>
+<span>NODE: MELBOURNE-APAC</span>
+</div>
+</div>
+<!-- Active Navigation Links as mandated by JSON with exact casing and active indicators -->
+<nav class="hidden md:flex items-center gap-space-lg h-full">
+<a class="text-primary dark:text-primary border-b-2 border-primary dark:border-primary pb-1 font-label-mono-md text-label-mono-md uppercase tracking-wider flex items-center gap-1.5 h-full pt-1" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="dashboard">dashboard</span>
+        Telemetry
+      </a>
+<a class="text-secondary dark:text-secondary hover:text-on-surface dark:hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors flex items-center gap-1.5 h-full pt-1" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="precision_manufacturing">precision_manufacturing</span>
+        Nodes
+      </a>
+<a class="text-secondary dark:text-secondary hover:text-on-surface dark:hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors flex items-center gap-1.5 h-full pt-1" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+        Clearance
+      </a>
+<a class="text-secondary dark:text-secondary hover:text-on-surface dark:hover:text-on-surface font-label-mono-md text-label-mono-md uppercase tracking-wider transition-colors flex items-center gap-1.5 h-full pt-1" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="history_edu">history_edu</span>
+        Audits
+      </a>
+</nav>
+<!-- Header Actions & Telemetry -->
+<div class="flex items-center gap-space-md">
+<div class="hidden lg:flex flex-col items-end text-label-mono-xs font-label-mono-xs text-secondary border-r border-outline-variant pr-space-md">
+<span class="text-on-surface font-medium">SEL: 18ms | MEL: 42ms</span>
+<span class="text-tertiary flex items-center gap-1">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+          SYS_STATUS: NOMINAL
+        </span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="p-1.5 rounded bg-surface-container border border-outline-variant text-on-surface hover:text-primary transition-colors relative" title="Atelier Telemetry Alert Hub">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-primary-container"></span>
+</button>
+<button class="p-1.5 rounded bg-surface-container border border-outline-variant text-on-surface hover:text-primary transition-colors" title="Encrypted Terminal Key Locked">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container border border-outline-variant text-on-surface hover:text-primary transition-colors" title="Terminal Direct Access">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</button>
+</div>
+<div class="flex items-center gap-2 pl-space-xs">
+<div class="w-8 h-8 rounded border border-primary/40 bg-surface-container-high flex items-center justify-center text-primary font-label-mono-md font-bold shadow-inner">
+          MP
+        </div>
+</div>
+</div>
+</header>
+<!-- SUB-BAR: CLIENT CONTEXT & PARTNER IDENTITY -->
+<section class="bg-surface-container border-b border-outline-variant px-margin py-2.5 flex flex-wrap items-center justify-between gap-y-2 text-label-mono-xs font-label-mono-xs">
+<div class="flex flex-wrap items-center gap-space-md">
+<div class="flex items-center gap-2">
+<span class="text-on-surface-variant uppercase tracking-wider">Partner Salon:</span>
+<span class="font-headline-md text-sm text-primary font-bold tracking-tight">Melbourne Prestige Hair Studio</span>
+<span class="px-2 py-0.5 rounded bg-primary-container/15 text-primary-container border border-primary-container/40 uppercase tracking-widest text-[9px] font-bold">
+          Tier 1 Gold Partner
+        </span>
+</div>
+<div class="h-4 w-px bg-outline-variant hidden sm:block"></div>
+<div class="flex items-center gap-2 text-secondary">
+<span>CREDIT LINE:</span>
+<span class="text-on-surface font-semibold font-label-mono-sm">$15,000 AUD</span>
+<span class="text-tertiary">($10,720 Available)</span>
+</div>
+<div class="h-4 w-px bg-outline-variant hidden md:block"></div>
+<div class="flex items-center gap-2 text-secondary">
+<span>CLIENT ID:</span>
+<span class="text-on-surface font-label-mono-xs bg-surface-dim px-1.5 py-0.5 rounded border border-outline-variant/60 text-primary-fixed">CLI-MEL-904</span>
+</div>
+</div>
+<!-- Quick Concierge Hotline & Actions -->
+<div class="flex items-center gap-space-sm">
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface border border-outline-variant transition-colors">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="support_agent">support_agent</span>
+<span>Client Concierge Hotline</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface border border-outline-variant transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="swap_horiz">swap_horiz</span>
+<span class="hidden sm:inline">Switch Workspace</span>
+</button>
+</div>
+</section>
+<!-- SECONDARY WORKSPACE SUB-NAVIGATION -->
+<div class="bg-surface-container-low border-b border-outline-variant px-margin py-1.5 overflow-x-auto flex items-center justify-between">
+<div class="flex items-center gap-space-md whitespace-nowrap text-label-mono-xs font-label-mono-xs uppercase tracking-wider">
+<span class="text-primary border-b border-primary pb-0.5 flex items-center gap-1">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+        Dashboard Overview
+      </span>
+<a class="text-secondary hover:text-on-surface transition-colors flex items-center gap-1" href="#orders-matrix">
+<span class="material-symbols-outlined text-sm" data-icon="format_list_bulleted">format_list_bulleted</span>
+        Order Tracking
+      </a>
+<a class="text-secondary hover:text-on-surface transition-colors flex items-center gap-1" href="#new-order">
+<span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+        New Custom Order
+      </a>
+<a class="text-secondary hover:text-on-surface transition-colors flex items-center gap-1" href="#reorder">
+<span class="material-symbols-outlined text-sm" data-icon="replay">replay</span>
+        One-Click Reorder
+      </a>
+<a class="text-secondary hover:text-on-surface transition-colors flex items-center gap-1" href="#cad-profiles">
+<span class="material-symbols-outlined text-sm" data-icon="view_in_ar">view_in_ar</span>
+        Wearer 3D CAD Profiles
+      </a>
+<a class="text-secondary hover:text-on-surface transition-colors flex items-center gap-1" href="#settlement">
+<span class="material-symbols-outlined text-sm" data-icon="receipt_long">receipt_long</span>
+        Invoices &amp; Settlement
+      </a>
+</div>
+<div class="text-label-mono-xs font-label-mono-xs text-outline hidden md:block">
+      CIPHER: SHA-512 ACTIVE // AUTH TOKEN #8841-B
+    </div>
+</div>
+<!-- MAIN VIEW CONTAINER -->
+<main class="flex-1 w-full px-margin py-space-lg bg-tech-grid flex flex-col gap-space-lg max-w-[1720px] mx-auto">
+<!-- 1. ENTERPRISE METRIC HUD (4-Column) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Metric 1: Active Manufacturing -->
+<div class="p-space-lg rounded bg-surface-container border border-outline-variant relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant uppercase tracking-wider block mb-1">Active Manufacturing</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-primary font-headline-xl font-bold">8</span>
+<span class="font-label-mono-xs text-label-mono-xs text-secondary uppercase">Units In Production</span>
+</div>
+</div>
+<span class="p-2 rounded bg-primary-container/10 border border-primary-container/30 text-primary-container">
+<span class="material-symbols-outlined" data-icon="precision_manufacturing">precision_manufacturing</span>
+</span>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/60 flex flex-col gap-1.5 font-label-mono-xs text-label-mono-xs">
+<div class="flex justify-between items-center text-secondary">
+<span>Hand Knotting &amp; Ventilation</span>
+<span class="text-on-surface font-semibold">5 Units</span>
+</div>
+<div class="w-full bg-surface-dim h-1.5 rounded-full overflow-hidden flex">
+<div class="bg-primary h-full" style="width: 62.5%"></div>
+<div class="bg-tertiary h-full" style="width: 37.5%"></div>
+</div>
+<div class="flex justify-between items-center text-secondary">
+<span>Trichology QC Inspection</span>
+<span class="text-tertiary font-semibold">3 Units</span>
+</div>
+</div>
+</div>
+<!-- Metric 2: In Transit / Dispatched -->
+<div class="p-space-lg rounded bg-surface-container border border-outline-variant relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant uppercase tracking-wider block mb-1">In Transit / Dispatched</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-tertiary font-headline-xl font-bold">3</span>
+<span class="font-label-mono-xs text-label-mono-xs text-secondary uppercase">Active Couriers</span>
+</div>
+</div>
+<span class="p-2 rounded bg-tertiary/10 border border-tertiary/30 text-tertiary">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+</span>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/60 font-label-mono-xs text-label-mono-xs">
+<div class="flex items-center justify-between text-secondary mb-1">
+<span>Priority Live Courier:</span>
+<span class="text-tertiary font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+              Air Cargo Active
+            </span>
+</div>
+<a class="text-on-surface hover:text-primary transition-colors flex items-center gap-1 font-semibold truncate" href="#">
+<span>DHL Express #AU-88391-EXP</span>
+<span class="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
+</a>
+<div class="text-on-surface-variant text-[10px] mt-1">
+            Next Drop: <span class="text-primary font-bold">Tomorrow 10:30 AM (MEL Airport Hub)</span>
+</div>
+</div>
+</div>
+<!-- Metric 3: Monthly Orders Placed -->
+<div class="p-space-lg rounded bg-surface-container border border-outline-variant relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant uppercase tracking-wider block mb-1">Monthly Orders Placed</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-on-surface font-headline-xl font-bold">19</span>
+<span class="font-label-mono-xs text-label-mono-xs text-tertiary uppercase">+4 vs Last Mo</span>
+</div>
+</div>
+<span class="p-2 rounded bg-surface-container-high border border-outline-variant text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+</span>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/60 font-label-mono-xs text-label-mono-xs flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<span class="text-secondary">SLA On-Time Fulfillment:</span>
+<span class="text-tertiary font-bold">100.0%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-secondary">Remake / Rejection Rate:</span>
+<span class="text-on-surface font-semibold">0.00% (Zero Remakes)</span>
+</div>
+<div class="text-on-surface-variant text-[10px] mt-0.5">
+            Artisanal Micro-Weft &amp; Single Knot Certification Clean
+          </div>
+</div>
+</div>
+<!-- Metric 4: Outstanding Balance & Terms -->
+<div class="p-space-lg rounded bg-surface-container border border-outline-variant relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant uppercase tracking-wider block mb-1">Outstanding Balance &amp; Terms</span>
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-xl text-headline-xl text-primary-fixed font-headline-xl font-bold">$4,280</span>
+<span class="font-label-mono-xs text-label-mono-xs text-secondary uppercase">AUD DUE NOV 30</span>
+</div>
+</div>
+<span class="p-2 rounded bg-surface-container-high border border-outline-variant text-primary-fixed">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+</span>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/60 flex items-center justify-between gap-2">
+<div class="font-label-mono-xs text-label-mono-xs text-secondary">
+<div>Terms: <span class="text-on-surface font-semibold">Net-30 Invoice</span></div>
+<div class="text-[10px] text-outline">BSB 083-004 // ACC 98214</div>
+</div>
+<button class="px-2.5 py-1.5 rounded bg-surface-container-high hover:bg-surface-bright text-primary border border-primary/30 font-label-mono-xs text-label-mono-xs uppercase tracking-wider transition-all">
+            Pay Settlement
+          </button>
+</div>
+</div>
+</section>
+<!-- 2. HIGH-IMPACT QUICK ACTION LAUNCHPAD & FILTER BAR -->
+<section class="p-space-md rounded bg-surface-container-low border border-outline-variant flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Primary Actions Group -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Solid Polished Amber Gold Action -->
+<button class="px-4 py-2.5 rounded bg-primary-container hover:bg-[#d97706] text-surface-dim font-headline-md text-sm font-bold flex items-center gap-2 border border-primary-container shadow-sm active:scale-95 transition-all" id="new-order">
+<span class="material-symbols-outlined text-lg font-bold" data-icon="add">add</span>
+<span>Submit New Bespoke Hairpiece Order</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-dim text-primary text-[10px] font-label-mono-xs ml-1 font-bold">+1-STEP WIZARD</span>
+</button>
+<!-- Repeat Order Button -->
+<button class="px-3.5 py-2.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface border border-outline-variant flex items-center gap-2 font-label-mono-xs text-label-mono-xs uppercase tracking-wider transition-colors" id="reorder">
+<span class="material-symbols-outlined text-primary text-base" data-icon="cached">cached</span>
+<span>Repeat Last Verified Order (Patient #408 Spec)</span>
+</button>
+<!-- Statements Button -->
+<button class="px-3 py-2.5 rounded bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface border border-outline-variant flex items-center gap-1.5 font-label-mono-xs text-label-mono-xs uppercase tracking-wider transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="file_download">file_download</span>
+<span>Statements (PDF/CSV)</span>
+</button>
+</div>
+<!-- Search & Filters for Wearer/Order -->
+<div class="flex items-center gap-2 min-w-[320px]">
+<div class="relative flex-1">
+<span class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-sm" data-icon="search">search</span>
+</span>
+<input class="w-full pl-8 pr-3 py-1.5 rounded bg-surface-dim border border-outline-variant text-on-surface placeholder:text-outline font-label-mono-xs text-label-mono-xs focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Search Wearer Chart ID, Spec, Lot #, Lace Type..." type="text"/>
+</div>
+<button class="px-2.5 py-1.5 rounded bg-surface-container border border-outline-variant text-secondary hover:text-on-surface font-label-mono-xs text-label-mono-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="tune">tune</span>
+<span class="hidden sm:inline">Filters</span>
+</button>
+</div>
+</section>
+<!-- 3. MAIN SPLIT GRID (8 COLS : 4 COLS) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN (8 COLS): Live Order Progression Radar & Timeline Table -->
+<section class="lg:col-span-8 flex flex-col gap-space-lg">
+<div class="bg-surface-container rounded border border-outline-variant overflow-hidden" id="orders-matrix">
+<!-- Table Header / Radar Status Title -->
+<div class="px-space-lg py-space-md bg-surface-container-high border-b border-outline-variant flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="radar">radar</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">
+                Live Order Progression Radar &amp; Timeline
+              </h2>
+<span class="px-2 py-0.5 rounded bg-surface-container border border-outline-variant text-label-mono-xs font-label-mono-xs text-secondary">
+                5 Active Custom Units
+              </span>
+</div>
+<!-- Manufacturing Flow Step Indicator Legend -->
+<div class="hidden xl:flex items-center gap-1 text-[9px] font-label-mono-xs text-outline">
+<span class="text-tertiary">1. Accepted</span>
+<span>&gt;</span>
+<span class="text-on-surface">2. Base Fab</span>
+<span>&gt;</span>
+<span class="text-primary font-bold">3. Micro-Ventilation</span>
+<span>&gt;</span>
+<span class="text-on-surface">4. QC &amp; Sterilization</span>
+<span>&gt;</span>
+<span class="text-secondary">5. Dispatched</span>
+</div>
+</div>
+<!-- Active Orders Table Matrix -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-outline-variant text-label-mono-xs font-label-mono-xs text-on-surface-variant uppercase tracking-wider">
+<th class="py-2.5 px-3">Order &amp; Wearer Chart</th>
+<th class="py-2.5 px-3">Artisanal Technical Spec</th>
+<th class="py-2.5 px-3">Stage &amp; Micrometer Telemetry</th>
+<th class="py-2.5 px-3">Target Completion</th>
+<th class="py-2.5 px-3 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/40">
+<!-- Order 1: ORD-9842 (Micro-Ventilation 72%) -->
+<tr class="hover:bg-surface-container-high/40 transition-colors bg-surface-container/60">
+<td class="py-3 px-3 align-top">
+<div class="font-label-mono-xs text-primary font-bold flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                      ORD-9842
+                    </div>
+<div class="font-headline-md text-sm text-on-surface font-semibold mt-0.5">Julian M.</div>
+<div class="font-label-mono-xs text-outline">Patient #408</div>
+<span class="inline-block mt-1 px-1.5 py-0.2 rounded bg-primary-container/20 text-primary-container border border-primary-container/40 text-[9px] font-label-mono-xs font-bold uppercase">
+                      EXPEDITE PRIORITY
+                    </span>
+</td>
+<td class="py-3 px-3 align-top max-w-[240px]">
+<div class="text-on-surface font-medium">14" Euro Virgin 60# Nordic Blonde</div>
+<div class="text-xs text-secondary mt-0.5">Full Swiss HD Lace (0.03mm micro-membrane)</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-mono-xs text-[10px] text-on-surface-variant">
+<span class="inline-block w-3 h-3 rounded-full bg-[#E5D7B7] border border-outline"></span>
+<span>Color: 60# // Density: 130% Graduated Hairline</span>
+</div>
+</td>
+<td class="py-3 px-3 align-top min-w-[200px]">
+<div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
+<span class="text-primary font-semibold">Micro-Ventilation</span>
+<span class="text-primary font-bold">72%</span>
+</div>
+<div class="w-full bg-surface-dim h-2 rounded border border-outline-variant/60 overflow-hidden">
+<div class="bg-primary h-full rounded" style="width: 72%"></div>
+</div>
+<div class="mt-1.5 font-label-mono-xs text-[10px] text-secondary flex items-center justify-between">
+<span>Station 03 (Artisan Lin)</span>
+<span class="text-tertiary">92 Single-Knots/cm²</span>
+</div>
+</td>
+<td class="py-3 px-3 align-top whitespace-nowrap">
+<div class="font-label-mono-xs text-on-surface font-bold">Nov 14 (3 Days)</div>
+<div class="font-label-mono-xs text-[10px] text-outline">Air Freight Direct</div>
+<span class="inline-flex items-center gap-1 text-[10px] text-tertiary font-label-mono-xs mt-1">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle">check_circle</span>
+                      On Schedule
+                    </span>
+</td>
+<td class="py-3 px-3 align-top text-right whitespace-nowrap">
+<div class="flex flex-col items-end gap-1 font-label-mono-xs text-label-mono-xs">
+<button class="px-2 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-primary border border-outline-variant hover:border-primary transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="visibility">visibility</span>
+                        Spec Sheet
+                      </button>
+<button class="px-2 py-1 rounded bg-surface-dim hover:bg-surface-bright text-secondary border border-outline-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="view_in_ar">view_in_ar</span>
+                        3D Headform
+                      </button>
+</div>
+</td>
+</tr>
+<!-- Order 2: ORD-9839 (Trichology QC 94%) -->
+<tr class="hover:bg-surface-container-high/40 transition-colors bg-surface-container-low/40">
+<td class="py-3 px-3 align-top">
+<div class="font-label-mono-xs text-on-surface font-bold">ORD-9839</div>
+<div class="font-headline-md text-sm text-on-surface font-semibold mt-0.5">Sarah K.</div>
+<div class="font-label-mono-xs text-outline">Client #312</div>
+<span class="inline-block mt-1 px-1.5 py-0.2 rounded bg-tertiary/10 text-tertiary border border-tertiary/30 text-[9px] font-label-mono-xs font-bold uppercase">
+                      FINAL INSPECTION
+                    </span>
+</td>
+<td class="py-3 px-3 align-top max-w-[240px]">
+<div class="text-on-surface font-medium">16" Asian Virgin 1B# Jet Black</div>
+<div class="text-xs text-secondary mt-0.5">Mono Top + Silk Perimeter Embedded Contour</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-mono-xs text-[10px] text-on-surface-variant">
+<span class="inline-block w-3 h-3 rounded-full bg-[#18181A] border border-outline"></span>
+<span>Color: 1B# // Cuticle-Intact Directional Flow</span>
+</div>
+</td>
+<td class="py-3 px-3 align-top min-w-[200px]">
+<div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
+<span class="text-tertiary font-semibold">Trichology QC &amp; Sterilization</span>
+<span class="text-tertiary font-bold">94%</span>
+</div>
+<div class="w-full bg-surface-dim h-2 rounded border border-outline-variant/60 overflow-hidden">
+<div class="bg-tertiary h-full rounded" style="width: 94%"></div>
+</div>
+<div class="mt-1.5 font-label-mono-xs text-[10px] text-secondary flex items-center justify-between">
+<span>UV Autoclave Chamber B</span>
+<span class="text-tertiary font-semibold">Passed Micrometer Check</span>
+</div>
+</td>
+<td class="py-3 px-3 align-top whitespace-nowrap">
+<div class="font-label-mono-xs text-tertiary font-bold">Tomorrow (Nov 11)</div>
+<div class="font-label-mono-xs text-[10px] text-secondary">Dispatch Staging</div>
+<span class="inline-flex items-center gap-1 text-[10px] text-tertiary font-label-mono-xs mt-1">
+<span class="material-symbols-outlined text-xs" data-icon="verified">verified</span>
+                      Sterilized
+                    </span>
+</td>
+<td class="py-3 px-3 align-top text-right whitespace-nowrap">
+<button class="px-2.5 py-1.5 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface border border-outline-variant font-label-mono-xs text-label-mono-xs flex items-center gap-1 ml-auto">
+<span class="material-symbols-outlined text-xs" data-icon="description">description</span>
+                      View Spec
+                    </button>
+</td>
+</tr>
+<!-- Order 3: ORD-9831 (Base & Perimeter Fab 38%) -->
+<tr class="hover:bg-surface-container-high/40 transition-colors bg-surface-container/60">
+<td class="py-3 px-3 align-top">
+<div class="font-label-mono-xs text-on-surface font-bold">ORD-9831</div>
+<div class="font-headline-md text-sm text-on-surface font-semibold mt-0.5">David L.</div>
+<div class="font-label-mono-xs text-outline">Patient #205</div>
+<span class="inline-block mt-1 px-1.5 py-0.2 rounded bg-surface-container-high text-secondary border border-outline-variant text-[9px] font-label-mono-xs font-bold uppercase">
+                      NORMAL FLOW
+                    </span>
+</td>
+<td class="py-3 px-3 align-top max-w-[240px]">
+<div class="text-on-surface font-medium">12" Slavic Virgin 4# Ash Brown</div>
+<div class="text-xs text-secondary mt-0.5">Ultra-Thin Skin Poly (0.02mm micro-vacuum seal)</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-mono-xs text-[10px] text-on-surface-variant">
+<span class="inline-block w-3 h-3 rounded-full bg-[#4A3B32] border border-outline"></span>
+<span>Color: 4# // Root Lift Injection V-Loop</span>
+</div>
+</td>
+<td class="py-3 px-3 align-top min-w-[200px]">
+<div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
+<span class="text-secondary font-semibold">Base &amp; Perimeter Fabrication</span>
+<span class="text-on-surface font-bold">38%</span>
+</div>
+<div class="w-full bg-surface-dim h-2 rounded border border-outline-variant/60 overflow-hidden">
+<div class="bg-primary/70 h-full rounded" style="width: 38%"></div>
+</div>
+<div class="mt-1.5 font-label-mono-xs text-[10px] text-secondary flex items-center justify-between">
+<span>Curvature Laser Calibration</span>
+<span class="text-secondary">Poly Base Cured</span>
+</div>
+</td>
+<td class="py-3 px-3 align-top whitespace-nowrap">
+<div class="font-label-mono-xs text-on-surface font-bold">Nov 18</div>
+<div class="font-label-mono-xs text-[10px] text-outline">Standard Build (14d)</div>
+<span class="inline-flex items-center gap-1 text-[10px] text-secondary font-label-mono-xs mt-1">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+                      In Queue Phase 2
+                    </span>
+</td>
+<td class="py-3 px-3 align-top text-right whitespace-nowrap">
+<button class="px-2.5 py-1.5 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface border border-outline-variant font-label-mono-xs text-label-mono-xs flex items-center gap-1 ml-auto">
+<span class="material-symbols-outlined text-xs" data-icon="description">description</span>
+                      View Spec
+                    </button>
+</td>
+</tr>
+<!-- Order 4: ORD-9828 (Dispatched via Courier) -->
+<tr class="hover:bg-surface-container-high/40 transition-colors bg-surface-container-low/40">
+<td class="py-3 px-3 align-top">
+<div class="font-label-mono-xs text-tertiary font-bold">ORD-9828</div>
+<div class="font-headline-md text-sm text-on-surface font-semibold mt-0.5">Elena V.</div>
+<div class="font-label-mono-xs text-outline">Patient #188</div>
+<span class="inline-block mt-1 px-1.5 py-0.2 rounded bg-tertiary/10 text-tertiary border border-tertiary/30 text-[9px] font-label-mono-xs font-bold uppercase">
+                      IN TRANSIT (AIR)
+                    </span>
+</td>
+<td class="py-3 px-3 align-top max-w-[240px]">
+<div class="text-on-surface font-medium">18" European 2# Dark Espresso</div>
+<div class="text-xs text-secondary mt-0.5">French Lace + Poly Coated Perimeter Rim</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-mono-xs text-[10px] text-on-surface-variant">
+<span class="inline-block w-3 h-3 rounded-full bg-[#271E18] border border-outline"></span>
+<span>Color: 2# // Bleached Micro-Knots Hairline</span>
+</div>
+</td>
+<td class="py-3 px-3 align-top min-w-[200px]">
+<div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
+<span class="text-tertiary font-semibold">Dispatched via Courier</span>
+<span class="text-tertiary font-bold">100% (Shipped)</span>
+</div>
+<div class="w-full bg-surface-dim h-2 rounded border border-outline-variant/60 overflow-hidden">
+<div class="bg-tertiary h-full rounded" style="width: 100%"></div>
+</div>
+<div class="mt-1.5 font-label-mono-xs text-[10px] text-tertiary flex items-center justify-between">
+<span>Air Waybill #88391</span>
+<span class="text-on-surface font-bold">ETA: Nov 11, 10:30 AM</span>
+</div>
+</td>
+<td class="py-3 px-3 align-top whitespace-nowrap">
+<div class="font-label-mono-xs text-tertiary font-bold">Delivering Tomorrow</div>
+<div class="font-label-mono-xs text-[10px] text-secondary">Melbourne Salon Hub</div>
+<span class="inline-flex items-center gap-1 text-[10px] text-tertiary font-label-mono-xs mt-1">
+<span class="material-symbols-outlined text-xs" data-icon="flight_takeoff">flight_takeoff</span>
+                      Flight QF-482 Manifested
+                    </span>
+</td>
+<td class="py-3 px-3 align-top text-right whitespace-nowrap">
+<button class="px-2.5 py-1.5 rounded bg-tertiary/15 hover:bg-tertiary/25 text-tertiary border border-tertiary/40 font-label-mono-xs text-label-mono-xs flex items-center gap-1 ml-auto font-semibold">
+<span class="material-symbols-outlined text-xs" data-icon="local_shipping">local_shipping</span>
+                      Track Shipment
+                    </button>
+</td>
+</tr>
+<!-- Order 5: ORD-9820 (Autoclave Silicone Seal & Bake) -->
+<tr class="hover:bg-surface-container-high/40 transition-colors bg-surface-container/60">
+<td class="py-3 px-3 align-top">
+<div class="font-label-mono-xs text-on-surface font-bold">ORD-9820</div>
+<div class="font-headline-md text-sm text-on-surface font-semibold mt-0.5">Marcus T.</div>
+<div class="font-label-mono-xs text-outline">Client #441</div>
+<span class="inline-block mt-1 px-1.5 py-0.2 rounded bg-surface-container-high text-secondary border border-outline-variant text-[9px] font-label-mono-xs font-bold uppercase">
+                      NORMAL FLOW
+                    </span>
+</td>
+<td class="py-3 px-3 align-top max-w-[240px]">
+<div class="text-on-surface font-medium">10" Japanese Virgin 1# Natural Black</div>
+<div class="text-xs text-secondary mt-0.5">High Density Single-Knot Hydro-Poly Rim</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-mono-xs text-[10px] text-on-surface-variant">
+<span class="inline-block w-3 h-3 rounded-full bg-[#121110] border border-outline"></span>
+<span>Color: 1# // Contour 7-Crown Spiral Flow</span>
+</div>
+</td>
+<td class="py-3 px-3 align-top min-w-[200px]">
+<div class="flex justify-between items-center font-label-mono-xs text-label-mono-xs mb-1">
+<span class="text-primary font-semibold">Autoclave Silicone Seal &amp; Bake</span>
+<span class="text-primary font-bold">52%</span>
+</div>
+<div class="w-full bg-surface-dim h-2 rounded border border-outline-variant/60 overflow-hidden">
+<div class="bg-primary/80 h-full rounded" style="width: 52%"></div>
+</div>
+<div class="mt-1.5 font-label-mono-xs text-[10px] text-secondary flex items-center justify-between">
+<span>Thermal Chamber 04</span>
+<span class="text-on-surface">Curie Temp: 68°C</span>
+</div>
+</td>
+<td class="py-3 px-3 align-top whitespace-nowrap">
+<div class="font-label-mono-xs text-on-surface font-bold">Nov 16</div>
+<div class="font-label-mono-xs text-[10px] text-outline">5 Days Remaining</div>
+<span class="inline-flex items-center gap-1 text-[10px] text-tertiary font-label-mono-xs mt-1">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle">check_circle</span>
+                      On Cadence
+                    </span>
+</td>
+<td class="py-3 px-3 align-top text-right whitespace-nowrap">
+<button class="px-2.5 py-1.5 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface border border-outline-variant font-label-mono-xs text-label-mono-xs flex items-center gap-1 ml-auto">
+<span class="material-symbols-outlined text-xs" data-icon="description">description</span>
+                      View Spec
+                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Sub-Footer with Data Summary -->
+<div class="p-3 bg-surface-container-lowest border-t border-outline-variant flex flex-wrap items-center justify-between text-label-mono-xs font-label-mono-xs text-secondary gap-2">
+<div class="flex items-center gap-3">
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Production Pipeline: 8 Units Active</span>
+</span>
+<span class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>Sterilization / Courier: 3 Units</span>
+</span>
+</div>
+<div class="flex items-center gap-2">
+<span>Showing 5 of 8 Manufacturing Lots</span>
+<button class="text-primary hover:underline uppercase font-bold">View Full Archive →</button>
+</div>
+</div>
+</div>
+<!-- 3D CAD Profiles & Digital Headform Vault (Bento Preview) -->
+<div class="p-space-lg rounded bg-surface-container border border-outline-variant flex flex-col md:flex-row items-center justify-between gap-space-lg" id="cad-profiles">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-2xl" data-icon="view_in_ar">view_in_ar</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Wearer 3D CAD Scalp Topography Vault</h3>
+<span class="px-1.5 py-0.5 rounded bg-tertiary/10 text-tertiary border border-tertiary/30 font-label-mono-xs text-[9px] uppercase font-bold">Laser Scanned</span>
+</div>
+<p class="text-secondary text-body-sm mt-1 max-w-xl">
+                Melbourne Prestige Hair Studio has 34 calibrated patient cranial mesh profiles on file. Ready for zero-fitting instant custom base milling and contour replication.
+              </p>
+<div class="flex flex-wrap items-center gap-2 mt-3 font-label-mono-xs text-label-mono-xs">
+<span class="px-2 py-0.5 rounded bg-surface-dim border border-outline-variant text-on-surface">Julian M. (Mesh v2.4)</span>
+<span class="px-2 py-0.5 rounded bg-surface-dim border border-outline-variant text-on-surface">Sarah K. (Curvature 88°)</span>
+<span class="px-2 py-0.5 rounded bg-surface-dim border border-outline-variant text-on-surface">David L. (Frontal Recession Grid)</span>
+<span class="text-primary hover:underline cursor-pointer">+31 More Wearers</span>
+</div>
+</div>
+</div>
+<button class="px-4 py-2 rounded bg-surface-container-high hover:bg-surface-bright text-primary border border-outline-variant font-label-mono-xs text-label-mono-xs uppercase tracking-wider shrink-0 transition-colors">
+            Launch 3D Headform Viewer
+          </button>
+</div>
+</section>
+<!-- RIGHT COLUMN (4 COLS): Workshop Telemetry Feed & Atelier Support -->
+<aside class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Live WebSocket Workshop Activity Feed -->
+<div class="p-space-lg rounded bg-surface-container border border-outline-variant flex flex-col">
+<div class="flex items-center justify-between border-b border-outline-variant pb-3 mb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="stream">stream</span>
+<h3 class="font-headline-md text-base text-on-surface font-semibold">Workshop Activity Feed</h3>
+</div>
+<span class="inline-flex items-center gap-1 font-label-mono-xs text-[10px] text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+              LIVE WEBSOCKET
+            </span>
+</div>
+<div class="flex flex-col gap-3 font-label-mono-xs text-label-mono-xs custom-scrollbar max-h-[340px] overflow-y-auto pr-1">
+<!-- Feed Item 1 -->
+<div class="p-2.5 rounded bg-surface-dim border border-outline-variant/60 flex flex-col gap-1">
+<div class="flex items-center justify-between text-outline text-[10px]">
+<span class="text-primary font-bold">14:02:18 AEST</span>
+<span class="text-secondary font-mono">LOT #ORD-9839</span>
+</div>
+<p class="text-on-surface text-xs leading-relaxed">
+                Passed micrometer root density inspection (<span class="text-tertiary font-bold">85 follicles/cm²</span>) by Trichologist Miller. Verified clean.
+              </p>
+<div class="text-[9px] text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[11px]" data-icon="check_circle">check_circle</span>
+                Certification Seal Generated: #QC-9839-OK
+              </div>
+</div>
+<!-- Feed Item 2 -->
+<div class="p-2.5 rounded bg-surface-dim border border-outline-variant/60 flex flex-col gap-1">
+<div class="flex items-center justify-between text-outline text-[10px]">
+<span class="text-primary font-bold">13:45:00 AEST</span>
+<span class="text-secondary font-mono">LOT #ORD-9842</span>
+</div>
+<p class="text-on-surface text-xs leading-relaxed">
+                Single-knot hairline micro-ventilation reached <span class="text-primary font-bold">72% milestone</span> at Station 03 (Artisan Lin).
+              </p>
+<div class="text-[9px] text-on-surface-variant">
+                Hair: 14" Euro Virgin 60# Nordic Blonde
+              </div>
+</div>
+<!-- Feed Item 3 -->
+<div class="p-2.5 rounded bg-surface-dim border border-outline-variant/60 flex flex-col gap-1">
+<div class="flex items-center justify-between text-outline text-[10px]">
+<span class="text-primary font-bold">11:20:14 AEST</span>
+<span class="text-secondary font-mono">LOGISTICS</span>
+</div>
+<p class="text-on-surface text-xs leading-relaxed">
+                Batch Shipment <span class="text-tertiary font-bold">#AU-88391</span> scanned at Melbourne Air Cargo Gateway. Custom clearance granted.
+              </p>
+<div class="text-[9px] text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-[11px]" data-icon="flight_land">flight_land</span>
+                Cleared Inbound Customs
+              </div>
+</div>
+<!-- Feed Item 4 -->
+<div class="p-2.5 rounded bg-surface-dim border border-outline-variant/60 flex flex-col gap-1">
+<div class="flex items-center justify-between text-outline text-[10px]">
+<span class="text-primary font-bold">09:15:30 AEST</span>
+<span class="text-secondary font-mono">LOT #ORD-9831</span>
+</div>
+<p class="text-on-surface text-xs leading-relaxed">
+                3D headform curvature validated against patient scalp topography map. Ultra-thin skin cure cycle initiated.
+              </p>
+<div class="text-[9px] text-outline">
+                Autoclave Calibration: 0.02mm Poly Precision
+              </div>
+</div>
+</div>
+</div>
+<!-- Dedicated Concierge & Master Trichologist Card -->
+<div class="p-space-lg rounded bg-surface-container border border-outline-variant flex flex-col">
+<div class="flex items-center justify-between border-b border-outline-variant pb-3 mb-3">
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant uppercase tracking-wider">Assigned Account Lead</span>
+<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-tertiary/10 text-tertiary border border-tertiary/30 font-label-mono-xs text-[9px] uppercase font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+              On-Shift
+            </span>
+</div>
+<div class="flex items-start gap-3">
+<div class="relative">
+<img class="w-14 h-14 rounded object-cover border border-primary/50 shadow" data-alt="Editorial portrait of a high-end bespoke atelier master trichologist woman in dark technical tailoring apron inspecting micro hair ventilation under surgical LED workshop lamp with deep navy slate and gold industrial aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP5JssTXUx_YP0vBQ0RN02IZI1R4kdY-99d2neMEmmb0Swz-2Uvk7bJ6klciD2rvLsNRcARBDu0AiMN15DpUlzDia02SCdVVGPBLDn6mSliYrkcGz_UbnHuJYbTqinYH7eZ0OMVqikSo9Ko0z5QdsJJfZDfdQheAsWUxfya-RP9iixNPdjV7YD1Mh5GgyaxXms8zHYpHWFYbYmle-lec4fG5Vp4Wfu3GpM3MSLRz1-HdvJh6YgVhJc4LM15Z9Mrx3ezT6JvOTVxaC7"/>
+<span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-tertiary border-2 border-surface flex items-center justify-center"></span>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-md text-base text-on-surface font-bold">Vivienne Vance</h4>
+<p class="text-xs text-primary font-medium">Senior Trichology Specialist</p>
+<p class="font-label-mono-xs text-[10px] text-outline mt-0.5">Bespoke Account Concierge</p>
+<div class="mt-1 font-label-mono-xs text-[10px] text-secondary">
+                Location: <span class="text-on-surface">Station 03 Knotting Bay</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/60 flex flex-col gap-2 font-label-mono-xs text-label-mono-xs">
+<div class="flex items-center justify-between">
+<span class="text-secondary">Direct Priority Line:</span>
+<a class="text-primary hover:underline font-semibold" href="tel:+61399008422">+61 3 9900 8422</a>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-secondary">Direct Dispatch:</span>
+<span class="text-on-surface">Atelier Secure Wire</span>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-2">
+<button class="px-2 py-1.5 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface border border-outline-variant text-center font-label-mono-xs transition-colors flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="chat">chat</span>
+                WhatsApp Lead
+              </button>
+<button class="px-2 py-1.5 rounded bg-surface-dim hover:bg-surface-container-high text-primary border border-primary/40 text-center font-label-mono-xs transition-colors flex items-center justify-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-xs" data-icon="edit_note">edit_note</span>
+                Alter Spec
+              </button>
+</div>
+</div>
+</div>
+<!-- Raw Hair Batch Reserve & Substrate Stock for Melbourne Prestige -->
+<div class="p-space-lg rounded bg-surface-container border border-outline-variant flex flex-col">
+<div class="flex items-center justify-between border-b border-outline-variant pb-2 mb-3">
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant uppercase tracking-wider">Reserved Salon Materials</span>
+<span class="font-label-mono-xs text-[10px] text-primary font-bold">CLIENT VAULT</span>
+</div>
+<div class="flex flex-col gap-2.5 font-label-mono-xs text-label-mono-xs">
+<!-- Material 1 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-dim border border-outline-variant/60">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#E5D7B7] border border-outline"></span>
+<div>
+<div class="text-on-surface font-semibold">Nordic Blonde 60# Virgin Hair</div>
+<div class="text-[10px] text-outline">Batch: #RAW-BLD-8821</div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-primary font-bold">4.2 kg</span>
+<div class="text-[9px] text-tertiary">Locked / Reserved</div>
+</div>
+</div>
+<!-- Material 2 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-dim border border-outline-variant/60">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded bg-surface-bright border border-outline flex items-center justify-center text-[7px] text-primary">HD</span>
+<div>
+<div class="text-on-surface font-semibold">Swiss HD Ultra-Thin Lace Sheets</div>
+<div class="text-[10px] text-outline">0.03mm Medical Grade Membrane</div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-primary font-bold">14 Sheets</span>
+<div class="text-[9px] text-tertiary">Allocated</div>
+</div>
+</div>
+<!-- Material 3 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-dim border border-outline-variant/60">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#18181A] border border-outline"></span>
+<div>
+<div class="text-on-surface font-semibold">Asian Virgin 1B# Cuticle Intact</div>
+<div class="text-[10px] text-outline">Batch: #RAW-BLK-4009</div>
+</div>
+</div>
+<div class="text-right">
+<span class="text-on-surface font-bold">6.8 kg</span>
+<div class="text-[9px] text-secondary">In Storage</div>
+</div>
+</div>
+</div>
+<div class="mt-3 pt-2 text-right">
+<button class="text-primary font-label-mono-xs text-[10px] hover:underline uppercase tracking-wider font-semibold">
+              + Request Batch Pre-Allocation →
+            </button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- FOOTER (Shared Components JSON Anchor with Exact Strings & Layout) -->
+<footer class="w-full py-space-sm px-margin flex flex-col md:flex-row items-center justify-between border-t border-outline-variant dark:border-outline-variant text-label-mono-xs font-label-mono-xs text-on-surface-variant dark:text-on-surface-variant bg-surface-container-lowest dark:bg-surface-container-lowest mt-auto">
+<div class="flex items-center gap-2 mb-2 md:mb-0">
+<span class="font-label-mono-md text-label-mono-md font-bold text-on-surface-variant dark:text-on-surface-variant">
+        ATELIER INDUSTRIAL MES // ARCHITECTURE AES-256 GCM ENCRYPTED // STRICT RBAC PARTITIONING ACTIVE
+      </span>
+</div>
+<div class="flex flex-wrap items-center gap-space-md text-on-surface-variant dark:text-on-surface-variant uppercase tracking-wider">
+<a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">
+        ISO-9001 Specs
+      </a>
+<span class="text-outline">/</span>
+<a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">
+        Hardware Token Auth
+      </a>
+<span class="text-outline">/</span>
+<a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">
+        Security Protocol v4.8
+      </a>
+<span class="text-outline">/</span>
+<a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">
+        Node Sync Logs
+      </a>
+</div>
+</footer>
+<!-- Light Vanilla Script for dynamic order filter and notification demo -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Small atmospheric interactive feedback
+      const quickActionBtn = document.getElementById('new-order');
+      if (quickActionBtn) {
+        quickActionBtn.addEventListener('click', () => {
+          alert('Initializing Bespoke Hairpiece Configuration Wizard (Wearer CAD Topography & Fiber Allocation Matrix)...');
+        });
+      }
+      
+      const reorderBtn = document.getElementById('reorder');
+      if (reorderBtn) {
+        reorderBtn.addEventListener('click', () => {
+          alert('Patient #408 Spec loaded: 14" Euro Virgin 60# Nordic Blonde. Replicating digital headform template.');
+        });
+      }
+    });
+  </script>
+</body></html>

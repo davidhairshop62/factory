@@ -37,7 +37,7 @@
 * [x] `index.html` - 통합 로그인 및 역할(Client / Admin / MES / Accountant) 분기 게이트웨이 (완료)
 
 ### Client Portal (거래처 전용)
-* [ ] `portal-dashboard.html` - 거래처 대시보드 (진행 중 주문 현황, 당월 발주/미수금 요약, 실시간 알림 피드)
+* [x] `portal-dashboard.html` - 거래처 대시보드 (진행 중 주문 현황, 당월 발주/미수금 요약, 실시간 알림 피드) (완료)
 * [ ] `portal-order-new.html` - 맞춤 수주 등록 폼 (4대 품목: 가발/투페/톱피스/익스텐션 정밀 규격 입력기)
 * [ ] `portal-order-list.html` - 주문/배송 타임라인 조회 (접수 → 제작 → QC → 출고 배송 추적)
 * [ ] `portal-reorder.html` - 원클릭 재주문 (이전 출고 데이터 복제 및 부분 옵션 빠른 수정 발주)
@@ -55,7 +55,7 @@
 ### Phase 1: High Priority (Core Workflows)
 - [x] **Task 1.1:** `index.html` - 통합 인증 & 2FA 역할 분기 화면 (완료)
 - [x] **Task 1.2:** `admin-dashboard.html` - 관리자 통합 관제 대시보드 (병목 공정 & 핵심 KPI 헤드업 디스플레이) (완료)
-- [ ] **Task 1.3:** `portal-dashboard.html` - 거래처 전용 대시보드 (주문 상태 카드 & 직관적 액션)
+- [x] **Task 1.3:** `portal-dashboard.html` - 거래처 전용 대시보드 (주문 상태 카드 & 직관적 액션) (완료)
 - [ ] **Task 1.4:** `portal-order-new.html` - 품목별 정밀 사양 맞춤 주문 폼 (가발 치수, 베이스, 모발 밀도/컬 선택기)
 - [ ] **Task 1.5:** `admin-mes-scanner.html` - MES 공정 작업지시서 및 현장 바코드/QR 스캐너 인터페이스
 

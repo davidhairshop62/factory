@@ -1,7 +1,7 @@
 ---
-page: portal-dashboard
+page: portal-order-new
 ---
-A premier B2B client portal dashboard for salons, clinics, and trichology partners using "Factory ERP: Custom Hairpiece Manufacturing System".
+A high-precision, technical custom order submission form for B2B salons and hair replacement clinics using "Factory ERP: Custom Hairpiece Manufacturing System".
 
 **DESIGN SYSTEM (REQUIRED):**
 - Platform: Web Application, Desktop-optimized with responsive tablet support
@@ -14,25 +14,30 @@ A premier B2B client portal dashboard for salons, clinics, and trichology partne
 - Tone: High-density B2B Enterprise ERP & MES, Authoritative, Functional, Artisanal Quality
 
 **Page Structure & Core Requirements:**
-1. **Top Header & Client Navigation:**
+1. **Top Header & Client Breadcrumbs:**
    - Brand: "Factory ERP // CLIENT ATELIER PORTAL".
-   - Client Identity Banner: "Partner Salon: Melbourne Prestige Hair Studio (Tier 1 Gold Partner / Credit Limit: $15,000 AUD)".
-   - Top Nav Bar: Dashboard (Active), New Custom Order, Order Tracking, One-Click Reorder, Invoices & Settlement.
-2. **Client Overview Metric Tiles (4-Column HUD):**
-   - Tile 1: "Active Manufacturing" (e.g. 8 Units in Production - 5 Knotting, 3 QC Inspection).
-   - Tile 2: "In Transit / Delivery" (e.g. 3 Units Dispatched with Live DHL Express tracking link).
-   - Tile 3: "Monthly Orders Placed" (e.g. 19 Units / 100% on-time delivery record).
-   - Tile 4: "Outstanding Balance & Terms" (e.g. $4,280 AUD Due Nov 30 / Pay Now button with Bank Wire info).
-3. **Primary Action Launchpad (Quick Buttons):**
-   - High-impact CTA 1: "Submit New Bespoke Hairpiece Order" (Solid Amber Gold `#F59E0B`).
-   - Action 2: "Repeat Last Verified Order (1-Click Reorder)".
-   - Action 3: "Download Statement & Tax Invoices (PDF)".
-4. **Main Content Grid (Split 8:4):**
-   - **Left / Wide Area:**
-     * **Live Order Progression Radar & Timeline Table:**
-       List of client's 5 recent active orders with wearer chart ID (e.g. "Patient #408 - Full Swiss Lace 14\""), current stage progress bar (Order Accepted → Base Fabrication → Micro-Ventilation → QC Sterilization → Dispatched), estimated completion D-Day, and "View Full Spec Sheet" button.
-   - **Right / Secondary Area:**
-     * **Realtime Workshop Activity Feed:**
-       Push notification stream of wearer units passing through factory milestones (e.g. "Order #ORD-9824: 100% Single-knot hairline ventilation completed by Artisan Lin").
-     * **Dedicated Account Representative Card:**
-       Assigned Master Trichologist & B2B Concierge contact (direct phone, WhatsApp, emergency change request).
+   - Navigation: Dashboard, New Custom Order (Active), Order Tracking, One-Click Reorder, Invoices.
+   - Page Title: "NEW BESPOKE MANUFACTURING ORDER // SPECIFICATION PROTOCOL".
+2. **Step 1: Product Category Selector (4 Distinct Tabs / Cards):**
+   - Option A: **Full Cap Wig (전두가발)** - 6 Cranial circumference measurements, full perimeter lace/mono.
+   - Option B: **Men's Toupee / Top Piece (부분가발)** - Base dimensions ($W \times L$), Swiss lace / 0.03mm Ultra-thin Skin, bleach knots.
+   - Option C: **Women's Top-Piece / Topper (톱피스)** - Crown/Parting cover dimensions, silicone micro-clips, volume contour.
+   - Option D: **Hair Extensions (익스텐션)** - Weft / Tape / Nano-ring, Remy grade, weight ($g$), bundles.
+3. **Step 2: Wearer & Logistic Identification:**
+   - Confidential Wearer Alias / Clinic Chart ID (e.g. "Chart #CL-2026-084") for client privacy.
+   - Physical Head Mold / Hair Sample Tracking: Inbound Courier & Waybill # input (e.g. "DHL Express Waybill").
+   - Urgent Rush Production toggle: "48h Expedited Rush (+30% surcharge)" with live cost indicator.
+4. **Step 3: Precision Specification Engine (Interactive Grids):**
+   - **Base & Foundation:** Base Width ($W$) & Length ($L$) in inches/cm, Base material selector (Swiss Lace, French Lace, Fine Mono, 0.03mm Polyurethane Bio-Skin).
+   - **Hair Parameters:**
+     * Hair Type: European Virgin Remy, Indo-Asian Virgin, Bio-Matrix Synthetic.
+     * Hair Length: 6" to 22" interactive slider.
+     * Density Selector: 80% Extra-Light to 140% Heavy Density with calibrated visual density preview chips.
+     * Color & Shade: Primary base shade swatch picker (#1B Jet Black, #02 Dark Brown, #04 Chestnut, #60 Platinum Blonde) + Grey Hair Blend percentage (0% to 80%).
+     * Wave & Curl: Straight (30mm), Body Wave (25mm), Deep Curl (15mm), Afro Kinky.
+     * Frontline Knotting: Bleached single micro-knots, V-looped front, Injected skin.
+5. **Real-time Order Summary Dock & Pricing Calculator (Right Sidebar / Sticky Dock):**
+   - Live BOM (Bill of Materials) Price Estimate in AUD / USD based on client's Tier 1 pricing.
+   - Base Unit Price + Rush fee + Length surcharge = Estimated Subtotal.
+   - Primary "Submit Order & Generate Job Ticket" button (Solid Polished Gold `#F59E0B`).
+   - Secondary "Save as Draft Template" button.
