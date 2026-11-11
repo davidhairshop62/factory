@@ -358,28 +358,110 @@
           </div>
         </div>
 
-        <!-- 하단 총액 & 환율 & 액션 버튼 -->
+        <!-- 하단 총액 & 다중 통화 환율 & 액션 버튼 -->
         <div class="mt-8 pt-4 border-t border-brand-border space-y-4">
-          <!-- 환율 설정 -->
-          <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 bg-brand-dark/80 p-2.5 rounded-lg border border-brand-border/60">
-            <span>적용 기준 환율:</span>
-            <div class="flex items-center space-x-1 text-slate-200">
-              <span>1 USD =</span>
-              <input type="number" id="inputExchangeRate" value="1350" step="10"
-                class="w-20 px-2 py-0.5 bg-brand-card border border-brand-border rounded text-center text-xs text-brand-gold font-bold focus:outline-none">
-              <span>KRW</span>
+          
+          <!-- 다중 통화 기준 환율 설정 (1 USD 기준) -->
+          <div class="bg-brand-dark/80 p-3 rounded-xl border border-brand-border/60 space-y-2">
+            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 pb-1.5 border-b border-brand-border/40">
+              <span class="flex items-center space-x-1 text-slate-300 font-semibold">
+                <span class="material-symbols-outlined text-sm text-brand-gold">currency_exchange</span>
+                <span>기준 환율 설정 (1 USD 기준)</span>
+              </span>
+              <span class="text-[10px] text-slate-500">실시간 수정 가능</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
+              <!-- KRW (대한민국 원) -->
+              <div class="bg-brand-card/70 p-2 rounded-lg border border-brand-border/40">
+                <div class="text-[10px] text-slate-400 mb-0.5">🇰🇷 KRW (원)</div>
+                <div class="flex items-center space-x-1">
+                  <span class="text-slate-500 text-[10px]">₩</span>
+                  <input type="number" id="rateKRW" value="1350" step="10" oninput="calculate()"
+                    class="w-full px-1.5 py-0.5 bg-brand-dark border border-brand-border rounded text-center text-xs text-white font-bold focus:outline-none focus:border-brand-gold">
+                </div>
+              </div>
+
+              <!-- AUD (호주 달러) -->
+              <div class="bg-brand-card/70 p-2 rounded-lg border border-brand-border/40">
+                <div class="text-[10px] text-slate-400 mb-0.5">🇦🇺 AUD (호주달러)</div>
+                <div class="flex items-center space-x-1">
+                  <span class="text-slate-500 text-[10px]">A$</span>
+                  <input type="number" id="rateAUD" value="1.55" step="0.01" oninput="calculate()"
+                    class="w-full px-1.5 py-0.5 bg-brand-dark border border-brand-border rounded text-center text-xs text-white font-bold focus:outline-none focus:border-brand-emerald">
+                </div>
+              </div>
+
+              <!-- EUR (유로화) -->
+              <div class="bg-brand-card/70 p-2 rounded-lg border border-brand-border/40">
+                <div class="text-[10px] text-slate-400 mb-0.5">🇪🇺 EUR (유로)</div>
+                <div class="flex items-center space-x-1">
+                  <span class="text-slate-500 text-[10px]">€</span>
+                  <input type="number" id="rateEUR" value="0.92" step="0.01" oninput="calculate()"
+                    class="w-full px-1.5 py-0.5 bg-brand-dark border border-brand-border rounded text-center text-xs text-white font-bold focus:outline-none focus:border-blue-400">
+                </div>
+              </div>
+
+              <!-- IDR (인도네시아 루피아) -->
+              <div class="bg-brand-card/70 p-2 rounded-lg border border-brand-border/40">
+                <div class="text-[10px] text-slate-400 mb-0.5">🇮🇩 IDR (루피아)</div>
+                <div class="flex items-center space-x-1">
+                  <span class="text-slate-500 text-[10px]">Rp</span>
+                  <input type="number" id="rateIDR" value="15800" step="100" oninput="calculate()"
+                    class="w-full px-1.5 py-0.5 bg-brand-dark border border-brand-border rounded text-center text-xs text-white font-bold focus:outline-none focus:border-amber-400">
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- 최종 합계 금액 -->
-          <div class="p-4 rounded-xl bg-brand-dark/95 border border-brand-gold/40 shadow-inner">
-            <div class="flex justify-between items-baseline mb-1">
-              <span class="text-xs font-semibold text-slate-300 font-display">예상 결제 총액 (USD)</span>
+          <!-- 최종 다중 통화 합계 카드 -->
+          <div class="p-4 rounded-xl bg-brand-dark/95 border border-brand-gold/40 shadow-inner space-y-3">
+            <!-- 기준 통화 USD 대형 표시 -->
+            <div class="flex justify-between items-baseline pb-2 border-b border-brand-border/50">
+              <div>
+                <span class="text-xs font-semibold text-slate-300 font-display">기준 결제 총액 (USD)</span>
+                <span class="block text-[10px] text-slate-500 font-mono">기본 통화</span>
+              </div>
               <span id="totalPriceUSD" class="text-2xl sm:text-3xl font-extrabold text-brand-gold font-mono tracking-tight">$0.00</span>
             </div>
-            <div class="flex justify-between items-baseline text-xs text-slate-400 font-mono pt-1 border-t border-brand-border/40">
-              <span>원화 환산 예상가</span>
-              <span id="totalPriceKRW" class="text-sm font-bold text-white font-mono">약 0원</span>
+
+            <!-- 다중 통화 환산 그리드 (KRW / AUD / EUR / IDR) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+              <!-- KRW (대한민국 원화) -->
+              <div class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
+                <div class="flex items-center space-x-1.5 text-slate-400">
+                  <span class="text-xs">🇰🇷</span>
+                  <span>원화 (KRW)</span>
+                </div>
+                <span id="totalPriceKRW" class="font-bold text-white font-mono">약 0원</span>
+              </div>
+
+              <!-- AUD (호주 달러) -->
+              <div class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
+                <div class="flex items-center space-x-1.5 text-slate-400">
+                  <span class="text-xs">🇦🇺</span>
+                  <span>호주달러 (AUD)</span>
+                </div>
+                <span id="totalPriceAUD" class="font-bold text-emerald-400 font-mono">A$ 0.00</span>
+              </div>
+
+              <!-- EUR (유로화) -->
+              <div class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
+                <div class="flex items-center space-x-1.5 text-slate-400">
+                  <span class="text-xs">🇪🇺</span>
+                  <span>유로화 (EUR)</span>
+                </div>
+                <span id="totalPriceEUR" class="font-bold text-blue-400 font-mono">€ 0.00</span>
+              </div>
+
+              <!-- IDR (인도네시아 루피아) -->
+              <div class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
+                <div class="flex items-center space-x-1.5 text-slate-400">
+                  <span class="text-xs">🇮🇩</span>
+                  <span>루피아 (IDR)</span>
+                </div>
+                <span id="totalPriceIDR" class="font-bold text-amber-300 font-mono">Rp 0</span>
+              </div>
             </div>
           </div>
 
@@ -646,10 +728,24 @@
         totalUSD = subtotalFixed * totalMultiplier;
       }
 
+      // 다중 환율 가져오기
+      const rateKRW = parseFloat(document.getElementById('rateKRW').value) || 1350;
+      const rateAUD = parseFloat(document.getElementById('rateAUD').value) || 1.55;
+      const rateEUR = parseFloat(document.getElementById('rateEUR').value) || 0.92;
+      const rateIDR = parseFloat(document.getElementById('rateIDR').value) || 15800;
+
+      // 통화별 금액 산출
+      const totalKRW = Math.round(totalUSD * rateKRW);
+      const totalAUD = totalUSD * rateAUD;
+      const totalEUR = totalUSD * rateEUR;
+      const totalIDR = Math.round(totalUSD * rateIDR);
+
       // UI 갱신
       document.getElementById('totalPriceUSD').innerText = `$${totalUSD.toFixed(2)}`;
-      const totalKRW = Math.round(totalUSD * krwRate);
       document.getElementById('totalPriceKRW').innerText = `약 ${totalKRW.toLocaleString()}원`;
+      document.getElementById('totalPriceAUD').innerText = `A$ ${totalAUD.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('totalPriceEUR').innerText = `€ ${totalEUR.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('totalPriceIDR').innerText = `Rp ${totalIDR.toLocaleString()}`;
     }
 
     // 내역 행 추가 헬퍼
@@ -660,12 +756,18 @@
       document.getElementById('breakdownList').appendChild(row);
     }
 
-    // 견적서 텍스트 클립보드 복사
+    // 견적서 텍스트 클립보드 복사 (다중 통화 포함)
     async function copyEstimateText() {
       const modeText = activeMode === 'custom' ? '맞춤 제작 (Custom System)' : '기성 가발 (Stock System)';
       const totalUSD = document.getElementById('totalPriceUSD').innerText;
       const totalKRW = document.getElementById('totalPriceKRW').innerText;
-      const rate = document.getElementById('inputExchangeRate').value;
+      const totalAUD = document.getElementById('totalPriceAUD').innerText;
+      const totalEUR = document.getElementById('totalPriceEUR').innerText;
+      const totalIDR = document.getElementById('totalPriceIDR').innerText;
+      const rateKRW = document.getElementById('rateKRW').value;
+      const rateAUD = document.getElementById('rateAUD').value;
+      const rateEUR = document.getElementById('rateEUR').value;
+      const rateIDR = document.getElementById('rateIDR').value;
 
       let rows = [];
       document.querySelectorAll('#breakdownList > div').forEach(div => {
@@ -675,7 +777,7 @@
         }
       });
 
-      const copyContent = `[FACTORY ERP - 가발 견적 산출서]\n\n■ 주문 모드: ${modeText}\n■ 세부 산출 내역:\n${rows.join('\n')}\n\n---------------------------------\n■ 최종 예상 금액: ${totalUSD} (${totalKRW}, 환율 ${rate}원 기준)\n■ 발행 일시: ${new Date().toLocaleString()}\n* Lordhair Pricing Engine 기반`;
+      const copyContent = `[FACTORY ERP - 가발 견적 산출서]\n\n■ 주문 모드: ${modeText}\n■ 세부 산출 내역:\n${rows.join('\n')}\n\n---------------------------------\n■ 최종 예상 결제 금액:\n  • USD (미국달러): ${totalUSD}\n  • KRW (원화): ${totalKRW} (환율 ${rateKRW})\n  • AUD (호주달러): ${totalAUD} (환율 ${rateAUD})\n  • EUR (유로화): ${totalEUR} (환율 ${rateEUR})\n  • IDR (루피아): ${totalIDR} (환율 ${rateIDR})\n■ 발행 일시: ${new Date().toLocaleString()}\n* Lordhair Pricing Engine 기반`;
 
       try {
         await navigator.clipboard.writeText(copyContent);
@@ -714,7 +816,6 @@
     // 이벤트 리스너 등록
     document.getElementById('calculatorForm').addEventListener('input', calculate);
     document.getElementById('calculatorForm').addEventListener('change', calculate);
-    document.getElementById('inputExchangeRate').addEventListener('input', calculate);
 
     // 초기화
     checkSession();
@@ -723,3 +824,4 @@
 </body>
 
 </html>
+
