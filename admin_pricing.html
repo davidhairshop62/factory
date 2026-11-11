@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Factory ERP - 가발 견적 옵션 금액 관리</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <!-- Material Symbols -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#090E17',
+              card: '#131B2B',
+              cardHover: '#1A2438',
+              border: '#28354D',
+              gold: '#F59E0B',
+              goldHover: '#D97706',
+              emerald: '#10B981',
+              slateText: '#94A3B8'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-brand-dark text-slate-100 min-h-screen flex flex-col font-sans antialiased">
+
+  <!-- 상단 네비게이션 바 -->
+  <header
+    class="w-full bg-brand-card border-b border-brand-border sticky top-0 z-50 px-4 sm:px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center space-x-6">
+      <a href="admin-dashboard.html" class="flex items-center space-x-2.5 hover:opacity-90 transition-opacity">
+        <div
+          class="w-8 h-8 rounded-lg bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold">
+          <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
+        </div>
+        <span class="font-display font-bold text-base tracking-wide text-white">FACTORY ERP</span>
+        <span
+          class="hidden sm:inline-block text-[11px] font-mono text-brand-gold px-1.5 py-0.5 rounded bg-brand-gold/10 border border-brand-gold/20">ADMIN</span>
+      </a>
+
+      <!-- 네비게이션 링크 -->
+      <nav class="hidden md:flex items-center space-x-1 pl-4 border-l border-brand-border text-sm">
+        <a href="admin-dashboard.html"
+          class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
+          <span class="material-symbols-outlined text-base">dashboard</span>
+          <span>대시보드</span>
+        </a>
+        <a href="admin_pricing.html"
+          class="px-3 py-1.5 rounded-lg bg-brand-gold/15 text-brand-gold font-medium border border-brand-gold/30 flex items-center space-x-1.5">
+          <span class="material-symbols-outlined text-base">price_change</span>
+          <span>옵션 금액 관리</span>
+        </a>
+        <a href="admin_users.html"
+          class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
+          <span class="material-symbols-outlined text-base">manage_accounts</span>
+          <span>사용자 관리</span>
+        </a>
+        <a href="wigCalculation.html"
+          class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
+          <span class="material-symbols-outlined text-base">calculate</span>
+          <span>Calculation</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- 우측: 관리자 정보 & 액션 버튼 -->
+    <div class="flex items-center space-x-3">
+      <div class="hidden sm:flex items-center space-x-2 text-xs font-mono text-brand-slateText pr-2">
+        <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
+        <span id="userNameText" class="text-slate-200">총괄관리자</span>
+        <span class="px-1.5 py-0.5 rounded bg-brand-border text-[10px] text-slate-300">ADMIN</span>
+      </div>
+      <a href="wigCalculation.html"
+        class="px-3 py-1.5 rounded-lg bg-brand-emerald/15 hover:bg-brand-emerald/25 border border-brand-emerald/40 text-brand-emerald text-xs font-semibold flex items-center space-x-1 transition-colors">
+        <span class="material-symbols-outlined text-sm">open_in_new</span>
+        <span>계산기 확인</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- 메인 본문 -->
+  <main class="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+
+    <!-- 상단 타이틀 배너 & 저장 바 -->
+    <div
+      class="bg-gradient-to-r from-brand-card via-brand-cardHover to-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="space-y-1">
+        <div class="flex items-center space-x-2">
+          <span
+            class="px-2 py-0.5 rounded bg-brand-gold/15 text-brand-gold font-mono text-[11px] font-bold border border-brand-gold/30">
+            DATABASE PRICING ENGINE
+          </span>
+          <span class="text-xs text-brand-emerald font-mono flex items-center space-x-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+            <span>호주 달러 (AUD) 기준 단가</span>
+          </span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-bold font-display text-white tracking-tight flex items-center space-x-2">
+          <span>가발 견적 옵션 금액 마스터 관리</span>
+        </h1>
+        <p class="text-xs text-brand-slateText font-sans">
+          여기서 수정한 금액은 데이터베이스(`pricing_options`)에 즉시 저장되며, 고객 및 관리자 견적 계산기에 실시간 반영됩니다.
+        </p>
+      </div>
+
+      <!-- 우측 빠른 액션 버튼 -->
+      <div class="flex items-center space-x-2">
+        <button type="button" onclick="resetToDefaults()"
+          class="px-3.5 py-2 rounded-xl bg-brand-dark hover:bg-red-950/40 border border-brand-border hover:border-red-500/40 text-slate-300 hover:text-red-300 font-display font-semibold text-xs transition-colors flex items-center space-x-1.5">
+          <span class="material-symbols-outlined text-base">restart_alt</span>
+          <span>기본값 초기화</span>
+        </button>
+        <button type="button" onclick="saveAllPricing()" id="saveBtn"
+          class="px-5 py-2 rounded-xl bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-display font-bold text-xs flex items-center space-x-1.5 transition-all shadow-lg shadow-brand-gold/15 active:scale-95">
+          <span class="material-symbols-outlined text-base">save</span>
+          <span id="saveBtnText">전체 금액 저장</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 알림 메시지 바 -->
+    <div id="alertBox" class="hidden p-3 rounded-xl font-mono text-xs"></div>
+
+    <!-- 로딩 스피너 -->
+    <div id="loadingBox" class="p-12 text-center text-slate-400 font-mono text-xs flex flex-col items-center justify-center space-y-3">
+      <span class="material-symbols-outlined text-3xl text-brand-gold animate-spin">progress_activity</span>
+      <span>데이터베이스에서 옵션 금액 정보를 불러오는 중입니다...</span>
+    </div>
+
+    <!-- 폼 컨테이너 (7개 카테고리 그리드) -->
+    <form id="pricingForm" onsubmit="event.preventDefault(); saveAllPricing();" class="hidden space-y-6">
+
+      <!-- 1. 맞춤 가발 (Custom System) 기본가 & 베이스 면적 추가금 -->
+      <section class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-brand-border/60">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold font-mono font-bold flex items-center justify-center text-xs border border-brand-gold/30">1</span>
+            <div>
+              <h2 class="text-sm sm:text-base font-bold text-white font-display">맞춤 가발 기본가 & 베이스 크기 면적 추가금 (AUD)</h2>
+              <p class="text-[11px] text-slate-400">시작가 및 가로×세로 면적 구간별 추가금</p>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono text-brand-gold">단위: A$</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="cat_custom_base_area">
+          <!-- JS 주입 -->
+        </div>
+      </section>
+
+      <!-- 2. 모발 길이 (Hair Length) 추가금 -->
+      <section class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-brand-border/60">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold font-mono font-bold flex items-center justify-center text-xs border border-brand-gold/30">2</span>
+            <div>
+              <h2 class="text-sm sm:text-base font-bold text-white font-display">모발 길이 (Hair Length) 추가금 (AUD)</h2>
+              <p class="text-[11px] text-slate-400">기본 5~6인치 초과 시 기장별 추가 금액</p>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono text-brand-gold">단위: A$</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="cat_length">
+          <!-- JS 주입 -->
+        </div>
+      </section>
+
+      <!-- 3. 모질 & 밀도 할증율 (%) -->
+      <section class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-brand-border/60">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold font-mono font-bold flex items-center justify-center text-xs border border-brand-gold/30">3</span>
+            <div>
+              <h2 class="text-sm sm:text-base font-bold text-white font-display">모질 & 모발 밀도 비율 할증률 (%)</h2>
+              <p class="text-[11px] text-slate-400">맞춤 가발 기본 합산액에 복합 승수(Multiplier)로 적용되는 할증 비율</p>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono text-brand-emerald font-bold">단위: % (할증률)</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="cat_quality_density">
+          <!-- JS 주입 -->
+        </div>
+      </section>
+
+      <!-- 4. 특수 옵션 공정 (Fixed Addons) -->
+      <section class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-brand-border/60">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold font-mono font-bold flex items-center justify-center text-xs border border-brand-gold/30">4</span>
+            <div>
+              <h2 class="text-sm sm:text-base font-bold text-white font-display">특수 옵션 및 가공 공정 추가금 (AUD)</h2>
+              <p class="text-[11px] text-slate-400">새치 혼합, 탈색 매듭, 급행 제작 등 고정 옵션</p>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono text-brand-gold">단위: A$</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="cat_fixed_addon">
+          <!-- JS 주입 -->
+        </div>
+      </section>
+
+      <!-- 5. 부가 서비스 (살롱 컷트 & 부착 본딩/테이프) -->
+      <section class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-brand-border/60">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-7 h-7 rounded-lg bg-brand-emerald/15 text-brand-emerald font-mono font-bold flex items-center justify-center text-xs border border-brand-emerald/30">5</span>
+            <div>
+              <h2 class="text-sm sm:text-base font-bold text-white font-display">부가 서비스 (Additional Addons: 컷트 & 부착 유지)</h2>
+              <p class="text-[11px] text-slate-400">맞춤 가발 및 기성 가발 공통 적용 서비스 품목</p>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono text-brand-emerald font-bold">단위: A$</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="cat_service">
+          <!-- JS 주입 -->
+        </div>
+      </section>
+
+      <!-- 6. 기성 가발 (Stock System) 베이스 모델별 가격 -->
+      <section class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-brand-border/60">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-7 h-7 rounded-lg bg-blue-500/15 text-blue-400 font-mono font-bold flex items-center justify-center text-xs border border-blue-500/30">6</span>
+            <div>
+              <h2 class="text-sm sm:text-base font-bold text-white font-display">기성 가발 (Stock System) 베이스 모델별 가격 (AUD)</h2>
+              <p class="text-[11px] text-slate-400">초박막 UTS, 레이스 Champion 등 표준 기성품 본체 가격</p>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono text-blue-400">단위: A$</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="cat_stock_model">
+          <!-- JS 주입 -->
+        </div>
+      </section>
+
+      <!-- 7. 기준 환율 설정 (1 AUD 기준) -->
+      <section class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-brand-border/60">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-7 h-7 rounded-lg bg-brand-gold/15 text-brand-gold font-mono font-bold flex items-center justify-center text-xs border border-brand-gold/30">7</span>
+            <div>
+              <h2 class="text-sm sm:text-base font-bold text-white font-display">기본 환율 설정 (1 AUD 기준 환산율)</h2>
+              <p class="text-[11px] text-slate-400">호주달러 1달러당 각국 통화 기준 환율</p>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono text-brand-gold">1 AUD 기준</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="cat_exchange_rate">
+          <!-- JS 주입 -->
+        </div>
+      </section>
+
+      <!-- 하단 고정 저장 바 -->
+      <div class="pt-4 flex items-center justify-end space-x-3 border-t border-brand-border">
+        <button type="button" onclick="saveAllPricing()"
+          class="w-full sm:w-auto px-8 py-3 rounded-xl bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-display font-bold text-sm flex items-center justify-center space-x-2 transition-all shadow-xl shadow-brand-gold/20 active:scale-95">
+          <span class="material-symbols-outlined text-lg">save</span>
+          <span>옵션 금액 전체 일괄 저장</span>
+        </button>
+      </div>
+
+    </form>
+
+  </main>
+
+  <script>
+    let pricingData = [];
+
+    // 세션 확인 & 데이터 로드
+    async function init() {
+      try {
+        const authRes = await fetch('api_me.php');
+        const authData = await authRes.json();
+        if (!authData.authenticated || !authData.user || authData.user.user_type !== 'ADMIN') {
+          alert('관리자 권한이 필요합니다.');
+          window.location.href = 'index.html';
+          return;
+        }
+        document.getElementById('userNameText').textContent = authData.user.name || authData.user.username;
+        await loadPricingData();
+      } catch (e) {
+        window.location.href = 'index.html';
+      }
+    }
+
+    // 옵션 금액 API 로드
+    async function loadPricingData() {
+      try {
+        const res = await fetch('api_pricing_options.php');
+        const data = await res.json();
+        if (data.success && data.items) {
+          pricingData = data.items;
+          renderForm(data.items);
+          document.getElementById('loadingBox').classList.add('hidden');
+          document.getElementById('pricingForm').classList.remove('hidden');
+        } else {
+          showAlert('옵션 금액 로드 실패: ' + (data.message || '데이터를 불러올 수 없습니다.'), false);
+        }
+      } catch (err) {
+        showAlert('서버 통신 오류가 발생했습니다.', false);
+      }
+    }
+
+    // 카드 렌더링 헬퍼
+    function renderForm(items) {
+      const containers = {
+        custom_base_area: document.getElementById('cat_custom_base_area'),
+        length: document.getElementById('cat_length'),
+        quality_density: document.getElementById('cat_quality_density'),
+        fixed_addon: document.getElementById('cat_fixed_addon'),
+        service: document.getElementById('cat_service'),
+        stock_model: document.getElementById('cat_stock_model'),
+        exchange_rate: document.getElementById('cat_exchange_rate')
+      };
+
+      Object.values(containers).forEach(c => c.innerHTML = '');
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "p-3.5 rounded-xl bg-brand-dark/70 border border-brand-border/60 hover:border-brand-gold/40 transition-colors flex flex-col justify-between";
+        
+        let unitPrefix = item.unit === 'AUD' ? 'A$ ' : (item.unit === 'USD' ? '$ ' : (item.unit === 'EUR' ? '€ ' : (item.unit === 'KRW' ? '₩ ' : (item.unit === 'IDR' ? 'Rp ' : ''))));
+        let unitSuffix = item.unit === '%' ? '%' : '';
+        let step = item.category === 'exchange_rate' ? (item.item_key === 'rate_usd' || item.item_key === 'rate_eur' ? '0.01' : '1') : (item.unit === '%' ? '1' : '1');
+
+        card.innerHTML = `
+          <div>
+            <div class="text-[11px] font-mono text-slate-400 mb-1 flex items-center justify-between">
+              <span class="truncate pr-1">${escapeHtml(item.item_key)}</span>
+              <span class="px-1.5 py-0.2 rounded bg-brand-card text-[10px] text-brand-gold font-bold">${escapeHtml(item.unit)}</span>
+            </div>
+            <div class="text-xs font-bold text-white mb-1.5 leading-snug">${escapeHtml(item.item_name)}</div>
+            ${item.description ? `<p class="text-[10px] text-slate-500 mb-2.5 font-sans">${escapeHtml(item.description)}</p>` : ''}
+          </div>
+          <div class="mt-2 pt-2 border-t border-brand-border/40">
+            <label class="block text-[10px] font-mono text-slate-400 mb-1">금액 / 비율 설정</label>
+            <div class="relative flex items-center">
+              ${unitPrefix ? `<span class="absolute left-2.5 text-xs font-mono text-slate-400 font-bold">${unitPrefix}</span>` : ''}
+              <input type="number" step="${step}" name="${item.item_key}" value="${parseFloat(item.item_price)}"
+                class="w-full ${unitPrefix ? 'pl-8' : 'pl-3'} ${unitSuffix ? 'pr-7' : 'pr-3'} py-1.5 bg-brand-dark border border-brand-border rounded-lg text-sm text-white font-mono font-bold focus:outline-none focus:border-brand-gold">
+              ${unitSuffix ? `<span class="absolute right-2.5 text-xs font-mono text-brand-emerald font-bold">${unitSuffix}</span>` : ''}
+            </div>
+          </div>
+        `;
+
+        if (item.category === 'custom_base' || item.category === 'area') {
+          containers.custom_base_area.appendChild(card);
+        } else if (item.category === 'length') {
+          containers.length.appendChild(card);
+        } else if (item.category === 'quality' || item.category === 'density') {
+          containers.quality_density.appendChild(card);
+        } else if (item.category === 'fixed_addon') {
+          containers.fixed_addon.appendChild(card);
+        } else if (item.category === 'service') {
+          containers.service.appendChild(card);
+        } else if (item.category === 'stock_model') {
+          containers.stock_model.appendChild(card);
+        } else if (item.category === 'exchange_rate') {
+          containers.exchange_rate.appendChild(card);
+        }
+      });
+    }
+
+    // 전체 옵션 금액 일괄 저장
+    async function saveAllPricing() {
+      const saveBtn = document.getElementById('saveBtn');
+      const btnText = document.getElementById('saveBtnText');
+      const form = document.getElementById('pricingForm');
+
+      const prices = {};
+      const inputs = form.querySelectorAll('input[type="number"]');
+      inputs.forEach(input => {
+        prices[input.name] = parseFloat(input.value) || 0;
+      });
+
+      saveBtn.disabled = true;
+      btnText.textContent = '저장 처리 중...';
+
+      try {
+        const res = await fetch('api_pricing_options.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'update_batch',
+            prices: prices
+          })
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          showAlert(`✓ ${data.message || '저장되었습니다.'}`, true);
+          pricingData = data.items;
+          btnText.textContent = '저장 완료!';
+          setTimeout(() => {
+            saveBtn.disabled = false;
+            btnText.textContent = '전체 금액 저장';
+          }, 1500);
+        } else {
+          showAlert('저장 실패: ' + (data.message || '오류가 발생했습니다.'), false);
+          saveBtn.disabled = false;
+          btnText.textContent = '전체 금액 저장';
+        }
+      } catch (err) {
+        showAlert('서버 통신 중 오류가 발생했습니다.', false);
+        saveBtn.disabled = false;
+        btnText.textContent = '전체 금액 저장';
+      }
+    }
+
+    // 기본값 초기화
+    async function resetToDefaults() {
+      if (!confirm('모든 옵션 금액을 초기 Lordhair 표준 기본값(AUD)으로 복원하시겠습니까?')) {
+        return;
+      }
+
+      try {
+        const res = await fetch('api_pricing_options.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'reset_defaults' })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showAlert('✓ 기본값으로 초기화되었습니다.', true);
+          await loadPricingData();
+        } else {
+          showAlert('초기화 실패: ' + (data.message || '오류가 발생했습니다.'), false);
+        }
+      } catch (e) {
+        showAlert('초기화 중 오류가 발생했습니다.', false);
+      }
+    }
+
+    function showAlert(msg, isSuccess = true) {
+      const box = document.getElementById('alertBox');
+      box.className = isSuccess
+        ? 'p-3 rounded-xl font-mono text-xs bg-emerald-950/80 border border-brand-emerald/60 text-brand-emerald block'
+        : 'p-3 rounded-xl font-mono text-xs bg-red-950/80 border border-red-500/60 text-red-300 block';
+      box.innerHTML = `<strong>${escapeHtml(msg)}</strong>`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // 실행 시작
+    init();
+  </script>
+</body>
+
+</html>

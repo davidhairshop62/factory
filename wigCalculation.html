@@ -288,43 +288,43 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
               <label
                 class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="20"
+                <input type="checkbox" value="20" data-key="addon_grey"
                   class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
                 <span class="text-slate-200">인모 새치 혼합 (+A$20)</span>
               </label>
               <label
                 class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="20"
+                <input type="checkbox" value="20" data-key="addon_root_color"
                   class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
                 <span class="text-slate-200">루트 컬러 (+A$20)</span>
               </label>
               <label
                 class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="15"
+                <input type="checkbox" value="15" data-key="addon_highlight"
                   class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
                 <span class="text-slate-200">스팟 하이라이트 (+A$15)</span>
               </label>
               <label
                 class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="30"
+                <input type="checkbox" value="30" data-key="addon_afro"
                   class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
                 <span class="text-slate-200">특수 아프로 컬 (+A$30)</span>
               </label>
               <label
                 class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="19"
+                <input type="checkbox" value="19" data-key="addon_bleach"
                   class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
                 <span class="text-slate-200">전체 매듭 탈색 (+A$19)</span>
               </label>
               <label
                 class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="30"
+                <input type="checkbox" value="30" data-key="addon_zyrosen"
                   class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
                 <span class="text-slate-200">항균 베이스 ZyroSen (+A$30)</span>
               </label>
               <label
                 class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="59"
+                <input type="checkbox" value="59" data-key="addon_rush"
                   class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
                 <span class="text-slate-200 font-semibold text-amber-300">급행 제작 Rush (6~7주) (+A$59)</span>
               </label>
@@ -376,19 +376,19 @@
                 </label>
                 <label
                   class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                  <input type="radio" name="customBonding" value="100"
+                  <input type="radio" name="customBonding" value="100" data-key="service_bonding_glue"
                     class="text-brand-gold focus:ring-brand-gold mr-2">
                   <span class="text-slate-200 font-medium">Bonding Glue 4-5 weeks (+A$100)</span>
                 </label>
                 <label
                   class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                  <input type="radio" name="customBonding" value="80"
+                  <input type="radio" name="customBonding" value="80" data-key="service_bonding_tape_glue"
                     class="text-brand-gold focus:ring-brand-gold mr-2">
                   <span class="text-slate-200 font-medium">Bonding Tape & Glue 3-4 weeks (+A$80)</span>
                 </label>
                 <label
                   class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                  <input type="radio" name="customBonding" value="50"
+                  <input type="radio" name="customBonding" value="50" data-key="service_bonding_tape"
                     class="text-brand-gold focus:ring-brand-gold mr-2">
                   <span class="text-slate-200 font-medium">Bonding Tape 2-3 weeks (+A$50)</span>
                 </label>
@@ -466,17 +466,20 @@
                 </label>
                 <label
                   class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
-                  <input type="radio" name="stockBonding" value="100" class="text-blue-500 focus:ring-blue-500 mr-2">
+                  <input type="radio" name="stockBonding" value="100" data-key="service_bonding_glue"
+                    class="text-blue-500 focus:ring-blue-500 mr-2">
                   <span class="text-slate-200 font-medium">Bonding Glue 4-5 weeks (+A$100)</span>
                 </label>
                 <label
                   class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
-                  <input type="radio" name="stockBonding" value="80" class="text-blue-500 focus:ring-blue-500 mr-2">
+                  <input type="radio" name="stockBonding" value="80" data-key="service_bonding_tape_glue"
+                    class="text-blue-500 focus:ring-blue-500 mr-2">
                   <span class="text-slate-200 font-medium">Bonding Tape & Glue 3-4 weeks (+A$80)</span>
                 </label>
                 <label
                   class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
-                  <input type="radio" name="stockBonding" value="50" class="text-blue-500 focus:ring-blue-500 mr-2">
+                  <input type="radio" name="stockBonding" value="50" data-key="service_bonding_tape"
+                    class="text-blue-500 focus:ring-blue-500 mr-2">
                   <span class="text-slate-200 font-medium">Bonding Tape 2-3 weeks (+A$50)</span>
                 </label>
               </div>
@@ -685,6 +688,10 @@
                 <span class="material-symbols-outlined text-base">dashboard</span>
                 <span>대시보드</span>
               </a>
+              <a href="admin_pricing.html" class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
+                <span class="material-symbols-outlined text-base">price_change</span>
+                <span>옵션 금액 관리</span>
+              </a>
               <a href="admin_users.html" class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
                 <span class="material-symbols-outlined text-base">manage_accounts</span>
                 <span>사용자 관리</span>
@@ -770,7 +777,150 @@
       calculate();
     }
 
-    // 3. 실시간 가격 계산 엔진 (모든 옵션 AUD 호주달러 기준)
+    let dbPrices = null;
+
+    // 데이터베이스에서 최신 옵션 금액 동적 로드
+    async function loadDatabasePrices() {
+      try {
+        const res = await fetch('api_pricing_options.php');
+        const data = await res.json();
+        if (data.success && data.priceMap) {
+          dbPrices = data.priceMap;
+          applyDatabasePrices(dbPrices);
+          calculate();
+        }
+      } catch (err) {
+        console.warn('DB pricing load failed, using local defaults:', err);
+      }
+    }
+
+    // 로드된 DB 금액을 HTML 폼 요소의 value와 label에 동적 주입
+    function applyDatabasePrices(p) {
+      if (!p) return;
+
+      // 1. 모발 길이 select
+      const hairLength = document.getElementById('hairLength');
+      if (hairLength && hairLength.options.length >= 8) {
+        const lenKeys = ['length_8', 'length_10', 'length_12', 'length_14', 'length_16', 'length_18', 'length_20'];
+        const lenLabels = ['8" (약 20cm)', '10" (약 25cm)', '12" (약 30cm)', '14" (약 35cm)', '16" (약 40cm)', '18" (약 45cm)', '20" (약 50cm)'];
+        lenKeys.forEach((k, idx) => {
+          if (p[k] !== undefined) {
+            hairLength.options[idx + 1].value = p[k];
+            hairLength.options[idx + 1].text = `${lenLabels[idx]} (+A$${p[k]})`;
+          }
+        });
+      }
+
+      // 2. 모질 등급 select
+      const hairQuality = document.getElementById('hairQuality');
+      if (hairQuality && hairQuality.options.length >= 4) {
+        if (p.quality_remy !== undefined) {
+          hairQuality.options[1].value = p.quality_remy / 100;
+          hairQuality.options[1].text = `레미 인모 (Remy Hair) (+${p.quality_remy}%)`;
+        }
+        if (p.quality_european !== undefined) {
+          hairQuality.options[2].value = p.quality_european / 100;
+          hairQuality.options[2].text = `유럽산 인모 (European Hair, 7" 이하 전용) (+${p.quality_european}%)`;
+        }
+        if (p.quality_virgin !== undefined) {
+          hairQuality.options[3].value = p.quality_virgin / 100;
+          hairQuality.options[3].text = `버진 인모 (Virgin Hair) (+${p.quality_virgin}%)`;
+        }
+      }
+
+      // 3. 모발 밀도 select
+      const density = document.getElementById('density');
+      if (density && density.options.length >= 3) {
+        if (p.density_med_heavy !== undefined) {
+          density.options[1].value = p.density_med_heavy / 100;
+          density.options[1].text = `Medium-Heavy (120%) (+${p.density_med_heavy}%)`;
+        }
+        if (p.density_heavy !== undefined) {
+          density.options[2].value = p.density_heavy / 100;
+          density.options[2].text = `Heavy (140%) (+${p.density_heavy}%)`;
+        }
+      }
+
+      // 4. 특수 옵션 체크박스
+      document.querySelectorAll('.custom-addon[data-key]').forEach(cb => {
+        const k = cb.getAttribute('data-key');
+        if (p[k] !== undefined) {
+          cb.value = p[k];
+          const span = cb.parentElement.querySelector('span');
+          if (span) {
+            const name = span.innerText.split(' (')[0];
+            span.innerText = `${name} (+A$${p[k]})`;
+          }
+        }
+      });
+
+      // 5. 부가 서비스 (미용사 컷트, 베이스 커팅)
+      if (p.service_haircut !== undefined) {
+        ['customHairCut', 'stockHairCut'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.value = p.service_haircut;
+            const span = el.parentElement.querySelector('span');
+            if (span) span.innerText = `전문 미용사 컷트 & 스타일링 (+A$${p.service_haircut})`;
+          }
+        });
+      }
+      if (p.service_basecut !== undefined) {
+        ['customBaseCut', 'stockBaseCut'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.value = p.service_basecut;
+            const span = el.parentElement.querySelector('span');
+            if (span) span.innerText = `베이스 치수 맞춤 커팅 서비스 (+A$${p.service_basecut})`;
+          }
+        });
+      }
+
+      // 6. 본딩 / 테이프 라디오 옵션
+      ['customBonding', 'stockBonding'].forEach(groupName => {
+        const bItems = [
+          { key: 'service_bonding_glue', label: 'Bonding Glue 4-5 weeks' },
+          { key: 'service_bonding_tape_glue', label: 'Bonding Tape & Glue 3-4 weeks' },
+          { key: 'service_bonding_tape', label: 'Bonding Tape 2-3 weeks' }
+        ];
+        bItems.forEach(b => {
+          const radio = document.querySelector(`input[name="${groupName}"][data-key="${b.key}"]`);
+          if (radio && p[b.key] !== undefined) {
+            radio.value = p[b.key];
+            const span = radio.parentElement.querySelector('span');
+            if (span) span.innerText = `${b.label} (+A$${p[b.key]})`;
+          }
+        });
+      });
+
+      // 7. 기성 모델 select
+      const stockModel = document.getElementById('stockModel');
+      if (stockModel && stockModel.options.length >= 6) {
+        const sKeys = ['stock_frontal', 'stock_uts', 'stock_superskin_v', 'stock_vigor_royal', 'stock_champion', 'stock_neo_combo'];
+        const sLabels = [
+          '프론탈 M자 전용 (SuperSkin-F)',
+          '0.03mm 초박막 스킨 UTS (수명 1~2개월)',
+          '0.06mm 씬스킨 SuperSkin-V (수명 2~4개월)',
+          '모노 + 스킨 테두리 Vigor/Royal (수명 4~6개월+)',
+          '풀 프렌치 레이스 Champion (통기성 최고)',
+          '하이브리드 레이스+스킨 Neo/Combo'
+        ];
+        sKeys.forEach((k, idx) => {
+          if (p[k] !== undefined) {
+            stockModel.options[idx].value = p[k];
+            stockModel.options[idx].text = `${sLabels[idx]} - A$${p[k]}`;
+          }
+        });
+      }
+
+      // 8. 기준 환율
+      if (p.rate_usd) document.getElementById('rateUSD').value = p.rate_usd;
+      if (p.rate_krw) document.getElementById('rateKRW').value = p.rate_krw;
+      if (p.rate_eur) document.getElementById('rateEUR').value = p.rate_eur;
+      if (p.rate_idr) document.getElementById('rateIDR').value = p.rate_idr;
+    }
+
+    // 3. 실시간 가격 계산 엔진 (DB 연동 + 모든 옵션 AUD 호주달러 기준)
     function calculate() {
       const breakdownList = document.getElementById('breakdownList');
       breakdownList.innerHTML = '';
@@ -787,14 +937,16 @@
 
         const hairCut = document.getElementById('stockHairCut');
         if (hairCut && hairCut.checked) {
-          totalAUD += 100;
-          addBreakdownRow('전문 미용사 컷트 & 스타일링', '+A$ 100.00');
+          const cutFee = parseFloat(hairCut.value) || 100;
+          totalAUD += cutFee;
+          addBreakdownRow('전문 미용사 컷트 & 스타일링', `+A$ ${cutFee.toFixed(2)}`);
         }
 
         const baseCut = document.getElementById('stockBaseCut');
         if (baseCut && baseCut.checked) {
-          totalAUD += 15;
-          addBreakdownRow('베이스 맞춤 커팅 서비스', '+A$ 15.00');
+          const bCutFee = parseFloat(baseCut.value) || 15;
+          totalAUD += bCutFee;
+          addBreakdownRow('베이스 맞춤 커팅 서비스', `+A$ ${bCutFee.toFixed(2)}`);
         }
 
         // 부착 방식 단일 선택 (Bonding Method)
@@ -808,7 +960,7 @@
 
       } else {
         // 맞춤 가발 (Custom Systems)
-        const basePrice = 349.00;
+        const basePrice = (dbPrices && dbPrices.custom_base_price) ? dbPrices.custom_base_price : 349.00;
         addBreakdownRow('맞춤 기초 시작가', `A$ ${basePrice.toFixed(2)}`);
 
         // 1. 베이스 크기 면적 계산
@@ -818,14 +970,18 @@
         let sizeFee = 0;
         let sizeText = `면적: ${area.toFixed(1)} sq in (표준 범위 ≤70)`;
 
+        const feeFull = dbPrices?.area_100_plus ?? 200;
+        const feeWide = dbPrices?.area_80_100 ?? 100;
+        const feeLarge = dbPrices?.area_70_80 ?? 40;
+
         if (area > 100) {
-          sizeFee = 200;
+          sizeFee = feeFull;
           sizeText = `면적: ${area.toFixed(1)} sq in (100인치 초과 특대/풀캡)`;
         } else if (area > 80) {
-          sizeFee = 100;
+          sizeFee = feeWide;
           sizeText = `면적: ${area.toFixed(1)} sq in (80~100인치 와이드)`;
         } else if (area > 70) {
-          sizeFee = 40;
+          sizeFee = feeLarge;
           sizeText = `면적: ${area.toFixed(1)} sq in (70~80인치 라지)`;
         }
 
@@ -837,7 +993,7 @@
         }
 
         // 2. 모발 길이 추가금
-        const hairLengthFee = parseFloat(document.getElementById('hairLength').value);
+        const hairLengthFee = parseFloat(document.getElementById('hairLength').value) || 0;
         if (hairLengthFee > 0) {
           const lengthText = document.getElementById('hairLength').options[document.getElementById('hairLength').selectedIndex].text.split(' (약')[0];
           addBreakdownRow(`모발 기장 추가 (${lengthText})`, `+A$ ${hairLengthFee.toFixed(2)}`);
@@ -857,16 +1013,17 @@
         const subtotalFixed = basePrice + sizeFee + hairLengthFee + fixedAddonsTotal;
 
         // 4. 모질 및 밀도 비율 할증 (Multipliers)
-        const qualityRate = parseFloat(document.getElementById('hairQuality').value);
-        let densityRate = parseFloat(document.getElementById('density').value);
+        const qualityRate = parseFloat(document.getElementById('hairQuality').value) || 0;
+        let densityRate = parseFloat(document.getElementById('density').value) || 0;
 
         // 조건부 규칙: 12인치 이상(value>=110) + Medium 밀도(value===0) 선택 시 +15% 할증 자동 적용
-        const lengthSelectVal = parseInt(document.getElementById('hairLength').value);
+        const lengthSelectVal = parseInt(document.getElementById('hairLength').value) || 0;
         const longHairDensityNote = document.getElementById('longHairDensityNote');
         let conditionalLongDensity = false;
 
+        const condRate = (dbPrices?.density_long_cond ?? 15) / 100;
         if (lengthSelectVal >= 110 && densityRate === 0) {
-          densityRate = 0.15;
+          densityRate = condRate;
           conditionalLongDensity = true;
           longHairDensityNote.classList.remove('hidden');
         } else {
@@ -882,7 +1039,7 @@
         }
         if (densityRate > 0) {
           if (conditionalLongDensity) {
-            addBreakdownRow('장모(12"+) 미디엄 밀도 할증', '+15%');
+            addBreakdownRow('장모(12"+) 미디엄 밀도 할증', `+${(condRate * 100).toFixed(0)}%`);
           } else {
             const dName = document.getElementById('density').options[document.getElementById('density').selectedIndex].text.split(' (')[0];
             addBreakdownRow(`모발 밀도 할증 (${dName})`, `+${(densityRate * 100).toFixed(0)}%`);
@@ -896,14 +1053,16 @@
         let customServiceAUD = 0;
         const customHairCut = document.getElementById('customHairCut');
         if (customHairCut && customHairCut.checked) {
-          customServiceAUD += 100;
-          addBreakdownRow('전문 미용사 컷트 & 스타일링', '+A$ 100.00');
+          const cCut = parseFloat(customHairCut.value) || 100;
+          customServiceAUD += cCut;
+          addBreakdownRow('전문 미용사 컷트 & 스타일링', `+A$ ${cCut.toFixed(2)}`);
         }
 
         const customBaseCut = document.getElementById('customBaseCut');
         if (customBaseCut && customBaseCut.checked) {
-          customServiceAUD += 15;
-          addBreakdownRow('베이스 맞춤 커팅 서비스', '+A$ 15.00');
+          const cBase = parseFloat(customBaseCut.value) || 15;
+          customServiceAUD += cBase;
+          addBreakdownRow('베이스 맞춤 커팅 서비스', `+A$ ${cBase.toFixed(2)}`);
         }
 
         const selectedCustomBonding = document.querySelector('input[name="customBonding"]:checked');
@@ -1006,9 +1165,9 @@
     document.getElementById('calculatorForm').addEventListener('input', calculate);
     document.getElementById('calculatorForm').addEventListener('change', calculate);
 
-    // 초기화
+    // 초기화: 세션 확인 -> DB 옵션 금액 로드 -> 계산
     checkSession();
-    calculate();
+    loadDatabasePrices();
   </script>
 </body>
 
