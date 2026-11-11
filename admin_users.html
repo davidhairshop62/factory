@@ -421,6 +421,86 @@
         </div>
     </div>
 
+    <!-- 국제 배송 라벨 인쇄 모달 (Shipping Label Modal - 4x6" / A4 지원) -->
+    <div id="shippingLabelModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-card border border-brand-border rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150 my-8">
+            
+            <!-- 모달 헤더 -->
+            <div class="px-6 py-4 border-b border-brand-border flex items-center justify-between bg-brand-dark/60">
+                <div class="flex items-center space-x-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-blue-500/15 border border-blue-500/30 text-blue-400 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-xl">local_shipping</span>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-base text-white">국제 배송 라벨 인쇄 (Air Waybill Label)</h3>
+                        <p class="text-xs text-brand-slateText">보내는 사람: 인도네시아 본사 공장 → 받는 사람: 거래처 영문 주소</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeShippingLabelModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">
+                    <span class="material-symbols-outlined text-xl">close</span>
+                </button>
+            </div>
+
+            <!-- 라벨 설정 및 옵션 툴바 -->
+            <div class="p-4 bg-brand-dark/80 border-b border-brand-border text-xs space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-[11px] text-slate-400 font-mono mb-1">송장/참조번호 (Ref / Tracking No)</label>
+                        <input type="text" id="labelRefNo" oninput="updateLabelPreview()"
+                               class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] text-slate-400 font-mono mb-1">물품 중량 / 수량 (Weight / Qty)</label>
+                        <input type="text" id="labelWeight" value="0.65 kg / 1 BOX" oninput="updateLabelPreview()"
+                               class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] text-slate-400 font-mono mb-1">내용물 품목 (Contents Description)</label>
+                        <input type="text" id="labelContents" value="CUSTOM HAIR SYSTEM / WIG PIECES" oninput="updateLabelPreview()"
+                               class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
+                    </div>
+                </div>
+
+                <!-- 영문 주소 누락 시 경고 박스 -->
+                <div id="labelMissingEnAlert" class="hidden p-2.5 rounded-lg bg-amber-950/60 border border-amber-500/40 text-amber-300 text-xs font-mono flex items-center space-x-2">
+                    <span class="material-symbols-outlined text-base text-amber-400">warning</span>
+                    <span>영문 배송지 주소가 등록되어 있지 않아 한글 주소로 대체 표시됩니다. 원활한 해외 통관을 위해 [사용자 수정]에서 영문 주소를 등록해 주세요.</span>
+                </div>
+            </div>
+
+            <!-- 인쇄될 라벨 실시간 미리보기 컨테이너 (고대비 흑백 스타일) -->
+            <div class="p-6 bg-slate-900/60 overflow-x-auto flex justify-center">
+                <div id="printableShippingLabel" class="w-full max-w-[480px] bg-white text-black font-sans text-xs border-2 border-black p-0 shadow-2xl select-text leading-tight">
+                    <!-- 라벨 내용은 JS updateLabelPreview()에 의해 동적 렌더링됨 -->
+                </div>
+            </div>
+
+            <!-- 모달 푸터 버튼 -->
+            <div class="px-6 py-4 border-t border-brand-border flex items-center justify-between bg-brand-dark/50">
+                <span class="text-[11px] font-mono text-slate-400 flex items-center space-x-1">
+                    <span class="material-symbols-outlined text-sm">print</span>
+                    <span>4x6" 열전사 라벨 프린터 및 A4 용지 규격 최적화</span>
+                </span>
+                <div class="flex items-center space-x-2">
+                    <button type="button" onclick="copyShippingLabelText()"
+                            class="px-3 py-1.5 rounded-lg bg-brand-dark hover:bg-brand-cardHover border border-brand-border text-slate-300 text-xs font-medium transition-colors flex items-center space-x-1">
+                        <span class="material-symbols-outlined text-sm">content_copy</span>
+                        <span id="copyLabelBtnText">주소 복사</span>
+                    </button>
+                    <button type="button" onclick="closeShippingLabelModal()"
+                            class="px-3.5 py-1.5 rounded-lg bg-brand-dark hover:bg-brand-cardHover border border-brand-border text-slate-300 text-xs font-medium transition-colors">
+                        닫기
+                    </button>
+                    <button type="button" onclick="printShippingLabel()"
+                            class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-display font-bold text-xs tracking-wide transition-all shadow-md flex items-center space-x-1.5 active:scale-95">
+                        <span class="material-symbols-outlined text-base">print</span>
+                        <span>배송 라벨 인쇄</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 하단 푸터 -->
     <footer class="w-full border-t border-brand-border/60 py-3 px-6 text-center text-[11px] font-mono text-slate-500 bg-brand-card/20 mt-auto">
         Factory ERP &copy; 2026 David Hair Shop. All rights reserved.
@@ -634,6 +714,12 @@
                         <td class="py-3 px-4">${lastLogin}</td>
                         <td class="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
                             ${approveBtn}
+                            <button type="button" onclick="openShippingLabelModal(${user.id})"
+                                    title="국제 배송 라벨 인쇄 (공장 → 거래처 영문 주소)"
+                                    class="px-2.5 py-1 rounded bg-blue-950/60 hover:bg-blue-900/80 text-blue-300 hover:text-blue-100 border border-blue-500/40 text-[11px] font-medium transition-all shadow-sm inline-flex items-center space-x-1">
+                                <span class="material-symbols-outlined text-[13px]">local_shipping</span>
+                                <span>라벨 인쇄</span>
+                            </button>
                             <button type="button" onclick="openEditModal(${user.id})"
                                     class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-medium transition-colors">
                                 수정
@@ -934,8 +1020,330 @@
             window.location.href = 'index.html';
         }
 
+        // ==========================================
+        // 13. 국제 배송 라벨 인쇄 (Shipping Label)
+        // ==========================================
+        let currentLabelUser = null;
+        let factoryInfo = {
+            company_name: 'DAVID HAIR (GUDANG RAMBUT)',
+            contact_person: 'NURHASANA TUNISA',
+            phone: '+62 88291335199',
+            address_1: 'KP. CISALADA RT02 RW05 DS CIAMPEA UDIK, KEL CIAMPEA KAB',
+            address_2: 'BOGOR, JAWA BARAT, INDONESIA 16620'
+        };
+
+        // 공장 기본 정보 로드
+        async function loadFactoryInfo() {
+            try {
+                const res = await fetch('api_factory_info.php');
+                const data = await res.json();
+                if (data.success && data.data) {
+                    factoryInfo = data.data;
+                }
+            } catch (e) {
+                console.log('Using default factory info', e);
+            }
+        }
+
+        // 배송 라벨 모달 열기
+        function openShippingLabelModal(userId) {
+            const user = allUsers.find(u => u.id == userId);
+            if (!user) {
+                alert('해당 사용자를 찾을 수 없습니다.');
+                return;
+            }
+            currentLabelUser = user;
+
+            // 송장 번호 자동 생성 (예: DH-20261111-0003)
+            const todayStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+            const defaultRef = `DH-${todayStr}-${String(user.id).padStart(4, '0')}`;
+            document.getElementById('labelRefNo').value = defaultRef;
+
+            // 영문 배송지 누락 경고
+            const alertBox = document.getElementById('labelMissingEnAlert');
+            if (!user.shipping_address_en && !user.shipping_address) {
+                alertBox.className = 'p-2.5 rounded-lg bg-red-950/70 border border-red-500/50 text-red-200 text-xs font-mono flex items-center space-x-2 block';
+                alertBox.innerHTML = '<span class="material-symbols-outlined text-base text-red-400">error</span><span>등록된 배송지 주소가 전혀 없습니다. [사용자 수정]에서 배송지 주소를 먼저 등록해 주세요.</span>';
+            } else if (!user.shipping_address_en) {
+                alertBox.className = 'p-2.5 rounded-lg bg-amber-950/70 border border-amber-500/50 text-amber-200 text-xs font-mono flex items-center space-x-2 block';
+                alertBox.innerHTML = '<span class="material-symbols-outlined text-base text-amber-400">warning</span><span>영문 배송지 주소가 등록되어 있지 않아 한글 주소로 대체되었습니다. 원활한 해외 특송을 위해 영문 주소를 등록해 주세요.</span>';
+            } else {
+                alertBox.className = 'hidden';
+            }
+
+            updateLabelPreview();
+            document.getElementById('shippingLabelModal').classList.remove('hidden');
+        }
+
+        // 배송 라벨 모달 닫기
+        function closeShippingLabelModal() {
+            document.getElementById('shippingLabelModal').classList.add('hidden');
+        }
+
+        // 라벨 실시간 렌더링 갱신
+        function updateLabelPreview() {
+            if (!currentLabelUser) return;
+
+            const u = currentLabelUser;
+            const refNo = document.getElementById('labelRefNo').value.trim() || 'DH-EXPRESS';
+            const weight = document.getElementById('labelWeight').value.trim() || '0.65 kg / 1 BOX';
+            const contents = document.getElementById('labelContents').value.trim() || 'CUSTOM HAIR SYSTEM / WIG PIECES';
+            const todayDate = new Date().toISOString().slice(0, 10);
+
+            // 보내는 사람: 인도네시아 공장
+            const fName = escapeHtml(factoryInfo.company_name || 'DAVID HAIR (GUDANG RAMBUT)');
+            const fContact = escapeHtml(factoryInfo.contact_person || 'NURHASANA TUNISA');
+            const fPhone = escapeHtml(factoryInfo.phone || '+62 88291335199');
+            const fAddr1 = escapeHtml(factoryInfo.address_1 || 'KP. CISALADA RT02 RW05 DS CIAMPEA UDIK, KEL CIAMPEA KAB');
+            const fAddr2 = escapeHtml(factoryInfo.address_2 || 'BOGOR, JAWA BARAT, INDONESIA 16620');
+
+            // 받는 사람: 거래처 영문 정보 (fallback: 한글)
+            const toCompany = escapeHtml(u.company_name_en || u.company_name || '(Company Name N/A)');
+            const toName = escapeHtml(u.name_en || u.name || u.username);
+            const toPhone = escapeHtml(u.phone || 'N/A');
+            const toAddrEn = escapeHtml(u.shipping_address_en || u.shipping_address || 'No shipping address registered');
+            const toAddrKr = (u.shipping_address_en && u.shipping_address) ? escapeHtml(u.shipping_address) : '';
+
+            // 바코드 SVG 생성
+            const barcodeSvg = generateBarcodeSVG(refNo);
+
+            const labelHtml = `
+                <!-- 헤더 배너 -->
+                <div class="border-b-2 border-black p-2.5 bg-black text-white flex justify-between items-center">
+                    <div>
+                        <div class="text-[13px] font-bold tracking-wider font-mono">FACTORY EXPRESS AIRWAYBILL</div>
+                        <div class="text-[9px] tracking-widest text-slate-300">INTERNATIONAL PRIORITY AIR CARGO</div>
+                    </div>
+                    <div class="text-right font-mono text-[10px]">
+                        <div class="font-bold">ORIGIN: IDN</div>
+                        <div>DEST: OVERSEAS</div>
+                    </div>
+                </div>
+
+                <!-- 송장/참조번호 & 발행일 -->
+                <div class="border-b border-black p-1.5 bg-slate-100 flex justify-between items-center text-[10px] font-mono">
+                    <div>REF/TRACK: <span class="font-bold text-black">${refNo}</span></div>
+                    <div>DATE: <span>${todayDate}</span></div>
+                </div>
+
+                <!-- 1. SHIPPER / FROM (보내는 사람: 인도네시아 공장) -->
+                <div class="border-b-2 border-black p-2.5 bg-white text-black">
+                    <div class="text-[9px] font-bold uppercase tracking-wider text-slate-700 mb-1 flex items-center justify-between">
+                        <span>FROM (SHIPPER) / 보내는 사람 [공장]</span>
+                        <span class="font-mono text-[8px] bg-black text-white px-1.5 py-0.2 rounded">FACTORY HQ</span>
+                    </div>
+                    <div class="text-[12px] font-bold font-mono text-black">${fName}</div>
+                    <div class="text-[11px] mt-0.5"><strong>ATTN:</strong> ${fContact}</div>
+                    <div class="text-[11px]"><strong>TEL:</strong> ${fPhone}</div>
+                    <div class="text-[10px] text-slate-800 leading-snug mt-1 font-mono">
+                        ${fAddr1}<br>
+                        ${fAddr2} • <strong>INDONESIA</strong>
+                    </div>
+                </div>
+
+                <!-- 2. CONSIGNEE / TO (받는 사람: 거래처 영문 주소) -->
+                <div class="border-b-2 border-black p-3 bg-slate-50 text-black">
+                    <div class="text-[9px] font-bold uppercase tracking-wider text-slate-700 mb-1 flex items-center justify-between">
+                        <span>TO (CONSIGNEE) / 받는 사람 [거래처 영문]</span>
+                        <span class="font-mono text-[8px] bg-black text-white px-1.5 py-0.2 rounded">DESTINATION</span>
+                    </div>
+                    <div class="text-[14px] font-bold text-black leading-tight">${toCompany}</div>
+                    <div class="text-[12px] font-bold mt-1"><strong>ATTN:</strong> ${toName}</div>
+                    <div class="text-[11px] font-mono"><strong>TEL:</strong> ${toPhone}</div>
+                    
+                    <!-- 영문 배송지 주소 박스 -->
+                    <div class="mt-2 p-2 bg-white border border-black rounded text-[11px] font-mono leading-relaxed break-words font-semibold text-black">
+                        ${toAddrEn}
+                    </div>
+
+                    ${toAddrKr ? `
+                    <div class="mt-1 text-[9px] text-slate-600 font-sans leading-tight">
+                        * 국내 배송 참고: ${toAddrKr}
+                    </div>` : ''}
+                </div>
+
+                <!-- 3. 화물 세부 정보 (CUSTOMS / CARGO) -->
+                <div class="border-b border-black grid grid-cols-3 text-[9px] font-mono text-center divide-x divide-black bg-slate-100 text-black">
+                    <div class="p-1">
+                        <div class="text-slate-500 text-[8px]">GROSS WEIGHT</div>
+                        <div class="font-bold text-[10px]">${escapeHtml(weight)}</div>
+                    </div>
+                    <div class="p-1">
+                        <div class="text-slate-500 text-[8px]">COMMODITY</div>
+                        <div class="font-bold text-[10px]">HAIRPIECES</div>
+                    </div>
+                    <div class="p-1">
+                        <div class="text-slate-500 text-[8px]">ORIGIN</div>
+                        <div class="font-bold text-[10px]">INDONESIA</div>
+                    </div>
+                </div>
+
+                <div class="border-b border-black p-2 text-[9px] font-mono bg-white text-black leading-snug">
+                    <div><strong>CONTENTS:</strong> ${escapeHtml(contents)}</div>
+                    <div class="text-[8px] text-slate-500 mt-0.5">CUSTOMS: Sample Cargo / Custom Made to Order / Non-Dangerous Goods</div>
+                </div>
+
+                <!-- 4. 바코드 & 추적 번호 -->
+                <div class="p-2.5 text-center bg-white text-black">
+                    ${barcodeSvg}
+                    <div class="font-mono text-[11px] font-bold tracking-widest mt-1 text-black">${refNo}</div>
+                </div>
+            `;
+
+            document.getElementById('printableShippingLabel').innerHTML = labelHtml;
+        }
+
+        // 바코드 SVG 생성기 (Code 128 패턴 시뮬레이션)
+        function generateBarcodeSVG(text) {
+            let bars = '';
+            let x = 12;
+            bars += `<rect x="${x}" y="0" width="2.5" height="38" fill="#000"/>`; x += 4;
+            bars += `<rect x="${x}" y="0" width="1.5" height="38" fill="#000"/>`; x += 3.5;
+            bars += `<rect x="${x}" y="0" width="3" height="38" fill="#000"/>`; x += 6;
+            
+            for (let i = 0; i < text.length; i++) {
+                const code = text.charCodeAt(i);
+                const w1 = ((code * 3 + i) % 3) + 1.2;
+                const w2 = ((code * 7 + i) % 3) + 1.2;
+                const gap = ((code * 5 + i) % 2) + 2.2;
+                bars += `<rect x="${x}" y="0" width="${w1}" height="35" fill="#000"/>`;
+                x += w1 + gap;
+                bars += `<rect x="${x}" y="0" width="${w2}" height="35" fill="#000"/>`;
+                x += w2 + 2.5;
+            }
+            bars += `<rect x="${x}" y="0" width="3" height="38" fill="#000"/>`; x += 6;
+            bars += `<rect x="${x}" y="0" width="1.5" height="38" fill="#000"/>`; x += 3.5;
+            bars += `<rect x="${x}" y="0" width="2.5" height="38" fill="#000"/>`; x += 12;
+
+            return `<svg viewBox="0 0 ${x} 38" class="w-full h-10 block mx-auto" preserveAspectRatio="none">${bars}</svg>`;
+        }
+
+        // 배송 주소 텍스트 클립보드 복사
+        async function copyShippingLabelText() {
+            if (!currentLabelUser) return;
+            const u = currentLabelUser;
+            const textToCopy = `[FROM / SHIPPER]\nCOMPANY: ${factoryInfo.company_name}\nATTN: ${factoryInfo.contact_person}\nTEL: ${factoryInfo.phone}\nADDR 1: ${factoryInfo.address_1}\nADDR 2: ${factoryInfo.address_2}\nCOUNTRY: INDONESIA\n\n[TO / CONSIGNEE]\nCOMPANY: ${u.company_name_en || u.company_name || ''}\nATTN: ${u.name_en || u.name || ''}\nTEL: ${u.phone || ''}\nADDRESS: ${u.shipping_address_en || u.shipping_address || ''}`;
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                const btn = document.getElementById('copyLabelBtnText');
+                const orig = btn.textContent;
+                btn.textContent = '복사 완료! ✓';
+                setTimeout(() => { btn.textContent = orig; }, 1800);
+            } catch (err) {
+                alert(textToCopy);
+            }
+        }
+
+        // 배송 라벨 인쇄 창 실행
+        function printShippingLabel() {
+            const labelElem = document.getElementById('printableShippingLabel');
+            if (!labelElem) return;
+
+            const printWin = window.open('', '_blank', 'width=750,height=950');
+            if (!printWin) {
+                alert('팝업 차단이 설정되어 있습니다. 브라우저 설정에서 팝업을 허용해 주세요.');
+                return;
+            }
+
+            const userName = currentLabelUser?.name || 'Label';
+
+            printWin.document.open();
+            printWin.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <title>Shipping Label - ${escapeHtml(userName)}</title>
+                    <style>
+                        @page {
+                            size: 100mm 150mm;
+                            margin: 4mm;
+                        }
+                        * {
+                            box-sizing: border-box;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        body {
+                            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+                            background: #fff;
+                            color: #000;
+                            padding: 4px;
+                            -webkit-print-color-adjust: exact;
+                            print-color-adjust: exact;
+                        }
+                        .label-box {
+                            width: 100%;
+                            max-width: 96mm;
+                            margin: 0 auto;
+                            border: 2px solid #000;
+                            font-size: 11px;
+                            line-height: 1.35;
+                        }
+                        .border-b-2 { border-bottom: 2px solid #000; }
+                        .border-b { border-bottom: 1px solid #000; }
+                        .p-1 { padding: 4px 6px; }
+                        .p-1\\.5 { padding: 5px 8px; }
+                        .p-2 { padding: 6px 8px; }
+                        .p-2\\.5 { padding: 8px 10px; }
+                        .p-3 { padding: 10px 12px; }
+                        .font-bold { font-weight: 700; }
+                        .font-semibold { font-weight: 600; }
+                        .font-mono { font-family: "Courier New", Courier, monospace; }
+                        .uppercase { text-transform: uppercase; }
+                        .text-center { text-align: center; }
+                        .text-right { text-align: right; }
+                        .text-\\[8px\\] { font-size: 8px; }
+                        .text-\\[9px\\] { font-size: 9px; }
+                        .text-\\[10px\\] { font-size: 10px; }
+                        .text-\\[11px\\] { font-size: 11px; }
+                        .text-\\[12px\\] { font-size: 12px; }
+                        .text-\\[13px\\] { font-size: 13px; }
+                        .text-\\[14px\\] { font-size: 14px; }
+                        .flex { display: flex; }
+                        .justify-between { justify-content: space-between; }
+                        .items-center { align-items: center; }
+                        .grid { display: grid; }
+                        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+                        .divide-x > * + * { border-left: 1px solid #000; }
+                        .bg-black { background: #000 !important; color: #fff !important; }
+                        .bg-white { background: #fff !important; color: #000 !important; }
+                        .bg-slate-50 { background: #f8fafc !important; }
+                        .bg-slate-100 { background: #f1f5f9 !important; }
+                        .rounded { border-radius: 4px; }
+                        .break-words { word-break: break-word; }
+                        .tracking-wider { letter-spacing: 0.05em; }
+                        .tracking-widest { letter-spacing: 0.1em; }
+                        .leading-tight { line-height: 1.2; }
+                        .leading-snug { line-height: 1.3; }
+                        .leading-relaxed { line-height: 1.45; }
+                        .mt-0\\.5 { margin-top: 2px; }
+                        .mt-1 { margin-top: 4px; }
+                        .mt-1\\.5 { margin-top: 6px; }
+                        .mt-2 { margin-top: 8px; }
+                        .mb-1 { margin-bottom: 4px; }
+                        svg { width: 100%; height: 38px; display: block; margin: 4px auto 2px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="label-box">
+                        ${labelElem.innerHTML}
+                    </div>
+                    <script>
+                        window.onload = function() {
+                            window.focus();
+                            window.print();
+                        };
+                    <\/script>
+                </body>
+                </html>
+            `);
+            printWin.document.close();
+        }
+
         // 초기 실행
         checkSession();
+        loadFactoryInfo();
         loadUsers();
     </script>
 </body>
