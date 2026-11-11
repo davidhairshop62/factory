@@ -441,30 +441,36 @@
                 </button>
             </div>
 
-            <!-- 라벨 설정 및 옵션 툴바 -->
-            <div class="p-4 bg-brand-dark/80 border-b border-brand-border text-xs space-y-3">
-                <!-- 1행: 송장번호 & 중량 (2열) -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-[11px] text-slate-400 font-mono mb-1">송장/참조번호 (Ref / Tracking No)</label>
-                        <input type="text" id="labelRefNo" oninput="updateLabelPreview()"
-                               class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
-                    </div>
-                    <div>
-                        <label class="block text-[11px] text-slate-400 font-mono mb-1">물품 중량 (Gross Weight)</label>
-                        <input type="text" id="labelWeight" value="" placeholder="기본 빈칸 (필요 시 직접 입력)" oninput="updateLabelPreview()"
-                               class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
-                    </div>
+            <!-- 라벨 설정 및 옵션 툴바 (각 항목별 한 줄에 라벨 좌측 + 입력칸 우측 가로 수평 정렬) -->
+            <div class="p-4 bg-brand-dark/80 border-b border-brand-border text-xs space-y-2.5">
+                <!-- 1. 송장/참조번호 -->
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
+                    <label for="labelRefNo" class="w-full sm:w-60 shrink-0 text-xs font-medium text-slate-300 flex items-center space-x-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                        <span>송장/참조번호 (Ref / Tracking No)</span>
+                    </label>
+                    <input type="text" id="labelRefNo" oninput="updateLabelPreview()"
+                           class="flex-1 w-full px-3 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400 shadow-sm">
                 </div>
 
-                <!-- 2행: 내용물 품목 (다음 줄 전체 너비) -->
-                <div>
-                    <label class="block text-[11px] text-slate-400 font-mono mb-1 flex items-center justify-between">
+                <!-- 2. 물품 중량 -->
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
+                    <label for="labelWeight" class="w-full sm:w-60 shrink-0 text-xs font-medium text-slate-300 flex items-center space-x-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+                        <span>물품 중량 (Gross Weight)</span>
+                    </label>
+                    <input type="text" id="labelWeight" value="" placeholder="기본 빈칸 Kg (필요 시 직접 숫자 입력)" oninput="updateLabelPreview()"
+                           class="flex-1 w-full px-3 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400 shadow-sm">
+                </div>
+
+                <!-- 3. 내용물 품목 -->
+                <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
+                    <label for="labelContents" class="w-full sm:w-60 shrink-0 text-xs font-medium text-slate-300 flex items-center space-x-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
                         <span>내용물 품목 (Contents Description)</span>
-                        <span class="text-[10px] text-slate-500 font-mono">해외 세관 신고용 영문 품목</span>
                     </label>
                     <input type="text" id="labelContents" value="CUSTOM HAIR SYSTEM / WIG PIECES" oninput="updateLabelPreview()"
-                           class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
+                           class="flex-1 w-full px-3 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400 shadow-sm">
                 </div>
 
                 <!-- 영문 주소 누락 시 경고 박스 -->
