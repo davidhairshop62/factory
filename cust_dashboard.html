@@ -140,16 +140,18 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 상호명 -->
+                <!-- 상호명 (한글 / 영문) -->
                 <div class="bg-brand-dark/70 border border-brand-border/60 rounded-xl p-4">
-                    <div class="text-[11px] text-brand-slateText font-mono mb-1">상호명 (살롱명)</div>
+                    <div class="text-[11px] text-brand-slateText font-mono mb-1">상호명 (한글 / 영문)</div>
                     <div id="cardCompanyName" class="text-sm font-bold text-white font-sans">-</div>
+                    <div id="cardCompanyNameEn" class="text-xs text-slate-400 font-mono mt-0.5"></div>
                 </div>
 
-                <!-- 담당자 성명 -->
+                <!-- 담당자 성명 (한글 / 영문) -->
                 <div class="bg-brand-dark/70 border border-brand-border/60 rounded-xl p-4">
-                    <div class="text-[11px] text-brand-slateText font-mono mb-1">대표자 / 담당자</div>
+                    <div class="text-[11px] text-brand-slateText font-mono mb-1">대표자 / 담당자 (한글 / 영문)</div>
                     <div id="cardName" class="text-sm font-semibold text-white font-sans">-</div>
+                    <div id="cardNameEn" class="text-xs text-slate-400 font-mono mt-0.5"></div>
                 </div>
 
                 <!-- 아이디 & 이메일 -->
@@ -178,17 +180,33 @@
                 </div>
             </div>
 
-            <!-- 기본 배송지 주소 (100자 이상 넓은 전용 박스) -->
-            <div class="mt-6 bg-brand-dark/90 border border-brand-emerald/30 rounded-xl p-4">
-                <div class="flex items-center justify-between mb-1.5">
+            <!-- 기본 배송지 주소 (한글 / 영문 전용 박스) -->
+            <div class="mt-6 bg-brand-dark/90 border border-brand-emerald/30 rounded-xl p-4 space-y-3">
+                <div class="flex items-center justify-between">
                     <div class="text-xs font-semibold text-brand-emerald flex items-center space-x-1.5">
                         <span class="material-symbols-outlined text-base">local_shipping</span>
-                        <span>기본 제품 출하 / 수령 배송지 주소</span>
+                        <span>기본 제품 출하 / 수령 배송지 주소 (국내 & 해외특송)</span>
                     </div>
                     <span class="text-[10px] text-slate-400 font-mono">발주 시 자동 적용</span>
                 </div>
-                <div id="cardShippingAddress" class="text-sm text-slate-200 font-sans leading-relaxed break-words bg-brand-card/50 p-3 rounded-lg border border-brand-border/40 min-h-[50px] flex items-center">
-                    배송지 주소가 등록되어 있지 않습니다.
+                
+                <!-- 한글 주소 -->
+                <div>
+                    <div class="text-[10px] font-mono text-slate-400 mb-1">기본 배송지 주소 (한글)</div>
+                    <div id="cardShippingAddress" class="text-sm text-slate-200 font-sans leading-relaxed break-words bg-brand-card/50 p-3 rounded-lg border border-brand-border/40 min-h-[46px] flex items-center">
+                        배송지 주소가 등록되어 있지 않습니다.
+                    </div>
+                </div>
+
+                <!-- 영문 주소 -->
+                <div>
+                    <div class="text-[10px] font-mono text-slate-400 mb-1 flex items-center space-x-1">
+                        <span class="text-[9px] uppercase px-1 py-0.2 rounded bg-brand-emerald/15 text-brand-emerald font-bold">EN</span>
+                        <span>기본 배송지 주소 (영문 - English Shipping Address)</span>
+                    </div>
+                    <div id="cardShippingAddressEn" class="text-xs text-slate-300 font-mono leading-relaxed break-words bg-brand-card/50 p-3 rounded-lg border border-brand-border/40 min-h-[46px] flex items-center">
+                        영문 배송지 주소가 등록되어 있지 않습니다.
+                    </div>
                 </div>
             </div>
         </div>
@@ -222,7 +240,7 @@
                     </div>
                 </div>
 
-                <!-- 상호명 & 사업자번호 -->
+                <!-- 상호명 (한글 & 영문) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label for="profCompanyName" class="block text-xs font-medium text-slate-300 mb-1">상호명 (살롱명) *</label>
@@ -231,20 +249,42 @@
                                placeholder="예: 강남 프리미엄 헤어">
                     </div>
                     <div>
-                        <label for="profBizNumber" class="block text-xs font-medium text-slate-300 mb-1">사업자등록번호 (ABN)</label>
-                        <input type="text" id="profBizNumber"
+                        <label for="profCompanyNameEn" class="block text-xs font-medium text-slate-300 mb-1 flex items-center space-x-1">
+                            <span class="text-[9px] uppercase px-1 py-0.2 rounded bg-brand-emerald/15 text-brand-emerald font-bold font-mono">EN</span>
+                            <span>상호명 (영문 - Company Name)</span>
+                        </label>
+                        <input type="text" id="profCompanyNameEn"
                                class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
-                               placeholder="000-00-00000">
+                               placeholder="e.g. Gangnam Premium Hair">
                     </div>
                 </div>
 
-                <!-- 대표자명 & 연락처 -->
+                <!-- 대표자명 (한글 & 영문) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label for="profName" class="block text-xs font-medium text-slate-300 mb-1">대표자 / 원장 성명 *</label>
                         <input type="text" id="profName" required
                                class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald"
                                placeholder="예: 홍길동 원장">
+                    </div>
+                    <div>
+                        <label for="profNameEn" class="block text-xs font-medium text-slate-300 mb-1 flex items-center space-x-1">
+                            <span class="text-[9px] uppercase px-1 py-0.2 rounded bg-brand-emerald/15 text-brand-emerald font-bold font-mono">EN</span>
+                            <span>대표자 성명 (영문 - Representative Name)</span>
+                        </label>
+                        <input type="text" id="profNameEn"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                               placeholder="e.g. Gildong Hong">
+                    </div>
+                </div>
+
+                <!-- 사업자번호 & 연락처 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="profBizNumber" class="block text-xs font-medium text-slate-300 mb-1">사업자등록번호 (ABN)</label>
+                        <input type="text" id="profBizNumber"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                               placeholder="000-00-00000">
                     </div>
                     <div>
                         <label for="profPhone" class="block text-xs font-medium text-slate-300 mb-1">연락처 (전화번호) *</label>
@@ -262,18 +302,31 @@
                            placeholder="salon@example.com">
                 </div>
 
-                <!-- 배송지 주소 (100자 이상 여유로운 3줄 텍스트에어리어) -->
+                <!-- 배송지 주소 (100자 이상 여유로운 3줄 텍스트에어리어 - 한글 & 영문) -->
                 <div>
                     <label for="profShippingAddress" class="block text-xs font-semibold text-slate-200 mb-1 flex items-center justify-between">
                         <span class="flex items-center space-x-1">
                             <span class="material-symbols-outlined text-sm text-brand-emerald">local_shipping</span>
-                            <span>배송지 주소 (상세주소)</span>
+                            <span>배송지 주소 (기본 한글 주소)</span>
                         </span>
                         <span class="text-[10px] text-slate-400 font-mono">최소 100자 이상 지원</span>
                     </label>
-                    <textarea id="profShippingAddress" rows="3"
-                              class="w-full p-3 bg-brand-dark border border-brand-border rounded-xl text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-sans leading-relaxed resize-none"
-                              placeholder="제품 출하 및 택배 배송용 전체 상세 주소 (도로명, 지번, 동/호수 등)"></textarea>
+                    <textarea id="profShippingAddress" rows="2"
+                              class="w-full p-2.5 bg-brand-dark border border-brand-border rounded-xl text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-sans leading-relaxed resize-none"
+                              placeholder="제품 출하 및 국내 택배 배송용 전체 상세 주소 (도로명, 지번, 동/호수 등)"></textarea>
+                </div>
+
+                <div>
+                    <label for="profShippingAddressEn" class="block text-xs font-semibold text-slate-200 mb-1 flex items-center justify-between">
+                        <span class="flex items-center space-x-1">
+                            <span class="text-[9px] uppercase px-1 py-0.2 rounded bg-brand-emerald/15 text-brand-emerald font-bold font-mono">EN</span>
+                            <span>배송지 주소 (영문 - English Shipping Address)</span>
+                        </span>
+                        <span class="text-[10px] text-slate-400 font-mono">DHL/EMS 해외특송용</span>
+                    </label>
+                    <textarea id="profShippingAddressEn" rows="2"
+                              class="w-full p-2.5 bg-brand-dark border border-brand-border rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono leading-relaxed resize-none"
+                              placeholder="Full Shipping Address in English (Unit, Street, Suburb/City, State, Postcode, Country)"></textarea>
                 </div>
 
                 <!-- 비밀번호 변경 (선택사항) -->
@@ -364,7 +417,23 @@
 
             // 메인 대시보드 카드 정보 채우기
             document.getElementById('cardCompanyName').textContent = user.company_name || '-';
+            const compEnEl = document.getElementById('cardCompanyNameEn');
+            if (user.company_name_en) {
+                compEnEl.textContent = user.company_name_en;
+                compEnEl.classList.remove('hidden');
+            } else {
+                compEnEl.textContent = '';
+            }
+
             document.getElementById('cardName').textContent = user.name || '-';
+            const nameEnEl = document.getElementById('cardNameEn');
+            if (user.name_en) {
+                nameEnEl.textContent = user.name_en;
+                nameEnEl.classList.remove('hidden');
+            } else {
+                nameEnEl.textContent = '';
+            }
+
             document.getElementById('cardUsername').textContent = user.username || '-';
             document.getElementById('cardEmail').textContent = user.email || '-';
             document.getElementById('cardBizNumber').textContent = user.business_number || '미등록';
@@ -374,10 +443,19 @@
             const shipEl = document.getElementById('cardShippingAddress');
             if (user.shipping_address) {
                 shipEl.textContent = user.shipping_address;
-                shipEl.className = 'text-sm text-slate-100 font-sans leading-relaxed break-words bg-brand-card/50 p-3 rounded-lg border border-brand-border/40 min-h-[50px] flex items-center';
+                shipEl.className = 'text-sm text-slate-100 font-sans leading-relaxed break-words bg-brand-card/50 p-3 rounded-lg border border-brand-border/40 min-h-[46px] flex items-center';
             } else {
                 shipEl.textContent = '배송지 주소가 등록되어 있지 않습니다. [거래처 정보 수정]을 눌러 배송지를 등록해 주세요.';
-                shipEl.className = 'text-xs text-slate-400 font-sans italic bg-brand-card/50 p-3 rounded-lg border border-brand-border/40 min-h-[50px] flex items-center';
+                shipEl.className = 'text-xs text-slate-400 font-sans italic bg-brand-card/50 p-3 rounded-lg border border-brand-border/40 min-h-[46px] flex items-center';
+            }
+
+            const shipEnEl = document.getElementById('cardShippingAddressEn');
+            if (user.shipping_address_en) {
+                shipEnEl.textContent = user.shipping_address_en;
+                shipEnEl.className = 'text-xs text-slate-200 font-mono leading-relaxed break-words bg-brand-card/50 p-3 rounded-lg border border-brand-border/40 min-h-[46px] flex items-center';
+            } else {
+                shipEnEl.textContent = '영문 배송지 주소가 등록되어 있지 않습니다. (해외 배송 시 필요)';
+                shipEnEl.className = 'text-xs text-slate-500 font-mono italic bg-brand-card/50 p-3 rounded-lg border border-brand-border/40 min-h-[46px] flex items-center';
             }
 
             if (user.tier) {
@@ -391,11 +469,14 @@
             document.getElementById('profUsername').textContent = myProfile.username;
             document.getElementById('profTier').textContent = `${myProfile.tier || 'TIER_1'} (파트너)`;
             document.getElementById('profCompanyName').value = myProfile.company_name || '';
+            document.getElementById('profCompanyNameEn').value = myProfile.company_name_en || '';
             document.getElementById('profBizNumber').value = myProfile.business_number || '';
             document.getElementById('profName').value = myProfile.name || '';
+            document.getElementById('profNameEn').value = myProfile.name_en || '';
             document.getElementById('profPhone').value = myProfile.phone || '';
             document.getElementById('profEmail').value = myProfile.email || '';
             document.getElementById('profShippingAddress').value = myProfile.shipping_address || '';
+            document.getElementById('profShippingAddressEn').value = myProfile.shipping_address_en || '';
             document.getElementById('profPassword').value = '';
             document.getElementById('profPasswordConfirm').value = '';
 
@@ -429,11 +510,14 @@
         async function handleProfileSubmit(e) {
             e.preventDefault();
             const companyName = document.getElementById('profCompanyName').value.trim();
+            const companyNameEn = document.getElementById('profCompanyNameEn').value.trim();
             const businessNumber = document.getElementById('profBizNumber').value.trim();
             const name = document.getElementById('profName').value.trim();
+            const nameEn = document.getElementById('profNameEn').value.trim();
             const phone = document.getElementById('profPhone').value.trim();
             const email = document.getElementById('profEmail').value.trim();
             const shippingAddress = document.getElementById('profShippingAddress').value.trim();
+            const shippingAddressEn = document.getElementById('profShippingAddressEn').value.trim();
             const password = document.getElementById('profPassword').value;
             const passwordConfirm = document.getElementById('profPasswordConfirm').value;
 
@@ -453,11 +537,14 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         company_name: companyName,
+                        company_name_en: companyNameEn,
                         business_number: businessNumber,
                         name: name,
+                        name_en: nameEn,
                         phone: phone,
                         email: email,
                         shipping_address: shippingAddress,
+                        shipping_address_en: shippingAddressEn,
                         password: password
                     })
                 });

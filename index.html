@@ -183,7 +183,7 @@
 
             <!-- 신청 폼 -->
             <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-3.5">
-                <!-- 상호명 & 사업자번호 -->
+                <!-- 상호명 (한글 & 영문) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label for="regCompanyName" class="block text-xs font-medium text-slate-300 mb-1">상호명 (살롱명) *</label>
@@ -192,20 +192,42 @@
                                placeholder="예: 청담 프리미엄 살롱">
                     </div>
                     <div>
-                        <label for="regBizNumber" class="block text-xs font-medium text-slate-300 mb-1">사업자등록번호 (ABN)</label>
-                        <input type="text" id="regBizNumber"
+                        <label for="regCompanyNameEn" class="block text-xs font-medium text-slate-300 mb-1 flex items-center space-x-1">
+                            <span class="text-[9px] uppercase px-1 py-0.2 rounded bg-brand-emerald/15 text-brand-emerald font-bold font-mono">EN</span>
+                            <span>상호명 (영문)</span>
+                        </label>
+                        <input type="text" id="regCompanyNameEn"
                                class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
-                               placeholder="000-00-00000">
+                               placeholder="e.g. Cheongdam Salon">
                     </div>
                 </div>
 
-                <!-- 대표자명 & 연락처 -->
+                <!-- 대표자명 (한글 & 영문) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label for="regName" class="block text-xs font-medium text-slate-300 mb-1">대표자 / 원장 성명 *</label>
                         <input type="text" id="regName" required
                                class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald"
                                placeholder="예: 홍길동 원장">
+                    </div>
+                    <div>
+                        <label for="regNameEn" class="block text-xs font-medium text-slate-300 mb-1 flex items-center space-x-1">
+                            <span class="text-[9px] uppercase px-1 py-0.2 rounded bg-brand-emerald/15 text-brand-emerald font-bold font-mono">EN</span>
+                            <span>대표자 성명 (영문)</span>
+                        </label>
+                        <input type="text" id="regNameEn"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                               placeholder="e.g. Gildong Hong">
+                    </div>
+                </div>
+
+                <!-- 사업자번호 & 연락처 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="regBizNumber" class="block text-xs font-medium text-slate-300 mb-1">사업자등록번호 (ABN)</label>
+                        <input type="text" id="regBizNumber"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                               placeholder="000-00-00000">
                     </div>
                     <div>
                         <label for="regPhone" class="block text-xs font-medium text-slate-300 mb-1">연락처 (전화번호) *</label>
@@ -215,12 +237,21 @@
                     </div>
                 </div>
 
-                <!-- 배송지 주소 -->
+                <!-- 배송지 주소 (한글 & 영문) -->
                 <div>
-                    <label for="regShippingAddress" class="block text-xs font-medium text-slate-300 mb-1">배송지 주소 (상세주소)</label>
+                    <label for="regShippingAddress" class="block text-xs font-medium text-slate-300 mb-1">배송지 주소 (국내 상세주소)</label>
                     <input type="text" id="regShippingAddress"
                            class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald"
-                           placeholder="제품 수령용 배송지 주소 (도로명/지번 및 상세주소)">
+                           placeholder="제품 수령용 배송지 주소 (도로명/지번 및 동호수)">
+                </div>
+                <div>
+                    <label for="regShippingAddressEn" class="block text-xs font-medium text-slate-300 mb-1 flex items-center space-x-1">
+                        <span class="text-[9px] uppercase px-1 py-0.2 rounded bg-brand-emerald/15 text-brand-emerald font-bold font-mono">EN</span>
+                        <span>배송지 주소 (영문 - 해외 배송/DHL/EMS용)</span>
+                    </label>
+                    <input type="text" id="regShippingAddressEn"
+                           class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                           placeholder="Full English Shipping Address">
                 </div>
 
                 <!-- 아이디 & 이메일 -->
@@ -401,10 +432,13 @@
         async function handleRegister(e) {
             e.preventDefault();
             const companyName = document.getElementById('regCompanyName').value.trim();
+            const companyNameEn = document.getElementById('regCompanyNameEn').value.trim();
             const businessNumber = document.getElementById('regBizNumber').value.trim();
             const name = document.getElementById('regName').value.trim();
+            const nameEn = document.getElementById('regNameEn').value.trim();
             const phone = document.getElementById('regPhone').value.trim();
             const shippingAddress = document.getElementById('regShippingAddress').value.trim();
+            const shippingAddressEn = document.getElementById('regShippingAddressEn').value.trim();
             const username = document.getElementById('regUsername').value.trim();
             const email = document.getElementById('regEmail').value.trim();
             const password = document.getElementById('regPassword').value;
@@ -426,10 +460,13 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         company_name: companyName,
+                        company_name_en: companyNameEn,
                         business_number: businessNumber,
                         name: name,
+                        name_en: nameEn,
                         phone: phone,
                         shipping_address: shippingAddress,
+                        shipping_address_en: shippingAddressEn,
                         username: username,
                         email: email,
                         password: password

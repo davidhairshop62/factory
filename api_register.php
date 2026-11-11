@@ -18,13 +18,16 @@ $rawInput = file_get_contents('php://input');
 $input = json_decode($rawInput, true) ?: $_POST;
 
 $companyName = trim($input['company_name'] ?? '');
+$companyNameEn = trim($input['company_name_en'] ?? '');
 $businessNumber = trim($input['business_number'] ?? '');
 $name = trim($input['name'] ?? '');
+$nameEn = trim($input['name_en'] ?? '');
 $username = trim($input['username'] ?? '');
 $email = trim($input['email'] ?? '');
 $password = trim($input['password'] ?? '');
 $phone = trim($input['phone'] ?? '');
 $shippingAddress = trim($input['shipping_address'] ?? '');
+$shippingAddressEn = trim($input['shipping_address_en'] ?? '');
 
 // 필수 항목 검증
 if (empty($companyName)) {
@@ -89,10 +92,13 @@ try {
                     email, 
                     password, 
                     name, 
+                    name_en, 
                     company_name, 
+                    company_name_en, 
                     business_number, 
                     phone, 
                     shipping_address, 
+                    shipping_address_en, 
                     role, 
                     tier, 
                     status
@@ -102,10 +108,13 @@ try {
                     :email, 
                     :password, 
                     :name, 
+                    :name_en, 
                     :company_name, 
+                    :company_name_en, 
                     :business_number, 
                     :phone, 
                     :shipping_address, 
+                    :shipping_address_en, 
                     'CLIENT', 
                     'TIER_1', 
                     'PENDING'
@@ -117,10 +126,13 @@ try {
         ':email' => $email,
         ':password' => $hashedPassword,
         ':name' => $name,
+        ':name_en' => !empty($nameEn) ? $nameEn : null,
         ':company_name' => $companyName,
+        ':company_name_en' => !empty($companyNameEn) ? $companyNameEn : null,
         ':business_number' => !empty($businessNumber) ? $businessNumber : null,
         ':phone' => $phone,
-        ':shipping_address' => !empty($shippingAddress) ? $shippingAddress : null
+        ':shipping_address' => !empty($shippingAddress) ? $shippingAddress : null,
+        ':shipping_address_en' => !empty($shippingAddressEn) ? $shippingAddressEn : null
     ]);
 
     $newId = (int)$conn->lastInsertId();

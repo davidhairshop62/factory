@@ -244,8 +244,8 @@
                     </div>
                 </div>
 
-                <!-- 3. 비밀번호 & 담당자명 -->
-                <div class="grid grid-cols-2 gap-3">
+                <!-- 3. 비밀번호 & 담당자명 (한글/영문) -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div>
                         <label for="formPassword" class="block text-xs font-medium text-slate-300 mb-1">
                             비밀번호 <span id="pwdNotice" class="text-brand-slateText text-[10px]">*</span>
@@ -255,52 +255,85 @@
                                placeholder="비밀번호 입력">
                     </div>
                     <div>
-                        <label for="formName" class="block text-xs font-medium text-slate-300 mb-1">담당자 성명 *</label>
+                        <label for="formName" class="block text-xs font-medium text-slate-300 mb-1">담당자 성명 (한글) *</label>
                         <input type="text" id="formName" required
                                class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold"
                                placeholder="예: 홍길동 원장">
                     </div>
+                    <div>
+                        <label for="formNameEn" class="block text-xs font-medium text-slate-300 mb-1">
+                            담당자 성명 (영문) <span class="text-[10px] text-slate-400 font-mono">(English)</span>
+                        </label>
+                        <input type="text" id="formNameEn"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono"
+                               placeholder="예: Gildong Hong / Director">
+                    </div>
                 </div>
 
-                <!-- 4. 거래처 전용 정보 (상호명, 사업자번호) -->
+                <!-- 4. 거래처 전용 정보 (상호명, 영문상호, 사업자번호, 배송지) -->
                 <div id="clientFieldsGroup" class="space-y-3 p-3.5 rounded-xl bg-brand-dark/80 border border-brand-border/60">
                     <div class="text-[11px] font-mono text-brand-emerald flex items-center space-x-1 font-semibold">
                         <span class="material-symbols-outlined text-sm">store</span>
                         <span>거래처(살롱/클리닉) 부가 정보</span>
                     </div>
-                    <div class="grid grid-cols-2 gap-3">
+                    <!-- 상호명 한글 / 영문 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label for="formCompanyName" class="block text-xs font-medium text-slate-300 mb-1">상호명 (살롱명)</label>
+                            <label for="formCompanyName" class="block text-xs font-medium text-slate-300 mb-1">상호명 (한글 살롱명)</label>
                             <input type="text" id="formCompanyName"
                                    class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald"
                                    placeholder="예: 강남 프리미엄 헤어">
                         </div>
+                        <div>
+                            <label for="formCompanyNameEn" class="block text-xs font-medium text-slate-300 mb-1">
+                                상호명 (영문 살롱명) <span class="text-[10px] text-slate-400 font-mono">(English)</span>
+                            </label>
+                            <input type="text" id="formCompanyNameEn"
+                                   class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                                   placeholder="예: Gangnam Premium Hair Lab">
+                        </div>
+                    </div>
+
+                    <!-- 사업자번호 & 티어 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
                             <label for="formBizNumber" class="block text-xs font-medium text-slate-300 mb-1">사업자등록번호 (ABN)</label>
                             <input type="text" id="formBizNumber"
                                    class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
                                    placeholder="000-00-00000">
                         </div>
-                    </div>
-                    <div>
-                        <label for="formTier" class="block text-xs font-medium text-slate-300 mb-1">공급가 티어 (Tier)</label>
-                        <select id="formTier" class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white focus:outline-none focus:border-brand-emerald font-mono">
-                            <option value="TIER_1">TIER_1 (골드 파트너 - 기본)</option>
-                            <option value="TIER_2">TIER_2 (실버 파트너)</option>
-                            <option value="TIER_3">TIER_3 (일반 파트너)</option>
-                        </select>
+                        <div>
+                            <label for="formTier" class="block text-xs font-medium text-slate-300 mb-1">공급가 티어 (Tier)</label>
+                            <select id="formTier" class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white focus:outline-none focus:border-brand-emerald font-mono">
+                                <option value="TIER_1">TIER_1 (골드 파트너 - 기본)</option>
+                                <option value="TIER_2">TIER_2 (실버 파트너)</option>
+                                <option value="TIER_3">TIER_3 (일반 파트너)</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <!-- 배송지 주소 (넓은 전용 영역) -->
+                    <!-- 배송지 주소 (한글) -->
                     <div>
                         <label for="formShippingAddress" class="block text-xs font-semibold text-slate-200 mb-1 flex items-center space-x-1">
                             <span class="material-symbols-outlined text-sm text-brand-emerald">local_shipping</span>
-                            <span>배송지 주소 (상세주소)</span>
-                            <span class="text-[10px] text-slate-400 font-normal font-mono">(100자 이상 여유롭게 입력)</span>
+                            <span>배송지 주소 (한글)</span>
+                            <span class="text-[10px] text-slate-400 font-normal font-mono">(국내 배송용 상세주소)</span>
                         </label>
                         <textarea id="formShippingAddress" rows="2"
                                class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-sans leading-relaxed resize-none"
-                               placeholder="제품 출하 및 택배 배송용 전체 상세 주소 (도로명, 지번, 건물명, 동/호수 등)"></textarea>
+                               placeholder="예: 서울특별시 강남구 테헤란로 152 강남파이낸스센터 24층"></textarea>
+                    </div>
+
+                    <!-- 배송지 주소 (영문) -->
+                    <div>
+                        <label for="formShippingAddressEn" class="block text-xs font-semibold text-slate-200 mb-1 flex items-center space-x-1">
+                            <span class="material-symbols-outlined text-sm text-brand-emerald">flight_takeoff</span>
+                            <span>배송지 주소 (영문 - English Address)</span>
+                            <span class="text-[10px] text-slate-400 font-normal font-mono">(해외/특송/송장용 영문주소)</span>
+                        </label>
+                        <textarea id="formShippingAddressEn" rows="2"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono leading-relaxed resize-none"
+                               placeholder="e.g. Level 24, 152 Teheran-ro, Gangnam-gu, Seoul, 06236, Republic of Korea"></textarea>
                     </div>
                 </div>
 
@@ -517,30 +550,46 @@
                     statusBadge = `<span class="inline-flex items-center gap-1 text-red-400 font-mono text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>정지</span>`;
                 }
 
-                const companyText = user.company_name ? `<div class="text-[11px] text-brand-slateText font-medium">${escapeHtml(user.company_name)}</div>` : `<div class="text-[11px] text-slate-500 font-mono">-</div>`;
+                // 상호명 (한글 + 영문)
+                let companyText = '';
+                if (user.company_name) {
+                    companyText = `<div class="text-[11px] text-brand-slateText font-medium mt-0.5">${escapeHtml(user.company_name)}</div>`;
+                    if (user.company_name_en) {
+                        companyText += `<div class="text-[10px] text-slate-400 font-mono">${escapeHtml(user.company_name_en)}</div>`;
+                    }
+                } else {
+                    companyText = `<div class="text-[11px] text-slate-500 font-mono">-</div>`;
+                }
+
+                // 담당자명 (한글 + 영문)
+                const nameText = user.name_en 
+                    ? `<span>${escapeHtml(user.name)}</span> <span class="text-[11px] text-slate-400 font-mono font-normal">(${escapeHtml(user.name_en)})</span>`
+                    : `<span>${escapeHtml(user.name)}</span>`;
+
                 const bizText = user.business_number ? `<div class="text-[11px] text-slate-400 font-mono">ABN: ${escapeHtml(user.business_number)}</div>` : '';
                 const phoneText = user.phone ? `<div class="font-mono text-slate-300">${escapeHtml(user.phone)}</div>` : `<div class="text-slate-500 font-mono">-</div>`;
                 const tierText = !isAdmin && user.tier ? `<span class="text-[10px] text-slate-400 font-mono">/ ${user.tier}</span>` : '';
                 const lastLogin = user.last_login_at ? `<span class="font-mono text-[11px] text-slate-400">${user.last_login_at.substring(0, 16)}</span>` : `<span class="text-slate-500 font-mono text-[11px]">기록 없음</span>`;
 
-                // 배송지 주소 표시
-                const shippingText = user.shipping_address 
-                    ? `<div class="text-[11px] text-slate-300 flex items-start gap-1 mt-1 font-sans" title="${escapeHtml(user.shipping_address)}">
-                           <span class="material-symbols-outlined text-[13px] text-brand-emerald shrink-0 mt-0.5">local_shipping</span>
-                           <span class="truncate max-w-[190px]">${escapeHtml(user.shipping_address)}</span>
-                       </div>`
-                    : '';
-
-                // 기타/비고 특이사항 뱃지 표시
-                let memoBadge = '';
-                if (user.notes || user.remarks) {
-                    const preview = [user.notes ? `[기타] ${user.notes}` : '', user.remarks ? `[비고] ${user.remarks}` : ''].filter(Boolean).join(' | ');
-                    memoBadge = `<div class="mt-1">
-                                    <span title="${escapeHtml(preview)}" class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-brand-gold/15 text-brand-gold text-[10px] font-mono border border-brand-gold/30 cursor-help">
-                                        <span class="material-symbols-outlined text-[11px]">sticky_note_2</span>
-                                        <span>특이사항</span>
-                                    </span>
-                                 </div>`;
+                // 배송지 주소 (한글 + 영문)
+                let shippingHtml = '';
+                if (user.shipping_address || user.shipping_address_en) {
+                    shippingHtml = `<div class="space-y-1">`;
+                    if (user.shipping_address) {
+                        shippingHtml += `<div class="text-xs text-slate-200 flex items-start gap-1.5 font-sans leading-relaxed">
+                                            <span class="material-symbols-outlined text-sm text-brand-emerald shrink-0 mt-0.5">local_shipping</span>
+                                            <span class="break-words font-medium">${escapeHtml(user.shipping_address)}</span>
+                                         </div>`;
+                    }
+                    if (user.shipping_address_en) {
+                        shippingHtml += `<div class="text-[11px] text-slate-300 font-mono flex items-start gap-1.5 leading-relaxed bg-brand-dark/40 p-1.5 rounded border border-brand-border/40">
+                                            <span class="text-[9px] uppercase px-1 py-0.2 rounded bg-brand-emerald/15 text-brand-emerald font-bold shrink-0 mt-0.5">EN</span>
+                                            <span class="break-words">${escapeHtml(user.shipping_address_en)}</span>
+                                         </div>`;
+                    }
+                    shippingHtml += `</div>`;
+                } else {
+                    shippingHtml = `<div class="text-xs text-slate-500 font-mono">- 배송지 미등록 -</div>`;
                 }
 
                 // 승인대기 상태일 때 승인 버튼 노출
@@ -560,7 +609,7 @@
                             <div class="text-[11px] text-slate-400 font-mono">${escapeHtml(user.email)}</div>
                         </td>
                         <td class="py-3 px-4">
-                            <div class="font-medium text-slate-100">${escapeHtml(user.name)}</div>
+                            <div class="font-medium text-slate-100">${nameText}</div>
                             ${companyText}
                         </td>
                         <td class="py-3 px-4">
@@ -568,14 +617,8 @@
                             ${bizText}
                         </td>
                         <!-- 배송지 주소 및 특이사항(기타/비고) 와이드 컬럼 -->
-                        <td class="py-3 px-4 min-w-[280px] max-w-[400px]">
-                            ${user.shipping_address 
-                                ? `<div class="text-xs text-slate-200 flex items-start gap-1.5 font-sans leading-relaxed">
-                                       <span class="material-symbols-outlined text-sm text-brand-emerald shrink-0 mt-0.5">local_shipping</span>
-                                       <span class="break-words font-medium">${escapeHtml(user.shipping_address)}</span>
-                                   </div>`
-                                : `<div class="text-xs text-slate-500 font-mono">- 배송지 미등록 -</div>`
-                            }
+                        <td class="py-3 px-4 min-w-[280px] max-w-[420px]">
+                            ${shippingHtml}
                             ${(user.notes || user.remarks) ? `
                                 <div class="mt-2 p-2.5 rounded-lg bg-brand-dark/90 border border-brand-border text-xs space-y-1.5 shadow-sm">
                                     ${user.notes ? `<div class="text-amber-300 font-sans break-words leading-relaxed"><span class="font-bold text-[10px] text-brand-gold bg-brand-gold/15 px-1.5 py-0.5 rounded mr-1 font-mono">기타</span>${escapeHtml(user.notes)}</div>` : ''}
@@ -646,10 +689,13 @@
             document.getElementById('formPassword').required = true;
             document.getElementById('pwdNotice').textContent = '*';
             document.getElementById('formName').value = '';
+            document.getElementById('formNameEn').value = '';
             document.getElementById('formCompanyName').value = '';
+            document.getElementById('formCompanyNameEn').value = '';
             document.getElementById('formBizNumber').value = '';
             document.getElementById('formPhone').value = '';
             document.getElementById('formShippingAddress').value = '';
+            document.getElementById('formShippingAddressEn').value = '';
             document.getElementById('formNotes').value = '';
             document.getElementById('formRemarks').value = '';
             document.getElementById('formRole').value = 'ADMIN';
@@ -679,10 +725,13 @@
             document.getElementById('formPassword').required = false;
             document.getElementById('pwdNotice').textContent = '(변경 시에만 입력)';
             document.getElementById('formName').value = user.name || '';
+            document.getElementById('formNameEn').value = user.name_en || '';
             document.getElementById('formCompanyName').value = user.company_name || '';
+            document.getElementById('formCompanyNameEn').value = user.company_name_en || '';
             document.getElementById('formBizNumber').value = user.business_number || '';
             document.getElementById('formPhone').value = user.phone || '';
             document.getElementById('formShippingAddress').value = user.shipping_address || '';
+            document.getElementById('formShippingAddressEn').value = user.shipping_address_en || '';
             document.getElementById('formNotes').value = user.notes || '';
             document.getElementById('formRemarks').value = user.remarks || '';
             document.getElementById('formRole').value = user.role || (user.user_type === 'ADMIN' ? 'ADMIN' : 'CLIENT');
@@ -747,10 +796,13 @@
             const email = document.getElementById('formEmail').value.trim();
             const password = document.getElementById('formPassword').value.trim();
             const name = document.getElementById('formName').value.trim();
+            const nameEn = document.getElementById('formNameEn').value.trim();
             const companyName = document.getElementById('formCompanyName').value.trim();
+            const companyNameEn = document.getElementById('formCompanyNameEn').value.trim();
             const bizNumber = document.getElementById('formBizNumber').value.trim();
             const phone = document.getElementById('formPhone').value.trim();
             const shippingAddress = document.getElementById('formShippingAddress').value.trim();
+            const shippingAddressEn = document.getElementById('formShippingAddressEn').value.trim();
             const role = document.getElementById('formRole').value;
             const tier = document.getElementById('formTier').value;
             const status = document.getElementById('formStatus').value;
@@ -763,10 +815,13 @@
                 email: email,
                 password: password,
                 name: name,
+                name_en: nameEn,
                 company_name: companyName,
+                company_name_en: companyNameEn,
                 business_number: bizNumber,
                 phone: phone,
                 shipping_address: shippingAddress,
+                shipping_address_en: shippingAddressEn,
                 role: role,
                 tier: tier,
                 status: status

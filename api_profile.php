@@ -21,7 +21,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 try {
     // 1. GET: 본인 상세 정보 조회
     if ($method === 'GET') {
-        $stmt = $conn->prepare("SELECT id, user_type, username, email, name, company_name, business_number, phone, shipping_address, role, tier, status, created_at 
+        $stmt = $conn->prepare("SELECT id, user_type, username, email, name, name_en, company_name, company_name_en, business_number, phone, shipping_address, shipping_address_en, role, tier, status, created_at 
                                 FROM users WHERE id = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -44,10 +44,13 @@ try {
         $input = json_decode($rawInput, true) ?: $_POST;
 
         $name = trim($input['name'] ?? '');
+        $nameEn = trim($input['name_en'] ?? '');
         $companyName = trim($input['company_name'] ?? '');
+        $companyNameEn = trim($input['company_name_en'] ?? '');
         $businessNumber = trim($input['business_number'] ?? '');
         $phone = trim($input['phone'] ?? '');
         $shippingAddress = trim($input['shipping_address'] ?? '');
+        $shippingAddressEn = trim($input['shipping_address_en'] ?? '');
         $email = trim($input['email'] ?? '');
         $password = trim($input['password'] ?? '');
 
@@ -73,18 +76,24 @@ try {
         // (user_type, role, tier, status, notes, remarks는 거래처가 변경 불가!)
         $sql = "UPDATE users SET 
                 name = :name,
+                name_en = :name_en,
                 company_name = :company_name,
+                company_name_en = :company_name_en,
                 business_number = :business_number,
                 phone = :phone,
                 shipping_address = :shipping_address,
+                shipping_address_en = :shipping_address_en,
                 email = :email";
 
         $params = [
             ':name' => $name,
+            ':name_en' => !empty($nameEn) ? $nameEn : null,
             ':company_name' => !empty($companyName) ? $companyName : null,
+            ':company_name_en' => !empty($companyNameEn) ? $companyNameEn : null,
             ':business_number' => !empty($businessNumber) ? $businessNumber : null,
             ':phone' => !empty($phone) ? $phone : null,
             ':shipping_address' => !empty($shippingAddress) ? $shippingAddress : null,
+            ':shipping_address_en' => !empty($shippingAddressEn) ? $shippingAddressEn : null,
             ':email' => $email,
             ':id' => $userId
         ];
@@ -113,10 +122,13 @@ try {
             'message' => '거래처 정보가 성공적으로 수정되었습니다.',
             'user' => [
                 'name' => $name,
+                'name_en' => $nameEn,
                 'company_name' => $companyName,
+                'company_name_en' => $companyNameEn,
                 'business_number' => $businessNumber,
                 'phone' => $phone,
                 'shipping_address' => $shippingAddress,
+                'shipping_address_en' => $shippingAddressEn,
                 'email' => $email
             ]
         ]);
@@ -128,3 +140,4 @@ try {
 } catch (PDOException $e) {
     echo json_encode(['success' => false, 'message' => '데이터베이스 오류: ' . $e->getMessage()]);
 }
+

@@ -32,7 +32,7 @@ try {
         $filterType = $_GET['user_type'] ?? '';
         $search = trim($_GET['search'] ?? '');
 
-        $sql = "SELECT id, user_type, username, email, name, company_name, business_number, phone, shipping_address, role, tier, notes, remarks, status, last_login_at, created_at, updated_at 
+        $sql = "SELECT id, user_type, username, email, name, name_en, company_name, company_name_en, business_number, phone, shipping_address, shipping_address_en, role, tier, notes, remarks, status, last_login_at, created_at, updated_at 
                 FROM users WHERE 1=1";
         $params = [];
 
@@ -42,7 +42,7 @@ try {
         }
 
         if (!empty($search)) {
-            $sql .= " AND (username LIKE :search OR name LIKE :search OR company_name LIKE :search OR email LIKE :search OR phone LIKE :search OR shipping_address LIKE :search)";
+            $sql .= " AND (username LIKE :search OR name LIKE :search OR name_en LIKE :search OR company_name LIKE :search OR company_name_en LIKE :search OR email LIKE :search OR phone LIKE :search OR shipping_address LIKE :search OR shipping_address_en LIKE :search)";
             $params[':search'] = '%' . $search . '%';
         }
 
@@ -67,10 +67,13 @@ try {
         $email = trim($jsonInput['email'] ?? '');
         $password = trim($jsonInput['password'] ?? '');
         $name = trim($jsonInput['name'] ?? '');
+        $nameEn = trim($jsonInput['name_en'] ?? '');
         $companyName = trim($jsonInput['company_name'] ?? '');
+        $companyNameEn = trim($jsonInput['company_name_en'] ?? '');
         $bizNumber = trim($jsonInput['business_number'] ?? '');
         $phone = trim($jsonInput['phone'] ?? '');
         $shippingAddress = trim($jsonInput['shipping_address'] ?? '');
+        $shippingAddressEn = trim($jsonInput['shipping_address_en'] ?? '');
         $role = trim($jsonInput['role'] ?? '');
         $tier = trim($jsonInput['tier'] ?? 'TIER_1');
         $status = trim($jsonInput['status'] ?? 'ACTIVE');
@@ -109,8 +112,8 @@ try {
             $role = ($userType === 'ADMIN') ? 'ADMIN' : 'CLIENT';
         }
 
-        $insertSql = "INSERT INTO users (user_type, username, email, password, name, company_name, business_number, phone, shipping_address, role, tier, notes, remarks, status)
-                      VALUES (:user_type, :username, :email, :password, :name, :company_name, :business_number, :phone, :shipping_address, :role, :tier, :notes, :remarks, :status)";
+        $insertSql = "INSERT INTO users (user_type, username, email, password, name, name_en, company_name, company_name_en, business_number, phone, shipping_address, shipping_address_en, role, tier, notes, remarks, status)
+                      VALUES (:user_type, :username, :email, :password, :name, :name_en, :company_name, :company_name_en, :business_number, :phone, :shipping_address, :shipping_address_en, :role, :tier, :notes, :remarks, :status)";
         $insertStmt = $conn->prepare($insertSql);
         $insertStmt->execute([
             ':user_type' => $userType,
@@ -118,10 +121,13 @@ try {
             ':email' => $email,
             ':password' => $hashedPassword,
             ':name' => $name,
+            ':name_en' => !empty($nameEn) ? $nameEn : null,
             ':company_name' => !empty($companyName) ? $companyName : null,
+            ':company_name_en' => !empty($companyNameEn) ? $companyNameEn : null,
             ':business_number' => !empty($bizNumber) ? $bizNumber : null,
             ':phone' => !empty($phone) ? $phone : null,
             ':shipping_address' => !empty($shippingAddress) ? $shippingAddress : null,
+            ':shipping_address_en' => !empty($shippingAddressEn) ? $shippingAddressEn : null,
             ':role' => $role,
             ':tier' => in_array($tier, ['TIER_1', 'TIER_2', 'TIER_3']) ? $tier : 'TIER_1',
             ':notes' => !empty($notes) ? $notes : null,
@@ -158,10 +164,13 @@ try {
         $userType = trim($jsonInput['user_type'] ?? $existing['user_type']);
         $email = trim($jsonInput['email'] ?? $existing['email']);
         $name = trim($jsonInput['name'] ?? $existing['name']);
+        $nameEn = trim($jsonInput['name_en'] ?? ($existing['name_en'] ?? ''));
         $companyName = trim($jsonInput['company_name'] ?? $existing['company_name']);
+        $companyNameEn = trim($jsonInput['company_name_en'] ?? ($existing['company_name_en'] ?? ''));
         $bizNumber = trim($jsonInput['business_number'] ?? $existing['business_number']);
         $phone = trim($jsonInput['phone'] ?? $existing['phone']);
         $shippingAddress = trim($jsonInput['shipping_address'] ?? ($existing['shipping_address'] ?? ''));
+        $shippingAddressEn = trim($jsonInput['shipping_address_en'] ?? ($existing['shipping_address_en'] ?? ''));
         $role = trim($jsonInput['role'] ?? $existing['role']);
         $tier = trim($jsonInput['tier'] ?? $existing['tier']);
         $status = trim($jsonInput['status'] ?? $existing['status']);
@@ -195,10 +204,13 @@ try {
             'user_type' => $userType,
             'email' => $email,
             'name' => $name,
+            'name_en' => !empty($nameEn) ? $nameEn : null,
             'company_name' => !empty($companyName) ? $companyName : null,
+            'company_name_en' => !empty($companyNameEn) ? $companyNameEn : null,
             'business_number' => !empty($bizNumber) ? $bizNumber : null,
             'phone' => !empty($phone) ? $phone : null,
             'shipping_address' => !empty($shippingAddress) ? $shippingAddress : null,
+            'shipping_address_en' => !empty($shippingAddressEn) ? $shippingAddressEn : null,
             'role' => $role,
             'tier' => in_array($tier, ['TIER_1', 'TIER_2', 'TIER_3']) ? $tier : 'TIER_1',
             'notes' => !empty($notes) ? $notes : null,
@@ -211,10 +223,13 @@ try {
                 user_type = :user_type,
                 email = :email,
                 name = :name,
+                name_en = :name_en,
                 company_name = :company_name,
+                company_name_en = :company_name_en,
                 business_number = :business_number,
                 phone = :phone,
                 shipping_address = :shipping_address,
+                shipping_address_en = :shipping_address_en,
                 role = :role,
                 tier = :tier,
                 notes = :notes,
