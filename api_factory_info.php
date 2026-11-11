@@ -21,7 +21,7 @@ if (empty($_SESSION['user_id']) || empty($_SESSION['user_type']) || $_SESSION['u
 $method = $_SERVER['REQUEST_METHOD'];
 
 try {
-    $pdo = getDbConnection();
+    $pdo = $conn;
 
     // 테이블 자동 생성 및 초기 데이터 보장
     $pdo->exec("
