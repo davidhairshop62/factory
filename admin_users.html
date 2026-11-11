@@ -278,13 +278,21 @@
                                    placeholder="000-00-00000">
                         </div>
                     </div>
-                    <div>
-                        <label for="formTier" class="block text-xs font-medium text-slate-300 mb-1">공급가 티어 (Tier)</label>
-                        <select id="formTier" class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white focus:outline-none focus:border-brand-emerald font-mono">
-                            <option value="TIER_1">TIER_1 (골드 파트너 - 기본)</option>
-                            <option value="TIER_2">TIER_2 (실버 파트너)</option>
-                            <option value="TIER_3">TIER_3 (일반 파트너)</option>
-                        </select>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label for="formTier" class="block text-xs font-medium text-slate-300 mb-1">공급가 티어 (Tier)</label>
+                            <select id="formTier" class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white focus:outline-none focus:border-brand-emerald font-mono">
+                                <option value="TIER_1">TIER_1 (골드 파트너 - 기본)</option>
+                                <option value="TIER_2">TIER_2 (실버 파트너)</option>
+                                <option value="TIER_3">TIER_3 (일반 파트너)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="formShippingAddress" class="block text-xs font-medium text-slate-300 mb-1">배송지 주소 (상세주소)</label>
+                            <input type="text" id="formShippingAddress"
+                                   class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald"
+                                   placeholder="제품 출하/배송지 주소">
+                        </div>
                     </div>
                 </div>
 
@@ -316,6 +324,40 @@
                     </div>
                 </div>
 
+                <!-- 6. 본사 특이사항 (기타/비고 - 총괄관리자 SUPER_ADMIN 전용) -->
+                <div id="superAdminNotesGroup" class="space-y-3 p-3.5 rounded-xl bg-brand-dark/90 border border-brand-gold/30">
+                    <div class="flex items-center justify-between">
+                        <div class="text-[11px] font-mono text-brand-gold flex items-center space-x-1 font-semibold">
+                            <span class="material-symbols-outlined text-sm">shield_person</span>
+                            <span>본사 특이사항 관리 (총괄관리자 권한)</span>
+                        </div>
+                        <span id="superAdminBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-gold/15 text-brand-gold border border-brand-gold/30">
+                            SUPER_ADMIN 전용
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="formNotes" class="block text-xs font-medium text-slate-300 mb-1 flex items-center justify-between">
+                                <span>기타사항 (Notes)</span>
+                                <span id="notesNotice" class="text-[10px] font-mono"></span>
+                            </label>
+                            <textarea id="formNotes" rows="3"
+                                      class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-sans disabled:bg-slate-900/60 disabled:text-slate-500 disabled:cursor-not-allowed resize-none"
+                                      placeholder="거래처 특성, 결제 조건, 담당자 메모 등"></textarea>
+                        </div>
+                        <div>
+                            <label for="formRemarks" class="block text-xs font-medium text-slate-300 mb-1 flex items-center justify-between">
+                                <span>비고사항 (Remarks)</span>
+                                <span id="remarksNotice" class="text-[10px] font-mono"></span>
+                            </label>
+                            <textarea id="formRemarks" rows="3"
+                                      class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-sans disabled:bg-slate-900/60 disabled:text-slate-500 disabled:cursor-not-allowed resize-none"
+                                      placeholder="주의사항, 특약사항, 배송 요청사항 등"></textarea>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 모달 에러/안내 메시지 -->
                 <div id="modalAlert" class="hidden text-xs rounded-lg p-2.5 font-mono"></div>
 
@@ -341,6 +383,7 @@
     <script>
         let allUsers = [];
         let currentFilter = '';
+        let currentUser = null;
 
         // 1. 세션 확인
         async function checkSession() {
@@ -352,7 +395,9 @@
                     window.location.href = 'index.html';
                     return;
                 }
-                document.getElementById('userNameText').textContent = data.user.name || data.user.username;
+                currentUser = data.user;
+                const roleBadge = data.user.role === 'SUPER_ADMIN' ? ' [총괄관리자]' : ` [${data.user.role}]`;
+                document.getElementById('userNameText').textContent = (data.user.name || data.user.username) + roleBadge;
             } catch (e) {
                 window.location.href = 'index.html';
             }
@@ -431,7 +476,10 @@
                            (u.name || '').toLowerCase().includes(searchKeyword) ||
                            (u.company_name || '').toLowerCase().includes(searchKeyword) ||
                            (u.email || '').toLowerCase().includes(searchKeyword) ||
-                           (u.phone || '').includes(searchKeyword);
+                           (u.phone || '').includes(searchKeyword) ||
+                           (u.shipping_address || '').toLowerCase().includes(searchKeyword) ||
+                           (u.notes || '').toLowerCase().includes(searchKeyword) ||
+                           (u.remarks || '').toLowerCase().includes(searchKeyword);
                 });
             }
 
@@ -455,11 +503,31 @@
                     statusBadge = `<span class="inline-flex items-center gap-1 text-red-400 font-mono text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>정지</span>`;
                 }
 
-                const companyText = user.company_name ? `<div class="text-[11px] text-brand-slateText font-medium">${user.company_name}</div>` : `<div class="text-[11px] text-slate-500 font-mono">-</div>`;
-                const bizText = user.business_number ? `<div class="text-[11px] text-slate-400 font-mono">ABN: ${user.business_number}</div>` : '';
-                const phoneText = user.phone ? `<div class="font-mono text-slate-300">${user.phone}</div>` : `<div class="text-slate-500 font-mono">-</div>`;
+                const companyText = user.company_name ? `<div class="text-[11px] text-brand-slateText font-medium">${escapeHtml(user.company_name)}</div>` : `<div class="text-[11px] text-slate-500 font-mono">-</div>`;
+                const bizText = user.business_number ? `<div class="text-[11px] text-slate-400 font-mono">ABN: ${escapeHtml(user.business_number)}</div>` : '';
+                const phoneText = user.phone ? `<div class="font-mono text-slate-300">${escapeHtml(user.phone)}</div>` : `<div class="text-slate-500 font-mono">-</div>`;
                 const tierText = !isAdmin && user.tier ? `<span class="text-[10px] text-slate-400 font-mono">/ ${user.tier}</span>` : '';
                 const lastLogin = user.last_login_at ? `<span class="font-mono text-[11px] text-slate-400">${user.last_login_at.substring(0, 16)}</span>` : `<span class="text-slate-500 font-mono text-[11px]">기록 없음</span>`;
+
+                // 배송지 주소 표시
+                const shippingText = user.shipping_address 
+                    ? `<div class="text-[11px] text-slate-300 flex items-start gap-1 mt-1 font-sans" title="${escapeHtml(user.shipping_address)}">
+                           <span class="material-symbols-outlined text-[13px] text-brand-emerald shrink-0 mt-0.5">local_shipping</span>
+                           <span class="truncate max-w-[190px]">${escapeHtml(user.shipping_address)}</span>
+                       </div>`
+                    : '';
+
+                // 기타/비고 특이사항 뱃지 표시
+                let memoBadge = '';
+                if (user.notes || user.remarks) {
+                    const preview = [user.notes ? `[기타] ${user.notes}` : '', user.remarks ? `[비고] ${user.remarks}` : ''].filter(Boolean).join(' | ');
+                    memoBadge = `<div class="mt-1">
+                                    <span title="${escapeHtml(preview)}" class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-brand-gold/15 text-brand-gold text-[10px] font-mono border border-brand-gold/30 cursor-help">
+                                        <span class="material-symbols-outlined text-[11px]">sticky_note_2</span>
+                                        <span>특이사항</span>
+                                    </span>
+                                 </div>`;
+                }
 
                 // 승인대기 상태일 때 승인 버튼 노출
                 const approveBtn = user.status === 'PENDING'
@@ -476,10 +544,12 @@
                         <td class="py-3 px-4">
                             <div class="font-bold text-white font-mono">${escapeHtml(user.username)}</div>
                             <div class="text-[11px] text-slate-400 font-mono">${escapeHtml(user.email)}</div>
+                            ${memoBadge}
                         </td>
                         <td class="py-3 px-4">
                             <div class="font-medium text-slate-100">${escapeHtml(user.name)}</div>
                             ${companyText}
+                            ${shippingText}
                         </td>
                         <td class="py-3 px-4">
                             ${phoneText}
@@ -507,6 +577,36 @@
             }).join('');
         }
 
+        // 총괄관리자(SUPER_ADMIN) 전용 필드(기타/비고) 제어 헬퍼
+        function updateSuperAdminPermission() {
+            const isSuperAdmin = currentUser && currentUser.role === 'SUPER_ADMIN';
+            const notesElem = document.getElementById('formNotes');
+            const remarksElem = document.getElementById('formRemarks');
+            const notesNotice = document.getElementById('notesNotice');
+            const remarksNotice = document.getElementById('remarksNotice');
+            const badge = document.getElementById('superAdminBadge');
+
+            if (isSuperAdmin) {
+                notesElem.disabled = false;
+                remarksElem.disabled = false;
+                notesNotice.textContent = '총괄관리자 입력 가능';
+                notesNotice.className = 'text-[10px] text-brand-emerald font-mono';
+                remarksNotice.textContent = '총괄관리자 입력 가능';
+                remarksNotice.className = 'text-[10px] text-brand-emerald font-mono';
+                badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-brand-emerald/15 text-brand-emerald border border-brand-emerald/40 font-bold';
+                badge.textContent = '총괄관리자 권한 확인됨 (수정 가능)';
+            } else {
+                notesElem.disabled = true;
+                remarksElem.disabled = true;
+                notesNotice.textContent = '총괄관리자만 입력/수정 가능 (읽기 전용)';
+                notesNotice.className = 'text-[10px] text-amber-400 font-mono';
+                remarksNotice.textContent = '총괄관리자만 입력/수정 가능 (읽기 전용)';
+                remarksNotice.className = 'text-[10px] text-amber-400 font-mono';
+                badge.className = 'text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700';
+                badge.textContent = '총괄관리자 전용 (읽기 전용)';
+            }
+        }
+
         // 7. 모달 열기 (신규 추가)
         function openCreateModal() {
             document.getElementById('modalTitle').textContent = '신규 사용자 추가';
@@ -521,6 +621,9 @@
             document.getElementById('formCompanyName').value = '';
             document.getElementById('formBizNumber').value = '';
             document.getElementById('formPhone').value = '';
+            document.getElementById('formShippingAddress').value = '';
+            document.getElementById('formNotes').value = '';
+            document.getElementById('formRemarks').value = '';
             document.getElementById('formRole').value = 'ADMIN';
             document.getElementById('formTier').value = 'TIER_1';
             document.getElementById('formStatus').value = 'ACTIVE';
@@ -528,6 +631,7 @@
             // 라디오버튼 ADMIN 기본
             document.querySelector('input[name="user_type"][value="ADMIN"]').checked = true;
             toggleClientFields();
+            updateSuperAdminPermission();
 
             hideModalAlert();
             document.getElementById('userModal').classList.remove('hidden');
@@ -550,6 +654,9 @@
             document.getElementById('formCompanyName').value = user.company_name || '';
             document.getElementById('formBizNumber').value = user.business_number || '';
             document.getElementById('formPhone').value = user.phone || '';
+            document.getElementById('formShippingAddress').value = user.shipping_address || '';
+            document.getElementById('formNotes').value = user.notes || '';
+            document.getElementById('formRemarks').value = user.remarks || '';
             document.getElementById('formRole').value = user.role || (user.user_type === 'ADMIN' ? 'ADMIN' : 'CLIENT');
             document.getElementById('formTier').value = user.tier || 'TIER_1';
             document.getElementById('formStatus').value = user.status || 'ACTIVE';
@@ -558,6 +665,7 @@
             const radio = document.querySelector(`input[name="user_type"][value="${user.user_type}"]`);
             if (radio) radio.checked = true;
             toggleClientFields();
+            updateSuperAdminPermission();
 
             hideModalAlert();
             document.getElementById('userModal').classList.remove('hidden');
@@ -614,6 +722,7 @@
             const companyName = document.getElementById('formCompanyName').value.trim();
             const bizNumber = document.getElementById('formBizNumber').value.trim();
             const phone = document.getElementById('formPhone').value.trim();
+            const shippingAddress = document.getElementById('formShippingAddress').value.trim();
             const role = document.getElementById('formRole').value;
             const tier = document.getElementById('formTier').value;
             const status = document.getElementById('formStatus').value;
@@ -629,10 +738,18 @@
                 company_name: companyName,
                 business_number: bizNumber,
                 phone: phone,
+                shipping_address: shippingAddress,
                 role: role,
                 tier: tier,
                 status: status
             };
+
+            // 총괄관리자(SUPER_ADMIN) 권한이 있는 경우에만 기타사항/비고사항 payload 포함
+            const isSuperAdmin = currentUser && currentUser.role === 'SUPER_ADMIN';
+            if (isSuperAdmin) {
+                payload.notes = document.getElementById('formNotes').value.trim();
+                payload.remarks = document.getElementById('formRemarks').value.trim();
+            }
 
             const submitBtn = document.getElementById('modalSubmitBtn');
             submitBtn.disabled = true;

@@ -32,7 +32,7 @@ try {
         $filterType = $_GET['user_type'] ?? '';
         $search = trim($_GET['search'] ?? '');
 
-        $sql = "SELECT id, user_type, username, email, name, company_name, business_number, phone, role, tier, status, last_login_at, created_at, updated_at 
+        $sql = "SELECT id, user_type, username, email, name, company_name, business_number, phone, shipping_address, role, tier, notes, remarks, status, last_login_at, created_at, updated_at 
                 FROM users WHERE 1=1";
         $params = [];
 
@@ -42,7 +42,7 @@ try {
         }
 
         if (!empty($search)) {
-            $sql .= " AND (username LIKE :search OR name LIKE :search OR company_name LIKE :search OR email LIKE :search OR phone LIKE :search)";
+            $sql .= " AND (username LIKE :search OR name LIKE :search OR company_name LIKE :search OR email LIKE :search OR phone LIKE :search OR shipping_address LIKE :search)";
             $params[':search'] = '%' . $search . '%';
         }
 
@@ -70,9 +70,15 @@ try {
         $companyName = trim($jsonInput['company_name'] ?? '');
         $bizNumber = trim($jsonInput['business_number'] ?? '');
         $phone = trim($jsonInput['phone'] ?? '');
+        $shippingAddress = trim($jsonInput['shipping_address'] ?? '');
         $role = trim($jsonInput['role'] ?? '');
         $tier = trim($jsonInput['tier'] ?? 'TIER_1');
         $status = trim($jsonInput['status'] ?? 'ACTIVE');
+
+        // 기타사항 및 비고사항은 오직 SUPER_ADMIN(총괄관리자)만 입력 가능
+        $isSuperAdmin = !empty($_SESSION['role']) && $_SESSION['role'] === 'SUPER_ADMIN';
+        $notes = $isSuperAdmin ? trim($jsonInput['notes'] ?? '') : null;
+        $remarks = $isSuperAdmin ? trim($jsonInput['remarks'] ?? '') : null;
 
         if (!in_array($userType, ['ADMIN', 'CLIENT'])) {
             echo json_encode(['success' => false, 'message' => '구분(관리자/거래처)을 올바르게 선택해 주세요.']);
@@ -103,8 +109,8 @@ try {
             $role = ($userType === 'ADMIN') ? 'ADMIN' : 'CLIENT';
         }
 
-        $insertSql = "INSERT INTO users (user_type, username, email, password, name, company_name, business_number, phone, role, tier, status)
-                      VALUES (:user_type, :username, :email, :password, :name, :company_name, :business_number, :phone, :role, :tier, :status)";
+        $insertSql = "INSERT INTO users (user_type, username, email, password, name, company_name, business_number, phone, shipping_address, role, tier, notes, remarks, status)
+                      VALUES (:user_type, :username, :email, :password, :name, :company_name, :business_number, :phone, :shipping_address, :role, :tier, :notes, :remarks, :status)";
         $insertStmt = $conn->prepare($insertSql);
         $insertStmt->execute([
             ':user_type' => $userType,
@@ -115,8 +121,11 @@ try {
             ':company_name' => !empty($companyName) ? $companyName : null,
             ':business_number' => !empty($bizNumber) ? $bizNumber : null,
             ':phone' => !empty($phone) ? $phone : null,
+            ':shipping_address' => !empty($shippingAddress) ? $shippingAddress : null,
             ':role' => $role,
             ':tier' => in_array($tier, ['TIER_1', 'TIER_2', 'TIER_3']) ? $tier : 'TIER_1',
+            ':notes' => !empty($notes) ? $notes : null,
+            ':remarks' => !empty($remarks) ? $remarks : null,
             ':status' => in_array($status, ['ACTIVE', 'PENDING', 'SUSPENDED']) ? $status : 'ACTIVE'
         ]);
 
@@ -152,10 +161,25 @@ try {
         $companyName = trim($jsonInput['company_name'] ?? $existing['company_name']);
         $bizNumber = trim($jsonInput['business_number'] ?? $existing['business_number']);
         $phone = trim($jsonInput['phone'] ?? $existing['phone']);
+        $shippingAddress = trim($jsonInput['shipping_address'] ?? ($existing['shipping_address'] ?? ''));
         $role = trim($jsonInput['role'] ?? $existing['role']);
         $tier = trim($jsonInput['tier'] ?? $existing['tier']);
         $status = trim($jsonInput['status'] ?? $existing['status']);
         $password = trim($jsonInput['password'] ?? '');
+
+        // 기타사항(notes) 및 비고사항(remarks)은 오직 SUPER_ADMIN(총괄관리자)만 수정 가능
+        $isSuperAdmin = !empty($_SESSION['role']) && $_SESSION['role'] === 'SUPER_ADMIN';
+        $notes = $existing['notes'];
+        $remarks = $existing['remarks'];
+
+        if ($isSuperAdmin) {
+            if (array_key_exists('notes', $jsonInput)) {
+                $notes = trim($jsonInput['notes'] ?? '');
+            }
+            if (array_key_exists('remarks', $jsonInput)) {
+                $remarks = trim($jsonInput['remarks'] ?? '');
+            }
+        }
 
         // 이메일 중복 체크 (타 사용자와 중복 방지)
         if ($email !== $existing['email']) {
@@ -174,8 +198,11 @@ try {
             'company_name' => !empty($companyName) ? $companyName : null,
             'business_number' => !empty($bizNumber) ? $bizNumber : null,
             'phone' => !empty($phone) ? $phone : null,
+            'shipping_address' => !empty($shippingAddress) ? $shippingAddress : null,
             'role' => $role,
             'tier' => in_array($tier, ['TIER_1', 'TIER_2', 'TIER_3']) ? $tier : 'TIER_1',
+            'notes' => !empty($notes) ? $notes : null,
+            'remarks' => !empty($remarks) ? $remarks : null,
             'status' => in_array($status, ['ACTIVE', 'PENDING', 'SUSPENDED']) ? $status : 'ACTIVE'
         ];
 
@@ -187,8 +214,11 @@ try {
                 company_name = :company_name,
                 business_number = :business_number,
                 phone = :phone,
+                shipping_address = :shipping_address,
                 role = :role,
                 tier = :tier,
+                notes = :notes,
+                remarks = :remarks,
                 status = :status";
 
         $params = [];

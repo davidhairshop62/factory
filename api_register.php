@@ -24,6 +24,7 @@ $username = trim($input['username'] ?? '');
 $email = trim($input['email'] ?? '');
 $password = trim($input['password'] ?? '');
 $phone = trim($input['phone'] ?? '');
+$shippingAddress = trim($input['shipping_address'] ?? '');
 
 // 필수 항목 검증
 if (empty($companyName)) {
@@ -91,6 +92,7 @@ try {
                     company_name, 
                     business_number, 
                     phone, 
+                    shipping_address, 
                     role, 
                     tier, 
                     status
@@ -103,6 +105,7 @@ try {
                     :company_name, 
                     :business_number, 
                     :phone, 
+                    :shipping_address, 
                     'CLIENT', 
                     'TIER_1', 
                     'PENDING'
@@ -116,7 +119,8 @@ try {
         ':name' => $name,
         ':company_name' => $companyName,
         ':business_number' => !empty($businessNumber) ? $businessNumber : null,
-        ':phone' => $phone
+        ':phone' => $phone,
+        ':shipping_address' => !empty($shippingAddress) ? $shippingAddress : null
     ]);
 
     $newId = (int)$conn->lastInsertId();
@@ -134,3 +138,4 @@ try {
         'message' => '데이터베이스 처리 중 오류가 발생했습니다: ' . $e->getMessage()
     ]);
 }
+
