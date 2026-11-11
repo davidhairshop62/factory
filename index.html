@@ -134,6 +134,19 @@
                     <span id="btnText">로그인</span>
                     <span class="material-symbols-outlined text-base font-bold">arrow_forward</span>
                 </button>
+
+                <div class="relative flex py-1 items-center">
+                    <div class="flex-grow border-t border-brand-border/60"></div>
+                    <span class="flex-shrink mx-3 text-[11px] text-slate-500 font-mono">또는</span>
+                    <div class="flex-grow border-t border-brand-border/60"></div>
+                </div>
+
+                <!-- 거래처 신청 버튼 -->
+                <button type="button" onclick="openRegisterModal()"
+                        class="w-full py-2.5 px-4 rounded-lg bg-brand-emerald/10 hover:bg-brand-emerald/20 border border-brand-emerald/40 text-brand-emerald font-display font-semibold text-xs tracking-wide transition-all flex items-center justify-center space-x-1.5 active:scale-[0.99]">
+                    <span class="material-symbols-outlined text-base">domain_add</span>
+                    <span>거래처 가입 신청 (B2B Partner)</span>
+                </button>
             </form>
 
             <!-- 권한별 분기 안내 가이드 -->
@@ -148,6 +161,121 @@
     <footer class="w-full max-w-md mx-auto text-center text-[11px] font-mono text-slate-500 py-3">
         Factory ERP &copy; 2026 David Hair Shop. All rights reserved.
     </footer>
+
+    <!-- 거래처 가입 신청 모달 -->
+    <div id="registerModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-brand-card border border-brand-border rounded-2xl w-full max-w-lg shadow-2xl p-6 sm:p-7 relative my-8">
+            <!-- 닫기 버튼 -->
+            <button type="button" onclick="closeRegisterModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg">
+                <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+
+            <!-- 헤더 -->
+            <div class="flex items-center space-x-2.5 mb-5">
+                <div class="w-10 h-10 rounded-xl bg-brand-emerald/15 border border-brand-emerald/30 text-brand-emerald flex items-center justify-center">
+                    <span class="material-symbols-outlined text-xl">store</span>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-lg text-white">신규 거래처 가입 신청</h3>
+                    <p class="text-xs text-brand-slateText mt-0.5">신청 후 본사 관리자 승인 시 즉시 발주 및 시스템 이용이 가능합니다.</p>
+                </div>
+            </div>
+
+            <!-- 신청 폼 -->
+            <form id="registerForm" onsubmit="handleRegister(event)" class="space-y-3.5">
+                <!-- 상호명 & 사업자번호 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="regCompanyName" class="block text-xs font-medium text-slate-300 mb-1">상호명 (살롱명) *</label>
+                        <input type="text" id="regCompanyName" required
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald"
+                               placeholder="예: 청담 프리미엄 살롱">
+                    </div>
+                    <div>
+                        <label for="regBizNumber" class="block text-xs font-medium text-slate-300 mb-1">사업자등록번호 (ABN)</label>
+                        <input type="text" id="regBizNumber"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                               placeholder="000-00-00000">
+                    </div>
+                </div>
+
+                <!-- 대표자명 & 연락처 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="regName" class="block text-xs font-medium text-slate-300 mb-1">대표자 / 원장 성명 *</label>
+                        <input type="text" id="regName" required
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald"
+                               placeholder="예: 홍길동 원장">
+                    </div>
+                    <div>
+                        <label for="regPhone" class="block text-xs font-medium text-slate-300 mb-1">연락처 (전화번호) *</label>
+                        <input type="text" id="regPhone" required
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                               placeholder="010-0000-0000">
+                    </div>
+                </div>
+
+                <!-- 아이디 & 이메일 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="regUsername" class="block text-xs font-medium text-slate-300 mb-1">희망 로그인 아이디 *</label>
+                        <input type="text" id="regUsername" required minlength="3"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                               placeholder="영문/숫자 3자 이상">
+                    </div>
+                    <div>
+                        <label for="regEmail" class="block text-xs font-medium text-slate-300 mb-1">이메일 주소 *</label>
+                        <input type="email" id="regEmail" required
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                               placeholder="salon@example.com">
+                    </div>
+                </div>
+
+                <!-- 비밀번호 & 비밀번호 확인 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="regPassword" class="block text-xs font-medium text-slate-300 mb-1">로그인 비밀번호 *</label>
+                        <input type="password" id="regPassword" required minlength="4"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                               placeholder="4자 이상">
+                    </div>
+                    <div>
+                        <label for="regPasswordConfirm" class="block text-xs font-medium text-slate-300 mb-1">비밀번호 확인 *</label>
+                        <input type="password" id="regPasswordConfirm" required minlength="4"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                               placeholder="비밀번호 재입력">
+                    </div>
+                </div>
+
+                <!-- 모달 결과 알림창 -->
+                <div id="regAlertBox" class="hidden text-xs rounded-lg p-3 font-mono"></div>
+
+                <!-- 승인 절차 안내 -->
+                <div class="bg-brand-dark/70 border border-brand-border/60 rounded-xl p-3 text-[11px] text-slate-400 space-y-1 font-mono">
+                    <div class="text-brand-emerald font-semibold flex items-center space-x-1">
+                        <span class="material-symbols-outlined text-sm">verified_user</span>
+                        <span>거래처 승인 절차 안내</span>
+                    </div>
+                    <div>1. 거래처 가입 신청 제출 (상태: <span class="text-amber-400 font-bold">승인 대기</span>)</div>
+                    <div>2. 본사 관리자 검토 후 계정 승인(ACTIVE) 처리</div>
+                    <div>3. 승인 즉시 신청하신 아이디/비밀번호로 로그인 가능</div>
+                </div>
+
+                <!-- 제출 버튼 -->
+                <div class="flex items-center justify-end space-x-2 pt-2">
+                    <button type="button" onclick="closeRegisterModal()"
+                            class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition-colors">
+                        취소
+                    </button>
+                    <button type="submit" id="regSubmitBtn"
+                            class="px-5 py-2 rounded-lg bg-brand-emerald hover:bg-emerald-600 text-brand-dark font-display font-bold text-xs tracking-wide transition-all shadow-md shadow-brand-emerald/20 flex items-center space-x-1">
+                        <span id="regBtnText">거래처 신청 제출</span>
+                        <span class="material-symbols-outlined text-base">send</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- 자바스크립트 로직 -->
     <script>
@@ -232,6 +360,99 @@
                 btnText.textContent = '로그인';
                 alertBox.className = 'text-xs rounded-lg p-3 font-mono bg-red-950/60 border border-red-500/50 text-red-300 block';
                 alertBox.textContent = '✗ 서버와의 통신 중 오류가 발생했습니다.';
+            }
+        }
+
+        // 거래처 가입 모달 열기
+        function openRegisterModal() {
+            document.getElementById('registerForm').reset();
+            const alert = document.getElementById('regAlertBox');
+            alert.className = 'hidden';
+            alert.textContent = '';
+            document.getElementById('registerModal').classList.remove('hidden');
+        }
+
+        // 거래처 가입 모달 닫기
+        function closeRegisterModal() {
+            document.getElementById('registerModal').classList.add('hidden');
+        }
+
+        // 모달 내 알림 표시
+        function showRegAlert(msg, isSuccess = false) {
+            const alert = document.getElementById('regAlertBox');
+            if (isSuccess) {
+                alert.className = 'text-xs rounded-lg p-3 font-mono bg-emerald-950/70 border border-brand-emerald/50 text-brand-emerald block';
+                alert.innerHTML = '<strong>✓ ' + msg + '</strong>';
+            } else {
+                alert.className = 'text-xs rounded-lg p-3 font-mono bg-red-950/70 border border-red-500/50 text-red-300 block';
+                alert.innerHTML = '<strong>✗ ' + msg + '</strong>';
+            }
+        }
+
+        // 거래처 가입 신청 제출 처리
+        async function handleRegister(e) {
+            e.preventDefault();
+            const companyName = document.getElementById('regCompanyName').value.trim();
+            const businessNumber = document.getElementById('regBizNumber').value.trim();
+            const name = document.getElementById('regName').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const username = document.getElementById('regUsername').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const passwordConfirm = document.getElementById('regPasswordConfirm').value;
+
+            if (password !== passwordConfirm) {
+                showRegAlert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+                return;
+            }
+
+            const regSubmitBtn = document.getElementById('regSubmitBtn');
+            const regBtnText = document.getElementById('regBtnText');
+            regSubmitBtn.disabled = true;
+            regBtnText.textContent = '신청 처리 중...';
+
+            try {
+                const res = await fetch('api_register.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        company_name: companyName,
+                        business_number: businessNumber,
+                        name: name,
+                        phone: phone,
+                        username: username,
+                        email: email,
+                        password: password
+                    })
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    showRegAlert(data.message, true);
+                    
+                    // 로그인 폼의 아이디 자동 채우기 및 패스워드 초기화
+                    document.getElementById('username').value = username;
+                    document.getElementById('password').value = '';
+
+                    const mainAlert = document.getElementById('alertBox');
+                    mainAlert.className = 'text-xs rounded-lg p-3 font-mono bg-brand-emerald/20 border border-brand-emerald/50 text-brand-emerald block';
+                    mainAlert.innerHTML = `<strong>[가입 신청 완료]</strong> 아이디: <span class="text-white font-bold">${username}</span><br>관리자 승인 후 로그인하실 수 있습니다.`;
+
+                    setTimeout(() => {
+                        closeRegisterModal();
+                        regSubmitBtn.disabled = false;
+                        regBtnText.textContent = '거래처 신청 제출';
+                    }, 1800);
+                } else {
+                    regSubmitBtn.disabled = false;
+                    regBtnText.textContent = '거래처 신청 제출';
+                    showRegAlert(data.message || '가입 신청 처리에 실패했습니다.');
+                }
+            } catch (err) {
+                regSubmitBtn.disabled = false;
+                regBtnText.textContent = '거래처 신청 제출';
+                showRegAlert('서버 통신 중 오류가 발생했습니다.');
             }
         }
     </script>

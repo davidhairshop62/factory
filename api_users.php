@@ -242,9 +242,41 @@ try {
         exit;
     }
 
+    // 5. 거래처 가입 승인 (action=approve)
+    if ($action === 'approve') {
+        $id = (int)($jsonInput['id'] ?? 0);
+        if ($id <= 0) {
+            echo json_encode(['success' => false, 'message' => '유효하지 않은 사용자 ID입니다.']);
+            exit;
+        }
+
+        $approveStmt = $conn->prepare("UPDATE users SET status = 'ACTIVE' WHERE id = :id");
+        $approveStmt->execute([':id' => $id]);
+
+        if ($approveStmt->rowCount() > 0) {
+            echo json_encode([
+                'success' => true,
+                'message' => '거래처 계정이 성공적으로 승인되었습니다. 이제 해당 계정으로 로그인이 가능합니다.'
+            ]);
+        } else {
+            $checkStmt = $conn->prepare("SELECT status FROM users WHERE id = :id");
+            $checkStmt->execute([':id' => $id]);
+            $u = $checkStmt->fetch(PDO::FETCH_ASSOC);
+            if (!$u) {
+                echo json_encode(['success' => false, 'message' => '사용자를 찾을 수 없습니다.']);
+            } else if ($u['status'] === 'ACTIVE') {
+                echo json_encode(['success' => true, 'message' => '이미 활성화(승인)된 계정입니다.']);
+            } else {
+                echo json_encode(['success' => false, 'message' => '계정 상태를 승인할 수 없습니다.']);
+            }
+        }
+        exit;
+    }
+
     echo json_encode(['success' => false, 'message' => '지원하지 않는 액션입니다.']);
 
 } catch (PDOException $e) {
     echo json_encode(['success' => false, 'message' => '데이터베이스 오류: ' . $e->getMessage()]);
 }
 ?>
+

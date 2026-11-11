@@ -88,7 +88,7 @@ try {
         'message' => '로그인 성공',
         'redirect_url' => $redirectUrl,
         'user' => [
-            'id' => (int)$user['id'],
+            'id' => (int) $user['id'],
             'user_type' => $user['user_type'],
             'username' => $user['username'],
             'name' => $user['name'],
@@ -102,4 +102,3 @@ try {
     echo json_encode(['success' => false, 'message' => '데이터베이스 오류: ' . $e->getMessage()]);
 }
 ?>
-

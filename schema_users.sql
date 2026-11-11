@@ -26,3 +26,4 @@ CREATE TABLE IF NOT EXISTS `users` (
     INDEX `idx_role` (`role`),
     INDEX `idx_company_name` (`company_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='통합 사용자 계정 테이블';
+

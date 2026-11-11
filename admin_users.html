@@ -122,7 +122,7 @@
 
         <!-- 필터 & 검색 툴바 -->
         <div class="bg-brand-card border border-brand-border rounded-xl p-4 mb-6 flex flex-col md:flex-row items-center justify-between gap-3">
-            <!-- 탭 필터 (전체 / 관리자 / 거래처) -->
+            <!-- 탭 필터 (전체 / 관리자 / 거래처 / 승인대기) -->
             <div class="flex items-center space-x-1 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
                 <button type="button" onclick="setFilter('')" id="tab-all"
                         class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-brand-gold/15 text-brand-gold border border-brand-gold/30">
@@ -135,6 +135,11 @@
                 <button type="button" onclick="setFilter('CLIENT')" id="tab-client"
                         class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-brand-slateText hover:text-white hover:bg-brand-cardHover border border-transparent">
                     거래처 (<span id="count-client">0</span>)
+                </button>
+                <button type="button" onclick="setFilter('PENDING')" id="tab-pending"
+                        class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-brand-slateText hover:text-white hover:bg-brand-cardHover border border-transparent flex items-center space-x-1">
+                    <span>승인대기</span>
+                    <span id="count-pending" class="px-1.5 py-0.2 rounded-full bg-amber-500/20 text-amber-400 font-bold text-[10px]">0</span>
                 </button>
             </div>
 
@@ -379,6 +384,7 @@
             document.getElementById('count-all').textContent = allUsers.length;
             document.getElementById('count-admin').textContent = allUsers.filter(u => u.user_type === 'ADMIN').length;
             document.getElementById('count-client').textContent = allUsers.filter(u => u.user_type === 'CLIENT').length;
+            document.getElementById('count-pending').textContent = allUsers.filter(u => u.status === 'PENDING').length;
         }
 
         // 4. 필터 탭 전환
@@ -387,8 +393,18 @@
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.className = 'tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-brand-slateText hover:text-white hover:bg-brand-cardHover border border-transparent';
             });
-            const activeId = type === '' ? 'tab-all' : (type === 'ADMIN' ? 'tab-admin' : 'tab-client');
-            const activeColor = type === 'CLIENT' ? 'text-brand-emerald bg-brand-emerald/15 border-brand-emerald/30' : 'text-brand-gold bg-brand-gold/15 border-brand-gold/30';
+            let activeId = 'tab-all';
+            let activeColor = 'text-brand-gold bg-brand-gold/15 border-brand-gold/30';
+            if (type === 'ADMIN') {
+                activeId = 'tab-admin';
+                activeColor = 'text-brand-gold bg-brand-gold/15 border-brand-gold/30';
+            } else if (type === 'CLIENT') {
+                activeId = 'tab-client';
+                activeColor = 'text-brand-emerald bg-brand-emerald/15 border-brand-emerald/30';
+            } else if (type === 'PENDING') {
+                activeId = 'tab-pending';
+                activeColor = 'text-amber-400 bg-amber-400/15 border-amber-400/30';
+            }
             document.getElementById(activeId).className = `tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border ${activeColor}`;
             renderTable();
         }
@@ -404,7 +420,9 @@
             const searchKeyword = document.getElementById('searchInput').value.trim().toLowerCase();
 
             let filtered = allUsers;
-            if (currentFilter) {
+            if (currentFilter === 'PENDING') {
+                filtered = filtered.filter(u => u.status === 'PENDING');
+            } else if (currentFilter) {
                 filtered = filtered.filter(u => u.user_type === currentFilter);
             }
             if (searchKeyword) {
@@ -432,26 +450,35 @@
                 if (user.status === 'ACTIVE') {
                     statusBadge = `<span class="inline-flex items-center gap-1 text-brand-emerald font-mono text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>정상</span>`;
                 } else if (user.status === 'PENDING') {
-                    statusBadge = `<span class="inline-flex items-center gap-1 text-brand-gold font-mono text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>승인대기</span>`;
+                    statusBadge = `<span class="inline-flex items-center gap-1 text-brand-gold font-mono text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>승인대기</span>`;
                 } else {
                     statusBadge = `<span class="inline-flex items-center gap-1 text-red-400 font-mono text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>정지</span>`;
                 }
 
-                const companyText = user.company_name ? `<div class="text-[11px] text-brand-slateText">${user.company_name}</div>` : `<div class="text-[11px] text-slate-500 font-mono">-</div>`;
+                const companyText = user.company_name ? `<div class="text-[11px] text-brand-slateText font-medium">${user.company_name}</div>` : `<div class="text-[11px] text-slate-500 font-mono">-</div>`;
                 const bizText = user.business_number ? `<div class="text-[11px] text-slate-400 font-mono">ABN: ${user.business_number}</div>` : '';
                 const phoneText = user.phone ? `<div class="font-mono text-slate-300">${user.phone}</div>` : `<div class="text-slate-500 font-mono">-</div>`;
                 const tierText = !isAdmin && user.tier ? `<span class="text-[10px] text-slate-400 font-mono">/ ${user.tier}</span>` : '';
                 const lastLogin = user.last_login_at ? `<span class="font-mono text-[11px] text-slate-400">${user.last_login_at.substring(0, 16)}</span>` : `<span class="text-slate-500 font-mono text-[11px]">기록 없음</span>`;
 
+                // 승인대기 상태일 때 승인 버튼 노출
+                const approveBtn = user.status === 'PENDING'
+                    ? `<button type="button" onclick="approveUser(${user.id}, '${escapeHtml(user.company_name || user.name || user.username)}')"
+                               class="px-2.5 py-1 rounded bg-brand-emerald hover:bg-emerald-500 text-brand-dark font-bold border border-brand-emerald text-[11px] transition-all shadow-md flex items-center space-x-1 inline-flex">
+                           <span class="material-symbols-outlined text-[13px] font-bold">check_circle</span>
+                           <span>승인</span>
+                       </button>`
+                    : '';
+
                 return `
-                    <tr class="hover:bg-brand-cardHover/60 transition-colors">
+                    <tr class="hover:bg-brand-cardHover/60 transition-colors ${user.status === 'PENDING' ? 'bg-brand-gold/5' : ''}">
                         <td class="py-3 px-4">${typeBadge}</td>
                         <td class="py-3 px-4">
-                            <div class="font-bold text-white font-mono">${user.username}</div>
-                            <div class="text-[11px] text-slate-400 font-mono">${user.email}</div>
+                            <div class="font-bold text-white font-mono">${escapeHtml(user.username)}</div>
+                            <div class="text-[11px] text-slate-400 font-mono">${escapeHtml(user.email)}</div>
                         </td>
                         <td class="py-3 px-4">
-                            <div class="font-medium text-slate-100">${user.name}</div>
+                            <div class="font-medium text-slate-100">${escapeHtml(user.name)}</div>
                             ${companyText}
                         </td>
                         <td class="py-3 px-4">
@@ -465,11 +492,12 @@
                         <td class="py-3 px-4 text-center">${statusBadge}</td>
                         <td class="py-3 px-4">${lastLogin}</td>
                         <td class="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
+                            ${approveBtn}
                             <button type="button" onclick="openEditModal(${user.id})"
                                     class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-medium transition-colors">
                                 수정
                             </button>
-                            <button type="button" onclick="deleteUser(${user.id}, '${user.username}')"
+                            <button type="button" onclick="deleteUser(${user.id}, '${escapeHtml(user.username)}')"
                                     class="px-2.5 py-1 rounded bg-red-950/40 hover:bg-red-900/60 text-red-300 border border-red-500/40 text-[11px] font-medium transition-colors">
                                 삭제
                             </button>
@@ -662,7 +690,42 @@
             }
         }
 
-        // 11. 로그아웃
+        // 11. 거래처 가입 승인
+        async function approveUser(userId, name) {
+            if (!confirm(`[${name}] 거래처의 신청을 승인하시겠습니까?\n승인 즉시 거래처 계정이 활성화(ACTIVE)되어 로그인이 가능해집니다.`)) {
+                return;
+            }
+
+            try {
+                const res = await fetch('api_users.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'approve', id: userId })
+                });
+                const result = await res.json();
+                if (result.success) {
+                    alert(result.message);
+                    await loadUsers();
+                } else {
+                    alert('승인 실패: ' + result.message);
+                }
+            } catch (err) {
+                alert('서버 통신 오류가 발생했습니다.');
+            }
+        }
+
+        // HTML 이스케이프 유틸
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // 12. 로그아웃
         async function handleLogout() {
             if (!confirm('로그아웃 하시겠습니까?')) return;
             try {
@@ -677,3 +740,4 @@
     </script>
 </body>
 </html>
+
