@@ -443,7 +443,8 @@
 
             <!-- 라벨 설정 및 옵션 툴바 -->
             <div class="p-4 bg-brand-dark/80 border-b border-brand-border text-xs space-y-3">
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <!-- 1행: 송장번호 & 중량 (2열) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="block text-[11px] text-slate-400 font-mono mb-1">송장/참조번호 (Ref / Tracking No)</label>
                         <input type="text" id="labelRefNo" oninput="updateLabelPreview()"
@@ -454,11 +455,16 @@
                         <input type="text" id="labelWeight" value="" placeholder="기본 빈칸 (필요 시 직접 입력)" oninput="updateLabelPreview()"
                                class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
                     </div>
-                    <div>
-                        <label class="block text-[11px] text-slate-400 font-mono mb-1">내용물 품목 (Contents Description)</label>
-                        <input type="text" id="labelContents" value="CUSTOM HAIR SYSTEM / WIG PIECES" oninput="updateLabelPreview()"
-                               class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
-                    </div>
+                </div>
+
+                <!-- 2행: 내용물 품목 (다음 줄 전체 너비) -->
+                <div>
+                    <label class="block text-[11px] text-slate-400 font-mono mb-1 flex items-center justify-between">
+                        <span>내용물 품목 (Contents Description)</span>
+                        <span class="text-[10px] text-slate-500 font-mono">해외 세관 신고용 영문 품목</span>
+                    </label>
+                    <input type="text" id="labelContents" value="CUSTOM HAIR SYSTEM / WIG PIECES" oninput="updateLabelPreview()"
+                           class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
                 </div>
 
                 <!-- 영문 주소 누락 시 경고 박스 -->
