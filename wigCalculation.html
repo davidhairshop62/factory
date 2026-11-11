@@ -284,13 +284,61 @@
                 <span class="text-slate-200">항균 베이스 ZyroSen (+$30)</span>
               </label>
               <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="40" class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
-                <span class="text-slate-200">컷트 & 스타일링 (+$40)</span>
-              </label>
-              <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
                 <input type="checkbox" value="59" class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
                 <span class="text-slate-200 font-semibold text-amber-300">급행 제작 Rush (6~7주) (+$59)</span>
               </label>
+            </div>
+          </div>
+
+          <!-- 1.6 부가 서비스 옵션 (Additional Addons) -->
+          <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg space-y-3.5">
+            <div class="flex items-center justify-between pb-2 border-b border-brand-border/60">
+              <label class="text-xs sm:text-sm font-bold text-white flex items-center space-x-2 font-display">
+                <span class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">6</span>
+                <span>부가 서비스 옵션 (Additional Addons)</span>
+              </label>
+              <span class="text-[11px] font-mono text-brand-gold">스타일링 & 부착 옵션</span>
+            </div>
+
+            <!-- 미용 & 커팅 서비스 -->
+            <div class="space-y-2 text-xs">
+              <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" id="customHairCut" value="100" class="rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200 font-medium">전문 미용사 컷트 & 스타일링 (+$100)</span>
+              </label>
+              <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" id="customBaseCut" value="15" class="rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200 font-medium">베이스 치수 맞춤 커팅 서비스 (+$15)</span>
+              </label>
+            </div>
+
+            <!-- 부착 방식 단일 선택 (Bonding Method) -->
+            <div class="pt-2 border-t border-brand-border/60">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] text-brand-gold font-mono font-semibold flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-sm">healing</span>
+                  <span>부착 유지 방식 (Bonding Method - 택 1)</span>
+                </span>
+                <span class="text-[10px] text-slate-500 font-mono">단일 선택</span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                  <input type="radio" name="customBonding" value="0" checked class="text-brand-gold focus:ring-brand-gold mr-2">
+                  <span class="text-slate-400">선택 안함 (+$0)</span>
+                </label>
+                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                  <input type="radio" name="customBonding" value="100" class="text-brand-gold focus:ring-brand-gold mr-2">
+                  <span class="text-slate-200 font-medium">Bonding Glue 4-5 weeks (+$100)</span>
+                </label>
+                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                  <input type="radio" name="customBonding" value="80" class="text-brand-gold focus:ring-brand-gold mr-2">
+                  <span class="text-slate-200 font-medium">Bonding Tape & Glue 3-4 weeks (+$80)</span>
+                </label>
+                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                  <input type="radio" name="customBonding" value="50" class="text-brand-gold focus:ring-brand-gold mr-2">
+                  <span class="text-slate-200 font-medium">Bonding Tape 2-3 weeks (+$50)</span>
+                </label>
+              </div>
             </div>
           </div>
 
@@ -318,20 +366,54 @@
           </div>
 
           <!-- 부가 서비스 옵션 -->
-          <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg">
-            <label class="block text-xs sm:text-sm font-bold text-white mb-2 flex items-center space-x-2 font-display">
-              <span class="w-5 h-5 rounded-md bg-blue-500/15 text-blue-400 text-xs flex items-center justify-center font-mono">2</span>
-              <span>부가 서비스 옵션 (Additional Addons)</span>
-            </label>
-            <div class="space-y-2.5 text-xs">
-              <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+          <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg space-y-3.5">
+            <div class="flex items-center justify-between pb-2 border-b border-brand-border/60">
+              <label class="text-xs sm:text-sm font-bold text-white flex items-center space-x-2 font-display">
+                <span class="w-5 h-5 rounded-md bg-blue-500/15 text-blue-400 text-xs flex items-center justify-center font-mono">2</span>
+                <span>부가 서비스 옵션 (Additional Addons)</span>
+              </label>
+              <span class="text-[11px] font-mono text-blue-400">스타일링 & 부착 옵션</span>
+            </div>
+
+            <!-- 미용 & 커팅 서비스 -->
+            <div class="space-y-2 text-xs">
+              <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                <input type="checkbox" id="stockHairCut" value="100" class="rounded text-blue-500 focus:ring-blue-500 mr-2.5">
+                <span class="text-slate-200 font-medium">전문 미용사 컷트 & 스타일링 (+$100)</span>
+              </label>
+              <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
                 <input type="checkbox" id="stockBaseCut" value="15" class="rounded text-blue-500 focus:ring-blue-500 mr-2.5">
-                <span class="text-slate-200">베이스 치수 맞춤 커팅 서비스 (+$15)</span>
+                <span class="text-slate-200 font-medium">베이스 치수 맞춤 커팅 서비스 (+$15)</span>
               </label>
-              <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
-                <input type="checkbox" id="stockHairCut" value="40" class="rounded text-blue-500 focus:ring-blue-500 mr-2.5">
-                <span class="text-slate-200">전문 미용사 컷트 & 스타일링 (+$40)</span>
-              </label>
+            </div>
+
+            <!-- 부착 방식 단일 선택 (Bonding Method) -->
+            <div class="pt-2 border-t border-brand-border/60">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] text-blue-400 font-mono font-semibold flex items-center space-x-1">
+                  <span class="material-symbols-outlined text-sm">healing</span>
+                  <span>부착 유지 방식 (Bonding Method - 택 1)</span>
+                </span>
+                <span class="text-[10px] text-slate-500 font-mono">단일 선택</span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                  <input type="radio" name="stockBonding" value="0" checked class="text-blue-500 focus:ring-blue-500 mr-2">
+                  <span class="text-slate-400">선택 안함 (+$0)</span>
+                </label>
+                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                  <input type="radio" name="stockBonding" value="100" class="text-blue-500 focus:ring-blue-500 mr-2">
+                  <span class="text-slate-200 font-medium">Bonding Glue 4-5 weeks (+$100)</span>
+                </label>
+                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                  <input type="radio" name="stockBonding" value="80" class="text-blue-500 focus:ring-blue-500 mr-2">
+                  <span class="text-slate-200 font-medium">Bonding Tape & Glue 3-4 weeks (+$80)</span>
+                </label>
+                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                  <input type="radio" name="stockBonding" value="50" class="text-blue-500 focus:ring-blue-500 mr-2">
+                  <span class="text-slate-200 font-medium">Bonding Tape 2-3 weeks (+$50)</span>
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -636,16 +718,25 @@
         addBreakdownRow(`기성 모델: ${modelName}`, `A$ ${(basePrice * rateAUD).toFixed(2)}`, `$${basePrice.toFixed(2)}`);
         totalUSD += basePrice;
 
+        const hairCut = document.getElementById('stockHairCut');
+        if (hairCut && hairCut.checked) {
+          totalUSD += 100;
+          addBreakdownRow('전문 미용사 컷트 & 스타일링', `+A$ ${(100 * rateAUD).toFixed(2)}`, '+$100.00');
+        }
+
         const baseCut = document.getElementById('stockBaseCut');
-        if (baseCut.checked) {
+        if (baseCut && baseCut.checked) {
           totalUSD += 15;
           addBreakdownRow('베이스 맞춤 커팅 서비스', `+A$ ${(15 * rateAUD).toFixed(2)}`, '+$15.00');
         }
 
-        const hairCut = document.getElementById('stockHairCut');
-        if (hairCut.checked) {
-          totalUSD += 40;
-          addBreakdownRow('전문 미용사 컷트 & 스타일링', `+A$ ${(40 * rateAUD).toFixed(2)}`, '+$40.00');
+        // 부착 방식 단일 선택 (Bonding Method)
+        const selectedBonding = document.querySelector('input[name="stockBonding"]:checked');
+        if (selectedBonding && parseFloat(selectedBonding.value) > 0) {
+          const val = parseFloat(selectedBonding.value);
+          const label = selectedBonding.parentElement.querySelector('span').innerText.split(' (')[0];
+          totalUSD += val;
+          addBreakdownRow(`부착 옵션: ${label}`, `+A$ ${(val * rateAUD).toFixed(2)}`, `+$${val.toFixed(2)}`);
         }
 
       } else {
@@ -732,8 +823,32 @@
           }
         }
 
-        // 공식 적용: 최종 금액 = S × (1 + 모질할증율 + 밀도할증율)
-        totalUSD = subtotalFixed * totalMultiplier;
+        // 공식 적용: 맞춤 가발 본체 금액 = S × (1 + 모질할증율 + 밀도할증율)
+        const customProductUSD = subtotalFixed * totalMultiplier;
+
+        // 5. 부가 서비스 옵션 (미용사 컷트, 베이스 커팅, 본딩 글루/테이프)
+        let customServiceUSD = 0;
+        const customHairCut = document.getElementById('customHairCut');
+        if (customHairCut && customHairCut.checked) {
+          customServiceUSD += 100;
+          addBreakdownRow('전문 미용사 컷트 & 스타일링', `+A$ ${(100 * rateAUD).toFixed(2)}`, '+$100.00');
+        }
+
+        const customBaseCut = document.getElementById('customBaseCut');
+        if (customBaseCut && customBaseCut.checked) {
+          customServiceUSD += 15;
+          addBreakdownRow('베이스 맞춤 커팅 서비스', `+A$ ${(15 * rateAUD).toFixed(2)}`, '+$15.00');
+        }
+
+        const selectedCustomBonding = document.querySelector('input[name="customBonding"]:checked');
+        if (selectedCustomBonding && parseFloat(selectedCustomBonding.value) > 0) {
+          const cVal = parseFloat(selectedCustomBonding.value);
+          const cLabel = selectedCustomBonding.parentElement.querySelector('span').innerText.split(' (')[0];
+          customServiceUSD += cVal;
+          addBreakdownRow(`부착 옵션: ${cLabel}`, `+A$ ${(cVal * rateAUD).toFixed(2)}`, `+$${cVal.toFixed(2)}`);
+        }
+
+        totalUSD = customProductUSD + customServiceUSD;
       }
 
       // 통화별 금액 산출
