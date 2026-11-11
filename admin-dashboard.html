@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet">
   <!-- Material Symbols -->
   <link rel="stylesheet"
@@ -35,7 +35,8 @@
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
-            display: ['Outfit', 'sans-serif']
+            display: ['Outfit', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
           }
         }
       }
@@ -68,6 +69,11 @@
           <span class="material-symbols-outlined text-base">dashboard</span>
           <span>대시보드</span>
         </a>
+        <button type="button" onclick="openFactoryModal()"
+          class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
+          <span class="material-symbols-outlined text-base">factory</span>
+          <span>공장 정보 관리</span>
+        </button>
         <a href="admin_users.html"
           class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
           <span class="material-symbols-outlined text-base">manage_accounts</span>
@@ -101,6 +107,7 @@
       <div class="hidden sm:flex items-center space-x-2 text-xs font-mono text-brand-slateText pr-2">
         <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
         <span id="userNameText" class="text-slate-200">총괄관리자</span>
+        <span class="px-1.5 py-0.5 rounded bg-brand-border text-[10px] text-slate-300">ADMIN</span>
       </div>
 
       <!-- 로그아웃 버튼 -->
@@ -113,46 +120,525 @@
   </header>
 
   <!-- 메인 바디 영역 -->
-  <main id="main-content" class="flex-1 w-full max-w-7xl mx-auto p-6 sm:p-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- 사용자 관리 바로가기 카드 -->
-      <div class="bg-brand-card border border-brand-border hover:border-brand-gold/60 rounded-2xl p-6 transition-all shadow-xl group">
-        <div class="w-12 h-12 rounded-xl bg-brand-gold/15 border border-brand-gold/30 flex items-center justify-center text-brand-gold mb-4 group-hover:scale-105 transition-transform">
-          <span class="material-symbols-outlined text-2xl">manage_accounts</span>
+  <main id="main-content" class="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+
+    <!-- 상단 대시보드 배너 -->
+    <div class="bg-gradient-to-r from-brand-card via-brand-cardHover to-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="space-y-1.5">
+        <div class="flex items-center space-x-2">
+          <span class="px-2 py-0.5 rounded-md bg-brand-gold/15 text-brand-gold font-mono text-[11px] font-bold border border-brand-gold/30">
+            HEADQUARTERS FACTORY
+          </span>
+          <span class="flex items-center space-x-1 text-xs font-mono text-brand-emerald">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>
+            <span>시스템 정상 가동 중</span>
+          </span>
         </div>
-        <h2 class="text-lg font-bold text-white font-display">사용자 관리</h2>
-        <p class="text-xs text-brand-slateText mt-1.5 leading-relaxed">
-          본사 관리자(ADMIN) 및 B2B 거래처(CLIENT) 계정의 등록, 권한 변경, 티어 설정 및 삭제를 관리합니다.
+        <h1 class="text-xl sm:text-2xl font-bold font-display text-white tracking-tight flex items-center space-x-2">
+          <span>인도네시아 본사 공장 통합 관제 대시보드</span>
+        </h1>
+        <p class="text-xs text-brand-slateText font-sans">
+          DAVID HAIR (GUDANG RAMBUT) • 맞춤가발 / 헤어피스 글로벌 주문 및 생산 거점
         </p>
-        <div class="mt-6 pt-4 border-t border-brand-border/60 flex items-center justify-between">
-          <span class="text-[11px] font-mono text-brand-slateText">CRUD 통제 기능</span>
-          <a href="admin_users.html"
-             class="px-3.5 py-1.5 rounded-lg bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-display font-bold text-xs flex items-center space-x-1 transition-all">
-            <span>사용자 관리 바로가기</span>
-            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-          </a>
-        </div>
+      </div>
+
+      <!-- 우측 빠른 액션 버튼 -->
+      <div class="flex items-center space-x-2.5">
+        <button type="button" onclick="openFactoryModal()"
+          class="px-4 py-2 rounded-xl bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-display font-bold text-xs flex items-center space-x-1.5 transition-all shadow-lg shadow-brand-gold/10">
+          <span class="material-symbols-outlined text-base">edit_note</span>
+          <span>공장 기본 정보 수정 / 등록</span>
+        </button>
       </div>
     </div>
+
+    <!-- 1. 공장 기본 정보 메인 카드 (Factory Profile) -->
+    <section class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl relative overflow-hidden">
+      <!-- 배경 장식 글로우 -->
+      <div class="absolute -top-12 -right-12 w-48 h-48 bg-brand-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- 카드 헤더 -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-brand-border/80 gap-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-gold/15 border border-brand-gold/30 text-brand-gold flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">factory</span>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <h2 class="text-base sm:text-lg font-bold text-white font-display">공장 기본 정보 (Factory Profile)</h2>
+              <span class="px-2 py-0.5 rounded bg-brand-emerald/15 text-brand-emerald font-mono text-[10px] font-bold border border-brand-emerald/30">
+                인도네시아 보고르 기지
+              </span>
+            </div>
+            <p class="text-xs text-brand-slateText">제품 발주서, 포장 라벨 및 국제특송 운송장에 자동 반영되는 본사 공장 공식 정보입니다.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <button type="button" onclick="copyFactoryAddress()"
+            class="px-3 py-1.5 rounded-lg bg-brand-dark hover:bg-brand-cardHover border border-brand-border text-slate-300 text-xs font-mono flex items-center space-x-1 transition-colors">
+            <span class="material-symbols-outlined text-sm">content_copy</span>
+            <span id="copyBtnText">주소 전체 복사</span>
+          </button>
+          <button type="button" onclick="openFactoryModal()"
+            class="px-3 py-1.5 rounded-lg bg-brand-gold/15 hover:bg-brand-gold/25 text-brand-gold border border-brand-gold/40 text-xs font-medium flex items-center space-x-1 transition-colors">
+            <span class="material-symbols-outlined text-sm">edit</span>
+            <span>정보 변경</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 공장 세부 정보 그리드 -->
+      <div class="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- 회사명 (공장명) -->
+        <div class="bg-brand-dark/70 border border-brand-border/60 rounded-xl p-4">
+          <div class="text-[11px] text-brand-slateText font-mono mb-1 flex items-center justify-between">
+            <span>회사명 (공장명)</span>
+            <span class="text-[9px] uppercase px-1 py-0.2 rounded bg-brand-gold/20 text-brand-gold font-bold">HQ</span>
+          </div>
+          <div id="dispCompanyName" class="text-sm font-bold text-white font-display">DAVID HAIR (GUDANG RAMBUT)</div>
+          <div class="text-[11px] text-slate-400 font-mono mt-0.5">인도네시아 본사 제조공장</div>
+        </div>
+
+        <!-- 공장 담당자 -->
+        <div class="bg-brand-dark/70 border border-brand-border/60 rounded-xl p-4">
+          <div class="text-[11px] text-brand-slateText font-mono mb-1">현지 담당자 (Contact Person)</div>
+          <div id="dispContactPerson" class="text-sm font-bold text-slate-100 font-sans">NURHASANA TUNISA</div>
+          <div class="text-[11px] text-brand-emerald font-mono mt-0.5">생산 및 물류 총괄</div>
+        </div>
+
+        <!-- 연락처 TEL -->
+        <div class="bg-brand-dark/70 border border-brand-border/60 rounded-xl p-4">
+          <div class="text-[11px] text-brand-slateText font-mono mb-1">대표 연락처 (TEL / WhatsApp)</div>
+          <div id="dispPhone" class="text-sm font-bold text-brand-gold font-mono">+62 88291335199</div>
+          <div class="text-[11px] text-slate-400 font-mono mt-0.5">인도네시아 국가번호 (+62)</div>
+        </div>
+
+        <!-- 이메일 / 최종 갱신 -->
+        <div class="bg-brand-dark/70 border border-brand-border/60 rounded-xl p-4">
+          <div class="text-[11px] text-brand-slateText font-mono mb-1">대표 이메일 / 최종 갱신</div>
+          <div id="dispEmail" class="text-xs font-mono text-slate-200">info@davidhairshop.com</div>
+          <div id="dispUpdatedAt" class="text-[10px] font-mono text-slate-400 mt-1">갱신일시 확인 중...</div>
+        </div>
+      </div>
+
+      <!-- 주소 1 & 주소 2 박스 -->
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- 주소 1 -->
+        <div class="bg-brand-dark/80 border border-brand-border/70 rounded-xl p-4">
+          <div class="text-[11px] font-mono text-brand-gold mb-1.5 flex items-center space-x-1">
+            <span class="material-symbols-outlined text-sm">pin_drop</span>
+            <span>공장 상세 주소 1 (Village / Sub-district)</span>
+          </div>
+          <div id="dispAddress1" class="text-xs sm:text-sm text-slate-100 font-mono leading-relaxed break-words bg-brand-card/60 p-3 rounded-lg border border-brand-border/40 min-h-[48px] flex items-center">
+            KP. CISALADA RT02 RW05 DS CIAMPEA UDIK, KEL CIAMPEA KAB
+          </div>
+        </div>
+
+        <!-- 주소 2 -->
+        <div class="bg-brand-dark/80 border border-brand-border/70 rounded-xl p-4">
+          <div class="text-[11px] font-mono text-brand-emerald mb-1.5 flex items-center space-x-1">
+            <span class="material-symbols-outlined text-sm">public</span>
+            <span>공장 상세 주소 2 (City / Province / Country)</span>
+          </div>
+          <div id="dispAddress2" class="text-xs sm:text-sm text-slate-100 font-mono leading-relaxed break-words bg-brand-card/60 p-3 rounded-lg border border-brand-border/40 min-h-[48px] flex items-center">
+            BOGOR, JAWA BARAT, INDONESIA 16620
+          </div>
+        </div>
+      </div>
+
+      <!-- 공장 특이사항 / 메모 -->
+      <div class="mt-4 bg-brand-dark/60 border border-brand-border/50 rounded-xl p-4">
+        <div class="text-[11px] font-mono text-slate-400 mb-1 flex items-center space-x-1">
+          <span class="material-symbols-outlined text-sm text-slate-400">notes</span>
+          <span>공장 비고사항 및 생산 특이사항</span>
+        </div>
+        <div id="dispNotes" class="text-xs text-slate-300 font-sans leading-relaxed">
+          인도네시아 본사 맞춤 가발/헤어피스 제조 및 국제 출하 총괄 기지
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 관리자 주요 관제 모듈 바로가기 그리드 -->
+    <section class="space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-bold text-white font-display tracking-wide uppercase flex items-center space-x-1.5">
+          <span class="material-symbols-outlined text-base text-brand-gold">grid_view</span>
+          <span>ERP 주요 업무 관제 모듈</span>
+        </h3>
+        <span class="text-xs font-mono text-slate-400">총 4개 모듈</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- 사용자 관리 -->
+        <div class="bg-brand-card border border-brand-border hover:border-brand-gold/60 rounded-xl p-5 transition-all shadow-lg group flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-brand-gold/15 border border-brand-gold/30 flex items-center justify-center text-brand-gold mb-3 group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-xl">manage_accounts</span>
+            </div>
+            <h4 class="text-sm font-bold text-white font-display">사용자 관리</h4>
+            <p class="text-xs text-brand-slateText mt-1 leading-relaxed">
+              관리자 및 B2B 거래처 계정 CRUD, 영문 배송지 주소, 파트너 티어 및 승인 관제를 수행합니다.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-brand-border/60 flex items-center justify-between">
+            <span class="text-[10px] font-mono text-brand-emerald font-bold">운영 중 (LIVE)</span>
+            <a href="admin_users.html"
+               class="px-3 py-1 rounded-lg bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-display font-bold text-xs flex items-center space-x-1 transition-all">
+              <span>관리 콘솔</span>
+              <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 주문 관리 -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-5 transition-all shadow-lg flex flex-col justify-between opacity-85 hover:opacity-100">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-3">
+              <span class="material-symbols-outlined text-xl">receipt_long</span>
+            </div>
+            <h4 class="text-sm font-bold text-white font-display">주문 관리 (발주서)</h4>
+            <p class="text-xs text-brand-slateText mt-1 leading-relaxed">
+              국내외 거래처의 맞춤가발 및 헤어 익스텐션 발주서 접수, 사양 검수 및 작업지시서를 생성합니다.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-brand-border/60 flex items-center justify-between">
+            <span class="text-[10px] font-mono text-slate-400">개발 단계</span>
+            <span class="text-[11px] font-mono text-slate-400">ORDER-MES</span>
+          </div>
+        </div>
+
+        <!-- 생산 / MES -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-5 transition-all shadow-lg flex flex-col justify-between opacity-85 hover:opacity-100">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-3">
+              <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+            </div>
+            <h4 class="text-sm font-bold text-white font-display">생산 공정 관제 (MES)</h4>
+            <p class="text-xs text-brand-slateText mt-1 leading-relaxed">
+              보고르 현지 공장의 원사 선별, 매듭(V-loop/Single knot), 스킨 코팅, 최종 검품 바코드 스캔 추적.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-brand-border/60 flex items-center justify-between">
+            <span class="text-[10px] font-mono text-slate-400">바코드 추적 준비</span>
+            <span class="text-[11px] font-mono text-slate-400">MES-LINE</span>
+          </div>
+        </div>
+
+        <!-- 국제 물류 및 출하 -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-5 transition-all shadow-lg flex flex-col justify-between opacity-85 hover:opacity-100">
+          <div>
+            <div class="w-10 h-10 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-3">
+              <span class="material-symbols-outlined text-xl">local_shipping</span>
+            </div>
+            <h4 class="text-sm font-bold text-white font-display">해외 특송 / 인보이스</h4>
+            <p class="text-xs text-brand-slateText mt-1 leading-relaxed">
+              인도네시아 공장 직송 DHL / EMS 송장 발행, 통관 서류 자동 생성 및 수출입 배송 현황 추적.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-brand-border/60 flex items-center justify-between">
+            <span class="text-[10px] font-mono text-slate-400">DHL/EMS 연동 예정</span>
+            <span class="text-[11px] font-mono text-slate-400">LOGISTICS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- 자바스크립트: 세션 점검 및 로그아웃 처리 -->
+  <!-- 공장 기본 정보 수정 모달 (Factory Info Modal) -->
+  <div id="factoryModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-brand-card border border-brand-border rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150 my-8">
+      
+      <!-- 모달 헤더 -->
+      <div class="px-6 py-4 border-b border-brand-border flex items-center justify-between bg-brand-dark/60">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-brand-gold/15 border border-brand-gold/30 text-brand-gold flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">factory</span>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-base text-white">공장 기본 정보 수정 및 등록</h3>
+            <p class="text-xs text-brand-slateText">인도네시아 본사 공장 기본 세부 정보를 설정합니다.</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeFactoryModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <!-- 모달 폼 -->
+      <form id="factoryForm" onsubmit="handleFactorySubmit(event)" class="p-6 space-y-4">
+        
+        <!-- 회사명 & 담당자 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label for="formCompanyName" class="block text-xs font-medium text-slate-300 mb-1 flex items-center space-x-1">
+              <span>회사명 (공장명) *</span>
+              <span class="text-[10px] text-brand-gold font-mono">(Company Name)</span>
+            </label>
+            <input type="text" id="formCompanyName" required
+              class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono"
+              placeholder="예: DAVID HAIR (GUDANG RAMBUT)">
+          </div>
+
+          <div>
+            <label for="formContactPerson" class="block text-xs font-medium text-slate-300 mb-1 flex items-center space-x-1">
+              <span>현지 담당자 성명 *</span>
+              <span class="text-[10px] text-brand-emerald font-mono">(Contact Person)</span>
+            </label>
+            <input type="text" id="formContactPerson" required
+              class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono"
+              placeholder="예: NURHASANA TUNISA">
+          </div>
+        </div>
+
+        <!-- 연락처 TEL & 이메일 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div>
+            <label for="formPhone" class="block text-xs font-medium text-slate-300 mb-1 flex items-center space-x-1">
+              <span>대표 전화번호 (TEL) *</span>
+              <span class="text-[10px] text-slate-400 font-mono">(국가번호 포함)</span>
+            </label>
+            <input type="text" id="formPhone" required
+              class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono"
+              placeholder="예: +62 88291335199">
+          </div>
+
+          <div>
+            <label for="formEmail" class="block text-xs font-medium text-slate-300 mb-1">대표 이메일 주소</label>
+            <input type="email" id="formEmail"
+              class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono"
+              placeholder="예: info@davidhairshop.com">
+          </div>
+        </div>
+
+        <!-- 주소 1 (상세주소) -->
+        <div>
+          <label for="formAddress1" class="block text-xs font-medium text-slate-300 mb-1 flex items-center justify-between">
+            <span class="flex items-center space-x-1">
+              <span class="material-symbols-outlined text-sm text-brand-gold">pin_drop</span>
+              <span>주소 1 (상세 주소 - KP. / DS / KEL / KAB) *</span>
+            </span>
+            <span class="text-[10px] font-mono text-slate-400">인도네시아 주소 1</span>
+          </label>
+          <textarea id="formAddress1" rows="2" required
+            class="w-full p-2.5 bg-brand-dark border border-brand-border rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono leading-relaxed resize-none"
+            placeholder="예: KP. CISALADA RT02 RW05 DS CIAMPEA UDIK, KEL CIAMPEA KAB"></textarea>
+        </div>
+
+        <!-- 주소 2 (도시, 주, 우편번호, 국가) -->
+        <div>
+          <label for="formAddress2" class="block text-xs font-medium text-slate-300 mb-1 flex items-center justify-between">
+            <span class="flex items-center space-x-1">
+              <span class="material-symbols-outlined text-sm text-brand-emerald">public</span>
+              <span>주소 2 (도시, 주, 우편번호, 국가) *</span>
+            </span>
+            <span class="text-[10px] font-mono text-slate-400">인도네시아 주소 2</span>
+          </label>
+          <textarea id="formAddress2" rows="2" required
+            class="w-full p-2.5 bg-brand-dark border border-brand-border rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono leading-relaxed resize-none"
+            placeholder="예: BOGOR, JAWA BARAT, INDONESIA 16620"></textarea>
+        </div>
+
+        <!-- 공장 특이사항 / 비고 -->
+        <div>
+          <label for="formNotes" class="block text-xs font-medium text-slate-300 mb-1">공장 메모 및 특이사항</label>
+          <textarea id="formNotes" rows="2"
+            class="w-full p-2.5 bg-brand-dark border border-brand-border rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-sans leading-relaxed resize-none"
+            placeholder="공장 운영 참고사항, 배송 특이사항 등을 기록하세요."></textarea>
+        </div>
+
+        <!-- 알림 메시지 영역 -->
+        <div id="factoryAlert" class="hidden text-xs rounded-lg p-2.5 font-mono"></div>
+
+        <!-- 버튼 영역 -->
+        <div class="pt-3 border-t border-brand-border flex items-center justify-end space-x-2">
+          <button type="button" onclick="closeFactoryModal()"
+            class="px-4 py-2 rounded-lg bg-brand-dark hover:bg-brand-cardHover border border-brand-border text-slate-300 text-xs font-medium transition-colors">
+            취소
+          </button>
+          <button type="submit" id="factorySubmitBtn"
+            class="px-5 py-2 rounded-lg bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-display font-bold text-xs tracking-wide transition-all shadow-md flex items-center space-x-1">
+            <span id="factoryBtnText">저장 완료</span>
+            <span class="material-symbols-outlined text-base">check</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 하단 푸터 -->
+  <footer class="w-full border-t border-brand-border/60 py-3 px-6 text-center text-[11px] font-mono text-slate-500 bg-brand-card/20 mt-auto">
+    Factory ERP &copy; 2026 David Hair Shop. All rights reserved. • Gudang Rambut Indonesia
+  </footer>
+
+  <!-- 자바스크립트: 세션 점검, 공장 정보 로드 및 수정 -->
   <script>
+    let currentFactoryData = null;
+
     // 세션 점검
     async function checkSession() {
       try {
         const res = await fetch('api_me.php');
         const data = await res.json();
-        if (data.authenticated && data.user) {
-          if (data.user.user_type !== 'ADMIN') {
-            window.location.href = 'cust_dashboard.html';
-            return;
-          }
-          document.getElementById('userNameText').textContent = data.user.name || data.user.username;
+        if (!data.authenticated || !data.user) {
+          window.location.href = 'index.html';
+          return;
         }
-      } catch (e) { }
+        if (data.user.user_type !== 'ADMIN') {
+          window.location.href = 'cust_dashboard.html';
+          return;
+        }
+        document.getElementById('userNameText').textContent = data.user.name || data.user.username;
+        await loadFactoryInfo();
+      } catch (e) {
+        window.location.href = 'index.html';
+      }
     }
-    checkSession();
+
+    // 공장 기본 정보 API 로드
+    async function loadFactoryInfo() {
+      try {
+        const res = await fetch('api_factory_info.php');
+        const data = await res.json();
+        if (data.success && data.data) {
+          currentFactoryData = data.data;
+          renderFactoryView(currentFactoryData);
+        }
+      } catch (err) {
+        console.error('Failed to load factory info:', err);
+      }
+    }
+
+    // 화면 뷰 렌더링
+    function renderFactoryView(f) {
+      document.getElementById('dispCompanyName').textContent = f.company_name || 'DAVID HAIR (GUDANG RAMBUT)';
+      document.getElementById('dispContactPerson').textContent = f.contact_person || 'NURHASANA TUNISA';
+      document.getElementById('dispPhone').textContent = f.phone || '+62 88291335199';
+      document.getElementById('dispEmail').textContent = f.email || 'info@davidhairshop.com';
+      document.getElementById('dispAddress1').textContent = f.address_1 || 'KP. CISALADA RT02 RW05 DS CIAMPEA UDIK, KEL CIAMPEA KAB';
+      document.getElementById('dispAddress2').textContent = f.address_2 || 'BOGOR, JAWA BARAT, INDONESIA 16620';
+      document.getElementById('dispNotes').textContent = f.notes || '인도네시아 본사 맞춤 가발/헤어피스 제조 및 국제 출하 총괄 기지';
+
+      if (f.updated_at) {
+        document.getElementById('dispUpdatedAt').textContent = '최근 갱신: ' + f.updated_at.substring(0, 19);
+      }
+    }
+
+    // 모달 열기
+    function openFactoryModal() {
+      const f = currentFactoryData || {
+        company_name: 'DAVID HAIR (GUDANG RAMBUT)',
+        contact_person: 'NURHASANA TUNISA',
+        phone: '+62 88291335199',
+        email: 'info@davidhairshop.com',
+        address_1: 'KP. CISALADA RT02 RW05 DS CIAMPEA UDIK, KEL CIAMPEA KAB',
+        address_2: 'BOGOR, JAWA BARAT, INDONESIA 16620',
+        notes: '인도네시아 본사 맞춤 가발/헤어피스 제조 및 국제 출하 총괄 기지'
+      };
+
+      document.getElementById('formCompanyName').value = f.company_name || '';
+      document.getElementById('formContactPerson').value = f.contact_person || '';
+      document.getElementById('formPhone').value = f.phone || '';
+      document.getElementById('formEmail').value = f.email || '';
+      document.getElementById('formAddress1').value = f.address_1 || '';
+      document.getElementById('formAddress2').value = f.address_2 || '';
+      document.getElementById('formNotes').value = f.notes || '';
+
+      hideFactoryAlert();
+      document.getElementById('factoryModal').classList.remove('hidden');
+    }
+
+    // 모달 닫기
+    function closeFactoryModal() {
+      document.getElementById('factoryModal').classList.add('hidden');
+    }
+
+    function showFactoryAlert(msg, isSuccess = false) {
+      const alert = document.getElementById('factoryAlert');
+      if (isSuccess) {
+        alert.className = 'text-xs rounded-lg p-2.5 font-mono bg-emerald-950/70 border border-brand-emerald/50 text-brand-emerald block';
+        alert.innerHTML = '<strong>✓ ' + msg + '</strong>';
+      } else {
+        alert.className = 'text-xs rounded-lg p-2.5 font-mono bg-red-950/70 border border-red-500/50 text-red-300 block';
+        alert.innerHTML = '<strong>✗ ' + msg + '</strong>';
+      }
+    }
+
+    function hideFactoryAlert() {
+      const alert = document.getElementById('factoryAlert');
+      alert.className = 'hidden';
+      alert.textContent = '';
+    }
+
+    // 공장 정보 저장 (POST)
+    async function handleFactorySubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('factorySubmitBtn');
+      const btnText = document.getElementById('factoryBtnText');
+
+      const payload = {
+        company_name: document.getElementById('formCompanyName').value.trim(),
+        contact_person: document.getElementById('formContactPerson').value.trim(),
+        phone: document.getElementById('formPhone').value.trim(),
+        email: document.getElementById('formEmail').value.trim(),
+        address_1: document.getElementById('formAddress1').value.trim(),
+        address_2: document.getElementById('formAddress2').value.trim(),
+        notes: document.getElementById('formNotes').value.trim()
+      };
+
+      if (!payload.company_name) {
+        showFactoryAlert('회사명을 입력해 주세요.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      btnText.textContent = '저장 처리 중...';
+
+      try {
+        const res = await fetch('api_factory_info.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await res.json();
+        if (result.success) {
+          showFactoryAlert(result.message || '저장되었습니다.', true);
+          currentFactoryData = result.data;
+          renderFactoryView(currentFactoryData);
+
+          setTimeout(() => {
+            closeFactoryModal();
+            submitBtn.disabled = false;
+            btnText.textContent = '저장 완료';
+          }, 800);
+        } else {
+          submitBtn.disabled = false;
+          btnText.textContent = '저장 완료';
+          showFactoryAlert(result.message || '저장에 실패했습니다.');
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        btnText.textContent = '저장 완료';
+        showFactoryAlert('서버 통신 중 오류가 발생했습니다.');
+      }
+    }
+
+    // 전체 주소 클립보드 복사
+    async function copyFactoryAddress() {
+      if (!currentFactoryData) return;
+      const fullAddr = `${currentFactoryData.company_name}\nAttn: ${currentFactoryData.contact_person}\nTel: ${currentFactoryData.phone}\n${currentFactoryData.address_1}\n${currentFactoryData.address_2}`;
+      try {
+        await navigator.clipboard.writeText(fullAddr);
+        const btnText = document.getElementById('copyBtnText');
+        const orig = btnText.textContent;
+        btnText.textContent = '복사 완료! ✓';
+        setTimeout(() => { btnText.textContent = orig; }, 1800);
+      } catch (e) {
+        alert(fullAddr);
+      }
+    }
 
     // 로그아웃
     async function handleLogout() {
@@ -162,6 +648,8 @@
       } catch (e) { }
       window.location.href = 'index.html';
     }
+
+    checkSession();
   </script>
 </body>
 
