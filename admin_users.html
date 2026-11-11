@@ -450,8 +450,8 @@
                                class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
                     </div>
                     <div>
-                        <label class="block text-[11px] text-slate-400 font-mono mb-1">물품 중량 / 수량 (Weight / Qty)</label>
-                        <input type="text" id="labelWeight" value="0.65 kg / 1 BOX" oninput="updateLabelPreview()"
+                        <label class="block text-[11px] text-slate-400 font-mono mb-1">물품 중량 (Gross Weight)</label>
+                        <input type="text" id="labelWeight" value="" placeholder="기본 빈칸 (필요 시 직접 입력)" oninput="updateLabelPreview()"
                                class="w-full px-2.5 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white font-mono focus:outline-none focus:border-blue-400">
                     </div>
                     <div>
@@ -1086,7 +1086,10 @@
 
             const u = currentLabelUser;
             const refNo = document.getElementById('labelRefNo').value.trim() || 'DH-EXPRESS';
-            const weight = document.getElementById('labelWeight').value.trim() || '0.65 kg / 1 BOX';
+            const weightInput = document.getElementById('labelWeight').value.trim();
+            const weightDisplay = weightInput 
+                ? (weightInput.toLowerCase().includes('kg') ? escapeHtml(weightInput) : `${escapeHtml(weightInput)} Kg`) 
+                : '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kg';
             const contents = document.getElementById('labelContents').value.trim() || 'CUSTOM HAIR SYSTEM / WIG PIECES';
             const todayDate = new Date().toISOString().slice(0, 10);
 
@@ -1166,7 +1169,7 @@
                 <div class="border-b border-black grid grid-cols-3 text-[9px] font-mono text-center divide-x divide-black bg-slate-100 text-black">
                     <div class="p-1">
                         <div class="text-slate-500 text-[8px]">GROSS WEIGHT</div>
-                        <div class="font-bold text-[10px]">${escapeHtml(weight)}</div>
+                        <div class="font-bold text-[10px] tracking-wider">${weightDisplay}</div>
                     </div>
                     <div class="p-1">
                         <div class="text-slate-500 text-[8px]">COMMODITY</div>
