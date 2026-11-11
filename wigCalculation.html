@@ -50,9 +50,15 @@
         background: #fff !important;
         color: #000 !important;
       }
-      header, footer, #calculatorForm, #topBanner, .no-print {
+
+      header,
+      footer,
+      #calculatorForm,
+      #topBanner,
+      .no-print {
         display: none !important;
       }
+
       #printArea {
         display: block !important;
         width: 100% !important;
@@ -61,6 +67,7 @@
         border: 2px solid #000 !important;
         padding: 20px !important;
       }
+
       #printArea * {
         color: #000 !important;
         border-color: #000 !important;
@@ -72,19 +79,24 @@
 <body class="bg-brand-dark text-slate-100 min-h-screen flex flex-col font-sans antialiased">
 
   <!-- 상단 네비게이션 바 (로그인 세션에 따라 동적 전환) -->
-  <header class="w-full bg-brand-card border-b border-brand-border sticky top-0 z-50 px-4 sm:px-6 h-16 flex items-center justify-between">
+  <header
+    class="w-full bg-brand-card border-b border-brand-border sticky top-0 z-50 px-4 sm:px-6 h-16 flex items-center justify-between">
     <!-- 좌측 브랜드 & 메뉴 -->
     <div class="flex items-center space-x-6">
-      <a id="navHomeLink" href="admin-dashboard.html" class="flex items-center space-x-2.5 hover:opacity-90 transition-opacity">
-        <div id="navLogoBox" class="w-8 h-8 rounded-lg bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold">
+      <a id="navHomeLink" href="admin-dashboard.html"
+        class="flex items-center space-x-2.5 hover:opacity-90 transition-opacity">
+        <div id="navLogoBox"
+          class="w-8 h-8 rounded-lg bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold">
           <span class="material-symbols-outlined text-lg">calculate</span>
         </div>
         <span class="font-display font-bold text-base tracking-wide text-white">FACTORY ERP</span>
-        <span id="navRoleBadge" class="hidden sm:inline-block text-[11px] font-mono text-brand-gold px-1.5 py-0.5 rounded bg-brand-gold/10 border border-brand-gold/20">CALCULATION</span>
+        <span id="navRoleBadge"
+          class="hidden sm:inline-block text-[11px] font-mono text-brand-gold px-1.5 py-0.5 rounded bg-brand-gold/10 border border-brand-gold/20">CALCULATION</span>
       </a>
 
       <!-- 네비게이션 링크들 (동적 렌더링) -->
-      <nav id="navMenuContainer" class="hidden md:flex items-center space-x-1 pl-4 border-l border-brand-border text-sm">
+      <nav id="navMenuContainer"
+        class="hidden md:flex items-center space-x-1 pl-4 border-l border-brand-border text-sm">
         <!-- JS가 관리자/거래처 링크 채움 -->
       </nav>
     </div>
@@ -108,10 +120,12 @@
   <main class="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
 
     <!-- 상단 배너 & 모드 탭 전환기 -->
-    <div id="topBanner" class="bg-gradient-to-r from-brand-card via-brand-cardHover to-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div id="topBanner"
+      class="bg-gradient-to-r from-brand-card via-brand-cardHover to-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div class="space-y-1">
         <div class="flex items-center space-x-2">
-          <span class="px-2 py-0.5 rounded-md bg-brand-gold/15 text-brand-gold font-mono text-[11px] font-bold border border-brand-gold/30">
+          <span
+            class="px-2 py-0.5 rounded-md bg-brand-gold/15 text-brand-gold font-mono text-[11px] font-bold border border-brand-gold/30">
             PRICING ALGORITHM ENGINE
           </span>
           <span class="text-xs text-brand-emerald font-mono flex items-center space-x-1">
@@ -128,7 +142,8 @@
       </div>
 
       <!-- 모드 전환 탭 버튼 (Custom vs Stock) -->
-      <div class="inline-flex p-1 bg-brand-dark/90 rounded-xl border border-brand-border self-start md:self-center shadow-inner">
+      <div
+        class="inline-flex p-1 bg-brand-dark/90 rounded-xl border border-brand-border self-start md:self-center shadow-inner">
         <button type="button" id="tabCustomBtn" onclick="switchMode('custom')"
           class="px-4 py-2 rounded-lg text-xs font-bold font-display transition-all bg-brand-gold text-brand-dark shadow-md flex items-center space-x-1.5">
           <span class="material-symbols-outlined text-base">tune</span>
@@ -157,7 +172,8 @@
           <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg">
             <div class="flex items-center justify-between mb-3 pb-2 border-b border-brand-border/60">
               <label class="text-xs sm:text-sm font-bold text-white flex items-center space-x-2 font-display">
-                <span class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">1</span>
+                <span
+                  class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">1</span>
                 <span>베이스 크기 규격 (Base Size)</span>
               </label>
               <span class="text-[11px] font-mono text-brand-gold">가로 × 세로 면적 자동 계산</span>
@@ -165,7 +181,8 @@
 
             <div class="grid grid-cols-2 gap-3 mb-2.5">
               <div>
-                <label for="baseWidth" class="block text-xs text-brand-slateText mb-1 font-mono">가로 너비 (Width, Inch)</label>
+                <label for="baseWidth" class="block text-xs text-brand-slateText mb-1 font-mono">가로 너비 (Width,
+                  Inch)</label>
                 <div class="relative">
                   <input type="number" id="baseWidth" step="0.5" value="7" min="1" max="15"
                     class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-sm text-white font-mono focus:outline-none focus:border-brand-gold">
@@ -173,7 +190,8 @@
                 </div>
               </div>
               <div>
-                <label for="baseLength" class="block text-xs text-brand-slateText mb-1 font-mono">세로 길이 (Length, Inch)</label>
+                <label for="baseLength" class="block text-xs text-brand-slateText mb-1 font-mono">세로 길이 (Length,
+                  Inch)</label>
                 <div class="relative">
                   <input type="number" id="baseLength" step="0.5" value="9" min="1" max="15"
                     class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-sm text-white font-mono focus:outline-none focus:border-brand-gold">
@@ -183,41 +201,46 @@
             </div>
 
             <!-- 면적 및 할증 가이드 바 -->
-            <div id="baseAreaNote" class="text-xs p-2.5 rounded-lg bg-brand-dark/80 border border-brand-border/60 text-slate-300 font-mono flex items-center justify-between">
+            <div id="baseAreaNote"
+              class="text-xs p-2.5 rounded-lg bg-brand-dark/80 border border-brand-border/60 text-slate-300 font-mono flex items-center justify-between">
               <span>면적: 63.0 sq in (표준 크기)</span>
-              <span class="text-brand-emerald font-bold">기본 포함 (+$0)</span>
+              <span class="text-brand-emerald font-bold">기본 포함 (+A$0)</span>
             </div>
             <div class="mt-2 text-[10px] text-slate-500 font-mono flex justify-between">
-              <span>• ~70 sq in: +$0</span>
-              <span>• 70~80 sq in: +$40</span>
-              <span>• 80~100 sq in: +$100</span>
-              <span>• 100+ sq in: +$200</span>
+              <span>• ~70 sq in: +A$0</span>
+              <span>• 70~80 sq in: +A$40</span>
+              <span>• 80~100 sq in: +A$100</span>
+              <span>• 100+ sq in: +A$200</span>
             </div>
           </div>
 
           <!-- 1.2 모발 길이 (Hair Length) -->
           <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg">
-            <label for="hairLength" class="block text-xs sm:text-sm font-bold text-white mb-2 flex items-center space-x-2 font-display">
-              <span class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">2</span>
+            <label for="hairLength"
+              class="block text-xs sm:text-sm font-bold text-white mb-2 flex items-center space-x-2 font-display">
+              <span
+                class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">2</span>
               <span>모발 길이 (Hair Length)</span>
             </label>
             <select id="hairLength"
               class="w-full px-3 py-2.5 bg-brand-dark border border-brand-border rounded-lg text-xs sm:text-sm text-white focus:outline-none focus:border-brand-gold font-mono">
-              <option value="0" selected>5" ~ 6" (약 13~15cm) - 표준 기본 길이 (+$0)</option>
-              <option value="40">8" (약 20cm) (+$40)</option>
-              <option value="70">10" (약 25cm) (+$70)</option>
-              <option value="110">12" (약 30cm) (+$110)</option>
-              <option value="180">14" (약 35cm) (+$180)</option>
-              <option value="280">16" (약 40cm) (+$280)</option>
-              <option value="380">18" (약 45cm) (+$380)</option>
-              <option value="480">20" (약 50cm) (+$480)</option>
+              <option value="0" selected>5" ~ 6" (약 13~15cm) - 표준 기본 길이 (+A$0)</option>
+              <option value="40">8" (약 20cm) (+A$40)</option>
+              <option value="70">10" (약 25cm) (+A$70)</option>
+              <option value="110">12" (약 30cm) (+A$110)</option>
+              <option value="180">14" (약 35cm) (+A$180)</option>
+              <option value="280">16" (약 40cm) (+A$280)</option>
+              <option value="380">18" (약 45cm) (+A$380)</option>
+              <option value="480">20" (약 50cm) (+A$480)</option>
             </select>
           </div>
 
           <!-- 1.3 모질 등급 (Hair Quality) -->
           <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg">
-            <label for="hairQuality" class="block text-xs sm:text-sm font-bold text-white mb-2 flex items-center space-x-2 font-display">
-              <span class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">3</span>
+            <label for="hairQuality"
+              class="block text-xs sm:text-sm font-bold text-white mb-2 flex items-center space-x-2 font-display">
+              <span
+                class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">3</span>
               <span>모질 등급 (Hair Quality) • 비율 할증</span>
             </label>
             <select id="hairQuality"
@@ -231,8 +254,10 @@
 
           <!-- 1.4 모발 밀도 (Hair Density) -->
           <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg">
-            <label for="density" class="block text-xs sm:text-sm font-bold text-white mb-2 flex items-center space-x-2 font-display">
-              <span class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">4</span>
+            <label for="density"
+              class="block text-xs sm:text-sm font-bold text-white mb-2 flex items-center space-x-2 font-display">
+              <span
+                class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">4</span>
               <span>모발 밀도 (Hair Density) • 비율 할증</span>
             </label>
             <select id="density"
@@ -242,7 +267,8 @@
               <option value="0.35">Heavy (140%) (+35%)</option>
             </select>
             <!-- 12인치 이상 + Medium 밀도 자동 조건 알림 -->
-            <div id="longHairDensityNote" class="mt-2 text-xs p-2.5 rounded-lg bg-amber-950/60 border border-amber-500/40 text-amber-300 font-mono hidden flex items-center space-x-1.5">
+            <div id="longHairDensityNote"
+              class="mt-2 text-xs p-2.5 rounded-lg bg-amber-950/60 border border-amber-500/40 text-amber-300 font-mono hidden flex items-center space-x-1.5">
               <span class="material-symbols-outlined text-sm text-amber-400">info</span>
               <span>* 12인치 이상 장모 + Medium 밀도 선택 시 조건부 +15% 할증이 자동 적용됩니다.</span>
             </div>
@@ -252,40 +278,55 @@
           <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg">
             <div class="flex items-center justify-between mb-3 pb-2 border-b border-brand-border/60">
               <label class="text-xs sm:text-sm font-bold text-white flex items-center space-x-2 font-display">
-                <span class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">5</span>
+                <span
+                  class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">5</span>
                 <span>특수 옵션 및 공정 추가 (Fixed Addons)</span>
               </label>
               <span class="text-[11px] font-mono text-slate-400">선택 시 고정 금액 추가</span>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-              <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="20" class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
-                <span class="text-slate-200">인모 새치 혼합 (+$20)</span>
+              <label
+                class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" value="20"
+                  class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200">인모 새치 혼합 (+A$20)</span>
               </label>
-              <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="20" class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
-                <span class="text-slate-200">루트 컬러 (+$20)</span>
+              <label
+                class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" value="20"
+                  class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200">루트 컬러 (+A$20)</span>
               </label>
-              <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="15" class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
-                <span class="text-slate-200">스팟 하이라이트 (+$15)</span>
+              <label
+                class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" value="15"
+                  class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200">스팟 하이라이트 (+A$15)</span>
               </label>
-              <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="30" class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
-                <span class="text-slate-200">특수 아프로 컬 (+$30)</span>
+              <label
+                class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" value="30"
+                  class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200">특수 아프로 컬 (+A$30)</span>
               </label>
-              <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="19" class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
-                <span class="text-slate-200">전체 매듭 탈색 (+$19)</span>
+              <label
+                class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" value="19"
+                  class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200">전체 매듭 탈색 (+A$19)</span>
               </label>
-              <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="30" class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
-                <span class="text-slate-200">항균 베이스 ZyroSen (+$30)</span>
+              <label
+                class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" value="30"
+                  class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200">항균 베이스 ZyroSen (+A$30)</span>
               </label>
-              <label class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" value="59" class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
-                <span class="text-slate-200 font-semibold text-amber-300">급행 제작 Rush (6~7주) (+$59)</span>
+              <label
+                class="flex items-center p-3 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" value="59"
+                  class="custom-addon rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200 font-semibold text-amber-300">급행 제작 Rush (6~7주) (+A$59)</span>
               </label>
             </div>
           </div>
@@ -294,21 +335,26 @@
           <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg space-y-3.5">
             <div class="flex items-center justify-between pb-2 border-b border-brand-border/60">
               <label class="text-xs sm:text-sm font-bold text-white flex items-center space-x-2 font-display">
-                <span class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">6</span>
+                <span
+                  class="w-5 h-5 rounded-md bg-brand-gold/15 text-brand-gold text-xs flex items-center justify-center font-mono">6</span>
                 <span>부가 서비스 옵션 (Additional Addons)</span>
               </label>
-              <span class="text-[11px] font-mono text-brand-gold">스타일링 & 부착 옵션</span>
+              <span class="text-[11px] font-mono text-brand-gold">스타일링 & 부착 옵션 (AUD)</span>
             </div>
 
             <!-- 미용 & 커팅 서비스 -->
             <div class="space-y-2 text-xs">
-              <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" id="customHairCut" value="100" class="rounded text-brand-gold focus:ring-brand-gold mr-2.5">
-                <span class="text-slate-200 font-medium">전문 미용사 컷트 & 스타일링 (+$100)</span>
+              <label
+                class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" id="customHairCut" value="100"
+                  class="rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200 font-medium">전문 미용사 컷트 & 스타일링 (+A$100)</span>
               </label>
-              <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                <input type="checkbox" id="customBaseCut" value="15" class="rounded text-brand-gold focus:ring-brand-gold mr-2.5">
-                <span class="text-slate-200 font-medium">베이스 치수 맞춤 커팅 서비스 (+$15)</span>
+              <label
+                class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                <input type="checkbox" id="customBaseCut" value="15"
+                  class="rounded text-brand-gold focus:ring-brand-gold mr-2.5">
+                <span class="text-slate-200 font-medium">베이스 치수 맞춤 커팅 서비스 (+A$15)</span>
               </label>
             </div>
 
@@ -322,21 +368,29 @@
                 <span class="text-[10px] text-slate-500 font-mono">단일 선택</span>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                  <input type="radio" name="customBonding" value="0" checked class="text-brand-gold focus:ring-brand-gold mr-2">
-                  <span class="text-slate-400">선택 안함 (+$0)</span>
+                <label
+                  class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                  <input type="radio" name="customBonding" value="0" checked
+                    class="text-brand-gold focus:ring-brand-gold mr-2">
+                  <span class="text-slate-400">선택 안함 (+A$0)</span>
                 </label>
-                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                  <input type="radio" name="customBonding" value="100" class="text-brand-gold focus:ring-brand-gold mr-2">
-                  <span class="text-slate-200 font-medium">Bonding Glue 4-5 weeks (+$100)</span>
+                <label
+                  class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                  <input type="radio" name="customBonding" value="100"
+                    class="text-brand-gold focus:ring-brand-gold mr-2">
+                  <span class="text-slate-200 font-medium">Bonding Glue 4-5 weeks (+A$100)</span>
                 </label>
-                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                  <input type="radio" name="customBonding" value="80" class="text-brand-gold focus:ring-brand-gold mr-2">
-                  <span class="text-slate-200 font-medium">Bonding Tape & Glue 3-4 weeks (+$80)</span>
+                <label
+                  class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                  <input type="radio" name="customBonding" value="80"
+                    class="text-brand-gold focus:ring-brand-gold mr-2">
+                  <span class="text-slate-200 font-medium">Bonding Tape & Glue 3-4 weeks (+A$80)</span>
                 </label>
-                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
-                  <input type="radio" name="customBonding" value="50" class="text-brand-gold focus:ring-brand-gold mr-2">
-                  <span class="text-slate-200 font-medium">Bonding Tape 2-3 weeks (+$50)</span>
+                <label
+                  class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-brand-gold/50 cursor-pointer transition-colors">
+                  <input type="radio" name="customBonding" value="50"
+                    class="text-brand-gold focus:ring-brand-gold mr-2">
+                  <span class="text-slate-200 font-medium">Bonding Tape 2-3 weeks (+A$50)</span>
                 </label>
               </div>
             </div>
@@ -350,18 +404,20 @@
         <div id="stockOptionsSection" class="space-y-5 hidden">
           <!-- 기성 모델 선택 -->
           <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg">
-            <label for="stockModel" class="block text-xs sm:text-sm font-bold text-white mb-2 flex items-center space-x-2 font-display">
-              <span class="w-5 h-5 rounded-md bg-blue-500/15 text-blue-400 text-xs flex items-center justify-center font-mono">1</span>
+            <label for="stockModel"
+              class="block text-xs sm:text-sm font-bold text-white mb-2 flex items-center space-x-2 font-display">
+              <span
+                class="w-5 h-5 rounded-md bg-blue-500/15 text-blue-400 text-xs flex items-center justify-center font-mono">1</span>
               <span>기성 가발 베이스 모델 선택 (Stock System Model)</span>
             </label>
             <select id="stockModel"
               class="w-full px-3 py-2.5 bg-brand-dark border border-brand-border rounded-lg text-xs sm:text-sm text-white focus:outline-none focus:border-blue-400 font-mono">
-              <option value="139">프론탈 M자 전용 (SuperSkin-F) - $139</option>
-              <option value="219" selected>0.03mm 초박막 스킨 UTS (수명 1~2개월) - $219</option>
-              <option value="229">0.06mm 씬스킨 SuperSkin-V (수명 2~4개월) - $229</option>
-              <option value="249">모노 + 스킨 테두리 Vigor/Royal (수명 4~6개월+) - $249</option>
-              <option value="309">풀 프렌치 레이스 Champion (통기성 최고) - $309</option>
-              <option value="299">하이브리드 레이스+스킨 Neo/Combo - $299</option>
+              <option value="139">프론탈 M자 전용 (SuperSkin-F) - A$139</option>
+              <option value="219" selected>0.03mm 초박막 스킨 UTS (수명 1~2개월) - A$219</option>
+              <option value="229">0.06mm 씬스킨 SuperSkin-V (수명 2~4개월) - A$229</option>
+              <option value="249">모노 + 스킨 테두리 Vigor/Royal (수명 4~6개월+) - A$249</option>
+              <option value="309">풀 프렌치 레이스 Champion (통기성 최고) - A$309</option>
+              <option value="299">하이브리드 레이스+스킨 Neo/Combo - A$299</option>
             </select>
           </div>
 
@@ -369,21 +425,26 @@
           <div class="bg-brand-card border border-brand-border rounded-xl p-4 sm:p-5 shadow-lg space-y-3.5">
             <div class="flex items-center justify-between pb-2 border-b border-brand-border/60">
               <label class="text-xs sm:text-sm font-bold text-white flex items-center space-x-2 font-display">
-                <span class="w-5 h-5 rounded-md bg-blue-500/15 text-blue-400 text-xs flex items-center justify-center font-mono">2</span>
+                <span
+                  class="w-5 h-5 rounded-md bg-blue-500/15 text-blue-400 text-xs flex items-center justify-center font-mono">2</span>
                 <span>부가 서비스 옵션 (Additional Addons)</span>
               </label>
-              <span class="text-[11px] font-mono text-blue-400">스타일링 & 부착 옵션</span>
+              <span class="text-[11px] font-mono text-blue-400">스타일링 & 부착 옵션 (AUD)</span>
             </div>
 
             <!-- 미용 & 커팅 서비스 -->
             <div class="space-y-2 text-xs">
-              <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
-                <input type="checkbox" id="stockHairCut" value="100" class="rounded text-blue-500 focus:ring-blue-500 mr-2.5">
-                <span class="text-slate-200 font-medium">전문 미용사 컷트 & 스타일링 (+$100)</span>
+              <label
+                class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                <input type="checkbox" id="stockHairCut" value="100"
+                  class="rounded text-blue-500 focus:ring-blue-500 mr-2.5">
+                <span class="text-slate-200 font-medium">전문 미용사 컷트 & 스타일링 (+A$100)</span>
               </label>
-              <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
-                <input type="checkbox" id="stockBaseCut" value="15" class="rounded text-blue-500 focus:ring-blue-500 mr-2.5">
-                <span class="text-slate-200 font-medium">베이스 치수 맞춤 커팅 서비스 (+$15)</span>
+              <label
+                class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                <input type="checkbox" id="stockBaseCut" value="15"
+                  class="rounded text-blue-500 focus:ring-blue-500 mr-2.5">
+                <span class="text-slate-200 font-medium">베이스 치수 맞춤 커팅 서비스 (+A$15)</span>
               </label>
             </div>
 
@@ -397,21 +458,26 @@
                 <span class="text-[10px] text-slate-500 font-mono">단일 선택</span>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
-                  <input type="radio" name="stockBonding" value="0" checked class="text-blue-500 focus:ring-blue-500 mr-2">
-                  <span class="text-slate-400">선택 안함 (+$0)</span>
+                <label
+                  class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                  <input type="radio" name="stockBonding" value="0" checked
+                    class="text-blue-500 focus:ring-blue-500 mr-2">
+                  <span class="text-slate-400">선택 안함 (+A$0)</span>
                 </label>
-                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                <label
+                  class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
                   <input type="radio" name="stockBonding" value="100" class="text-blue-500 focus:ring-blue-500 mr-2">
-                  <span class="text-slate-200 font-medium">Bonding Glue 4-5 weeks (+$100)</span>
+                  <span class="text-slate-200 font-medium">Bonding Glue 4-5 weeks (+A$100)</span>
                 </label>
-                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                <label
+                  class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
                   <input type="radio" name="stockBonding" value="80" class="text-blue-500 focus:ring-blue-500 mr-2">
-                  <span class="text-slate-200 font-medium">Bonding Tape & Glue 3-4 weeks (+$80)</span>
+                  <span class="text-slate-200 font-medium">Bonding Tape & Glue 3-4 weeks (+A$80)</span>
                 </label>
-                <label class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
+                <label
+                  class="flex items-center p-2.5 rounded-lg border border-brand-border bg-brand-dark/70 hover:border-blue-400/50 cursor-pointer transition-colors">
                   <input type="radio" name="stockBonding" value="50" class="text-blue-500 focus:ring-blue-500 mr-2">
-                  <span class="text-slate-200 font-medium">Bonding Tape 2-3 weeks (+$50)</span>
+                  <span class="text-slate-200 font-medium">Bonding Tape 2-3 weeks (+A$50)</span>
                 </label>
               </div>
             </div>
@@ -421,7 +487,8 @@
       </form>
 
       <!-- 우측 실시간 견적 세부 산출 내역 패널 (5 Col) -->
-      <div id="printArea" class="lg:col-span-5 bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col justify-between">
+      <div id="printArea"
+        class="lg:col-span-5 bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 shadow-2xl flex flex-col justify-between">
         <div>
           <!-- 패널 헤더 -->
           <div class="flex items-center justify-between pb-3.5 mb-4 border-b border-brand-border">
@@ -429,7 +496,8 @@
               <span class="material-symbols-outlined text-brand-gold text-xl">receipt_long</span>
               <h2 class="text-base font-bold text-white font-display">실시간 견적 산출 내역</h2>
             </div>
-            <span id="badgeActiveMode" class="px-2 py-0.5 rounded bg-brand-gold/15 text-brand-gold font-mono text-[10px] font-bold border border-brand-gold/30">
+            <span id="badgeActiveMode"
+              class="px-2 py-0.5 rounded bg-brand-gold/15 text-brand-gold font-mono text-[10px] font-bold border border-brand-gold/30">
               CUSTOM ORDER
             </span>
           </div>
@@ -442,28 +510,26 @@
 
         <!-- 하단 총액 & 다중 통화 환율 & 액션 버튼 -->
         <div class="mt-8 pt-4 border-t border-brand-border space-y-4">
-          
-          <!-- 다중 통화 기준 환율 설정 (1 USD 기준) -->
+
+          <!-- 다중 통화 기준 환율 설정 (1 AUD 기준) -->
           <div class="bg-brand-dark/80 p-3 rounded-xl border border-brand-border/60 space-y-2">
-            <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 pb-1.5 border-b border-brand-border/40">
+            <div
+              class="flex items-center justify-between text-[11px] font-mono text-slate-400 pb-1.5 border-b border-brand-border/40">
               <span class="flex items-center space-x-1 text-slate-300 font-semibold">
-                <span class="material-symbols-outlined text-sm text-brand-gold">currency_exchange</span>
-                <span>기준 환율 설정 (1 USD 기준)</span>
+                <span class="material-symbols-outlined text-sm text-brand-emerald">currency_exchange</span>
+                <span>기준 환율 설정 (1 AUD 기준)</span>
               </span>
               <span class="text-[10px] text-slate-500">실시간 수정 가능</span>
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
-              <!-- AUD (호주 달러 - 기본 통화) -->
-              <div class="bg-brand-card/70 p-2 rounded-lg border-2 border-brand-emerald/50 shadow-sm">
-                <div class="text-[10px] text-emerald-400 font-bold mb-0.5 flex items-center justify-between">
-                  <span>🇦🇺 AUD (호주달러)</span>
-                  <span class="text-[9px] bg-brand-emerald/20 text-brand-emerald px-1 rounded">기본</span>
-                </div>
+              <!-- USD (미국 달러) -->
+              <div class="bg-brand-card/70 p-2 rounded-lg border border-brand-border/40">
+                <div class="text-[10px] text-slate-400 mb-0.5">🇺🇸 USD (미국달러)</div>
                 <div class="flex items-center space-x-1">
-                  <span class="text-emerald-400 text-[10px] font-bold">A$</span>
-                  <input type="number" id="rateAUD" value="1.55" step="0.01" oninput="calculate()"
-                    class="w-full px-1.5 py-0.5 bg-brand-dark border border-brand-emerald/60 rounded text-center text-xs text-brand-emerald font-bold focus:outline-none focus:border-brand-emerald">
+                  <span class="text-slate-500 text-[10px]">$</span>
+                  <input type="number" id="rateUSD" value="0.65" step="0.01" oninput="calculate()"
+                    class="w-full px-1.5 py-0.5 bg-brand-dark border border-brand-border rounded text-center text-xs text-brand-gold font-bold focus:outline-none focus:border-brand-gold">
                 </div>
               </div>
 
@@ -472,7 +538,7 @@
                 <div class="text-[10px] text-slate-400 mb-0.5">🇰🇷 KRW (원)</div>
                 <div class="flex items-center space-x-1">
                   <span class="text-slate-500 text-[10px]">₩</span>
-                  <input type="number" id="rateKRW" value="1350" step="10" oninput="calculate()"
+                  <input type="number" id="rateKRW" value="880" step="10" oninput="calculate()"
                     class="w-full px-1.5 py-0.5 bg-brand-dark border border-brand-border rounded text-center text-xs text-white font-bold focus:outline-none focus:border-brand-gold">
                 </div>
               </div>
@@ -482,7 +548,7 @@
                 <div class="text-[10px] text-slate-400 mb-0.5">🇪🇺 EUR (유로)</div>
                 <div class="flex items-center space-x-1">
                   <span class="text-slate-500 text-[10px]">€</span>
-                  <input type="number" id="rateEUR" value="0.92" step="0.01" oninput="calculate()"
+                  <input type="number" id="rateEUR" value="0.60" step="0.01" oninput="calculate()"
                     class="w-full px-1.5 py-0.5 bg-brand-dark border border-brand-border rounded text-center text-xs text-white font-bold focus:outline-none focus:border-blue-400">
                 </div>
               </div>
@@ -492,7 +558,7 @@
                 <div class="text-[10px] text-slate-400 mb-0.5">🇮🇩 IDR (루피아)</div>
                 <div class="flex items-center space-x-1">
                   <span class="text-slate-500 text-[10px]">Rp</span>
-                  <input type="number" id="rateIDR" value="15800" step="100" oninput="calculate()"
+                  <input type="number" id="rateIDR" value="10200" step="100" oninput="calculate()"
                     class="w-full px-1.5 py-0.5 bg-brand-dark border border-brand-border rounded text-center text-xs text-white font-bold focus:outline-none focus:border-amber-400">
                 </div>
               </div>
@@ -507,13 +573,15 @@
                 <span class="text-xs font-semibold text-slate-300 font-display">최종 결제 총액 (AUD)</span>
                 <span class="block text-[10px] text-brand-emerald font-mono font-bold">기본 통화 (호주 달러)</span>
               </div>
-              <span id="totalPriceAUD" class="text-2xl sm:text-3xl font-extrabold text-brand-emerald font-mono tracking-tight">A$ 0.00</span>
+              <span id="totalPriceAUD"
+                class="text-2xl sm:text-3xl font-extrabold text-brand-emerald font-mono tracking-tight">A$ 0.00</span>
             </div>
 
             <!-- 다중 통화 환산 그리드 (USD / KRW / EUR / IDR) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
               <!-- USD (미국 달러) -->
-              <div class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
+              <div
+                class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
                 <div class="flex items-center space-x-1.5 text-slate-400">
                   <span class="text-xs">🇺🇸</span>
                   <span>미국달러 (USD)</span>
@@ -522,7 +590,8 @@
               </div>
 
               <!-- KRW (대한민국 원화) -->
-              <div class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
+              <div
+                class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
                 <div class="flex items-center space-x-1.5 text-slate-400">
                   <span class="text-xs">🇰🇷</span>
                   <span>원화 (KRW)</span>
@@ -531,7 +600,8 @@
               </div>
 
               <!-- EUR (유로화) -->
-              <div class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
+              <div
+                class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
                 <div class="flex items-center space-x-1.5 text-slate-400">
                   <span class="text-xs">🇪🇺</span>
                   <span>유로화 (EUR)</span>
@@ -540,7 +610,8 @@
               </div>
 
               <!-- IDR (인도네시아 루피아) -->
-              <div class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
+              <div
+                class="p-2.5 rounded-lg bg-brand-card/60 border border-brand-border/40 flex justify-between items-center">
                 <div class="flex items-center space-x-1.5 text-slate-400">
                   <span class="text-xs">🇮🇩</span>
                   <span>루피아 (IDR)</span>
@@ -551,7 +622,8 @@
           </div>
 
           <!-- 안내 가이드 -->
-          <div class="p-3 bg-brand-dark/60 border border-brand-border/50 rounded-lg text-[11px] text-slate-400 font-mono leading-relaxed">
+          <div
+            class="p-3 bg-brand-dark/60 border border-brand-border/50 rounded-lg text-[11px] text-slate-400 font-mono leading-relaxed">
             💡 본 견적은 Lordhair 공식 가격 책정 알고리즘(기본가 + 스펙 추가금 × 모질/밀도 복합 할증)을 실시간으로 산출한 금액입니다.
           </div>
 
@@ -575,7 +647,8 @@
   </main>
 
   <!-- 하단 푸터 -->
-  <footer class="w-full border-t border-brand-border/60 py-3 px-6 text-center text-[11px] font-mono text-slate-500 bg-brand-card/20 mt-auto">
+  <footer
+    class="w-full border-t border-brand-border/60 py-3 px-6 text-center text-[11px] font-mono text-slate-500 bg-brand-card/20 mt-auto">
     Factory ERP &copy; 2026 David Hair Shop. All rights reserved. • Lordhair Pricing System
   </footer>
 
@@ -697,17 +770,11 @@
       calculate();
     }
 
-    // 3. 실시간 가격 계산 엔진 (Lordhair Pricing Engine) - AUD 호주달러 기본
+    // 3. 실시간 가격 계산 엔진 (모든 옵션 AUD 호주달러 기준)
     function calculate() {
       const breakdownList = document.getElementById('breakdownList');
       breakdownList.innerHTML = '';
-      let totalUSD = 0;
-
-      // 다중 환율 가져오기 (호주 달러 AUD 기본)
-      const rateAUD = parseFloat(document.getElementById('rateAUD').value) || 1.55;
-      const rateKRW = parseFloat(document.getElementById('rateKRW').value) || 1350;
-      const rateEUR = parseFloat(document.getElementById('rateEUR').value) || 0.92;
-      const rateIDR = parseFloat(document.getElementById('rateIDR').value) || 15800;
+      let totalAUD = 0;
 
       if (activeMode === 'stock') {
         // 기성 가발 (Stock Systems)
@@ -715,19 +782,19 @@
         const basePrice = parseFloat(stockSelect.value);
         const modelName = stockSelect.options[stockSelect.selectedIndex].text.split(' - ')[0];
 
-        addBreakdownRow(`기성 모델: ${modelName}`, `A$ ${(basePrice * rateAUD).toFixed(2)}`, `$${basePrice.toFixed(2)}`);
-        totalUSD += basePrice;
+        addBreakdownRow(`기성 모델: ${modelName}`, `A$ ${basePrice.toFixed(2)}`);
+        totalAUD += basePrice;
 
         const hairCut = document.getElementById('stockHairCut');
         if (hairCut && hairCut.checked) {
-          totalUSD += 100;
-          addBreakdownRow('전문 미용사 컷트 & 스타일링', `+A$ ${(100 * rateAUD).toFixed(2)}`, '+$100.00');
+          totalAUD += 100;
+          addBreakdownRow('전문 미용사 컷트 & 스타일링', '+A$ 100.00');
         }
 
         const baseCut = document.getElementById('stockBaseCut');
         if (baseCut && baseCut.checked) {
-          totalUSD += 15;
-          addBreakdownRow('베이스 맞춤 커팅 서비스', `+A$ ${(15 * rateAUD).toFixed(2)}`, '+$15.00');
+          totalAUD += 15;
+          addBreakdownRow('베이스 맞춤 커팅 서비스', '+A$ 15.00');
         }
 
         // 부착 방식 단일 선택 (Bonding Method)
@@ -735,14 +802,14 @@
         if (selectedBonding && parseFloat(selectedBonding.value) > 0) {
           const val = parseFloat(selectedBonding.value);
           const label = selectedBonding.parentElement.querySelector('span').innerText.split(' (')[0];
-          totalUSD += val;
-          addBreakdownRow(`부착 옵션: ${label}`, `+A$ ${(val * rateAUD).toFixed(2)}`, `+$${val.toFixed(2)}`);
+          totalAUD += val;
+          addBreakdownRow(`부착 옵션: ${label}`, `+A$ ${val.toFixed(2)}`);
         }
 
       } else {
         // 맞춤 가발 (Custom Systems)
         const basePrice = 349.00;
-        addBreakdownRow('맞춤 기초 시작가', `A$ ${(basePrice * rateAUD).toFixed(2)}`, `$${basePrice.toFixed(2)}`);
+        addBreakdownRow('맞춤 기초 시작가', `A$ ${basePrice.toFixed(2)}`);
 
         // 1. 베이스 크기 면적 계산
         const width = parseFloat(document.getElementById('baseWidth').value) || 0;
@@ -763,18 +830,17 @@
         }
 
         const baseAreaNote = document.getElementById('baseAreaNote');
-        const audSizeFee = sizeFee * rateAUD;
-        baseAreaNote.innerHTML = `<span>${sizeText}</span><span class="${sizeFee > 0 ? 'text-brand-emerald font-bold' : 'text-slate-400'}">${sizeFee > 0 ? `+A$ ${audSizeFee.toFixed(2)} (+$${sizeFee})` : '기본 포함 (+A$0)'}</span>`;
+        baseAreaNote.innerHTML = `<span>${sizeText}</span><span class="${sizeFee > 0 ? 'text-brand-emerald font-bold' : 'text-slate-400'}">${sizeFee > 0 ? `+A$ ${sizeFee.toFixed(2)}` : '기본 포함 (+A$0)'}</span>`;
 
         if (sizeFee > 0) {
-          addBreakdownRow(`베이스 크기 추가 (${area.toFixed(1)} sq in)`, `+A$ ${(sizeFee * rateAUD).toFixed(2)}`, `+$${sizeFee.toFixed(2)}`);
+          addBreakdownRow(`베이스 크기 추가 (${area.toFixed(1)} sq in)`, `+A$ ${sizeFee.toFixed(2)}`);
         }
 
         // 2. 모발 길이 추가금
         const hairLengthFee = parseFloat(document.getElementById('hairLength').value);
         if (hairLengthFee > 0) {
           const lengthText = document.getElementById('hairLength').options[document.getElementById('hairLength').selectedIndex].text.split(' (약')[0];
-          addBreakdownRow(`모발 기장 추가 (${lengthText})`, `+A$ ${(hairLengthFee * rateAUD).toFixed(2)}`, `+$${hairLengthFee.toFixed(2)}`);
+          addBreakdownRow(`모발 기장 추가 (${lengthText})`, `+A$ ${hairLengthFee.toFixed(2)}`);
         }
 
         // 3. 고정 특수 옵션 합산
@@ -784,7 +850,7 @@
           const val = parseFloat(addon.value);
           const label = addon.parentElement.querySelector('span').innerText.split(' (')[0];
           fixedAddonsTotal += val;
-          addBreakdownRow(`옵션: ${label}`, `+A$ ${(val * rateAUD).toFixed(2)}`, `+$${val.toFixed(2)}`);
+          addBreakdownRow(`옵션: ${label}`, `+A$ ${val.toFixed(2)}`);
         });
 
         // 기본 합산액 (S) = 시작가 + 크기 + 길이 + 고정옵션
@@ -812,69 +878,74 @@
         // 할증 표기
         if (qualityRate > 0) {
           const qName = document.getElementById('hairQuality').options[document.getElementById('hairQuality').selectedIndex].text.split(' (')[0];
-          addBreakdownRow(`${qName} 할증`, `+${(qualityRate * 100).toFixed(0)}%`, '');
+          addBreakdownRow(`${qName} 할증`, `+${(qualityRate * 100).toFixed(0)}%`);
         }
         if (densityRate > 0) {
           if (conditionalLongDensity) {
-            addBreakdownRow('장모(12"+) 미디엄 밀도 할증', '+15%', '');
+            addBreakdownRow('장모(12"+) 미디엄 밀도 할증', '+15%');
           } else {
             const dName = document.getElementById('density').options[document.getElementById('density').selectedIndex].text.split(' (')[0];
-            addBreakdownRow(`모발 밀도 할증 (${dName})`, `+${(densityRate * 100).toFixed(0)}%`, '');
+            addBreakdownRow(`모발 밀도 할증 (${dName})`, `+${(densityRate * 100).toFixed(0)}%`);
           }
         }
 
-        // 공식 적용: 맞춤 가발 본체 금액 = S × (1 + 모질할증율 + 밀도할증율)
-        const customProductUSD = subtotalFixed * totalMultiplier;
+        // 맞춤 가발 본체 금액 = S × (1 + 모질할증율 + 밀도할증율)
+        const customProductAUD = subtotalFixed * totalMultiplier;
 
         // 5. 부가 서비스 옵션 (미용사 컷트, 베이스 커팅, 본딩 글루/테이프)
-        let customServiceUSD = 0;
+        let customServiceAUD = 0;
         const customHairCut = document.getElementById('customHairCut');
         if (customHairCut && customHairCut.checked) {
-          customServiceUSD += 100;
-          addBreakdownRow('전문 미용사 컷트 & 스타일링', `+A$ ${(100 * rateAUD).toFixed(2)}`, '+$100.00');
+          customServiceAUD += 100;
+          addBreakdownRow('전문 미용사 컷트 & 스타일링', '+A$ 100.00');
         }
 
         const customBaseCut = document.getElementById('customBaseCut');
         if (customBaseCut && customBaseCut.checked) {
-          customServiceUSD += 15;
-          addBreakdownRow('베이스 맞춤 커팅 서비스', `+A$ ${(15 * rateAUD).toFixed(2)}`, '+$15.00');
+          customServiceAUD += 15;
+          addBreakdownRow('베이스 맞춤 커팅 서비스', '+A$ 15.00');
         }
 
         const selectedCustomBonding = document.querySelector('input[name="customBonding"]:checked');
         if (selectedCustomBonding && parseFloat(selectedCustomBonding.value) > 0) {
           const cVal = parseFloat(selectedCustomBonding.value);
           const cLabel = selectedCustomBonding.parentElement.querySelector('span').innerText.split(' (')[0];
-          customServiceUSD += cVal;
-          addBreakdownRow(`부착 옵션: ${cLabel}`, `+A$ ${(cVal * rateAUD).toFixed(2)}`, `+$${cVal.toFixed(2)}`);
+          customServiceAUD += cVal;
+          addBreakdownRow(`부착 옵션: ${cLabel}`, `+A$ ${cVal.toFixed(2)}`);
         }
 
-        totalUSD = customProductUSD + customServiceUSD;
+        totalAUD = customProductAUD + customServiceAUD;
       }
 
-      // 통화별 금액 산출
-      const totalAUD = totalUSD * rateAUD;
-      const totalKRW = Math.round(totalUSD * rateKRW);
-      const totalEUR = totalUSD * rateEUR;
-      const totalIDR = Math.round(totalUSD * rateIDR);
+      // 기준 환율 (1 AUD 기준) 가져오기
+      const rateUSD = parseFloat(document.getElementById('rateUSD').value) || 0.65;
+      const rateKRW = parseFloat(document.getElementById('rateKRW').value) || 880;
+      const rateEUR = parseFloat(document.getElementById('rateEUR').value) || 0.60;
+      const rateIDR = parseFloat(document.getElementById('rateIDR').value) || 10200;
+
+      // 1 AUD 기준 다중 통화 환산
+      const totalUSD = totalAUD * rateUSD;
+      const totalKRW = Math.round(totalAUD * rateKRW);
+      const totalEUR = totalAUD * rateEUR;
+      const totalIDR = Math.round(totalAUD * rateIDR);
 
       // UI 갱신 (AUD 기본 통화 강조)
       document.getElementById('totalPriceAUD').innerText = `A$ ${totalAUD.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-      document.getElementById('totalPriceUSD').innerText = `$${totalUSD.toFixed(2)}`;
+      document.getElementById('totalPriceUSD').innerText = `$ ${totalUSD.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
       document.getElementById('totalPriceKRW').innerText = `약 ${totalKRW.toLocaleString()}원`;
       document.getElementById('totalPriceEUR').innerText = `€ ${totalEUR.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
       document.getElementById('totalPriceIDR').innerText = `Rp ${totalIDR.toLocaleString()}`;
     }
 
-    // 내역 행 추가 헬퍼 (AUD 기본 + USD 보조)
-    function addBreakdownRow(label, audVal, usdVal) {
+    // 내역 행 추가 헬퍼 (AUD 단일 기준)
+    function addBreakdownRow(label, value) {
       const row = document.createElement('div');
       row.className = 'flex justify-between items-center py-1.5 border-b border-brand-border/40 last:border-0';
-      const secondaryHtml = usdVal ? `<span class="text-[11px] text-slate-500 font-mono ml-1.5">(${escapeHtml(usdVal)})</span>` : '';
-      row.innerHTML = `<span class="text-slate-300 font-sans">${escapeHtml(label)}</span><div class="text-right"><span class="font-bold text-slate-100 font-mono">${escapeHtml(audVal)}</span>${secondaryHtml}</div>`;
+      row.innerHTML = `<span class="text-slate-300 font-sans">${escapeHtml(label)}</span><span class="font-bold text-slate-100 font-mono">${escapeHtml(value)}</span>`;
       document.getElementById('breakdownList').appendChild(row);
     }
 
-    // 견적서 텍스트 클립보드 복사 (AUD 기본)
+    // 견적서 텍스트 클립보드 복사 (1 AUD 기준)
     async function copyEstimateText() {
       const modeText = activeMode === 'custom' ? '맞춤 제작 (Custom System)' : '기성 가발 (Stock System)';
       const totalAUD = document.getElementById('totalPriceAUD').innerText;
@@ -882,21 +953,20 @@
       const totalKRW = document.getElementById('totalPriceKRW').innerText;
       const totalEUR = document.getElementById('totalPriceEUR').innerText;
       const totalIDR = document.getElementById('totalPriceIDR').innerText;
-      const rateAUD = document.getElementById('rateAUD').value;
+      const rateUSD = document.getElementById('rateUSD').value;
       const rateKRW = document.getElementById('rateKRW').value;
       const rateEUR = document.getElementById('rateEUR').value;
       const rateIDR = document.getElementById('rateIDR').value;
 
       let rows = [];
       document.querySelectorAll('#breakdownList > div').forEach(div => {
-        const leftSpan = div.querySelector('span.text-slate-300');
-        const rightDiv = div.querySelector('div.text-right');
-        if (leftSpan && rightDiv) {
-          rows.push(`- ${leftSpan.innerText}: ${rightDiv.innerText}`);
+        const spans = div.querySelectorAll('span');
+        if (spans.length === 2) {
+          rows.push(`- ${spans[0].innerText}: ${spans[1].innerText}`);
         }
       });
 
-      const copyContent = `[FACTORY ERP - 가발 견적 산출서]\n\n■ 주문 모드: ${modeText}\n■ 세부 산출 내역 (AUD 기준):\n${rows.join('\n')}\n\n---------------------------------\n■ 최종 예상 결제 금액 (기본: AUD):\n  ★ AUD (호주달러 - 기본): ${totalAUD} (환율 1 USD = A$ ${rateAUD})\n  • USD (미국달러): ${totalUSD}\n  • KRW (원화): ${totalKRW} (환율 ${rateKRW})\n  • EUR (유로화): ${totalEUR} (환율 ${rateEUR})\n  • IDR (루피아): ${totalIDR} (환율 ${rateIDR})\n■ 발행 일시: ${new Date().toLocaleString()}\n* Lordhair Pricing Engine 기반`;
+      const copyContent = `[FACTORY ERP - 가발 견적 산출서]\n\n■ 주문 모드: ${modeText}\n■ 세부 산출 내역 (호주달러 AUD 기준):\n${rows.join('\n')}\n\n---------------------------------\n■ 최종 결제 총액 (기본 통화):\n  ★ AUD (호주달러): ${totalAUD}\n\n■ 다중 통화 환산액 (1 AUD 기준 환율):\n  • USD (미국달러): ${totalUSD} (환율 1 AUD = $${rateUSD})\n  • KRW (원화): ${totalKRW} (환율 1 AUD = ₩${rateKRW})\n  • EUR (유로화): ${totalEUR} (환율 1 AUD = €${rateEUR})\n  • IDR (루피아): ${totalIDR} (환율 1 AUD = Rp ${rateIDR})\n■ 발행 일시: ${new Date().toLocaleString()}\n* Lordhair Pricing Engine (AUD Base)`;
 
       try {
         await navigator.clipboard.writeText(copyContent);
@@ -943,4 +1013,3 @@
 </body>
 
 </html>
-
