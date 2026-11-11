@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once __DIR__ . '/config.php';
 
-$method = $_SERVER['REQUEST_METHOD'];
+$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
 try {
     $pdo = $conn;
