@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory ERP - 사용자 관리</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                dark: '#090E17',
+                card: '#131B2B',
+                cardHover: '#1A2438',
+                border: '#28354D',
+                gold: '#F59E0B',
+                goldHover: '#D97706',
+                emerald: '#10B981',
+                slateText: '#94A3B8'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Outfit', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace']
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-brand-dark text-slate-100 min-h-screen flex flex-col font-sans antialiased">
+
+    <!-- 상단 네비게이션 바 -->
+    <header class="w-full bg-brand-card border-b border-brand-border sticky top-0 z-40 px-4 sm:px-6 h-16 flex items-center justify-between">
+        <!-- 좌측: 브랜드 로고 & 메뉴 목록 -->
+        <div class="flex items-center space-x-6">
+            <a href="admin-dashboard.html" class="flex items-center space-x-2.5 hover:opacity-90 transition-opacity">
+                <div class="w-8 h-8 rounded-lg bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold">
+                    <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
+                </div>
+                <span class="font-display font-bold text-base tracking-wide text-white">FACTORY ERP</span>
+                <span class="hidden sm:inline-block text-[11px] font-mono text-brand-gold px-1.5 py-0.5 rounded bg-brand-gold/10 border border-brand-gold/20">ADMIN</span>
+            </a>
+
+            <!-- 네비게이션 바 메뉴 -->
+            <nav class="hidden md:flex items-center space-x-1 pl-4 border-l border-brand-border text-sm">
+                <a href="admin-dashboard.html" class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
+                    <span class="material-symbols-outlined text-base">dashboard</span>
+                    <span>대시보드</span>
+                </a>
+                <a href="admin_users.html" class="px-3 py-1.5 rounded-lg bg-brand-gold/15 text-brand-gold font-medium border border-brand-gold/30 flex items-center space-x-1.5">
+                    <span class="material-symbols-outlined text-base">manage_accounts</span>
+                    <span>사용자 관리</span>
+                </a>
+                <a href="#" class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
+                    <span class="material-symbols-outlined text-base">receipt_long</span>
+                    <span>주문 관리</span>
+                </a>
+                <a href="#" class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
+                    <span class="material-symbols-outlined text-base">precision_manufacturing</span>
+                    <span>생산 / MES</span>
+                </a>
+                <a href="#" class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
+                    <span class="material-symbols-outlined text-base">storefront</span>
+                    <span>거래처 관리</span>
+                </a>
+                <a href="#" class="px-3 py-1.5 rounded-lg text-brand-slateText hover:text-white hover:bg-brand-cardHover transition-colors flex items-center space-x-1.5">
+                    <span class="material-symbols-outlined text-base">account_balance</span>
+                    <span>회계 / 정산</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- 우측: 관리자 식별 및 로그아웃 버튼 -->
+        <div class="flex items-center space-x-3">
+            <div class="hidden sm:flex items-center space-x-2 text-xs font-mono text-brand-slateText pr-2">
+                <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
+                <span id="userNameText" class="text-slate-200">총괄관리자</span>
+                <span class="px-1.5 py-0.5 rounded bg-brand-border text-[10px] text-slate-300">ADMIN</span>
+            </div>
+
+            <!-- 로그아웃 버튼 -->
+            <button type="button" onclick="handleLogout()"
+                    class="px-3 py-1.5 rounded-lg bg-red-950/40 hover:bg-red-900/60 border border-red-500/40 text-red-300 hover:text-red-200 text-xs font-medium transition-colors flex items-center space-x-1.5">
+                <span class="material-symbols-outlined text-base">logout</span>
+                <span>로그아웃</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 영역 -->
+    <main class="flex-1 w-full max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <!-- 페이지 헤더 & 추가 버튼 -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+                <div class="flex items-center space-x-2">
+                    <span class="material-symbols-outlined text-brand-gold text-2xl">people</span>
+                    <h1 class="font-display font-bold text-2xl text-white tracking-tight">사용자 계정 관리</h1>
+                </div>
+                <p class="text-xs text-brand-slateText mt-1">본사 관리자(ADMIN)와 B2B 거래처(CLIENT) 계정의 등록, 수정, 삭제 및 상태를 통제합니다.</p>
+            </div>
+            <div>
+                <button type="button" onclick="openCreateModal()"
+                        class="px-4 py-2.5 rounded-xl bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-display font-bold text-sm tracking-wide transition-all shadow-lg shadow-brand-gold/20 flex items-center space-x-1.5 active:scale-[0.99]">
+                    <span class="material-symbols-outlined text-lg">person_add</span>
+                    <span>신규 사용자 추가</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 필터 & 검색 툴바 -->
+        <div class="bg-brand-card border border-brand-border rounded-xl p-4 mb-6 flex flex-col md:flex-row items-center justify-between gap-3">
+            <!-- 탭 필터 (전체 / 관리자 / 거래처) -->
+            <div class="flex items-center space-x-1 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+                <button type="button" onclick="setFilter('')" id="tab-all"
+                        class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium bg-brand-gold/15 text-brand-gold border border-brand-gold/30">
+                    전체 (<span id="count-all">0</span>)
+                </button>
+                <button type="button" onclick="setFilter('ADMIN')" id="tab-admin"
+                        class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-brand-slateText hover:text-white hover:bg-brand-cardHover border border-transparent">
+                    관리자 (<span id="count-admin">0</span>)
+                </button>
+                <button type="button" onclick="setFilter('CLIENT')" id="tab-client"
+                        class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-brand-slateText hover:text-white hover:bg-brand-cardHover border border-transparent">
+                    거래처 (<span id="count-client">0</span>)
+                </button>
+            </div>
+
+            <!-- 검색 입력창 -->
+            <div class="w-full md:w-72 relative">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                    <span class="material-symbols-outlined text-lg">search</span>
+                </span>
+                <input type="text" id="searchInput" oninput="handleSearch()"
+                       class="w-full pl-9 pr-3 py-1.5 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono"
+                       placeholder="이름, 아이디, 살롱명, 이메일 검색">
+            </div>
+        </div>
+
+        <!-- 사용자 데이터 테이블 -->
+        <div class="bg-brand-card border border-brand-border rounded-xl overflow-hidden shadow-xl">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-brand-dark/80 border-b border-brand-border text-brand-slateText uppercase font-mono text-[11px]">
+                        <tr>
+                            <th class="py-3 px-4">구분</th>
+                            <th class="py-3 px-4">아이디 / 이메일</th>
+                            <th class="py-3 px-4">담당자 / 상호명</th>
+                            <th class="py-3 px-4">연락처 / 사업자번호</th>
+                            <th class="py-3 px-4">권한 / 티어</th>
+                            <th class="py-3 px-4 text-center">상태</th>
+                            <th class="py-3 px-4">최근 로그인</th>
+                            <th class="py-3 px-4 text-right">관리</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody" class="divide-y divide-brand-border/60">
+                        <tr>
+                            <td colspan="8" class="py-12 text-center text-brand-slateText font-mono">
+                                데이터를 불러오는 중입니다...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- 사용자 추가/수정 모달 (Modal) -->
+    <div id="userModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-card border border-brand-border rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+            <!-- 모달 헤더 -->
+            <div class="px-6 py-4 border-b border-brand-border flex items-center justify-between">
+                <h3 id="modalTitle" class="font-display font-bold text-lg text-white">신규 사용자 추가</h3>
+                <button type="button" onclick="closeModal()" class="text-slate-400 hover:text-white">
+                    <span class="material-symbols-outlined text-xl">close</span>
+                </button>
+            </div>
+
+            <!-- 모달 폼 -->
+            <form id="userForm" onsubmit="handleFormSubmit(event)" class="p-6 space-y-4">
+                <input type="hidden" id="formUserId" value="">
+
+                <!-- 1. 구분 선택 (핵심) -->
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2">사용자 구분 (Role Type) *</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex items-center space-x-2.5 p-3 rounded-xl border border-brand-border bg-brand-dark cursor-pointer hover:border-brand-gold transition-colors">
+                            <input type="radio" name="user_type" value="ADMIN" checked onchange="toggleClientFields()" class="text-brand-gold focus:ring-brand-gold">
+                            <div>
+                                <div class="text-xs font-bold text-white flex items-center space-x-1">
+                                    <span class="material-symbols-outlined text-sm text-brand-gold">admin_panel_settings</span>
+                                    <span>본사 관리자 (ADMIN)</span>
+                                </div>
+                                <div class="text-[10px] text-brand-slateText mt-0.5">전체 관제, 수주 승인, 회계 통제</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center space-x-2.5 p-3 rounded-xl border border-brand-border bg-brand-dark cursor-pointer hover:border-brand-emerald transition-colors">
+                            <input type="radio" name="user_type" value="CLIENT" onchange="toggleClientFields()" class="text-brand-emerald focus:ring-brand-emerald">
+                            <div>
+                                <div class="text-xs font-bold text-white flex items-center space-x-1">
+                                    <span class="material-symbols-outlined text-sm text-brand-emerald">storefront</span>
+                                    <span>B2B 거래처 (CLIENT)</span>
+                                </div>
+                                <div class="text-[10px] text-brand-slateText mt-0.5">살롱 발주, 자사 공정 추적</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 2. 기본 계정 정보 -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label for="formUsername" class="block text-xs font-medium text-slate-300 mb-1">아이디 *</label>
+                        <input type="text" id="formUsername" required
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono"
+                               placeholder="예: salon_gangnam">
+                    </div>
+                    <div>
+                        <label for="formEmail" class="block text-xs font-medium text-slate-300 mb-1">이메일 *</label>
+                        <input type="email" id="formEmail" required
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono"
+                               placeholder="user@example.com">
+                    </div>
+                </div>
+
+                <!-- 3. 비밀번호 & 담당자명 -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label for="formPassword" class="block text-xs font-medium text-slate-300 mb-1">
+                            비밀번호 <span id="pwdNotice" class="text-brand-slateText text-[10px]">*</span>
+                        </label>
+                        <input type="password" id="formPassword"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono"
+                               placeholder="비밀번호 입력">
+                    </div>
+                    <div>
+                        <label for="formName" class="block text-xs font-medium text-slate-300 mb-1">담당자 성명 *</label>
+                        <input type="text" id="formName" required
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold"
+                               placeholder="예: 홍길동 원장">
+                    </div>
+                </div>
+
+                <!-- 4. 거래처 전용 정보 (상호명, 사업자번호) -->
+                <div id="clientFieldsGroup" class="space-y-3 p-3.5 rounded-xl bg-brand-dark/80 border border-brand-border/60">
+                    <div class="text-[11px] font-mono text-brand-emerald flex items-center space-x-1 font-semibold">
+                        <span class="material-symbols-outlined text-sm">store</span>
+                        <span>거래처(살롱/클리닉) 부가 정보</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label for="formCompanyName" class="block text-xs font-medium text-slate-300 mb-1">상호명 (살롱명)</label>
+                            <input type="text" id="formCompanyName"
+                                   class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald"
+                                   placeholder="예: 강남 프리미엄 헤어">
+                        </div>
+                        <div>
+                            <label for="formBizNumber" class="block text-xs font-medium text-slate-300 mb-1">사업자등록번호 (ABN)</label>
+                            <input type="text" id="formBizNumber"
+                                   class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-emerald font-mono"
+                                   placeholder="000-00-00000">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="formTier" class="block text-xs font-medium text-slate-300 mb-1">공급가 티어 (Tier)</label>
+                        <select id="formTier" class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white focus:outline-none focus:border-brand-emerald font-mono">
+                            <option value="TIER_1">TIER_1 (골드 파트너 - 기본)</option>
+                            <option value="TIER_2">TIER_2 (실버 파트너)</option>
+                            <option value="TIER_3">TIER_3 (일반 파트너)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 5. 연락처 & 세부 역할 & 상태 -->
+                <div class="grid grid-cols-3 gap-3">
+                    <div>
+                        <label for="formPhone" class="block text-xs font-medium text-slate-300 mb-1">전화번호</label>
+                        <input type="text" id="formPhone"
+                               class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-gold font-mono"
+                               placeholder="010-0000-0000">
+                    </div>
+                    <div>
+                        <label for="formRole" class="block text-xs font-medium text-slate-300 mb-1">세부 역할 (Role)</label>
+                        <select id="formRole" class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white focus:outline-none focus:border-brand-gold font-mono">
+                            <option value="SUPER_ADMIN">SUPER_ADMIN (총괄)</option>
+                            <option value="ADMIN">ADMIN (운영)</option>
+                            <option value="OPERATOR">OPERATOR (공정)</option>
+                            <option value="ACCOUNTANT">ACCOUNTANT (회계)</option>
+                            <option value="CLIENT">CLIENT (거래처)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="formStatus" class="block text-xs font-medium text-slate-300 mb-1">상태</label>
+                        <select id="formStatus" class="w-full px-3 py-2 bg-brand-dark border border-brand-border rounded-lg text-xs text-white focus:outline-none focus:border-brand-gold font-mono">
+                            <option value="ACTIVE">ACTIVE (정상)</option>
+                            <option value="PENDING">PENDING (승인대기)</option>
+                            <option value="SUSPENDED">SUSPENDED (정지)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 모달 에러/안내 메시지 -->
+                <div id="modalAlert" class="hidden text-xs rounded-lg p-2.5 font-mono"></div>
+
+                <!-- 모달 푸터 액션 -->
+                <div class="pt-3 border-t border-brand-border flex items-center justify-end space-x-2">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-lg bg-brand-dark hover:bg-brand-cardHover border border-brand-border text-slate-300 text-xs font-medium">
+                        취소
+                    </button>
+                    <button type="submit" id="modalSubmitBtn" class="px-5 py-2 rounded-lg bg-brand-gold hover:bg-brand-goldHover text-brand-dark font-display font-bold text-xs">
+                        저장 완료
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 하단 푸터 -->
+    <footer class="w-full border-t border-brand-border/60 py-3 px-6 text-center text-[11px] font-mono text-slate-500 bg-brand-card/20 mt-auto">
+        Factory ERP &copy; 2026 David Hair Shop. All rights reserved.
+    </footer>
+
+    <!-- 자바스크립트 로직 -->
+    <script>
+        let allUsers = [];
+        let currentFilter = '';
+
+        // 1. 세션 확인
+        async function checkSession() {
+            try {
+                const res = await fetch('api_me.php');
+                const data = await res.json();
+                if (!data.authenticated || data.user.user_type !== 'ADMIN') {
+                    alert('관리자 로그인이 필요합니다.');
+                    window.location.href = 'index.html';
+                    return;
+                }
+                document.getElementById('userNameText').textContent = data.user.name || data.user.username;
+            } catch (e) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // 2. 사용자 목록 로드
+        async function loadUsers() {
+            try {
+                const res = await fetch('api_users.php?action=list');
+                const data = await res.json();
+                if (data.success) {
+                    allUsers = data.users || [];
+                    updateCounts();
+                    renderTable();
+                } else {
+                    document.getElementById('userTableBody').innerHTML = `
+                        <tr><td colspan="8" class="py-8 text-center text-red-400 font-mono">${data.message}</td></tr>
+                    `;
+                }
+            } catch (err) {
+                document.getElementById('userTableBody').innerHTML = `
+                    <tr><td colspan="8" class="py-8 text-center text-red-400 font-mono">사용자 목록을 불러오지 못했습니다.</td></tr>
+                `;
+            }
+        }
+
+        // 3. 통계 카운트 갱신
+        function updateCounts() {
+            document.getElementById('count-all').textContent = allUsers.length;
+            document.getElementById('count-admin').textContent = allUsers.filter(u => u.user_type === 'ADMIN').length;
+            document.getElementById('count-client').textContent = allUsers.filter(u => u.user_type === 'CLIENT').length;
+        }
+
+        // 4. 필터 탭 전환
+        function setFilter(type) {
+            currentFilter = type;
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = 'tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-brand-slateText hover:text-white hover:bg-brand-cardHover border border-transparent';
+            });
+            const activeId = type === '' ? 'tab-all' : (type === 'ADMIN' ? 'tab-admin' : 'tab-client');
+            const activeColor = type === 'CLIENT' ? 'text-brand-emerald bg-brand-emerald/15 border-brand-emerald/30' : 'text-brand-gold bg-brand-gold/15 border-brand-gold/30';
+            document.getElementById(activeId).className = `tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border ${activeColor}`;
+            renderTable();
+        }
+
+        // 5. 검색 핸들러
+        function handleSearch() {
+            renderTable();
+        }
+
+        // 6. 테이블 렌더링
+        function renderTable() {
+            const tbody = document.getElementById('userTableBody');
+            const searchKeyword = document.getElementById('searchInput').value.trim().toLowerCase();
+
+            let filtered = allUsers;
+            if (currentFilter) {
+                filtered = filtered.filter(u => u.user_type === currentFilter);
+            }
+            if (searchKeyword) {
+                filtered = filtered.filter(u => {
+                    return (u.username || '').toLowerCase().includes(searchKeyword) ||
+                           (u.name || '').toLowerCase().includes(searchKeyword) ||
+                           (u.company_name || '').toLowerCase().includes(searchKeyword) ||
+                           (u.email || '').toLowerCase().includes(searchKeyword) ||
+                           (u.phone || '').includes(searchKeyword);
+                });
+            }
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="py-12 text-center text-slate-400 font-mono">조건에 해당하는 사용자가 없습니다.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(user => {
+                const isAdmin = user.user_type === 'ADMIN';
+                const typeBadge = isAdmin 
+                    ? `<span class="px-2 py-0.5 rounded bg-brand-gold/15 border border-brand-gold/40 text-brand-gold font-mono text-[10px] font-bold">ADMIN (관리자)</span>`
+                    : `<span class="px-2 py-0.5 rounded bg-brand-emerald/15 border border-brand-emerald/40 text-brand-emerald font-mono text-[10px] font-bold">CLIENT (거래처)</span>`;
+
+                let statusBadge = '';
+                if (user.status === 'ACTIVE') {
+                    statusBadge = `<span class="inline-flex items-center gap-1 text-brand-emerald font-mono text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-brand-emerald"></span>정상</span>`;
+                } else if (user.status === 'PENDING') {
+                    statusBadge = `<span class="inline-flex items-center gap-1 text-brand-gold font-mono text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>승인대기</span>`;
+                } else {
+                    statusBadge = `<span class="inline-flex items-center gap-1 text-red-400 font-mono text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>정지</span>`;
+                }
+
+                const companyText = user.company_name ? `<div class="text-[11px] text-brand-slateText">${user.company_name}</div>` : `<div class="text-[11px] text-slate-500 font-mono">-</div>`;
+                const bizText = user.business_number ? `<div class="text-[11px] text-slate-400 font-mono">ABN: ${user.business_number}</div>` : '';
+                const phoneText = user.phone ? `<div class="font-mono text-slate-300">${user.phone}</div>` : `<div class="text-slate-500 font-mono">-</div>`;
+                const tierText = !isAdmin && user.tier ? `<span class="text-[10px] text-slate-400 font-mono">/ ${user.tier}</span>` : '';
+                const lastLogin = user.last_login_at ? `<span class="font-mono text-[11px] text-slate-400">${user.last_login_at.substring(0, 16)}</span>` : `<span class="text-slate-500 font-mono text-[11px]">기록 없음</span>`;
+
+                return `
+                    <tr class="hover:bg-brand-cardHover/60 transition-colors">
+                        <td class="py-3 px-4">${typeBadge}</td>
+                        <td class="py-3 px-4">
+                            <div class="font-bold text-white font-mono">${user.username}</div>
+                            <div class="text-[11px] text-slate-400 font-mono">${user.email}</div>
+                        </td>
+                        <td class="py-3 px-4">
+                            <div class="font-medium text-slate-100">${user.name}</div>
+                            ${companyText}
+                        </td>
+                        <td class="py-3 px-4">
+                            ${phoneText}
+                            ${bizText}
+                        </td>
+                        <td class="py-3 px-4">
+                            <span class="font-mono text-slate-200">${user.role}</span>
+                            ${tierText}
+                        </td>
+                        <td class="py-3 px-4 text-center">${statusBadge}</td>
+                        <td class="py-3 px-4">${lastLogin}</td>
+                        <td class="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
+                            <button type="button" onclick="openEditModal(${user.id})"
+                                    class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-medium transition-colors">
+                                수정
+                            </button>
+                            <button type="button" onclick="deleteUser(${user.id}, '${user.username}')"
+                                    class="px-2.5 py-1 rounded bg-red-950/40 hover:bg-red-900/60 text-red-300 border border-red-500/40 text-[11px] font-medium transition-colors">
+                                삭제
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 7. 모달 열기 (신규 추가)
+        function openCreateModal() {
+            document.getElementById('modalTitle').textContent = '신규 사용자 추가';
+            document.getElementById('formUserId').value = '';
+            document.getElementById('formUsername').value = '';
+            document.getElementById('formUsername').disabled = false;
+            document.getElementById('formEmail').value = '';
+            document.getElementById('formPassword').value = '';
+            document.getElementById('formPassword').required = true;
+            document.getElementById('pwdNotice').textContent = '*';
+            document.getElementById('formName').value = '';
+            document.getElementById('formCompanyName').value = '';
+            document.getElementById('formBizNumber').value = '';
+            document.getElementById('formPhone').value = '';
+            document.getElementById('formRole').value = 'ADMIN';
+            document.getElementById('formTier').value = 'TIER_1';
+            document.getElementById('formStatus').value = 'ACTIVE';
+            
+            // 라디오버튼 ADMIN 기본
+            document.querySelector('input[name="user_type"][value="ADMIN"]').checked = true;
+            toggleClientFields();
+
+            hideModalAlert();
+            document.getElementById('userModal').classList.remove('hidden');
+        }
+
+        // 8. 모달 열기 (수정)
+        function openEditModal(userId) {
+            const user = allUsers.find(u => u.id == userId);
+            if (!user) return;
+
+            document.getElementById('modalTitle').textContent = `사용자 정보 수정: ${user.username}`;
+            document.getElementById('formUserId').value = user.id;
+            document.getElementById('formUsername').value = user.username;
+            document.getElementById('formUsername').disabled = true; // 아이디 수정 불가
+            document.getElementById('formEmail').value = user.email || '';
+            document.getElementById('formPassword').value = '';
+            document.getElementById('formPassword').required = false;
+            document.getElementById('pwdNotice').textContent = '(변경 시에만 입력)';
+            document.getElementById('formName').value = user.name || '';
+            document.getElementById('formCompanyName').value = user.company_name || '';
+            document.getElementById('formBizNumber').value = user.business_number || '';
+            document.getElementById('formPhone').value = user.phone || '';
+            document.getElementById('formRole').value = user.role || (user.user_type === 'ADMIN' ? 'ADMIN' : 'CLIENT');
+            document.getElementById('formTier').value = user.tier || 'TIER_1';
+            document.getElementById('formStatus').value = user.status || 'ACTIVE';
+
+            // 라디오버튼 설정
+            const radio = document.querySelector(`input[name="user_type"][value="${user.user_type}"]`);
+            if (radio) radio.checked = true;
+            toggleClientFields();
+
+            hideModalAlert();
+            document.getElementById('userModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('userModal').classList.add('hidden');
+        }
+
+        // 구분(ADMIN/CLIENT) 선택 시 거래처 전용 필드 표시 조정
+        function toggleClientFields() {
+            const selectedType = document.querySelector('input[name="user_type"]:checked').value;
+            const clientGroup = document.getElementById('clientFieldsGroup');
+            const roleSelect = document.getElementById('formRole');
+
+            if (selectedType === 'CLIENT') {
+                clientGroup.classList.remove('hidden');
+                if (roleSelect.value === 'SUPER_ADMIN' || roleSelect.value === 'ADMIN' || roleSelect.value === 'OPERATOR') {
+                    roleSelect.value = 'CLIENT';
+                }
+            } else {
+                clientGroup.classList.add('hidden');
+                if (roleSelect.value === 'CLIENT') {
+                    roleSelect.value = 'ADMIN';
+                }
+            }
+        }
+
+        function showModalAlert(msg, isSuccess = false) {
+            const box = document.getElementById('modalAlert');
+            box.className = isSuccess 
+                ? 'text-xs rounded-lg p-2.5 font-mono bg-emerald-950/60 border border-brand-emerald/50 text-brand-emerald block'
+                : 'text-xs rounded-lg p-2.5 font-mono bg-red-950/60 border border-red-500/50 text-red-300 block';
+            box.textContent = msg;
+        }
+
+        function hideModalAlert() {
+            const box = document.getElementById('modalAlert');
+            box.className = 'hidden';
+            box.textContent = '';
+        }
+
+        // 9. 폼 저장 (추가/수정)
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            const userId = document.getElementById('formUserId').value;
+            const isEdit = !!userId;
+
+            const userType = document.querySelector('input[name="user_type"]:checked').value;
+            const username = document.getElementById('formUsername').value.trim();
+            const email = document.getElementById('formEmail').value.trim();
+            const password = document.getElementById('formPassword').value.trim();
+            const name = document.getElementById('formName').value.trim();
+            const companyName = document.getElementById('formCompanyName').value.trim();
+            const bizNumber = document.getElementById('formBizNumber').value.trim();
+            const phone = document.getElementById('formPhone').value.trim();
+            const role = document.getElementById('formRole').value;
+            const tier = document.getElementById('formTier').value;
+            const status = document.getElementById('formStatus').value;
+
+            const payload = {
+                action: isEdit ? 'update' : 'create',
+                id: userId,
+                user_type: userType,
+                username: username,
+                email: email,
+                password: password,
+                name: name,
+                company_name: companyName,
+                business_number: bizNumber,
+                phone: phone,
+                role: role,
+                tier: tier,
+                status: status
+            };
+
+            const submitBtn = document.getElementById('modalSubmitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '저장 중...';
+
+            try {
+                const res = await fetch('api_users.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await res.json();
+
+                if (result.success) {
+                    showModalAlert(result.message, true);
+                    await loadUsers();
+                    setTimeout(() => {
+                        closeModal();
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = '저장 완료';
+                    }, 500);
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '저장 완료';
+                    showModalAlert(result.message || '저장에 실패했습니다.');
+                }
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '저장 완료';
+                showModalAlert('서버 통신 오류가 발생했습니다.');
+            }
+        }
+
+        // 10. 사용자 삭제
+        async function deleteUser(userId, username) {
+            if (!confirm(`사용자 [${username}]을(를) 정말로 삭제하시겠습니까?\n삭제 후에는 복구할 수 없습니다.`)) {
+                return;
+            }
+
+            try {
+                const res = await fetch('api_users.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'delete', id: userId })
+                });
+                const result = await res.json();
+                if (result.success) {
+                    alert(result.message);
+                    await loadUsers();
+                } else {
+                    alert('삭제 실패: ' + result.message);
+                }
+            } catch (err) {
+                alert('서버 통신 오류가 발생했습니다.');
+            }
+        }
+
+        // 11. 로그아웃
+        async function handleLogout() {
+            if (!confirm('로그아웃 하시겠습니까?')) return;
+            try {
+                await fetch('api_logout.php');
+            } catch (e) {}
+            window.location.href = 'index.html';
+        }
+
+        // 초기 실행
+        checkSession();
+        loadUsers();
+    </script>
+</body>
+</html>
