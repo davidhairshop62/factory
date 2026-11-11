@@ -163,17 +163,15 @@
                             <th class="py-3 px-4">구분</th>
                             <th class="py-3 px-4">아이디 / 이메일</th>
                             <th class="py-3 px-4">담당자 / 상호명</th>
-                            <th class="py-3 px-4">연락처 / 사업자번호</th>
-                            <th class="py-3 px-4 min-w-[280px]">배송지 주소 / 특이사항(기타·비고)</th>
+                            <th class="py-3 px-4">연락처</th>
                             <th class="py-3 px-4">권한 / 티어</th>
                             <th class="py-3 px-4 text-center">상태</th>
-                            <th class="py-3 px-4">최근 로그인</th>
                             <th class="py-3 px-4 text-right">관리</th>
                         </tr>
                     </thead>
                     <tbody id="userTableBody" class="divide-y divide-brand-border/60">
                         <tr>
-                            <td colspan="9" class="py-12 text-center text-brand-slateText font-mono">
+                            <td colspan="7" class="py-12 text-center text-brand-slateText font-mono">
                                 데이터를 불러오는 중입니다...
                             </td>
                         </tr>
@@ -553,12 +551,12 @@
                     renderTable();
                 } else {
                     document.getElementById('userTableBody').innerHTML = `
-                        <tr><td colspan="8" class="py-8 text-center text-red-400 font-mono">${data.message}</td></tr>
+                        <tr><td colspan="7" class="py-8 text-center text-red-400 font-mono">${data.message}</td></tr>
                     `;
                 }
             } catch (err) {
                 document.getElementById('userTableBody').innerHTML = `
-                    <tr><td colspan="8" class="py-8 text-center text-red-400 font-mono">사용자 목록을 불러오지 못했습니다.</td></tr>
+                    <tr><td colspan="7" class="py-8 text-center text-red-400 font-mono">사용자 목록을 불러오지 못했습니다.</td></tr>
                 `;
             }
         }
@@ -623,7 +621,7 @@
             }
 
             if (filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="8" class="py-12 text-center text-slate-400 font-mono">조건에 해당하는 사용자가 없습니다.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="py-12 text-center text-slate-400 font-mono">조건에 해당하는 사용자가 없습니다.</td></tr>`;
                 return;
             }
 
@@ -658,31 +656,8 @@
                     ? `<span>${escapeHtml(user.name)}</span> <span class="text-[11px] text-slate-400 font-mono font-normal">(${escapeHtml(user.name_en)})</span>`
                     : `<span>${escapeHtml(user.name)}</span>`;
 
-                const bizText = user.business_number ? `<div class="text-[11px] text-slate-400 font-mono">ABN: ${escapeHtml(user.business_number)}</div>` : '';
-                const phoneText = user.phone ? `<div class="font-mono text-slate-300">${escapeHtml(user.phone)}</div>` : `<div class="text-slate-500 font-mono">-</div>`;
+                const phoneText = user.phone ? `<div class="font-mono text-slate-200">${escapeHtml(user.phone)}</div>` : `<div class="text-slate-500 font-mono">-</div>`;
                 const tierText = !isAdmin && user.tier ? `<span class="text-[10px] text-slate-400 font-mono">/ ${user.tier}</span>` : '';
-                const lastLogin = user.last_login_at ? `<span class="font-mono text-[11px] text-slate-400">${user.last_login_at.substring(0, 16)}</span>` : `<span class="text-slate-500 font-mono text-[11px]">기록 없음</span>`;
-
-                // 배송지 주소 (한글 + 영문)
-                let shippingHtml = '';
-                if (user.shipping_address || user.shipping_address_en) {
-                    shippingHtml = `<div class="space-y-1">`;
-                    if (user.shipping_address) {
-                        shippingHtml += `<div class="text-xs text-slate-200 flex items-start gap-1.5 font-sans leading-relaxed">
-                                            <span class="material-symbols-outlined text-sm text-brand-emerald shrink-0 mt-0.5">local_shipping</span>
-                                            <span class="break-words font-medium">${escapeHtml(user.shipping_address)}</span>
-                                         </div>`;
-                    }
-                    if (user.shipping_address_en) {
-                        shippingHtml += `<div class="text-[11px] text-slate-300 font-mono flex items-start gap-1.5 leading-relaxed bg-brand-dark/40 p-1.5 rounded border border-brand-border/40">
-                                            <span class="text-[9px] uppercase px-1 py-0.2 rounded bg-brand-emerald/15 text-brand-emerald font-bold shrink-0 mt-0.5">EN</span>
-                                            <span class="break-words">${escapeHtml(user.shipping_address_en)}</span>
-                                         </div>`;
-                    }
-                    shippingHtml += `</div>`;
-                } else {
-                    shippingHtml = `<div class="text-xs text-slate-500 font-mono">- 배송지 미등록 -</div>`;
-                }
 
                 // 승인대기 상태일 때 승인 버튼 노출
                 const approveBtn = user.status === 'PENDING'
@@ -706,24 +681,12 @@
                         </td>
                         <td class="py-3 px-4">
                             ${phoneText}
-                            ${bizText}
-                        </td>
-                        <!-- 배송지 주소 및 특이사항(기타/비고) 와이드 컬럼 -->
-                        <td class="py-3 px-4 min-w-[280px] max-w-[420px]">
-                            ${shippingHtml}
-                            ${(user.notes || user.remarks) ? `
-                                <div class="mt-2 p-2.5 rounded-lg bg-brand-dark/90 border border-brand-border text-xs space-y-1.5 shadow-sm">
-                                    ${user.notes ? `<div class="text-amber-300 font-sans break-words leading-relaxed"><span class="font-bold text-[10px] text-brand-gold bg-brand-gold/15 px-1.5 py-0.5 rounded mr-1 font-mono">기타</span>${escapeHtml(user.notes)}</div>` : ''}
-                                    ${user.remarks ? `<div class="text-slate-300 font-sans break-words leading-relaxed"><span class="font-bold text-[10px] text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded mr-1 font-mono">비고</span>${escapeHtml(user.remarks)}</div>` : ''}
-                                </div>
-                            ` : ''}
                         </td>
                         <td class="py-3 px-4">
                             <span class="font-mono text-slate-200">${user.role}</span>
                             ${tierText}
                         </td>
                         <td class="py-3 px-4 text-center">${statusBadge}</td>
-                        <td class="py-3 px-4">${lastLogin}</td>
                         <td class="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
                             ${approveBtn}
                             <button type="button" onclick="openShippingLabelModal(${user.id})"
